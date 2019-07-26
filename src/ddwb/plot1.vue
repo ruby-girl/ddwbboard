@@ -37,7 +37,7 @@
         <!-- <a-row :gutter="8"> -->
           <!-- <a-col :span="10"> -->
             <div style="width:100%;height:320px;background:red;margin:0 0 20px 0;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-           <div style="width:100%;height:16%;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
+           <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
                 <h3 style="margin:-0.5% 0 0 2%;color:#2899EF;font-weight: bold;">基础信息</h3>
                 <h4 style="margin:0 0 0 2%;color:#fff;font-weight: bold;">Basic Information</h4>
             </div>
@@ -67,7 +67,7 @@
                 </div>
         </div>
          <div style="width:100%;height:200px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-                <div style="width:100%;height:25%;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
+                <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
                 <h3 style="margin:-0.5% 0 0 3%;color:#2899EF;font-weight: bold;">地块相关人员信息</h3>
                 <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">Service</h4>
                 </div>
@@ -87,7 +87,7 @@
                 </div>
               </div>
               <div style="margin-top:20px;width:100%;height:279px;margin-bottom:19px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-          <div style="width:100%;height:18%;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
+          <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
                 <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">采收产量数据</h3>
                 <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">Data comparison</h4>
               </div>
@@ -96,7 +96,7 @@
            </a-col>
            <a-col :span="10">
             <div style="width:100%;height:540px;background:red;margin:0 0 20px 0;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-           <div style="width:100%;height:10%;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
+           <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
                 <h3 style="margin:-0.5% 0 0 2%;color:#2899EF;font-weight: bold;">地块信息</h3>
                 <h4 style="margin:0 0 0 2%;color:#fff;font-weight: bold;">Plot related personnel information</h4>
             </div>
@@ -111,12 +111,12 @@
             <!-- </a-col>
             <a-col :span="14"> -->
               <div style="width:100%;height:280px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-                <div style="width:100%;height:16%;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
+                <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
                 <h3 style="margin:-0.5% 0 0 3%;color:#2899EF;font-weight: bold;">地块工单</h3>
                 <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">Land work order</h4>
               </div>
                <div id="srollbox" style="width:100%;height:84%;overflow:hidden;">
-                   <table id="sroll" style="width:100%;height:100%;">
+                   <table id="sroll" style="width:100%;height:100%;position:relative; top:0">
                      <template v-for="(v,k) in work">
                        <tr :key="k" style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
                          <td style="width:33%;color:fff">{{v.solarTerm}}</td>
@@ -125,7 +125,7 @@
                        </tr>
                      </template>
                    </table>
-                    <table id="sroll1" style="width:100%;height:100%;">
+                    <table id="sroll1" style="width:100%;height:100%;position:relative; top:0">
                      <template v-for="(v,k) in work">
                        <tr :key="k" style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
                          <td style="width:33%;color:#fff">{{v.solarTerm}}</td>
@@ -142,7 +142,7 @@
       </a-col> -->
       <a-col :span="7">
         <div style="width:100%;height:450px;margin-bottom:20px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-          <div style="width:100%;height:11%;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
+          <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
                 <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">检测数据</h3>
                 <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">Quality Comparison</h4>
               </div>
@@ -167,7 +167,7 @@
               <div id="graphjiangyu" style=" width: 100%;height: 80%;"></div>
         </div> -->
         <div style="width:100%;height:370px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-          <div style="width:100%;height:13%;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
+          <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
                 <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">农场实景</h3>
                 <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">Pictures</h4>
               </div>
@@ -185,6 +185,7 @@
   </div>
 </template>
 <script>
+import roll from '../assets/js/roll.js';
 import MapLoader from '@/utils/loadMap.js'
 import headers from '@/components/header/header'
 import Foot from '@/components/layouts/GlobalFooter.vue'
@@ -240,13 +241,6 @@ export default {
       that.base=res.data.result[that.baseId];
       that.baseName=res.data.result[that.baseId].baseName;
     })
-   axios.get("/json/plot1.json").then((res)=>{
-      let a=res.data.result[that.baseId].plot;
-      that.people=a[that.plotId].manager;
-      that.work=a[that.plotId].work;
-      that.plot=a[that.plotId];
-      console.log(that.plot)
-    })
 
      axios.get("/json/plot1.json").then((res)=>{
       let a=res.data.result[that.baseId].plot;
@@ -259,29 +253,18 @@ export default {
     })
   },
   mounted(){
-    var srollbox=document.getElementById('srollbox');
-    var sroll=document.getElementById('sroll');
-    var sroll1=document.getElementById('sroll1');
-    var timer = setInterval(autoScrollLine,30);
-    srollbox.onmouseover=function() {
-			clearInterval(timer)
-		}
-		srollbox.onmouseout=function(){
-			timer=setInterval(autoScrollLine,30)
-		}
-     function autoScrollLine() {
-    if(srollbox.scrollTop>=sroll.offsetHeight){
-    srollbox.scrollTop=0;
-    }else{
-      srollbox.scrollTop++;
-    }
-    if(srollbox.scrollTop%srollbox.offsetHeight==0){
-    clearInterval(timer)
-    setTimeout(()=>{
-        timer = setInterval(autoScrollLine,30)
-    },30)
-    }
-    }
+    axios.get("/json/plot1.json").then((res)=>{
+      let a=res.data.result[that.baseId].plot;
+      that.people=a[that.plotId].manager;
+      that.work=a[that.plotId].work;
+      that.plot=a[that.plotId];
+      this.$nextTick(() => {
+        if (this.baseScroll) {
+          clearInterval(this.baseScroll.timer)
+        }
+        this.baseScroll = new roll.Roll('srollbox', 'sroll', 'sroll1', -229)
+      })
+    })
        axios.get("json/seedtest.json").then((res)=>{
        that.seed=res.data.seedDetection;
        that.aaa=0;
@@ -664,6 +647,16 @@ this.timeFormate(new Date());
 }
 </script>
 <style scoped>
+@media screen and (min-width: 1550px) {
+    .testname {
+      width: 100px !important;
+    }
+}
+@media screen and (max-width: 1550px) {
+    .testname {
+      width:65px !important;
+    }
+}
 .testname:hover{
  background:blue;
 }

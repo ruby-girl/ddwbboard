@@ -7,8 +7,8 @@
     <a-row :gutter="16" style="background-color:#212F41;padding:0 20px 20px 20px;margin:0;">
 
   <a-col :span="6">
-        <div style="width:100%;height:250px;margin-bottom:20px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-          <div style="width:100%;height:20%;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
+        <div style="width:100%;height:270px;margin-bottom:20px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
+          <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
                 <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">基础信息</h3>
                 <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">Basic information</h4>
               </div>
@@ -43,7 +43,7 @@
               </div>
         </div>
         <div style="width:100%;height:150px;margin-bottom:19px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-          <div style="width:100%;height:33%;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
+          <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
                 <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">基地相关人员信息</h3>
                 <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">Service</h4>
               </div>
@@ -72,7 +72,7 @@
               <!-- <div id="graphjiangyu" style=" width: 100%;height: 67%;"></div> -->
         </div>
         <div style="width:100%;height:400px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-          <div style="width:100%;height:13%;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
+          <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
                 <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">视频监控</h3>
                 <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">Video Surveillance</h4>
               </div>
@@ -113,19 +113,19 @@
 
 <a-col :span="10">
        <div style="width:100%;height:500px;margin-bottom:20px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-         <div style="width:100%;height:10%;padding:10px 0;border-bottom: 1px solid rgba(221, 215, 215, 0.2);">
+         <div style="width:100%;height:60px;padding:10px 0;border-bottom: 1px solid rgba(221, 215, 215, 0.2);">
                 <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">地图数据</h3>
                 <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">The data map</h4>
               </div>
               <div id="container" style="width:100%;height:90%;"></div>
        </div>
-       <div style="width:100%;height:320px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-         <div style="width:100%;height:15%;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
+       <div style="width:100%;height:340px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
+         <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
                 <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">种植工单</h3>
                 <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">Planting scheme</h4>
               </div>
               <div id="srollbox" style="width:100%;height:85%;overflow:hidden;">
-                   <table id="sroll" style="width:100%;height:100%;">
+                   <table id="sroll" style="width:100%;height:100%;position:relative; top:0">
                      <template v-for="(v,k) in workrecord">
                        <tr :key="k" style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
                          <td style="width:25%;color:#00FF00">{{v.time}}</td>
@@ -135,7 +135,7 @@
                        </tr>
                      </template>
                    </table>
-                    <table id="sroll1" style="width:100%;height:100%;">
+                    <table id="sroll1" style="width:100%;height:100%;position:relative; top:0">
                      <template v-for="(v,k) in workrecord">
                        <tr :key="k" style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
                          <td style="width:25%;color:#00FF00">{{v.time}}</td>
@@ -161,8 +161,8 @@
       </a-col>
 
       <a-col :span="8">
-        <div style="width:100%;height:280px;margin-bottom:10px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-          <div style="width:100%;height:18%;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
+        <div style="width:100%;height:290px;margin-bottom:10px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
+          <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
             <a-row>
               <a-col :span="12">
                 <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">土壤检测</h3>
@@ -188,8 +188,8 @@
                    </table>
                 </div> -->
         </div>
-         <div style="width:100%;height:270px;margin-bottom:10px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-          <div style="width:100%;height:19%;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
+         <div style="width:100%;height:275px;margin-bottom:10px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
+          <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
                  <a-row>
               <a-col :span="12">
                 <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">大气检测</h3>
@@ -213,8 +213,8 @@
                    </table>
                 </div> -->
         </div>
-        <div style="width:100%;height:270px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-          <div style="width:100%;height:19%;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
+        <div style="width:100%;height:275px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
+          <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
                  <a-row>
               <a-col :span="12">
                 <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">水源检测</h3>
@@ -254,6 +254,7 @@
   </div>
 </template>
 <script>
+import roll from '../assets/js/roll.js';
 import MapLoader from '@/utils/loadMap.js'
 import headers from '@/components/header/header'
 import Foot from '@/components/layouts/GlobalFooter.vue'
@@ -297,37 +298,10 @@ export default {
   created(){
 
    this.basenum=Number(this.$route.query.baseId)-1;
-   axios.get("json/recordwork.json").then((res)=>{
-     console.log(res);
-     this.workrecord=res.data.result[this.basenum].workRecord;
-   })
   },
   mounted(){
     this.player = new EZUIPlayer('myPlayer');
     // this.player1 = new EZUIPlayer('myPlayer1');
-    var srollbox=document.getElementById('srollbox');
-    var sroll=document.getElementById('sroll');
-    var sroll1=document.getElementById('sroll1');
-    var timer = setInterval(autoScrollLine,30);
-    srollbox.onmouseover=function() {
-			clearInterval(timer)
-		}
-		srollbox.onmouseout=function(){
-			timer=setInterval(autoScrollLine,30)
-		}
-     function autoScrollLine() {
-    if(srollbox.scrollTop>=sroll.offsetHeight){
-    srollbox.scrollTop=0;
-    }else{
-      srollbox.scrollTop++;
-    }
-    if(srollbox.scrollTop%srollbox.offsetHeight==0){
-    clearInterval(timer)
-    setTimeout(()=>{
-        timer = setInterval(autoScrollLine,30)
-    },30)
-    }
-    }
     // axios.get("/sqtq",{params:{area:'三台'},headers:{Authorization:"APPCODE 912f4ba38a394870aed1d60aca9a34fb"}}).then((res)=>{
     //     if(res.statusText=="OK"){
     //       this.time=[];
@@ -344,6 +318,15 @@ export default {
     let that=this;
     that.baseinformation={};
     that.basemannager=[];
+    axios.get("json/recordwork.json").then((res)=>{
+      this.workrecord=res.data.result[this.basenum].workRecord;
+      this.$nextTick(() => {
+        if (this.baseScroll) {
+          clearInterval(this.baseScroll.timer)
+        }
+        this.baseScroll = new roll.Roll('srollbox', 'sroll', 'sroll1', -280)
+      })
+    })
     axios.get("json/plot1.json").then((res)=>{
       that.basemannager=res.data.result[that.basenum].plot[0].manager;
     })
