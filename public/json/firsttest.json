@@ -1,0 +1,28 @@
+{
+    "firstDetection": [
+      {
+        "testTime": "2017-04-03",
+        "testItem": "浸出物",
+        "unit": "cm",
+        "realValue": 65.6,
+        "minstandard": 65,
+        "maxstandard": 100
+      },
+      {
+        "testTime": "2017-04-03",
+        "testItem": "砷",
+        "unit": "个",
+        "realValue": 0.05,
+        "minstandard": 0,
+        "maxstandard": 2.0
+      },
+      {
+        "testTime": "2017-04-03",
+        "testItem": "辛硫磷",
+        "unit": "%",
+        "realValue": 0.01,
+        "minstandard": 0,
+        "maxstandard": 0.05
+      }    
+    ]
+  }

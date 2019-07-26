@@ -1,0 +1,114 @@
+{
+  "result": [
+    {
+      "baseId": 1,
+      "baseName": "新德基地",
+      "baseCategory": "生产基地",
+      "area": 450,
+      "lng": 105.062825,
+      "lat": 31.155,
+      "baseType": "合作基地",
+      "baseAddress": "永新镇"
+    },
+    {
+      "baseId": 2,
+      "baseName": "里程基地",
+      "baseCategory": "生产基地",
+      "area": 400,
+      "lng": 105.003814,
+      "lat": 31.233803,
+      "baseType": "合作基地",
+      "baseAddress": "里程镇"
+    },
+    {
+      "baseId": 3,
+      "baseName": "刘营基地",
+      "baseCategory": "生产基地",
+      "area": 500,
+      "lng": 104.990243,
+      "lat": 31.22415,
+      "baseType": "合作基地",
+      "baseAddress": "刘营镇"
+    },
+    {
+      "baseId": 4,
+      "baseName": "争胜基地",
+      "baseCategory": "生产基地",
+      "area": 200,
+      "lng": 105.032643,
+      "lat": 31.197535,
+      "baseType": "合作基地",
+      "baseAddress": "争胜镇"
+    },
+    {
+      "baseId": 5,
+      "baseName": "灵兴基地",
+      "baseCategory": "生产基地",
+      "area": 400,
+      "lng": 105.015295,
+      "lat": 31.159236,
+      "baseType": "合作基地",
+      "baseAddress": "灵兴镇"
+    },
+    {
+      "baseId": 6,
+      "baseName": "芦溪基地",
+      "baseCategory": "生产基地",
+      "area": 200,
+      "lng": 104.893711,
+      "lat": 31.296407,
+      "baseType": "合作基地",
+      "baseAddress": "芦溪镇"
+    },
+    {
+      "baseId": 7,
+      "baseName": "永明基地",
+      "baseCategory": "生产基地",
+      "area": 600,
+      "lng": 104.877623,
+      "lat": 31.349239,
+      "baseType": "合作基地",
+      "baseAddress": "永明镇"
+    },
+    {
+      "baseId": 8,
+      "baseName": "老马基地",
+      "baseCategory": "生产基地",
+      "area": 1050,
+      "baseType": "合作基地",
+      "lng": 104.981207,
+      "lat": 31.278101,
+      "baseAddress": "老马镇"
+    },
+    {
+      "baseId": 9,
+      "baseName": "花园基地",
+      "baseCategory": "生产基地",
+      "area": 3900,
+      "lng": 104.897097,
+      "lat": 31.335402,
+      "baseType": "合作基地",
+      "baseAddress": "花园镇"
+    },
+    {
+      "baseId": 10,
+      "baseName": "花园良种繁育园",
+      "baseCategory": "生产基地",
+      "area": 1010,
+      "lng": 104.947463,
+      "lat": 31.279466,
+      "baseType": "自营基地",
+      "baseAddress": "花园镇"
+    },
+    {
+      "baseId": 11,
+      "baseName": "永明良种繁育基地",
+      "baseCategory": "育苗基地",
+      "area": 530,
+      "lng": 104.885225,
+      "lat": 31.371173,
+      "baseType": "自营基地",
+      "baseAddress": "永明镇"
+    }
+  ]
+}

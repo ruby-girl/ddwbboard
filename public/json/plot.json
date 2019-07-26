@@ -1,0 +1,950 @@
+{
+    "result": [
+      {
+        "baseId": 1,
+        "plot": [
+          {
+            "plotId": 1,
+            "plotName": "新德新林村",
+            "plotArea": 150,
+            "lng": 105.034829,
+            "lat": 31.142303,
+            "altitude": 390.7907409667969,
+            "status": "使用中",
+            "manager": [{
+              "name": "王平",
+              "position": "技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          },
+          {
+            "plotId": 2,
+            "plotName": "新德马脊村",
+            "plotArea": 300,
+            "lng": 105.083557,
+            "lat": 31.142166,
+            "altitude": 383.9129638671875,
+            "status": "使用中",
+            "manager": [{
+              "name": "王平",
+              "position": "技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          }
+        ]
+      },
+      {
+        "baseId": 2,
+        "plot": [
+          {
+            "plotId": 1,
+            "plotName": "里程里程村",
+            "plotArea": 200,
+            "lng": 105.00236,
+            "lat": 31.2277,
+            "altitude": 463.2488098144531,
+            "status": "使用中",
+            "manager": [{
+              "name": "黄铭",
+              "position": "技术员"
+            }, {
+              "name": "陈湘",
+              "position": "技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          },
+          {
+            "plotId": 2,
+            "plotName": "里程回龙村",
+            "plotArea": 200,
+            "lng": 104.997256,
+            "lat": 31.237423,
+            "altitude": 460.4480590820312,
+            "status": "使用中",
+            "manager": [{
+              "name": "黄铭",
+              "position": "技术员"
+            }, {
+              "name": "陈湘",
+              "position": "技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          }
+        ]
+      },
+      {
+        "baseId": 3,
+        "plot": [
+          {
+            "plotId": 1,
+            "plotName": "刘营大围村",
+            "plotArea": 500,
+            "lng": 104.982897,
+            "lat": 31.250357,
+            "altitude": 402.5292358398438,
+            "status": "使用中",
+            "manager": [{
+              "name": "王平",
+              "position": "技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          }
+        ]
+      },
+      {
+        "baseId": 4,
+        "plot": [
+          {
+            "plotId": 1,
+            "plotName": "争胜木鱼村",
+            "plotArea": 200,
+            "lng": 105.032211,
+            "lat": 31.198153,
+            "altitude": 530.4805297851562,
+            "status": "使用中",
+            "manager": [{
+              "name": "易国平",
+              "position": "技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          }
+        ]
+      },
+      {
+        "baseId": 5,
+        "plot": [
+          {
+            "plotId": 1,
+            "plotName": "灵兴清水村",
+            "plotArea": 200,
+            "lng": 105.023887,
+            "lat": 31.162744,
+            "altitude": 386.9646606445312,
+            "status": "使用中",
+            "manager": [{
+              "name": "王平",
+              "position": "技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          },
+          {
+            "plotId": 2,
+            "plotName": "灵兴石桥村",
+            "plotArea": 200,
+            "lng": 105.019192,
+            "lat": 31.146569,
+            "altitude": 391.2413024902344,
+            "status": "使用中",
+            "manager": [{
+              "name": "王平",
+              "position": "技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          }
+        ]
+      },
+      {
+        "baseId": 6,
+        "plot": [
+          {
+            "plotId": 1,
+            "plotName": "芦溪兴相村",
+            "plotArea": 200,
+            "lng": 104.893711,
+            "lat": 31.296403,
+            "altitude": 415.0564880371094,
+            "status": "使用中",
+            "manager": [{
+              "name": "易国平",
+              "position": "技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          }
+        ]
+      },
+      {
+        "baseId": 7,
+        "plot": [
+          {
+            "plotId": 1,
+            "plotName": "永明永和村",
+            "plotArea": 300,
+            "lng": 104.886063,
+            "lat": 31.368084,
+            "altitude": 440.20166015625,
+            "status": "使用中",
+            "manager": [{
+              "name": "邓胜虎",
+              "position": "技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          },
+          {
+            "plotId": 2,
+            "plotName": "永明万家坎村",
+            "plotArea": 300,
+            "lng": 104.877583,
+            "lat": 31.349236,
+            "altitude": 431.9493408203125,
+            "status": "使用中",
+            "manager": [{
+              "name": "邓胜虎",
+              "position": "技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          }
+        ]
+      },
+      {
+        "baseId": 8,
+        "plot": [
+          {
+            "plotId": 1,
+            "plotName": "老马四洲村",
+            "plotArea": 300,
+            "lng": 104.992283,
+            "lat": 31.279939,
+            "altitude": 450.4927673339844,
+            "status": "使用中",
+            "manager": [{
+              "name": "黄铭",
+              "position": "技术员"
+            }, {
+              "name": "陈玲",
+              "position": "技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          },
+          {
+            "plotId": 2,
+            "plotName": "老马九曲村",
+            "plotArea": 300,
+            "lng": 104.991028,
+            "lat": 31.27626,
+            "altitude": 453.737548828125,
+            "status": "使用中",
+            "manager": [{
+              "name": "黄铭",
+              "position": "技术员"
+            }, {
+              "name": "陈玲",
+              "position": "技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          },
+          {
+            "plotId": 3,
+            "plotName": "老马小围村",
+            "plotArea": 450,
+            "lng": 104.981162,
+            "lat": 31.278054,
+            "altitude": 440.8467407226562,
+            "status": "使用中",
+            "manager": [{
+              "name": "黄铭",
+              "position": "技术员"
+            }, {
+              "name": "陈玲",
+              "position": "技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          }
+        ]
+      },
+      {
+        "baseId": 9,
+        "plot": [
+          {
+            "plotId": 1,
+            "plotName": "花园镇营城村",
+            "plotArea": 600,
+            "lng": 104.956028,
+            "lat": 31.27731,
+            "altitude": 410.4945068359375,
+            "status": "使用中",
+            "manager": [{
+              "name": "易国平",
+              "position": "技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          },
+          {
+            "plotId": 2,
+            "plotName": "花园镇涪城村",
+            "plotArea": 800,
+            "lng": 104.927526,
+            "lat": 31.273399,
+            "altitude": 416.1883850097656,
+            "status": "使用中",
+            "manager": [{
+              "name": "易国平",
+              "position": "技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          },
+          {
+            "plotId": 3,
+            "plotName": "花园镇琴山村",
+            "plotArea": 300,
+            "lng": 104.920869,
+            "lat": 31.293103,
+            "altitude": 435.5592346191406,
+            "status": "使用中",
+            "manager": [{
+              "name": "易国平",
+              "position": "技术员"
+            }, {
+              "name": "刘婷",
+              "position": "技术员"
+            }],"work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          },
+          {
+            "plotId": 4,
+            "plotName": "花园镇镇江村",
+            "plotArea": 500,
+            "lng": 104.903455,
+            "lat": 31.330859,
+            "altitude": 433.2237854003906,
+            "status": "使用中",
+            "manager": [{
+              "name": "邓胜虎",
+              "position": "技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          },
+          {
+            "plotId": 5,
+            "plotName": "花园镇四脊村",
+            "plotArea": 500,
+            "lng": 104.897126,
+            "lat": 31.335377,
+            "altitude": 468.313720703125,
+            "status": "使用中",
+            "manager": [{
+              "name": "邓胜虎",
+              "position": "技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          },
+          {
+            "plotId": 6,
+            "plotName": "花园镇白衣村",
+            "plotArea": 1200,
+            "lng": 104.907205,
+            "lat": 31.318115,
+            "altitude": 420.9438781738281,
+            "status": "使用中",
+            "manager": [{
+              "name": "邓胜虎",
+              "position": "技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          }
+        ]
+      },
+      {
+        "baseId": 10,
+        "plot": [
+          {
+            "plotId": 1,
+            "plotName": "试验园",
+            "plotArea": 8,
+            "lng": 104.948074,
+            "lat": 31.279404,
+            "altitude": 411.33642578125,
+            "status": "使用中",
+            "manager": [{
+              "name": "罗德木",
+              "position": "基地负责人，技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          },
+          {
+            "plotId": 2,
+            "plotName": "花园基地涪城村",
+            "plotArea": 998,
+            "lng": 104.927398,
+            "lat": 31.273412,
+            "altitude": 416.2073059082031,
+            "status": "使用中",
+            "manager": [{
+              "name": "罗德木",
+              "position": "基地负责人，技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          }
+        ]
+      },
+      {
+        "baseId": 11,
+        "plot": [
+          {
+            "plotId": 1,
+            "plotName": "天坪村",
+            "plotArea": 526,
+            "lng": 104.86598,
+            "lat": 31.391566,
+            "altitude": 495.7750549316406,
+            "status": "使用中",
+            "manager": [{
+              "name": "罗德木",
+              "position": "基地负责人，技术员"
+            }],
+            "work": [{
+              "date": "2019-04-25",
+              "solarTerm": "谷雨",
+              "farmingName": "补苗"
+            }, {
+              "date": "2019-05-06",
+              "solarTerm": "立夏",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-06-06",
+              "solarTerm": "芒种",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-06-26",
+              "solarTerm": "夏至",
+              "farmingName": "除草"
+            }, {
+              "date": "2019-07-01",
+              "solarTerm": "夏至",
+              "farmingName": "追肥"
+            }, {
+              "date": "2019-07-07",
+              "solarTerm": "小暑",
+              "farmingName": "肥效巡查"
+            }]
+          }
+        ]
+      }
+    ]
+  }

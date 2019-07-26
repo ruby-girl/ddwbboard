@@ -1,0 +1,977 @@
+{
+    "status":"0",
+    "result": [
+      {
+        "baseId": 1,
+        "process": [
+          {
+            "productionPlan": "2018新德基地种植方案",
+            "harvest": 69000,
+            "leave": "一等品",
+            "machining": 31050,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018新德基地种植方案",
+            "harvest": 69000,
+            "leave": "二等品",
+            "machining": 20700,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018新德基地种植方案",
+            "harvest": 69000,
+            "leave": "三等品",
+            "machining": 6900,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018新德基地种植方案",
+            "harvest": 69000,
+            "leave": "统货",
+            "machining": 9660,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018新德基地种植方案",
+            "harvest": 69000,
+            "leave": "统货",
+            "machining": 690,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018新德基地种植方案",
+            "harvest": 69000,
+            "leave": "统货",
+            "machining": 195000,
+            "product": "玉米"
+          },
+          {
+            "productionPlan": "2018新德基地种植方案",
+            "harvest": 39000,
+            "leave": "一等品",
+            "machining": 16200,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018新德基地种植方案",
+            "harvest": 39000,
+            "leave": "二等品",
+            "machining": 10800,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018新德基地种植方案",
+            "harvest": 39000,
+            "leave": "三等品",
+            "machining": 3600,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018新德基地种植方案",
+            "harvest": 39000,
+            "leave": "统货",
+            "machining": 5040,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018新德基地种植方案",
+            "harvest": 39000,
+            "leave": "统货",
+            "machining": 360,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018新德基地种植方案",
+            "harvest": 63900,
+            "leave": "统货",
+            "machining": 97500,
+            "product": "玉米"
+          }
+        ]
+      },
+      {
+        "baseId": 2,
+        "process": [
+          {
+            "productionPlan": "2018里程基地种植方案",
+            "harvest": 48600,
+            "leave": "一等品",
+            "machining": 21870,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018里程基地种植方案",
+            "harvest": 48600,
+            "leave": "二等品",
+            "machining": 14580,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018里程基地种植方案",
+            "harvest": 48600,
+            "leave": "三等品",
+            "machining": 4860,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018里程基地种植方案",
+            "harvest": 48600,
+            "leave": "统货",
+            "machining": 6804,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018里程基地种植方案",
+            "harvest": 48600,
+            "leave": "统货",
+            "machining": 486,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018里程基地种植方案",
+            "harvest": 48600,
+            "leave": "统货",
+            "machining": 130000,
+            "product": "玉米"
+          },
+          {
+            "productionPlan": "2018里程基地种植方案",
+            "harvest": 46200,
+            "leave": "一等品",
+            "machining": 20790,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018里程基地种植方案",
+            "harvest": 46200,
+            "leave": "二等品",
+            "machining": 13860,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018里程基地种植方案",
+            "harvest": 46200,
+            "leave": "三等品",
+            "machining": 4620,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018里程基地种植方案",
+            "harvest": 46200,
+            "leave": "统货",
+            "machining": 6468,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018里程基地种植方案",
+            "harvest": 46200,
+            "leave": "统货",
+            "machining": 462,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018里程基地种植方案",
+            "harvest": 46200,
+            "leave": "统货",
+            "machining": 130000,
+            "product": "玉米"
+          }
+        ]
+      },
+      {
+        "baseId": 3,
+        "process": [
+          {
+            "productionPlan": "2018刘营基地种植方案",
+            "harvest": 124000,
+            "leave": "一等品",
+            "machining": 55800,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018刘营基地种植方案",
+            "harvest": 124000,
+            "leave": "二等品",
+            "machining": 37200,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018刘营基地种植方案",
+            "harvest": 124000,
+            "leave": "三等品",
+            "machining": 124000,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018刘营基地种植方案",
+            "harvest": 124000,
+            "leave": "统货",
+            "machining": 17360,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018刘营基地种植方案",
+            "harvest": 124000,
+            "leave": "统货",
+            "machining": 1240,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018刘营基地种植方案",
+            "harvest": 124000,
+            "leave": "统货",
+            "machining": 325000,
+            "product": "玉米"
+          }
+        ]
+      },
+      {
+        "baseId": 4,
+        "process": [
+          {
+            "productionPlan": "2018争胜基地种植方案",
+            "harvest": 46000,
+            "leave": "一等品",
+            "machining": 20700,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018争胜基地种植方案",
+            "harvest": 46000,
+            "leave": "二等品",
+            "machining": 13800,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018争胜基地种植方案",
+            "harvest": 46000,
+            "leave": "三等品",
+            "machining": 4600,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018争胜基地种植方案",
+            "harvest": 46000,
+            "leave": "统货",
+            "machining": 6440,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018争胜基地种植方案",
+            "harvest": 46000,
+            "leave": "统货",
+            "machining": 460,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018争胜基地种植方案",
+            "harvest": 46000,
+            "leave": "统货",
+            "machining": 130000,
+            "product": "玉米"
+          }
+        ]
+      },
+      {
+        "baseId": 5,
+        "process": [
+          {
+            "productionPlan": "2018灵兴基地种植方案",
+            "harvest": 44000,
+            "leave": "一等品",
+            "machining": 19800,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018灵兴基地种植方案",
+            "harvest": 44000,
+            "leave": "二等品",
+            "machining": 13200,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018灵兴基地种植方案",
+            "harvest": 44000,
+            "leave": "三等品",
+            "machining": 4400,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018灵兴基地种植方案",
+            "harvest": 44000,
+            "leave": "统货",
+            "machining": 6160,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018灵兴基地种植方案",
+            "harvest": 44000,
+            "leave": "统货",
+            "machining": 440,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018灵兴基地种植方案",
+            "harvest": 44000,
+            "leave": "统货",
+            "machining": 130000,
+            "product": "玉米"
+          },
+          {
+            "productionPlan": "2018灵兴基地种植方案",
+            "harvest": 46000,
+            "leave": "一等品",
+            "machining": 20700,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018灵兴基地种植方案",
+            "harvest": 46000,
+            "leave": "二等品",
+            "machining": 13800,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018灵兴基地种植方案",
+            "harvest": 46000,
+            "leave": "三等品",
+            "machining": 4600,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018灵兴基地种植方案",
+            "harvest": 46000,
+            "leave": "统货",
+            "machining": 6440,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018灵兴基地种植方案",
+            "harvest": 46000,
+            "leave": "统货",
+            "machining": 460,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018灵兴基地种植方案",
+            "harvest": 46000,
+            "leave": "统货",
+            "machining": 130000,
+            "product": "玉米"
+          }
+        ]
+      },
+      {
+        "baseId": 6,
+        "process": [
+          {
+            "productionPlan": "2018芦溪基地种植方案",
+            "harvest": 48000,
+            "leave": "一等品",
+            "machining": 21600,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018芦溪基地种植方案",
+            "harvest": 48000,
+            "leave": "二等品",
+            "machining": 14400,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018芦溪基地种植方案",
+            "harvest": 48000,
+            "leave": "三等品",
+            "machining": 4800,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018芦溪基地种植方案",
+            "harvest": 48000,
+            "leave": "统货",
+            "machining": 6720,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018芦溪基地种植方案",
+            "harvest": 48000,
+            "leave": "统货",
+            "machining": 480,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018芦溪基地种植方案",
+            "harvest": 48000,
+            "leave": "统货",
+            "machining": 130000,
+            "product": "玉米"
+          }
+        ]
+      },
+      {
+        "baseId": 7,
+        "process": [
+          {
+            "productionPlan": "2018永明基地种植方案",
+            "harvest": 260,
+            "leave": "一等品",
+            "machining": 31050,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018永明基地种植方案",
+            "harvest": 260,
+            "leave": "二等品",
+            "machining": 20700,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018永明基地种植方案",
+            "harvest": 260,
+            "leave": "三等品",
+            "machining": 6900,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018永明基地种植方案",
+            "harvest": 260,
+            "leave": "统货",
+            "machining": 9660,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018永明基地种植方案",
+            "harvest": 260,
+            "leave": "统货",
+            "machining": 690,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018永明基地种植方案",
+            "harvest": 260,
+            "leave": "统货",
+            "machining": 195000,
+            "product": "玉米"
+          },
+          {
+            "productionPlan": "2018永明基地种植方案",
+            "harvest": 260,
+            "leave": "一等品",
+            "machining": 32400,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018永明基地种植方案",
+            "harvest": 260,
+            "leave": "二等品",
+            "machining": 21600,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018永明基地种植方案",
+            "harvest": 260,
+            "leave": "三等品",
+            "machining": 7200,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018永明基地种植方案",
+            "harvest": 260,
+            "leave": "统货",
+            "machining": 10080,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018永明基地种植方案",
+            "harvest": 260,
+            "leave": "统货",
+            "machining": 720,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018永明基地种植方案",
+            "harvest": 260,
+            "leave": "统货",
+            "machining": 195000,
+            "product": "玉米"
+          }
+        ]
+      },
+      {
+        "baseId": 8,
+        "process": [
+          {
+            "productionPlan": "2018老马基地种植方案",
+            "harvest": 94500,
+            "leave": "一等品",
+            "machining": 42570,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018老马基地种植方案",
+            "harvest": 94500,
+            "leave": "二等品",
+            "machining": 28350,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018老马基地种植方案",
+            "harvest": 94500,
+            "leave": "三等品",
+            "machining": 9450,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018老马基地种植方案",
+            "harvest": 94500,
+            "leave": "统货",
+            "machining": 13230,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018老马基地种植方案",
+            "harvest": 94500,
+            "leave": "统货",
+            "machining": 900,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018老马基地种植方案",
+            "harvest": 94500,
+            "leave": "统货",
+            "machining": 292500,
+            "product": "玉米"
+          },
+          {
+            "productionPlan": "2018老马基地种植方案",
+            "harvest": 70500,
+            "leave": "一等品",
+            "machining": 31730,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018老马基地种植方案",
+            "harvest": 70500,
+            "leave": "二等品",
+            "machining": 21150,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018老马基地种植方案",
+            "harvest": 70500,
+            "leave": "三等品",
+            "machining": 7050,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018老马基地种植方案",
+            "harvest": 70500,
+            "leave": "统货",
+            "machining": 9870,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018老马基地种植方案",
+            "harvest": 70500,
+            "leave": "统货",
+            "machining": 700,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018老马基地种植方案",
+            "harvest": 70500,
+            "leave": "统货",
+            "machining": 195000,
+            "product": "玉米"
+          },
+          {
+            "productionPlan": "2018老马基地种植方案",
+            "harvest": 72000,
+            "leave": "一等品",
+            "machining": 32400,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018老马基地种植方案",
+            "harvest": 72000,
+            "leave": "二等品",
+            "machining": 21600,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018老马基地种植方案",
+            "harvest": 72000,
+            "leave": "三等品",
+            "machining": 7200,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018老马基地种植方案",
+            "harvest": 72000,
+            "leave": "统货",
+            "machining": 10080,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018老马基地种植方案",
+            "harvest": 72000,
+            "leave": "统货",
+            "machining": 720,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018老马基地种植方案",
+            "harvest": 72000,
+            "leave": "统货",
+            "machining": 195000,
+            "product": "玉米"
+          }
+        ]
+      },
+      {
+        "baseId": 9,
+        "process": [
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 276000,
+            "leave": "一等品",
+            "machining": 124200,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 276000,
+            "leave": "二等品",
+            "machining": 82800,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 276000,
+            "leave": "三等品",
+            "machining": 27600,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 276000,
+            "leave": "统货",
+            "machining": 38640,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 276000,
+            "leave": "统货",
+            "machining": 2760,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 276000,
+            "leave": "统货",
+            "machining": 780000,
+            "product": "玉米"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 115000,
+            "leave": "一等品",
+            "machining": 51750,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 115000,
+            "leave": "二等品",
+            "machining": 34500,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 115000,
+            "leave": "三等品",
+            "machining": 11500,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 115000,
+            "leave": "统货",
+            "machining": 16100,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 115000,
+            "leave": "统货",
+            "machining": 1150,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 115000,
+            "leave": "统货",
+            "machining": 325000,
+            "product": "玉米"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 72000,
+            "leave": "一等品",
+            "machining": 32400,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 72000,
+            "leave": "二等品",
+            "machining": 21600,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 72000,
+            "leave": "三等品",
+            "machining": 7200,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 72000,
+            "leave": "统货",
+            "machining": 10080,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 72000,
+            "leave": "统货",
+            "machining": 720,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 72000,
+            "leave": "统货",
+            "machining": 195000,
+            "product": "玉米"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 192000,
+            "leave": "一等品",
+            "machining": 86400,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 192000,
+            "leave": "二等品",
+            "machining": 57600,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 192000,
+            "leave": "三等品",
+            "machining": 19200,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 192000,
+            "leave": "统货",
+            "machining": 26880,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 192000,
+            "leave": "统货",
+            "machining": 1920,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 192000,
+            "leave": "统货",
+            "machining": 520000,
+            "product": "玉米"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 126000,
+            "leave": "一等品",
+            "machining": 56700,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 126000,
+            "leave": "二等品",
+            "machining": 37800,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 126000,
+            "leave": "三等品",
+            "machining": 12600,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 126000,
+            "leave": "统货",
+            "machining": 17640,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 126000,
+            "leave": "统货",
+            "machining": 1260,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 126000,
+            "leave": "统货",
+            "machining": 390000,
+            "product": "玉米"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 119000,
+            "leave": "一等品",
+            "machining": 53550,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 119000,
+            "leave": "二等品",
+            "machining": 35700,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 119000,
+            "leave": "三等品",
+            "machining": 11900,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 119000,
+            "leave": "统货",
+            "machining": 16660,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 119000,
+            "leave": "统货",
+            "machining": 1190,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园基地种植方案",
+            "harvest": 119000,
+            "leave": "统货",
+            "machining": 325000,
+            "product": "玉米"
+          }
+        ]
+      },
+      {
+        "baseId": 10,
+        "process": [
+          {
+            "productionPlan": "2018花园良种繁育园种植方案",
+            "harvest": 159680,
+            "leave": "一等品",
+            "machining": 71800,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园良种繁育园种植方案",
+            "harvest": 159680,
+            "leave": "二等品",
+            "machining": 47900,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园良种繁育园种植方案",
+            "harvest": 159680,
+            "leave": "三等品",
+            "machining": 15900,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园良种繁育园种植方案",
+            "harvest": 159680,
+            "leave": "统货",
+            "machining": 22480,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园良种繁育园种植方案",
+            "harvest": 159680,
+            "leave": "统货",
+            "machining": 1600,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018花园良种繁育园种植方案",
+            "harvest": 159680,
+            "leave": "统货",
+            "machining": 648700,
+            "product": "玉米"
+          }
+        ]
+      },
+      {
+        "baseId": 11,
+        "process": [
+          {
+            "productionPlan": "2018永明良种繁育园种植计划",
+            "harvest": 110460,
+            "leave": "一等品",
+            "machining": 49700,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018永明良种繁育园种植计划",
+            "harvest": 110460,
+            "leave": "二等品",
+            "machining": 33100,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018永明良种繁育园种植计划",
+            "harvest": 110460,
+            "leave": "三等品",
+            "machining": 11000,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018永明良种繁育园种植计划",
+            "harvest": 110460,
+            "leave": "统货",
+            "machining": 15560,
+            "product": "麦冬块根"
+          },
+          {
+            "productionPlan": "2018永明良种繁育园种植计划",
+            "harvest": 110460,
+            "leave": "统货",
+            "machining": 1600,
+            "product": "玉米"
+          }
+        ]
+      }
+    ]
+  }

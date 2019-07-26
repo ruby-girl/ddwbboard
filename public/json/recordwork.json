@@ -1,0 +1,456 @@
+{
+  "status":"0",
+  "result": [
+    {
+      "baseId": 1,
+      "workRecord": [
+        {
+          "time": "小暑",
+          "start": "2019-07-07",
+          "recordname": "肥效巡查",
+          "name": "新德新林村"
+        },
+        {
+          "time": "春分",
+          "start": "2019-03-31",
+          "recordname": "整地",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "春分",
+          "start": "2019-03-31",
+          "recordname": "整地",
+          "name": "新德新林村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-05",
+          "recordname": "种苗制作",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-05",
+          "recordname": "种苗制作",
+          "name": "新德新林村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-10",
+          "recordname": "施肥",
+          "name": "新德马脊村"
+        }
+      ]
+    },
+    {
+      "baseId": 2,
+      "workRecord": [
+        {
+          "time": "清明",
+          "start": "2019-04-05",
+          "recordname": "种苗制作",
+          "name": "里程回龙村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-05",
+          "recordname": "种苗制作",
+          "name": "里程里程村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-10",
+          "recordname": "施肥",
+          "name": "里程回龙村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-10",
+          "recordname": "施肥",
+          "name": "里程里程村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-15",
+          "recordname": "二次整地",
+          "name": "里程回龙村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-15",
+          "recordname": "二次整地",
+          "name": "里程里程村"
+        }
+      ]
+    },
+    {
+      "baseId": 3,
+      "workRecord": [
+        {
+          "time": "春分",
+          "start": "2019-03-31",
+          "recordname": "整地",
+          "name": "刘营大围村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-05",
+          "recordname": "种苗制作",
+          "name": "刘营大围村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-10",
+          "recordname": "施肥",
+          "name": "刘营大围村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-15",
+          "recordname": "二次整地",
+          "name": "刘营大围村"
+        },
+        {
+          "time": "谷雨",
+          "start": "2019-04-20",
+          "recordname": "栽种",
+          "name": "刘营大围村"
+        },
+        {
+          "time": "谷雨",
+          "start": "2019-04-25",
+          "recordname": "补苗",
+          "name": "刘营大围村"
+        }
+      ]
+    },
+    {
+      "baseId": 4,
+      "workRecord": [
+        {
+          "time": "春分",
+          "start": "2019-03-31",
+          "recordname": "整地",
+          "name": "争胜木鱼村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-05",
+          "recordname": "种苗制作",
+          "name": "争胜木鱼村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-10",
+          "recordname": "施肥",
+          "name": "争胜木鱼村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-15",
+          "recordname": "二次整地",
+          "name": "争胜木鱼村"
+        },
+        {
+          "time": "谷雨",
+          "start": "2019-04-20",
+          "recordname": "栽种",
+          "name": "争胜木鱼村"
+        },
+        {
+          "time": "谷雨",
+          "start": "2019-04-25",
+          "recordname": "补苗",
+          "name": "争胜木鱼村"
+        }
+      ]
+    },
+    {
+      "baseId": 5,
+      "workRecord": [
+        {
+          "time": "谷雨",
+          "start": "2019-04-25",
+          "recordname": "补苗",
+          "name": "灵兴清水村"
+        },
+        {
+          "time": "立夏",
+          "start": "2019-05-06",
+          "recordname": "除草",
+          "name": "灵兴石桥村"
+        },
+        {
+          "time": "立夏",
+          "start": "2019-05-06",
+          "recordname": "除草",
+          "name": "灵兴清水村"
+        },
+        {
+          "time": "芒种",
+          "start": "2019-06-06",
+          "recordname": "追肥",
+          "name": "灵兴石桥村"
+        },
+        {
+          "time": "芒种",
+          "start": "2019-04-20",
+          "recordname": "追肥",
+          "name": "灵兴清水村"
+        },
+        {
+          "time": "夏至",
+          "start": "2019-06-26",
+          "recordname": "除草",
+          "name": "灵兴石桥村"
+        }
+      ]
+    },
+    {
+      "baseId": 6,
+      "workRecord": [
+        {
+          "time": "春分",
+          "start": "2019-03-31",
+          "recordname": "整地",
+          "name": "芦溪兴相村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-05",
+          "recordname": "种苗制作",
+          "name": "芦溪兴相村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-10",
+          "recordname": "施肥",
+          "name": "芦溪兴相村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-15",
+          "recordname": "二次整地",
+          "name": "芦溪兴相村"
+        },
+        {
+          "time": "谷雨",
+          "start": "2019-04-20",
+          "recordname": "栽种",
+          "name": "芦溪兴相村"
+        },
+        {
+          "time": "谷雨",
+          "start": "2019-04-25",
+          "recordname": "补苗",
+          "name": "芦溪兴相村"
+        }
+      ]
+    },
+    {
+      "baseId": 7,
+      "workRecord": [
+        {
+          "time": "春分",
+          "start": "2019-03-31",
+          "recordname": "整地",
+          "name": "永明万家坎村"
+        },
+        {
+          "time": "春分",
+          "start": "2019-03-31",
+          "recordname": "整地",
+          "name": "永明永和村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-05",
+          "recordname": "种苗制作",
+          "name": "永明万家坎村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-05",
+          "recordname": "种苗制作",
+          "name": "永明永和村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-10",
+          "recordname": "施肥",
+          "name": "永明万家坎村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-10",
+          "recordname": "施肥",
+          "name": "永明永和村"
+        }
+      ]
+    },
+    {
+      "baseId": 8,
+      "workRecord": [
+        {
+          "time": "夏至",
+          "start": "2019-06-26",
+          "recordname": "除草",
+          "name": "老马小围村"
+        },
+        {
+          "time": "夏至",
+          "start": "2019-06-26",
+          "recordname": "除草",
+          "name": "老马九曲村"
+        },
+        {
+          "time": "夏至",
+          "start": "2019-06-26",
+          "recordname": "除草",
+          "name": "老马四洲村"
+        },
+        {
+          "time": "夏至",
+          "start": "2019-07-01",
+          "recordname": "追肥",
+          "name": "老马小围村"
+        },
+        {
+          "time": "夏至",
+          "start": "2019-07-01",
+          "recordname": "追肥",
+          "name": "老马九曲村"
+        },
+        {
+          "time": "夏至",
+          "start": "2019-07-01",
+          "recordname": "追肥",
+          "name": "老马四洲村"
+        }
+      ]
+    },
+    {
+      "baseId": 9,
+      "workRecord": [
+        {
+          "time": "谷雨",
+          "start": "2019-04-20",
+          "recordname": "栽种",
+          "name": "花园镇营城村"
+        },
+        {
+          "time": "谷雨",
+          "start": "2019-04-25",
+          "recordname": "补苗",
+          "name": "花园镇白衣村"
+        },
+        {
+          "time": "谷雨",
+          "start": "2019-04-25",
+          "recordname": "补苗",
+          "name": "花园镇四脊村"
+        },
+        {
+          "time": "谷雨",
+          "start": "2019-04-25",
+          "recordname": "补苗",
+          "name": "花园镇镇江村"
+        },
+        {
+          "time": "谷雨",
+          "start": "2019-04-25",
+          "recordname": "补苗",
+          "name": "花园镇琴山村"
+        },
+        {
+          "time": "谷雨",
+          "start": "2019-04-25",
+          "recordname": "补苗",
+          "name": "花园镇涪城村"
+        }
+      ]
+    },
+    {
+      "baseId": 10,
+      "workRecord": [
+        {
+          "time": "春分",
+          "start": "2019-03-31",
+          "recordname": "整地",
+          "name": "花园基地涪城村"
+        },
+        {
+          "time": "春分",
+          "start": "2019-03-31",
+          "recordname": "整地",
+          "name": "试验园"
+        },
+        {
+          "time": "春分",
+          "start": "2019-03-31",
+          "recordname": "整地",
+          "name": "试验园"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-05",
+          "recordname": "种苗制作",
+          "name": "花园基地涪城村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-05",
+          "recordname": "种苗制作",
+          "name": "试验园"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-05",
+          "recordname": "种苗制作",
+          "name": "试验园"
+        }
+      ]
+    },
+    {
+      "baseId": 11,
+      "workRecord": [
+        {
+          "time": "清明",
+          "start": "2019-04-05",
+          "recordname": "种苗制作",
+          "name": "天坪村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-10",
+          "recordname": "施肥",
+          "name": "天坪村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-15",
+          "recordname": "二次整地",
+          "name": "天坪村"
+        },
+        {
+          "time": "谷雨",
+          "start": "2019-04-20",
+          "recordname": "栽种",
+          "name": "天坪村"
+        },
+        {
+          "time": "谷雨",
+          "start": "2019-04-25",
+          "recordname": "补苗",
+          "name": "天坪村"
+        },
+        {
+          "time": "立夏",
+          "start": "2019-05-06",
+          "recordname": "除草",
+          "name": "天坪村"
+        }
+      ]
+    }
+  ]
+}

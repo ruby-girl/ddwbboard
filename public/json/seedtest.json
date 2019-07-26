@@ -1,0 +1,28 @@
+{
+    "seedDetection": [
+      {
+        "testTime": "2017-04-03",
+        "testItem": "苗高",
+        "unit": "cm",
+        "realValue": 31,
+        "minstandard": 25,
+        "maxstandard": 32
+      },
+      {
+        "testTime": "2017-04-03",
+        "testItem": "分蘖数",
+        "unit": "个",
+        "realValue": 3,
+        "minstandard": 2,
+        "maxstandard": 5
+      },
+      {
+        "testTime": "2017-04-03",
+        "testItem": "新鲜度",
+        "unit": "%",
+        "realValue": 96,
+        "minstandard": 95,
+        "maxstandard": 100
+      }    
+    ]
+  }
