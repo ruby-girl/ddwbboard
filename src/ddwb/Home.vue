@@ -188,13 +188,13 @@
                       <div>
                         <img src="../assets/daqiwendu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">大气温度：</span>27.3℃
+                          <span class="monitor-message">大气温度：</span>27.3℃
                         </span>
                       </div>
                       <div>
                         <img src="../assets/daqishidu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">大气湿度：</span>10.0%
+                          <span class="monitor-message">大气湿度：</span>10.0%
                         </span>
                       </div>
                     </li>
@@ -202,13 +202,13 @@
                       <div>
                         <img src="../assets/turangwendu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">土壤10cm温度：</span>27.8℃
+                          <span class="monitor-message">土壤10cm温度：</span>27.8℃
                         </span>
                       </div>
                       <div>
                         <img src="../assets/turangwendu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">土壤20cm温度：</span>27.0℃
+                          <span class="monitor-message">土壤20cm温度：</span>27.0℃
                         </span>
                       </div>
                     </li>
@@ -216,13 +216,13 @@
                       <div>
                         <img src="../assets/turangshidu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">土壤10cm湿度：</span>17.8%
+                          <span class="monitor-message">土壤10cm湿度：</span>17.8%
                         </span>
                       </div>
                       <div>
                         <img src="../assets/turangshidu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">土壤20cm湿度：</span>17.8%
+                          <span class="monitor-message">土壤20cm湿度：</span>17.8%
                         </span>
                       </div>
                     </li>
@@ -230,13 +230,13 @@
                       <div>
                         <img src="../assets/zhaodu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">光照度：</span>67h
+                          <span class="monitor-message">光照度：</span>67h
                         </span>
                       </div>
                       <div>
                         <img src="../assets/zhengfaliang.png" height="100%" alt="">
                         <span style="white-space:nowrap">
-                          <span style="display:inline-block;width:93px;text-align:right">蒸发量：</span>27.3mm
+                          <span class="monitor-message special" style="width:93px">蒸发量：</span>27.3mm
                         </span>
                       </div>
                     </li>
@@ -244,7 +244,7 @@
                       <div>
                         <img src="../assets/jiangyuliang.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">降雨量：</span>0.0mm
+                          <span class="monitor-message">降雨量：</span>0.0mm
                         </span>
                       </div>
                     </li>
@@ -263,13 +263,13 @@
                       <div>
                         <img src="../assets/daqiwendu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">大气温度：</span>27.3℃
+                          <span class="monitor-message">大气温度：</span>27.3℃
                         </span>
                       </div>
                       <div>
                         <img src="../assets/daqishidu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">大气湿度：</span>10.0%
+                          <span class="monitor-message">大气湿度：</span>10.0%
                         </span>
                       </div>
                     </li>
@@ -277,13 +277,13 @@
                       <div>
                         <img src="../assets/turangwendu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">土壤10cm温度：</span>27.8℃
+                          <span class="monitor-message">土壤10cm温度：</span>27.8℃
                         </span>
                       </div>
                       <div>
                         <img src="../assets/turangwendu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">土壤20cm温度：</span>27.0℃
+                          <span class="monitor-message">土壤20cm温度：</span>27.0℃
                         </span>
                       </div>
                     </li>
@@ -291,13 +291,13 @@
                       <div>
                         <img src="../assets/turangshidu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">土壤10cm湿度：</span>17.8%
+                          <span class="monitor-message">土壤10cm湿度：</span>17.8%
                         </span>
                       </div>
                       <div>
                         <img src="../assets/turangshidu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">土壤20cm湿度：</span>17.8%
+                          <span class="monitor-message">土壤20cm湿度：</span>17.8%
                         </span>
                       </div>
                     </li>
@@ -305,13 +305,13 @@
                       <div>
                         <img src="../assets/zhaodu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">光照度：</span>67h
+                          <span class="monitor-message">光照度：</span>67h
                         </span>
                       </div>
                       <div>
                         <img src="../assets/zhengfaliang.png" height="100%" alt="">
                         <span style="white-space:nowrap">
-                          <span style="display:inline-block;width:93px;text-align:right">蒸发量：</span>27.3mm
+                          <span class="monitor-message special" style="width:93px">蒸发量：</span>27.3mm
                         </span>
                       </div>
                     </li>
@@ -319,7 +319,7 @@
                       <div>
                         <img src="../assets/jiangyuliang.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">降雨量：</span>0.0mm
+                          <span class="monitor-message">降雨量：</span>0.0mm
                         </span>
                       </div>
                     </li>
@@ -338,13 +338,13 @@
                       <div>
                         <img src="../assets/daqiwendu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">大气温度：</span>27.3℃
+                          <span class="monitor-message">大气温度：</span>27.3℃
                         </span>
                       </div>
                       <div>
                         <img src="../assets/daqishidu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">大气湿度：</span>10.0%
+                          <span class="monitor-message">大气湿度：</span>10.0%
                         </span>
                       </div>
                     </li>
@@ -352,13 +352,13 @@
                       <div>
                         <img src="../assets/turangwendu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">土壤10cm温度：</span>27.8℃
+                          <span class="monitor-message">土壤10cm温度：</span>27.8℃
                         </span>
                       </div>
                       <div>
                         <img src="../assets/turangwendu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">土壤20cm温度：</span>27.0℃
+                          <span class="monitor-message">土壤20cm温度：</span>27.0℃
                         </span>
                       </div>
                     </li>
@@ -366,13 +366,13 @@
                       <div>
                         <img src="../assets/turangshidu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">土壤10cm湿度：</span>17.8%
+                          <span class="monitor-message">土壤10cm湿度：</span>17.8%
                         </span>
                       </div>
                       <div>
                         <img src="../assets/turangshidu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">土壤20cm湿度：</span>17.8%
+                          <span class="monitor-message">土壤20cm湿度：</span>17.8%
                         </span>
                       </div>
                     </li>
@@ -380,13 +380,13 @@
                       <div>
                         <img src="../assets/zhaodu.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">光照度：</span>67h
+                          <span class="monitor-message">光照度：</span>67h
                         </span>
                       </div>
                       <div>
                         <img src="../assets/zhengfaliang.png" height="100%" alt="">
                         <span style="white-space:nowrap">
-                          <span style="display:inline-block;width:93px;text-align:right">蒸发量：</span>27.3mm
+                          <span class="monitor-message special" style="width:93px">蒸发量：</span>27.3mm
                         </span>
                       </div>
                     </li>
@@ -394,7 +394,7 @@
                       <div>
                         <img src="../assets/jiangyuliang.png" height="100%" alt="">
                         <span>
-                          <span style="display:inline-block;width:97px;text-align:right">降雨量：</span>0.0mm
+                          <span class="monitor-message">降雨量：</span>0.0mm
                         </span>
                       </div>
                     </li>
@@ -993,7 +993,7 @@ export default {
 }
 </script>
 <style lang="stylus">
-@media screen and (min-width: 1500px)
+@media screen and (min-width: 1550px)
   .base-item
     span:nth-of-type(1)
       width 200px !important
@@ -1001,7 +1001,7 @@ export default {
     width 150px !important
   .special
     width 140px !important
-@media screen and (max-width: 1500px)
+@media screen and (max-width: 1550px)
   .base-item
     span:nth-of-type(1)
       width 120px !important
@@ -1202,7 +1202,7 @@ export default {
           .monitor-message
             display:inline-block;
             width:97px;
-            text-align:left
+            text-align:right
           div
             flex 1
             line-height 40px
