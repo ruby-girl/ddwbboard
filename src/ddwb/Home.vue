@@ -533,7 +533,15 @@ export default {
       var str = ''
       this.date = str + date[3] + '-' + month + '-' + date[2]
       this.hours = date[4]
-      let token = 'accessToken=at.84xrc4wq3ypy48xf7tijywk6cpfhz9qa-92o0v8dwk4-0zzdlqy-gyo7tuzmd'
+      // let params = 'appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53'
+      // axios.post('https://open.ys7.com/api/lapp/token/get', params, {
+      //   headers: {
+      //     'Content-Type': 'application/x-www-form-urlencoded'
+      //   }
+      // }).then(res => {
+      //   console.log(res)
+      // })
+      let token = 'accessToken=at.27uf67kq774rrhgz39qzmclyaam50ute-64br33waiv-0si80dk-bmdig7irx'
       axios.post('https://open.ys7.com/api/lapp/live/video/list', token, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
