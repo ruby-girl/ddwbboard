@@ -16,28 +16,28 @@
               <div style="width:100%;height:80%;">
                 <table style="width:100%;height:100%;">
                        <tr style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:50%;color:#f1ff66">所在地区：</td>
-                         <td style="width:50%">{{baseinformation.baseAddress}}</td>
+                         <td style="width:50%;">所在地区：</td>
+                         <td style="width:50%;color:#f1ff66">{{baseinformation.baseAddress}}</td>
                        </tr>
                         <tr style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:50%;color:#f1ff66">基地：</td>
-                         <td style="width:50%">{{baseinformation.baseName}}</td>
+                         <td style="width:50%">基地：</td>
+                         <td style="width:50%;color:#f1ff66">{{baseinformation.baseName}}</td>
                        </tr>
                         <tr style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:50%;color:#f1ff66">基地范畴：</td>
-                         <td style="width:50%">{{baseinformation.baseCategory}}</td>
+                         <td style="width:50%">基地范畴：</td>
+                         <td style="width:50%;color:#f1ff66">{{baseinformation.baseCategory}}</td>
                        </tr>
                         <tr style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:50%;color:#f1ff66">基地类型：</td>
-                         <td style="width:50%">{{baseinformation.baseType}}</td>
+                         <td style="width:50%">基地类型：</td>
+                         <td style="width:50%;color:#f1ff66">{{baseinformation.baseType}}</td>
                        </tr>
                        <tr style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:50%;color:#f1ff66">面积（亩）：</td>
-                         <td style="width:50%">{{baseinformation.area}}</td>
+                         <td style="width:50%">面积（亩）：</td>
+                         <td style="width:50%;color:#f1ff66">{{baseinformation.area}}</td>
                        </tr>
                        <tr style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:50%;color:#f1ff66">产量（吨）：</td>
-                         <td style="width:50%">{{baseinformation.yield}}</td>
+                         <td style="width:50%">产量（吨）：</td>
+                         <td style="width:50%;color:#f1ff66">{{baseinformation.yield}}</td>
                        </tr>
                    </table>
               </div>
@@ -48,7 +48,7 @@
                 <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">Service</h4>
               </div>
               <div style="width:100%;height:67%;overflow:hidden;">
-                <table style="width:90%;height:80%;margin:2% 4% 4% 4%;background-color:rgba(150, 150, 150, 0.3);">
+                <table style="width:90%;height:80%;margin:5px auto;background-color:rgba(150, 150, 150, 0.3);">
                       <tr style="text-align:center;color:#fff;font-size:15px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
                          <th style="width:50%;color:#fff;height:30px;border: 1px solid rgba(221, 215, 215, 0.3);">职位</th>
                          <th style="width:50%;color:#fff;height:30px;border: 1px solid rgba(221, 215, 215, 0.3);">姓名</th>
@@ -368,7 +368,6 @@ export default {
 
            let plotmarker= new AMap.Marker({
     position: new AMap.LngLat(lng1, lat1),
-
 });
     that.map.add(plotmarker);
     that.map.setFitView();
@@ -689,8 +688,8 @@ this.timeFormate(new Date());
             itemStyle: {
 							normal: {
                 color: new that.$echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                   {offset: 0,color: "#6681ea"},
-                   {offset: 1,color: "#7e43aa"}
+                   {offset: 0,color: "#FDAD7B"},
+                   {offset: 1,color: "#FDAD7B"}
                    ]),
 								label: {
 									show: true, //开启显示
@@ -802,8 +801,8 @@ this.timeFormate(new Date());
             itemStyle: {
 							normal: {
                  color: new that.$echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                   {offset: 0,color: "#6acbe0"},
-                   {offset: 1,color: "#6859ea"}
+                   {offset: 0,color: "#FE7A58"},
+                   {offset: 1,color: "#FE7A58"}
                    ]),
 								label: {
 									show: true, //开启显示
@@ -878,8 +877,8 @@ this.timeFormate(new Date());
             itemStyle: {
 							normal: {
                  color: new that.$echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                   {offset: 0,color: "#d0ffae"},
-                   {offset: 1,color: "#34ebe9"}
+                   {offset: 0,color: "#55A1EF"},
+                   {offset: 1,color: "#55A1EF"}
                    ]),
 								label: {
 									show: true, //开启显示

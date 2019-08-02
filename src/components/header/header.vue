@@ -9,12 +9,12 @@
         <div class="right-border"></div>
         <div class="wrapper">
             <span class="date">{{date}}</span>
-            <span class="weather">天气: 晴转多云</span>
+            <span class="weather">天气:{{weather}}</span>
         </div>
     </div>
 </template>
 <script>
-
+import axios from 'axios'
 export default {
     created() {
         setInterval(() => {
@@ -23,10 +23,17 @@ export default {
             var str = ''
             this.date = str + date[3] + '/' + month + '/' + date[2] + ' ' + date[4]
         }, 1000)
+        axios.get("/tq",{params:{from:'5',lat: 31.10,lng: 105.06,needMoreDay:1},
+        headers:{Authorization:"APPCODE 912f4ba38a394870aed1d60aca9a34fb"}}).then((res)=>{
+            if (res.status === 200) {
+              this.weather = res.data.showapi_res_body.now.weather
+            }
+        });
     },
     data() {
         return {
-            date: ''
+            date: '',
+            weather: ''
         }
     }
 }

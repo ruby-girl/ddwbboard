@@ -103,7 +103,7 @@
                             <div class="descs">Product introduction</div>
                         </div>
                         <div class="video-wrapper">
-                            <video src="company.ogg" controls></video>
+                            <video src="maidong.mp4" controls></video>
                         </div>
                     </div>
                 </div>

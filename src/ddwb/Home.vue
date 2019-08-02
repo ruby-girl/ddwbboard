@@ -26,27 +26,52 @@
             <div class="title">数据地图</div>
             <div class="descs">The data map</div>
           </div>
-          <div class="map" ref="mapChart"></div>
+          <div class="map" ref="mapChart">
+            <div class="tip">{{tip}}</div>
+            <div class="changebut" style="background-color:#7e43aa;" @click="changemap">切换卫星地图</div>
+            <div class="point">
+              <div class="base-point">
+              <span class="icon1" style="background-color:red" ref="all" @click="all"></span>
+              <span class="text">全部</span>
+            </div>
+               <div class="base-point">
+              <span class="icon1" style="background-color:#fe5858" ref="hz" @click="hezuo1"></span>
+              <span class="text">合作基地</span>
+            </div>
+             <div class="earth-point">
+              <span class="icon1" style="background-color:#dc9748" ref="hzs" @click="hezuoshe1"></span>
+              <span class="text">合作社</span>
+            </div>
+              <div class="area-point">
+              <span class="icon1" style="background-color:#289CF4" ref="jt" @click="jiatin1"></span>
+              <span class="text">家庭农场</span>
+            </div>
+              <div class="farmar-point">
+              <span class="icon1" style="background-color:#fe58fe" ref="jm" @click="jinmi1"></span>
+              <span class="text">紧密合作基地</span>
+            </div>
+            </div>
+          </div>
           <div class="map-footer">
             <div class="base-count">
               <span class="icon" style="background-color:#fe5858"></span>
-              <span class="text">基地数量</span>
+              <span class="text">合作基地数量</span>
               <span class="count">{{baseLength}}</span>
             </div>
             <div class="earth-count">
               <span class="icon" style="background-color:#dc9748"></span>
               <span class="text">合作社数量</span>
-              <span class="count">1</span>
+              <span class="count">{{hezuosheL}}</span>
             </div>
             <div class="area-count">
               <span class="icon" style="background-color:#289CF4"></span>
               <span class="text">家庭农场数量</span>
-              <span class="count">1</span>
+              <span class="count">{{jiatingnongchangL}}</span>
             </div>
             <div class="farmar-count">
               <span class="icon" style="background-color:#fe58fe"></span>
-              <span class="text">农户数量</span>
-              <span class="count">1</span>
+              <span class="text">紧密合作基地数量</span>
+              <span class="count">{{jinmihezuoL}}</span>
             </div>
           </div>
         </div>
@@ -411,6 +436,7 @@
 <script>
 import headers from '@/components/header/header'
 import baseMap from '@/components/baseMap/baseMap'
+import MapLoader from '@/utils/loadMap.js'
 import polygonal from '@/components/polygonal/polygonal'
 import Foot from '@/components/layouts/GlobalFooter.vue'
 import chartsType from '../assets/js/chartsType.js';
@@ -431,6 +457,7 @@ export default {
     return{
       messages: [],
       mapDatas: [],
+      weixin:false,
       showColorDatas: [
         {
           name: '石安镇',
@@ -492,6 +519,7 @@ export default {
       totalArea: 0,
       option: {},
       addresss: [],
+      baseinfo:[],
       address: '',
       curLock: false,
       serviceData: [],
@@ -511,6 +539,17 @@ export default {
           {itemStyle: {color: '#4ECB73'}},
           {itemStyle: {color: '#FBD437'}},
       ],
+      tip:'',
+      markers:[],
+      hezuoshe:[],
+      jiatingnongchang:[],
+      jinmihezuo:[],
+      hezuosheL:'',
+      jiatingnongchangL:'',
+      jinmihezuoL:'',
+      hezuoshe2:[],
+      jiatingnongchang2:[],
+      jinmihezuo2:[],
     }
   },
   created () {
@@ -520,13 +559,291 @@ export default {
     this._drawCityMap()
     this._drawRainMap()
     this._getJson()
-    this.mapChart.on('click', params => {
-      if (params.value.length) {
-        this.$router.push({path: '/base', query: {baseId: params.data.id}})
-      }
-    })
+    let that=this;
+    window.addEventListener('done', function(){
+  axios.get('json/baseinfo.json').then(res => {
+    for(let i=0;i<res.data.result.length;i++){
+           let lng=res.data.result[i].lng;
+           let lat=res.data.result[i].lat;
+           let marker= new  AMap.CircleMarker({
+              radius:5,
+              fillColor:'#fe5858',
+              strokeColor: '#fe5858',
+              center: new AMap.LngLat(lng, lat),
+});
+that.markers.push(marker);
+    that.map.add(marker);
+    marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(res.data.result[i].baseId)}})});
+     marker.on("mousemove",function(e) {that.tip=res.data.result[i].baseName});
+      marker.on("mouseout",function(e) {that.tip=''});
+         }
+      });
+      axios.get('json/hezuoshe.json').then(res=>{
+        that.hezuosheL=res.data.result.length;
+        that.hezuoshe2=res.data.result;
+        for(let i=0;i<res.data.result.length;i++){
+           let lng=res.data.result[i].lng;
+           let lat=res.data.result[i].lat;
+           let marker1= new  AMap.CircleMarker({
+              radius:5,
+              fillColor:'#dc9748',
+              strokeColor: '#dc9748',
+              center: new AMap.LngLat(lng, lat),
+});
+that.hezuoshe.push(marker1);
+    that.map.add(marker1);
+     marker1.on("mousemove",function(e) {that.tip=res.data.result[i].name});
+      marker1.on("mouseout",function(e) {that.tip=''});
+         }
+      })
+//       let hezuoshe= new  AMap.CircleMarker({
+//               radius:5,
+//               fillColor:'#dc9748',
+//               strokeColor: '#dc9748',
+//               center: new AMap.LngLat(104.90298, 31.2453),
+// });
+// that.map.add(hezuoshe);
+ axios.get('json/jiatinnongchang.json').then(res=>{
+   that.jiatingnongchangL=res.data.result.length;
+   that.jiatingnongchang2=res.data.result;
+        for(let i=0;i<res.data.result.length;i++){
+           let lng=res.data.result[i].lng;
+           let lat=res.data.result[i].lat;
+           let marker2= new  AMap.CircleMarker({
+              radius:5,
+              fillColor:'#289CF4',
+              strokeColor: '#289CF4',
+              center: new AMap.LngLat(lng, lat),
+});
+that.jiatingnongchang.push(marker2);
+    that.map.add(marker2);
+    marker2.on("mousemove",function(e) {that.tip=res.data.result[i].name});
+     marker2.on("mouseout",function(e) {that.tip=''});
+         }
+      })
+//  let jiatingnongchang= new  AMap.CircleMarker({
+//               radius:5,
+//               fillColor:'#289CF4',
+//               strokeColor: '#289CF4',
+//               center: new AMap.LngLat(104.98298, 31.1653),
+// });
+// that.map.add(jiatingnongchang);
+axios.get('json/jinmihezuo.json').then(res=>{
+  that.jinmihezuoL=res.data.result.length;
+  that.jinmihezuo2=res.data.result
+        for(let i=0;i<res.data.result.length;i++){
+           let lng=res.data.result[i].lng;
+           let lat=res.data.result[i].lat;
+           let marker3= new  AMap.CircleMarker({
+              radius:5,
+              fillColor:'#fe58fe',
+              strokeColor: '#fe58fe',
+              center: new AMap.LngLat(lng, lat),
+});
+that.jinmihezuo.push(marker3);
+    that.map.add(marker3);
+    marker3.on("mousemove",function(e) {that.tip=res.data.result[i].name});
+    marker3.on("mouseout",function(e) {that.tip=''});
+         }
+      })
+// let nonghu= new  AMap.CircleMarker({
+//               radius:5,
+//               fillColor:'#fe58fe',
+//               strokeColor:'#fe58fe',
+//               center: new AMap.LngLat(104.93298, 31.2053),
+// });
+// that.map.add(nonghu);
+  });
   },
   methods: {
+    removepoint(){
+      // for(let i=0;i<this.markers;i++){
+      //   this.markers[i].hide( );
+      // }
+      // for(let i=0;i<this.hezuoshe;i++){
+      //   this.hezuoshe[i].hide( );
+      // }
+      // for(let i=0;i<this.jiatingnongchang;i++){
+      //   this.jiatingnongchang[i].hide( );
+      // }
+      // for(let i=0;i<this.jinmihezuo;i++){
+      //   this.jinmihezuo[i].hide( );
+      // }
+     this.map.remove(this.markers);
+     this.map.remove(this.hezuoshe);
+     this.map.remove(this.jiatingnongchang);
+     this.map.remove(this.jinmihezuo);
+    },
+    all(){
+      this.removepoint();
+      let that=this;
+      that.markers=[];
+      that.hezuoshe=[];
+      that.jiatingnongchang=[];
+      that.jinmihezuo=[];
+      for(let i=0;i<that.baseinfo.length;i++){
+           let lng=that.baseinfo[i].lng;
+           let lat=that.baseinfo[i].lat;
+           let marker= new  AMap.CircleMarker({
+              radius:5,
+              fillColor:'#fe5858',
+              strokeColor: '#fe5858',
+              center: new AMap.LngLat(lng, lat),
+});
+that.markers.push(marker);
+    that.map.add(marker);
+    marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
+    marker.on("mousemove",function(e) {that.tip=that.baseinfo[i].baseName});
+      marker.on("mouseout",function(e) {that.tip=''});
+         }
+          for(let i=0;i<that.hezuoshe2.length;i++){
+           let lng=that.hezuoshe2[i].lng;
+           let lat=that.hezuoshe2[i].lat;
+           let marker= new  AMap.CircleMarker({
+              radius:5,
+              fillColor:'#dc9748',
+              strokeColor: '#dc9748',
+              center: new AMap.LngLat(lng, lat),
+});
+that.hezuoshe.push(marker);
+    that.map.add(marker);
+    // marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
+    marker.on("mousemove",function(e) {that.tip=that.hezuoshe2[i].name});
+      marker.on("mouseout",function(e) {that.tip=''});
+         }
+          for(let i=0;i<that.jiatingnongchang2.length;i++){
+           let lng=that.jiatingnongchang2[i].lng;
+           let lat=that.jiatingnongchang2[i].lat;
+           let marker= new  AMap.CircleMarker({
+              radius:5,
+              fillColor:'#289CF4',
+              strokeColor: '#289CF4',
+              center: new AMap.LngLat(lng, lat),
+});
+that.jiatingnongchang.push(marker);
+    that.map.add(marker);
+    // marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
+    marker.on("mousemove",function(e) {that.tip=that.jiatingnongchang2[i].name});
+      marker.on("mouseout",function(e) {that.tip=''});
+         }
+          for(let i=0;i<that.jinmihezuo2.length;i++){
+           let lng=that.jinmihezuo2[i].lng;
+           let lat=that.jinmihezuo2[i].lat;
+           let marker= new  AMap.CircleMarker({
+              radius:5,
+              fillColor:'#fe58fe',
+              strokeColor: '#fe58fe',
+              center: new AMap.LngLat(lng, lat),
+});
+that.jinmihezuo.push(marker);
+    that.map.add(marker);
+    // marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
+    marker.on("mousemove",function(e) {that.tip=that.jinmihezuo2[i].name});
+      marker.on("mouseout",function(e) {that.tip=''});
+         }
+
+    },
+    hezuo1(){
+     this.removepoint();
+     let that=this;
+     that.markers=[];
+      for(let i=0;i<that.baseinfo.length;i++){
+           let lng=that.baseinfo[i].lng;
+           let lat=that.baseinfo[i].lat;
+           let marker= new  AMap.CircleMarker({
+              radius:5,
+              fillColor:'#fe5858',
+              strokeColor: '#fe5858',
+              center: new AMap.LngLat(lng, lat),
+});
+that.markers.push(marker);
+    that.map.add(marker);
+    marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
+    marker.on("mousemove",function(e) {that.tip=that.baseinfo[i].baseName});
+      marker.on("mouseout",function(e) {that.tip=''});
+         }
+
+    },
+    hezuoshe1(){
+     this.removepoint();
+    //  this.map.add(this.hezuoshe);
+    let that=this;
+     that.hezuoshe=[];
+      for(let i=0;i<that.hezuoshe2.length;i++){
+           let lng=that.hezuoshe2[i].lng;
+           let lat=that.hezuoshe2[i].lat;
+           let marker= new  AMap.CircleMarker({
+              radius:5,
+              fillColor:'#dc9748',
+              strokeColor: '#dc9748',
+              center: new AMap.LngLat(lng, lat),
+});
+that.hezuoshe.push(marker);
+    that.map.add(marker);
+    // marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
+    marker.on("mousemove",function(e) {that.tip=that.hezuoshe2[i].name});
+      marker.on("mouseout",function(e) {that.tip=''});
+         }
+    },
+    jiatin1(){
+     this.removepoint();
+    //  this.map.add(this.jiatingnongchang);
+    let that=this;
+     that.jiatingnongchang=[];
+      for(let i=0;i<that.jiatingnongchang2.length;i++){
+           let lng=that.jiatingnongchang2[i].lng;
+           let lat=that.jiatingnongchang2[i].lat;
+           let marker= new  AMap.CircleMarker({
+              radius:5,
+              fillColor:'#289CF4',
+              strokeColor: '#289CF4',
+              center: new AMap.LngLat(lng, lat),
+});
+that.jiatingnongchang.push(marker);
+    that.map.add(marker);
+    // marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
+    marker.on("mousemove",function(e) {that.tip=that.jiatingnongchang2[i].name});
+      marker.on("mouseout",function(e) {that.tip=''});
+         }
+    },
+    jinmi1(){
+     this.removepoint();
+    //  this.map.add(this.jinmihezuo);
+    let that=this;
+     that.jinmihezuo=[];
+      for(let i=0;i<that.jinmihezuo2.length;i++){
+           let lng=that.jinmihezuo2[i].lng;
+           let lat=that.jinmihezuo2[i].lat;
+           let marker= new  AMap.CircleMarker({
+              radius:5,
+              fillColor:'#fe58fe',
+              strokeColor: '#fe58fe',
+              center: new AMap.LngLat(lng, lat),
+});
+that.jinmihezuo.push(marker);
+    that.map.add(marker);
+    // marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
+    marker.on("mousemove",function(e) {that.tip=that.jinmihezuo2[i].name});
+      marker.on("mouseout",function(e) {that.tip=''});
+         }
+    },
+    changemap(){
+if(!this.weixin){
+   let googleLayer = new AMap.TileLayer({
+              getTileUrl: 'http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile'
+           });//定义谷歌卫星切片图层
+
+        let roadNetLayer = new AMap.TileLayer.RoadNet({
+          opacity:0
+        }); //定义一个路网图层
+        var layer = new AMap.TileLayer();
+      this.map.setLayers([googleLayer,roadNetLayer,layer]);
+      this.weixin=true;
+}else{
+      this.map.remove(this.map.getLayers()[0]);
+      this.weixin=false;
+}
+    },
     _getAddress () {
       var date = new Date().toString().split(' ')
       var month = new Date().getMonth() + 1
@@ -580,6 +897,7 @@ export default {
     _getJson() {
       axios.get('json/baseinfo.json').then(res => {
         if (res.status == 200) {
+          this.baseinfo=res.data.result;
           let data = res.data.result
           if (data && data.length) {
             this.baseLength = data.length
@@ -662,13 +980,86 @@ export default {
     },
     _drawCityMap() {
       this.$refs.mapChart.style.height = '550px'
-      this.mapChart = this.$echarts.init(this.$refs.mapChart)
-      this._setOption()
-      axios.get('json/santai.json').then(res => {
-        console.log(res)
-        this.$echarts.registerMap('santai', res.data)
-        this.mapChart.setOption(this.option)
+      let that = this
+      MapLoader().then(AMap => {
+
+        that.map = new AMap.Map(this.$refs.mapChart, {
+          center: [105.013664,31.206397],
+          zooms: [10,18],
+          // layers:[googleLayer,roadNetLayer], //设置图层
+          // viewMode:'3D',
+        });
+
+        AMap.plugin('AMap.DistrictSearch',function(){
+        var district=new AMap.DistrictSearch({
+        extensions:'all',
+        subdistrict:0
+    })
+    district.search('三台县',function(status,result){
+        // 外多边形坐标数组和内多边形坐标数组
+       var bounds = result.districtList[0].boundaries
+       var outer = [
+            new AMap.LngLat(-360,90,true),
+            new AMap.LngLat(-360,-90,true),
+            new AMap.LngLat(360,-90,true),
+            new AMap.LngLat(360,90,true),
+        ];
+        var pathArray = [
+            outer
+        ];
+        pathArray.push.apply(pathArray,bounds)
+        var polygon = new AMap.Polygon( {
+            path:pathArray,
+            strokeColor: '#000000',
+            strokeWeight: 1,
+            fillColor: '#26374C',
+            fillOpacity: 1
+        });
+        polygon.setPath(pathArray);
+        that.map.add(polygon)
+        var polygons=[];
+    if (bounds) {
+      for (var i = 0, l = bounds.length; i < l; i++) {
+       //生成行政区划polygon
+       var polygon1 = new AMap.Polygon({
+         map: that.map,
+         strokeWeight: 1,
+         path: bounds[i],
+         fillOpacity: 0,
+         fillColor: '#CCF3FF',
+         strokeColor: '#CC66CC'
+       })
+       polygons.push(polygon1)
+     }
+     // 地图自适应
+     that.map.setFitView(polygons)
+   }
+    })
+    var bounds = that.map.getBounds();
+    console.log(bounds);
+        that.map.setLimitBounds(bounds);
+        that.map.on("complete", function(){
+          console.log("地图加载完成！");
+          var myEvent = new CustomEvent('done',{});
+          if(window.dispatchEvent) {
+            window.dispatchEvent(myEvent);
+          } else {
+            window.fireEvent(myEvent);
+          }
+        });
+
       })
+        })
+
+
+
+      // this.mapChart = this.$echarts.init(this.$refs.mapChart)
+      // this._setOption()
+      // axios.get('json/santai.json').then(res => {
+      //   console.log(res)
+      //   this.$echarts.registerMap('santai', res.data)
+      //   this.mapChart.setOption(this.option)
+      // })
     },
     _setOption () {
       this.option = {
@@ -1088,8 +1479,47 @@ export default {
       width 100%
       border-radius 6px
       .map
+        position relative
         height 550px
         background-color #26374c
+        .tip
+          position absolute
+          width 30%
+          height 30px
+          background rgba(0,0,0,0.1)
+          z-index 9999
+          top 0
+          left 35%
+          color #fff
+          text-align center
+          line-height 30px
+        .changebut
+          position absolute
+          width 80px
+          height 25px
+          text-align center
+          line-height 25px
+          border-radius 15px
+          top 10%
+          right 5%
+          color #fff
+          z-index 99999
+          cursor pointer
+        .point
+          position absolute
+          left 5%
+          top 10%
+          z-index 99999
+          .text
+            color #fff
+          .icon1
+            display inline-block
+            cursor pointer
+            width 15px
+            height 15px
+            border-radius 50%
+            margin-right 10px
+            vertical-align middle
       .map-footer
         display flex
         height 25px
@@ -1184,8 +1614,8 @@ export default {
             width 55%
             text-align center
           .update-time
-            width:45%; 
-            float:right; 
+            width:45%;
+            float:right;
             font-size: 16px
             span
               width 100%

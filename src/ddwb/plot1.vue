@@ -303,7 +303,12 @@ export default {
     if(that.changenum>=that.seed.length){
       that.changenum=0;
     }
-    that.a.a=that.seed[that.changenum].minstandard+'<{value}<'+that.seed[that.changenum].maxstandard;
+    //that.a.a=this.seed[this.changenum].minstandard+'<{value}<'+this.seed[this.changenum].maxstandard;
+    // if('unit' in this.seed[this.changenum]){
+    //    that.a.a='{value}'+this.seed[this.changenum].unit;
+    // }else{
+       that.a.a='{value}';
+    // }
          that.a.b=that.seed[that.changenum].testItem;
          if(that.seed[that.changenum].minstandard>5){
          that.a.c=5/(that.seed[that.changenum].maxstandard-that.seed[that.changenum].minstandard+10);
@@ -328,7 +333,8 @@ export default {
        axios.get("json/seedtest.json").then((res)=>{
        this.seed=res.data.seedDetection;
        this.changenum=0;
-       this.a.a=this.seed[this.changenum].minstandard+'<{value}<'+this.seed[this.changenum].maxstandard;
+       //this.a.a=this.seed[this.changenum].minstandard+'<{value}<'+this.seed[this.changenum].maxstandard;
+       this.a.a='{value}'+this.seed[this.changenum].unit;
          this.a.b=this.seed[this.changenum].testItem;
          if(this.seed[this.changenum].minstandard>5){
          this.a.c=5/(this.seed[this.changenum].maxstandard-this.seed[this.changenum].minstandard+10);
@@ -350,7 +356,8 @@ export default {
        axios.get("json/firsttest.json").then((res)=>{
        this.seed=res.data.firstDetection;
         this.changenum=0;
-       this.a.a=this.seed[this.changenum].minstandard+'<{value}<'+this.seed[this.changenum].maxstandard;
+       //this.a.a=this.seed[this.changenum].minstandard+'<{value}<'+this.seed[this.changenum].maxstandard;
+       this.a.a='{value}';
          this.a.b=this.seed[this.changenum].testItem;
          if(this.seed[this.changenum].minstandard>5){
          this.a.c=5/(this.seed[this.changenum].maxstandard-this.seed[this.changenum].minstandard+10);
@@ -372,7 +379,8 @@ export default {
        axios.get("json/gettest.json").then((res)=>{
        this.seed=res.data.firstDetection;
        this.changenum=0;
-       this.a.a=this.seed[this.changenum].minstandard+'<{value}<'+this.seed[this.changenum].maxstandard;
+       //this.a.a=this.seed[this.changenum].minstandard+'<{value}<'+this.seed[this.changenum].maxstandard;
+       this.a.a='{value}';
          this.a.b=this.seed[this.changenum].testItem;
          if(this.seed[this.changenum].minstandard>5){
          this.a.c=5/(this.seed[this.changenum].maxstandard-this.seed[this.changenum].minstandard+10);
@@ -522,7 +530,7 @@ this.timeFormate(new Date());
             formatter:this.a.a,
             textStyle: {
               color: '#f1ff66',
-              fontSize : 12,
+              fontSize : 20,
 
                         }
           },
@@ -651,10 +659,16 @@ this.timeFormate(new Date());
     .testname {
       width: 100px !important;
     }
+    .tupian img {
+      height: 280px !important
+    }
 }
 @media screen and (max-width: 1550px) {
     .testname {
       width:65px !important;
+    }
+    .tupian img {
+      height: 100% !important
     }
 }
 .testname:hover{
