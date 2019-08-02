@@ -289,7 +289,7 @@ export default {
       })
     this. iniMap();
     let that=this;
-    window.addEventListener('done', function(){
+    window.addEventListener('done3', function(){
       let a=[];
       a.push(that.plotId);
       that.addBlockOnMap(a);
@@ -639,8 +639,7 @@ this.timeFormate(new Date());
           layers:[googleLayer,roadNetLayer], //设置图层
         });
         that.map.on("complete", function(){
-          console.log("地图加载完成！");
-          var myEvent = new CustomEvent('done',{});
+          var myEvent = new CustomEvent('done3',{});
           if(window.dispatchEvent) {
             window.dispatchEvent(myEvent);
           } else {

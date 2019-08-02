@@ -71,43 +71,25 @@
               </div>
               <!-- <div id="graphjiangyu" style=" width: 100%;height: 67%;"></div> -->
         </div>
-        <div style="width:100%;height:400px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
+        <div style="width:100%;height:400px;border-radius:15px;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
           <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
-                <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">视频监控</h3>
+             <a-row>
+              <a-col :span="12">
+                 <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">视频监控</h3>
                 <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">Video Surveillance</h4>
+              </a-col>
+              <a-col :span="12">
+                 <Cascader @on-change="selectAddress" class="select" :data="addresss" style="margin-right:10px;"></Cascader>
+              </a-col>
+            </a-row>
               </div>
               <div style="width:100%;height:87%;">
-                 <video style="width:100%;height:100%;" id="myPlayer" controls playsinline webkit-playsinline autoplay>
+          <video id="myVideo" width="100%" height="100%" style="width:100%;height:100%" ref="myPlayer" controls :src="address"></video>
+                 <!-- <video style="width:100%;height:100%;" id="myPlayer" controls playsinline webkit-playsinline autoplay>
                     <source type="application/x-mpegURL" src="http://hls01open.ys7.com/openlive/18a69a040bcb45c9a08dfe9c5129399b.m3u8"/>
                     <source src="rtmp://rtmp01open.ys7.com/openlive/18a69a040bcb45c9a08dfe9c5129399b"/>
-                </video>
-                <!-- <video style="width:50%;height:100%;" width="400" height="300" id="myPlayer1" controls playsinline webkit-playsinline autoplay>
-                    <source type="application/x-mpegURL" src="http://hls01open.ys7.com/openlive/a93c67e6dc83420baeba01d0b0fbf416.m3u8"/>
-                    <source src="rtmp://rtmp01open.ys7.com/openlive/a93c67e6dc83420baeba01d0b0fbf416"/>
                 </video> -->
                 </div>
-              <!-- <div id="srollbox" style="width:100%;height:85%;overflow:hidden;">
-                   <table id="sroll" style="width:100%;height:100%;">
-                     <template v-for="(v,k) in workrecord">
-                       <tr :key="k" style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:25%;color:#00FF00">{{v.time}}</td>
-                         <td style="width:25%">{{v.start}}</td>
-                         <td style="width:25%;color:#f1ff66">{{v.recordname}}</td>
-                         <td style="width:25%">{{v.name}}</td>
-                       </tr>
-                     </template>
-                   </table>
-                    <table id="sroll1" style="width:100%;height:100%;">
-                     <template v-for="(v,k) in workrecord">
-                       <tr :key="k" style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:25%;color:#00FF00">{{v.time}}</td>
-                         <td style="width:25%">{{v.start}}</td>
-                         <td style="width:25%;color:#f1ff66">{{v.recordname}}</td>
-                         <td style="width:25%">{{v.name}}</td>
-                       </tr>
-                     </template>
-                   </table>
-                </div> -->
         </div>
       </a-col>
 
@@ -293,14 +275,18 @@ export default {
         visible:false,
         title:'',
         baogao:'',
+        addresss: [],
+        address: '',
+        curLock: false,
     }
   },
   created(){
 
    this.basenum=Number(this.$route.query.baseId)-1;
+   this.getAddress();
   },
   mounted(){
-    this.player = new EZUIPlayer('myPlayer');
+    // this.player = new EZUIPlayer('myPlayer');
     // this.player1 = new EZUIPlayer('myPlayer1');
     // axios.get("/sqtq",{params:{area:'三台'},headers:{Authorization:"APPCODE 912f4ba38a394870aed1d60aca9a34fb"}}).then((res)=>{
     //     if(res.statusText=="OK"){
@@ -346,7 +332,7 @@ export default {
        axios.get("json/plot.json").then((res)=>{
          that.iniMap();
 
-    window.addEventListener('done', function(){
+    window.addEventListener('done2', function(){
       let lng=that.baseinfo[that.basenum].lng;
       let lat=that.baseinfo[that.basenum].lat;
       var icon = new AMap.Icon({
@@ -375,55 +361,7 @@ export default {
          }
       });
        })
-// axios.post("/video",'accessToken=at.84xrc4wq3ypy48xf7tijywk6cpfhz9qa-92o0v8dwk4-0zzdlqy-gyo7tuzmd',
-// {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).then((res)=>{
-//   console.log(res);
-// })
-    // axios.get("/tq",{params:{from:'5',lat:this.baseinfo[that.basenum].lat,lng:that.baseinfo[this.basenum].lng,needMoreDay:1},headers:{Authorization:"APPCODE 912f4ba38a394870aed1d60aca9a34fb"}}).then((res)=>{
-    //             that.tianqi=res.data.showapi_res_body;
-    //             console.log(res.data.showapi_res_body);
-    //             that.jiangshui=[];
-    //             that.week=[];
-    //             var isweek=['f1','f2','f3','f4','f5','f6','f7'];
-    //             Object.keys(that.tianqi).forEach(function(key){
-    //             if(isweek.indexOf(key)!=-1){
-    //               that.jiangshui[isweek.indexOf(key)]=that.tianqi[key].jiangshui.split("%")[0];
-    //               let a='';
-    //               switch (String(that.tianqi[key].weekday)) {
-    //                 case '1':
-    //                    a='星期一';
-    //                   break;
-    //                  case '2':
-    //                    a='星期二';
-    //                   break;
-    //                 case '3':
-    //                    a='星期三';
-    //                   break;
-    //                 case '4':
-    //                    a='星期四';
-    //                   break;
-    //                 case '5':
-    //                    a='星期五';
-    //                   break;
-    //                 case '6':
-    //                    a='星期六';
-    //                   break;
-    //                 case '7':
-    //                    a='星期日';
-    //                   break;
-    //                 default:
-    //                   break;
-    //               }
-    //                 that.week[isweek.indexOf(key)]=a;
-    //             }
-    //             });
-    //             that.drawLine1();
-    //       });
-
           });
-    // this.jiangshui=[50,60,10,100,150,34,80];
-    // this.week=['星期一','星期二','星期三','星期四','星期五','星期六','星期日'];
-// this.drawLine1();
 axios.get("json/plot.json").then((res)=>{
        console.log(res.data.result);
        that.plotinfo=res.data.result;
@@ -456,15 +394,77 @@ axios.get("json/plot.json").then((res)=>{
              this.drawLine3();
            });
     //  setInterval(this.nowTimes,1000);
-
-
-
-
-
   },
+
   methods:{
     backhome(){
      this.$router.push({ name: 'home'});
+    },
+    selectAddress(datas) {
+      if (datas.length != 0) {
+        this.address = datas[1]
+        this.$nextTick(() => {
+          this.player = new EZUIPlayer('myVideo');
+        })
+      }
+    },
+    getAddress () {
+      // var date = new Date().toString().split(' ')
+      // var month = new Date().getMonth() + 1
+      // var str = ''
+      // this.date = str + date[3] + '-' + month + '-' + date[2]
+      // this.hours = date[4]
+      // let params = 'appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53'
+      // axios.post('https://open.ys7.com/api/lapp/token/get', params, {
+      //   headers: {
+      //     'Content-Type': 'application/x-www-form-urlencoded'
+      //   }
+      // }).then(res => {
+      //   console.log(res)
+      // })
+      let token = 'accessToken=at.27uf67kq774rrhgz39qzmclyaam50ute-64br33waiv-0si80dk-bmdig7irx'
+      axios.post('https://open.ys7.com/api/lapp/live/video/list', token, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }).then(res => {
+        if (res.data.code == 200) {
+          if (res.data.data && res.data.data.length) {
+            this.addresss.push({
+              label: res.data.data[0].deviceName,
+              value: res.data.data[0].deviceSerial,
+              children: []
+            })
+            for (let i = 0; i < res.data.data.length; i++) {
+              for (let j = 0; j < this.addresss.length; j++) {
+                if (this.addresss[j].label === res.data.data[i].deviceName) {
+                  this.curLock = true
+                  this.addresss[j].children.push({
+                    label: '通道' + res.data.data[i].channelNo,
+                    value: res.data.data[i].liveAddress
+                  })
+                }
+              }
+              if (!this.curLock) {
+                this.addresss.push({
+                  label: res.data.data[i].deviceName,
+                  value: res.data.data[i].deviceSerial,
+                  children: [{
+                    label: '通道' + res.data.data[i].channelNo,
+                    value: res.data.data[i].liveAddress
+                  }]
+                })
+              }
+              this.curLock = false
+            }
+          }
+        }
+        this.$nextTick(() => {
+          myVideo.addEventListener('play', () => {
+            this.player.on()
+          })
+        })
+      })
     },
     getbaogao(a){
       if(a==1){
@@ -956,8 +956,7 @@ this.timeFormate(new Date());
           layers:[googleLayer,roadNetLayer], //设置图层
         });
         that.map.on("complete", function(){
-          console.log("地图加载完成！");
-          var myEvent = new CustomEvent('done',{});
+          var myEvent = new CustomEvent('done2',{});
           if(window.dispatchEvent) {
             window.dispatchEvent(myEvent);
           } else {

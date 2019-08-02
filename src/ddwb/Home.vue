@@ -560,7 +560,8 @@ export default {
     this._drawRainMap()
     this._getJson()
     let that=this;
-    window.addEventListener('done', function(){
+
+    window.addEventListener('done1', function(){
   axios.get('json/baseinfo.json').then(res => {
     for(let i=0;i<res.data.result.length;i++){
            let lng=res.data.result[i].lng;
@@ -596,13 +597,7 @@ that.hezuoshe.push(marker1);
       marker1.on("mouseout",function(e) {that.tip=''});
          }
       })
-//       let hezuoshe= new  AMap.CircleMarker({
-//               radius:5,
-//               fillColor:'#dc9748',
-//               strokeColor: '#dc9748',
-//               center: new AMap.LngLat(104.90298, 31.2453),
-// });
-// that.map.add(hezuoshe);
+
  axios.get('json/jiatinnongchang.json').then(res=>{
    that.jiatingnongchangL=res.data.result.length;
    that.jiatingnongchang2=res.data.result;
@@ -621,13 +616,7 @@ that.jiatingnongchang.push(marker2);
      marker2.on("mouseout",function(e) {that.tip=''});
          }
       })
-//  let jiatingnongchang= new  AMap.CircleMarker({
-//               radius:5,
-//               fillColor:'#289CF4',
-//               strokeColor: '#289CF4',
-//               center: new AMap.LngLat(104.98298, 31.1653),
-// });
-// that.map.add(jiatingnongchang);
+
 axios.get('json/jinmihezuo.json').then(res=>{
   that.jinmihezuoL=res.data.result.length;
   that.jinmihezuo2=res.data.result
@@ -646,29 +635,11 @@ that.jinmihezuo.push(marker3);
     marker3.on("mouseout",function(e) {that.tip=''});
          }
       })
-// let nonghu= new  AMap.CircleMarker({
-//               radius:5,
-//               fillColor:'#fe58fe',
-//               strokeColor:'#fe58fe',
-//               center: new AMap.LngLat(104.93298, 31.2053),
-// });
-// that.map.add(nonghu);
+
   });
   },
   methods: {
     removepoint(){
-      // for(let i=0;i<this.markers;i++){
-      //   this.markers[i].hide( );
-      // }
-      // for(let i=0;i<this.hezuoshe;i++){
-      //   this.hezuoshe[i].hide( );
-      // }
-      // for(let i=0;i<this.jiatingnongchang;i++){
-      //   this.jiatingnongchang[i].hide( );
-      // }
-      // for(let i=0;i<this.jinmihezuo;i++){
-      //   this.jinmihezuo[i].hide( );
-      // }
      this.map.remove(this.markers);
      this.map.remove(this.hezuoshe);
      this.map.remove(this.jiatingnongchang);
@@ -923,7 +894,6 @@ if(!this.weixin){
               if (this.baseScroll) {
                 clearInterval(this.baseScroll.timer)
               }
-              console.log(111)
               this.baseScroll = new roll.Roll('base-info', 'base-ul1', 'base-ul2', -280)
             })
           }
@@ -1044,11 +1014,10 @@ if(!this.weixin){
    }
     })
     var bounds = that.map.getBounds();
-    console.log(bounds);
-        that.map.setLimitBounds(bounds);
+    that.map.setLimitBounds(bounds);
         that.map.on("complete", function(){
           console.log("地图加载完成！");
-          var myEvent = new CustomEvent('done',{});
+          var myEvent = new CustomEvent('done1',{});
           if(window.dispatchEvent) {
             window.dispatchEvent(myEvent);
           } else {
@@ -1494,7 +1463,7 @@ if(!this.weixin){
           position absolute
           width 30%
           height 30px
-          background rgba(0,0,0,0.1)
+          background rgba(0,0,0,0.5)
           z-index 9999
           top 0
           left 35%
