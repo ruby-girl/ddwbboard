@@ -86,8 +86,8 @@
               </a-col>
             </a-row>
               </div>
-              <div style="width:100%;height:87%;">
-          <video id="myVideo" width="100%" height="100%" style="width:100%;height:100%" ref="myPlayer" controls :src="address"></video>
+              <div style="width:100%;height:338px;border-radius:15px;overflow: hidden;">
+          <video id="myVideo"  style="width:100%;height:100%" ref="myPlayer" controls :src="address"></video>
                  <!-- <video style="width:100%;height:100%;" id="myPlayer" controls playsinline webkit-playsinline autoplay>
                     <source type="application/x-mpegURL" src="http://hls01open.ys7.com/openlive/18a69a040bcb45c9a08dfe9c5129399b.m3u8"/>
                     <source src="rtmp://rtmp01open.ys7.com/openlive/18a69a040bcb45c9a08dfe9c5129399b"/>
@@ -509,28 +509,22 @@ axios.get("json/plot1.json").then((res)=>{
         })
       }
     },
-    getAddress () {
-      // var date = new Date().toString().split(' ')
-      // var month = new Date().getMonth() + 1
-      // var str = ''
-      // this.date = str + date[3] + '-' + month + '-' + date[2]
-      // this.hours = date[4]
-      // let params = 'appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53'
-      // axios.post('https://open.ys7.com/api/lapp/token/get', params, {
-      //   headers: {
-      //     'Content-Type': 'application/x-www-form-urlencoded'
-      //   }
-      // }).then(res => {
-      //   console.log(res)
-      // })
-      let token = 'accessToken=at.27uf67kq774rrhgz39qzmclyaam50ute-64br33waiv-0si80dk-bmdig7irx&pageStart=0&pageSize=50'
-      axios.post('https://open.ys7.com/api/lapp/live/video/list', token, {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
-      }).then(res => {
-        if (res.data.code == 200) {
-          if (res.data.data && res.data.data.length) {
+    getAddress (token) {
+var date = new Date().toString().split(' ')
+var month = new Date().getMonth() + 1
+var str = ''
+this.date = str + date[3] + '-' + month + '-' + date[2]
+this.hours = date[4]
+let params = 'appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53'
+let curToken = token ? token : window.localStorage.token
+axios.post('https://open.ys7.com/api/lapp/live/video/list', curToken, {
+headers: {
+'Content-Type': 'application/x-www-form-urlencoded'
+}
+}).then(res => {
+console.log(res)
+if (res.data.code == 200) {
+ if (res.data.data && res.data.data.length) {
             console.log(res.data.data)
             if (this.$route.query.baseId == 8) {
               this.addresss.push({
@@ -561,44 +555,30 @@ axios.get("json/plot1.json").then((res)=>{
               })
             }
           }
-          //   this.addresss.push({
-          //     label: res.data.data[0].deviceName,
-          //     value: res.data.data[0].deviceSerial,
-          //     children: []
-          //   })
-          //   for (let i = 0; i < res.data.data.length; i++) {
-          //     for (let j = 0; j < this.addresss.length; j++) {
-          //       if (this.addresss[j].label === res.data.data[i].deviceName) {
-          //         this.curLock = true
-          //         this.addresss[j].children.push({
-          //           label: '通道' + res.data.data[i].channelNo,
-          //           value: res.data.data[i].liveAddress
-          //         })
-          //       }
-          //     }
-          //     if (!this.curLock) {
-          //       this.addresss.push({
-          //         label: res.data.data[i].deviceName,
-          //         value: res.data.data[i].deviceSerial,
-          //         children: [{
-          //           label: '通道' + res.data.data[i].channelNo,
-          //           value: res.data.data[i].liveAddress
-          //         }]
-          //       })
-          //     }
-          //     this.curLock = false
-          //   }
-          // }
-          // console.log(this.$route)
-          // console.log(this.addresss)
-        }
-        this.$nextTick(() => {
-          myVideo.addEventListener('play', () => {
-            this.player.on()
-          })
-        })
-      })
-    },
+} else if (res.data.code == 10002) {
+axios.post('https://open.ys7.com/api/lapp/token/get', params, {
+headers: {
+'Content-Type': 'application/x-www-form-urlencoded'
+}
+}).then(res => {
+if (res.data.code == 200) {
+console.log(res)
+token = 'accessToken=' + res.data.data.accessToken + '&pageStart=0&pageSize=50'
+window.localStorage.setItem('token', token)
+this.getAddress(token)
+}
+})
+}
+this.$nextTick(() => {
+myVideo.addEventListener('play', () => {
+this.player.on()
+})
+})
+})
+},
+
+
+
     getbaogao(a){
       if(a==1){
       return require('@/assets/'+this.baseinformation.tuPic);
