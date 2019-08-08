@@ -1,0 +1,130 @@
+{
+"workRecord": [
+ {
+          "time": "春分",
+          "start": "2019-03-31",
+          "recordname": "整地",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-05",
+          "recordname": "种苗制作",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-10",
+          "recordname": "施肥",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "清明",
+          "start": "2019-04-15",
+          "recordname": "二次整地",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "谷雨",
+          "start": "2019-04-20",
+          "recordname": "栽种",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "谷雨",
+          "start": "2019-04-25",
+          "recordname": "补苗",
+          "name": "新德马脊村"
+        },
+         {
+          "time": "立夏",
+          "start": "2019-05-06",
+          "recordname": "除草",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "芒种",
+          "start": "2019-06-06",
+          "recordname": "追肥",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "夏至",
+          "start": "2019-06-26",
+          "recordname": "除草",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "夏至",
+          "start": "2019-07-01",
+          "recordname": "追肥",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "小暑",
+          "start": "2019-07-07",
+          "recordname": "肥效巡查",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "立秋",
+          "start": "2019-08-08",
+          "recordname": "除草",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "立秋",
+          "start": "2019-08-13",
+          "recordname": "追肥",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "立秋",
+          "start": "2019-08-18",
+          "recordname": "肥效巡查",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "白露",
+          "start": "2019-09-08",
+          "recordname": "除草",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "白露",
+          "start": "2019-09-18",
+          "recordname": "肥效巡查",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "寒露",
+          "start": "2019-10-08",
+          "recordname": "除草",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "寒露",
+          "start": "2019-10-13",
+          "recordname": "施肥",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "寒露",
+          "start": "2019-10-18",
+          "recordname": "肥效巡查",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "立春",
+          "start": "2020-02-09",
+          "recordname": "除草",
+          "name": "新德马脊村"
+        },
+        {
+          "time": "春分",
+          "start": "2020-03-20",
+          "recordname": "采收",
+          "name": "新德马脊村"
+        }
+      ]
+    }

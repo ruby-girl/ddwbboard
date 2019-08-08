@@ -10,8 +10,8 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            datas: [300, 500, 1000],
-            tdataAxis: [2015, 2016, 2017]
+            datas: [200, 500, 1000 , 1000],
+            tdataAxis: [2015, 2016, 2017,2018]
         }
     },
     mounted () {
@@ -30,7 +30,7 @@ export default {
             option.series.push({
                 name: '普通肥',
                 barWidth:20,
-                data:[240, 200 ,90],
+                data:[140, 200 ,90,90],
                 type: 'bar',
                 itemStyle: {
                     emphasis: {
@@ -46,7 +46,7 @@ export default {
             option.series.push({
                 name:'百分比',
                 type:'line',
-                data: [80, 40, 9],
+                data: [70, 40, 9,9],
                 itemStyle: {
                     normal:{
                         color: '#4ECB73'

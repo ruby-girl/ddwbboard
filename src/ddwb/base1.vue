@@ -2,7 +2,10 @@
   <div style="background:#212F41;">
 <headers></headers>
 <div style="position: relative;top:-20px;left:30px;width:70px;height:30px;background:#224665;line-height:30px;text-align:center;color:#fff;cursor:pointer;" @click="backhome">返回</div>
-
+<!-- <div style="position: relative;top:-20px;left:30px;width:70px;height:30px;background:#224665;line-height:30px;text-align:center;color:#fff;cursor:pointer;">
+  <router-link :to="{name:'home',query:{time:new Date().getTime()}}">返回</router-link>
+  <router-view :key="$route.fullPath"></router-view>
+</div> -->
 
     <a-row :gutter="16" style="background-color:#212F41;padding:0 20px 20px 20px;margin:0;">
 
@@ -21,7 +24,7 @@
                        </tr>
                         <tr style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
                          <td style="width:50%">基地：</td>
-                         <td style="width:50%;color:#f1ff66">{{baseinformation.baseName}}</td>
+                         <td style="width:50%;color:#f1ff66">{{baseinformation.name}}</td>
                        </tr>
                         <tr style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
                          <td style="width:50%">基地范畴：</td>
@@ -50,13 +53,13 @@
               <div style="width:100%;height:67%;overflow:hidden;">
                 <table style="width:90%;height:80%;margin:5px auto;background-color:rgba(150, 150, 150, 0.3);">
                       <tr style="text-align:center;color:#fff;font-size:15px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
+                        <th style="width:50%;color:#fff;height:30px;border: 1px solid rgba(221, 215, 215, 0.3);">姓名</th>
                          <th style="width:50%;color:#fff;height:30px;border: 1px solid rgba(221, 215, 215, 0.3);">职位</th>
-                         <th style="width:50%;color:#fff;height:30px;border: 1px solid rgba(221, 215, 215, 0.3);">姓名</th>
                        </tr>
                       <template v-for="(v,k) in basemannager">
                       <tr :key="k" style="text-align:center;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                        <td style="width:50%;color:	#00FF00;border: 1px solid rgba(221, 215, 215, 0.1);">{{v.position}}</td>
                         <td style="width:50%;color:	#00FF00;border: 1px solid rgba(221, 215, 215, 0.1);">{{v.name}}</td>
+                        <td style="width:50%;color:	#00FF00;border: 1px solid rgba(221, 215, 215, 0.1);">{{v.position}}</td>
                       </tr>
                   </template>
                 </table>
@@ -99,7 +102,11 @@
                 <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">地图数据</h3>
                 <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">The data map</h4>
               </div>
-              <div id="container" style="width:100%;height:90%;"></div>
+              <div id="container" style="width:100%;height:90%;position:relative">
+               <div style="position:absolute;width:30%;height:30px;background:rgba(0,0,0,0.5);z-index:99;top:0;left:35%;color:#fff;text-align:center;line-height:30px;">
+                 {{tip}}
+               </div>
+              </div>
        </div>
        <div style="width:100%;height:340px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
          <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
@@ -278,6 +285,9 @@ export default {
         addresss: [],
         address: '',
         curLock: false,
+        tip:'',
+        plot5:[],
+        polygonss:[],
     }
   },
   created(){
@@ -304,32 +314,41 @@ export default {
     let that=this;
     that.baseinformation={};
     that.basemannager=[];
-    axios.get("json/recordwork.json").then((res)=>{
-      this.workrecord=res.data.result[this.basenum].workRecord;
-      this.$nextTick(() => {
-        if (this.baseScroll) {
-          clearInterval(this.baseScroll.timer)
+    // axios.get("json/order.json").then((res)=>{
+    //   this.workrecord=res.data.result;
+    //   for(let i=0;i<this.workrecord;i++){
+    //     this.workrecord[i].name='2019-2020'+this.baseinfo.name;
+    //   }
+    //   this.$nextTick(() => {
+    //     if (this.baseScroll) {
+    //       clearInterval(this.baseScroll.timer)
+    //     }
+    //     this.baseScroll = new roll.Roll('srollbox', 'sroll', 'sroll1', -280)
+    //   })
+    // })
+    // axios.get("json/plot1.json").then((res)=>{
+    //   that.basemannager=res.data.result[that.basenum].plot[0].manager;
+    // })
+     axios.get("json/base_info.json").then((res)=>{
+      //  console.log(res.data.result);
+       that.baseinfo=res.data.result;
+       that.baseinformation=res.data.result[that.basenum];
+       that.baseinformation.yield=(that.baseinformation.area*0.24).toFixed(2);
+       that.basemannager=res.data.result[that.basenum].manager;
+       axios.get("json/order.json").then((res)=>{
+      that.workrecord=res.data.workRecord;
+      console.log(res.data.workRecord);
+      for(let i=0;i<that.workrecord.length;i++){
+        that.workrecord[i].name='2019-2020'+that.baseinformation.name+'种植批次';
+      }
+      that.$nextTick(() => {
+        if (that.baseScroll) {
+          clearInterval(that.baseScroll.timer)
         }
-        this.baseScroll = new roll.Roll('srollbox', 'sroll', 'sroll1', -280)
+        that.baseScroll = new roll.Roll('srollbox', 'sroll', 'sroll1', -525)
       })
     })
-    axios.get("json/plot1.json").then((res)=>{
-      that.basemannager=res.data.result[that.basenum].plot[0].manager;
-    })
-     axios.get("json/baseinfo.json").then((res)=>{
-       console.log(res.data.result);
-       that.baseinfo=res.data.result;
-       axios.get("json/process.json").then((res)=>{
-      let a= res.data.result[that.basenum].process;
-      let b=0;
-      for(let i=0;i<a.length;i++){
-        b+=a[i].machining;
-      }
-      that.baseinformation=that.baseinfo[that.basenum];
-      that.baseinformation.yield=b;
-       console.log(that.baseinformation)
-    })
-       axios.get("json/plot.json").then((res)=>{
+       axios.get("json/plot1.json").then((res)=>{
          that.iniMap();
 
     window.addEventListener('done2', function(){
@@ -348,26 +367,64 @@ export default {
     that.map.add(that.basemarker);
     that.map.setFitView([that.basemarker]);
     that.basemarker.on("click",function(e) {that.infowindow(e);});
+    that.basemarker.on("mousemove",function(e) {that.tip=that.baseinfo[that.basenum].name});
+    that.basemarker.on("mouseout",function(e) {that.tip=''});
+    var icon1 = new AMap.Icon({
+              size: new AMap.Size(30, 30),    // 图标尺寸
+              image: require('../assets/plot.png'),  // Icon的图像
+              imageOffset: new AMap.Pixel(0, 0),  // 图像相对展示区域的偏移量，适于雪碧图等
+              imageSize: new AMap.Size(30, 30)   // 根据所设置的大小拉伸或压缩图片
+            });
+            if(that.basenum!=34){
+            if(that.basenum<=10){
     for(let i=0;i<res.data.result[that.basenum].plot.length;i++){
            let lng1=res.data.result[that.basenum].plot[i].lng;
            let lat1=res.data.result[that.basenum].plot[i].lat;
-
            let plotmarker= new AMap.Marker({
     position: new AMap.LngLat(lng1, lat1),
+    icon:icon1
 });
     that.map.add(plotmarker);
     that.map.setFitView();
     plotmarker.on("click",function(e) { that.$router.push({ name: 'plot',query:{baseId:Number(that.basenum),plotId:i}})});
+    plotmarker.on("mousemove",function(e) {that.tip=res.data.result[that.basenum].plot[i].plotName});
+    plotmarker.on("mouseout",function(e) {that.tip=''});
          }
+         }else{
+          let lng1=that.baseinfo[that.basenum].lng+0.0003;
+          let lat1=that.baseinfo[that.basenum].lat+0.0003;
+           let plotmarker= new AMap.Marker({
+          position: new AMap.LngLat(lng1, lat1),
+          icon:icon1
+      });
+    that.map.add(plotmarker);
+    that.map.setFitView();
+    plotmarker.on("click",function(e) { that.$router.push({ name: 'plot',query:{baseId:Number(that.basenum),plotId:0}})});
+    // plotmarker.on("mousemove",function(e) {that.tip=res.data.result[that.basenum].plot[i].plotName});
+    plotmarker.on("mousemove",function(e) {that.tip=that.baseinfo[that.basenum].name+'的地块'});
+    plotmarker.on("mouseout",function(e) {that.tip=''});
+    }
+      }else{
+        axios.get('json/plot1.json').then((res)=>{
+          that.plot5=res.data.result[that.basenum].plot;
+          let a=[];
+          for(let i=0;i<that.plot5.length;i++){
+          a.push(i);
+          }
+          that.addBlockOnMap(a);
+        })
+      }
+
       });
        })
           });
-axios.get("json/plot.json").then((res)=>{
+axios.get("json/plot1.json").then((res)=>{
        console.log(res.data.result);
        that.plotinfo=res.data.result;
           });
 
            axios.get("testitem.json").then((res)=>{
+             console.log(res.data.result);
              that.soiltest=res.data.result[that.basenum].soilTest;
              that.watertest=res.data.result[that.basenum].waterTest;
              that.airtest=res.data.result[that.basenum].airTest;
@@ -398,8 +455,52 @@ axios.get("json/plot.json").then((res)=>{
 
   methods:{
     backhome(){
-     this.$router.push({ name: 'home'});
+     this.$router.push({ name: 'home',query:{time:new Date().getTime()}});
     },
+     addBlockOnMap(value){
+            console.log(value);
+        // if(this.block.length>0){
+        //     for(let b=0;b<this.block.length;b++){
+        //         this.map.remove(this.block[b]);
+        //     }
+        // }
+        this.polygonss=[];
+        for(let j=0; j<value.length;j++){
+        let a=value[j];
+        for(let i=0;i<this.plot5.length;i++){
+        let item = this.plot5[i];
+        if(i==a){
+        if(item.remark!=undefined && item.remark!=null && item.remark.trim()!=""){
+            let remarkJson2 = eval('(' + item.remark + ')');
+            //let polygon = new AMap.Polygon(remarkJson2);
+            // console.log(remarkJson2.path);
+            let newPath = [];
+            for(let i=0;i<remarkJson2.path.length;i++){
+            let point=remarkJson2.path[i];
+            newPath.push(new AMap.LngLat(point.lng,point.lat));
+            }
+            remarkJson2.path = newPath;
+            let polygon2 = new AMap.Polygon(remarkJson2);
+            // this.polygonss=[];
+            this.polygonss.push(polygon2);
+            // this.block.push(polygon2);
+            this.map.add(polygon2);
+            // polygon2.on("click",function(e) {this.$router.push({ name: 'plot',query:{baseId:Number(this.basenum),plotId:i}})});
+            this.map.setFitView([ polygon2 ]);
+
+        }
+        }
+        }
+            }
+            let that=this;
+            console.log(that.polygonss);
+            //polygon2.close();
+            for(let i=0;i<that.polygonss.length;i++){
+            that.polygonss[i].on("click",function(e) {that.$router.push({ name: 'plot',query:{baseId:Number(that.basenum),plotId:i}})});
+            that.polygonss[i].on("mousemove",function(e) {that.tip=that.plot5[i].plotName});
+            that.polygonss[i].on("mouseout",function(e) {that.tip=''});
+            }
+        },
     selectAddress(datas) {
       if (datas.length != 0) {
         this.address = datas[1]
@@ -422,7 +523,7 @@ axios.get("json/plot.json").then((res)=>{
       // }).then(res => {
       //   console.log(res)
       // })
-      let token = 'accessToken=at.27uf67kq774rrhgz39qzmclyaam50ute-64br33waiv-0si80dk-bmdig7irx'
+      let token = 'accessToken=at.27uf67kq774rrhgz39qzmclyaam50ute-64br33waiv-0si80dk-bmdig7irx&pageStart=0&pageSize=50'
       axios.post('https://open.ys7.com/api/lapp/live/video/list', token, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -430,34 +531,66 @@ axios.get("json/plot.json").then((res)=>{
       }).then(res => {
         if (res.data.code == 200) {
           if (res.data.data && res.data.data.length) {
-            this.addresss.push({
-              label: res.data.data[0].deviceName,
-              value: res.data.data[0].deviceSerial,
-              children: []
-            })
-            for (let i = 0; i < res.data.data.length; i++) {
-              for (let j = 0; j < this.addresss.length; j++) {
-                if (this.addresss[j].label === res.data.data[i].deviceName) {
-                  this.curLock = true
-                  this.addresss[j].children.push({
+            console.log(res.data.data)
+            if (this.$route.query.baseId == 8) {
+              this.addresss.push({
+                label: '老马基地',
+                children: []
+              })
+              res.data.data.forEach((item,i) => {
+                if (item.deviceName.indexOf('老马') >　-1) {
+                  this.addresss[0].children.push({
                     label: '通道' + res.data.data[i].channelNo,
                     value: res.data.data[i].liveAddress
                   })
                 }
-              }
-              if (!this.curLock) {
-                this.addresss.push({
-                  label: res.data.data[i].deviceName,
-                  value: res.data.data[i].deviceSerial,
-                  children: [{
-                    label: '通道' + res.data.data[i].channelNo,
+              })
+            }
+            if (this.$route.query.baseId == 9) {
+              this.addresss.push({
+                label: '花园基地',
+                children: []
+              })
+              res.data.data.forEach((item,i) => {
+                if (item.deviceName.indexOf('老马') ===　-1) {
+                  this.addresss[0].children.push({
+                    label: '通道'+i,
                     value: res.data.data[i].liveAddress
-                  }]
-                })
-              }
-              this.curLock = false
+                  })
+                }
+              })
             }
           }
+          //   this.addresss.push({
+          //     label: res.data.data[0].deviceName,
+          //     value: res.data.data[0].deviceSerial,
+          //     children: []
+          //   })
+          //   for (let i = 0; i < res.data.data.length; i++) {
+          //     for (let j = 0; j < this.addresss.length; j++) {
+          //       if (this.addresss[j].label === res.data.data[i].deviceName) {
+          //         this.curLock = true
+          //         this.addresss[j].children.push({
+          //           label: '通道' + res.data.data[i].channelNo,
+          //           value: res.data.data[i].liveAddress
+          //         })
+          //       }
+          //     }
+          //     if (!this.curLock) {
+          //       this.addresss.push({
+          //         label: res.data.data[i].deviceName,
+          //         value: res.data.data[i].deviceSerial,
+          //         children: [{
+          //           label: '通道' + res.data.data[i].channelNo,
+          //           value: res.data.data[i].liveAddress
+          //         }]
+          //       })
+          //     }
+          //     this.curLock = false
+          //   }
+          // }
+          // console.log(this.$route)
+          // console.log(this.addresss)
         }
         this.$nextTick(() => {
           myVideo.addEventListener('play', () => {
@@ -468,13 +601,13 @@ axios.get("json/plot.json").then((res)=>{
     },
     getbaogao(a){
       if(a==1){
-      return require('../assets/soiltest.png');
+      return require('@/assets/'+this.baseinformation.tuPic);
       }
       if(a==2){
-      return require('../assets/airtest.png');
+      return require('@/assets/'+this.baseinformation.qiPic);
       }
       if(a==3){
-      return require('../assets/watertest.png');
+      return require('@/assets/'+this.baseinformation.shuiPic);
       }
     },
     showbaogao(a){
@@ -925,7 +1058,7 @@ this.timeFormate(new Date());
         var a=this.baseinfo[this.basenum].baseAddress;
         var b=this.baseinfo[this.basenum].baseCategory;
         var c=this.baseinfo[this.basenum].baseType;
-        var d=this.baseinfo[this.basenum].baseName;
+        var d=this.baseinfo[this.basenum].name;
         var e=this.baseinfo[this.basenum].area;
         var f=this.plotinfo[this.basenum].plot.length;
 

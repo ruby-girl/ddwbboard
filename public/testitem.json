@@ -1363,6 +1363,3726 @@
             "status": "合格"
           }
         ]
+      },
+      {
+        "baseId": 12,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 13,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 14,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 15,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 16,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 17,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 18,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 19,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 20,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 21,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 22,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 23,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 24,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 25,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 26,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 27,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 28,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 29,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 30,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 31,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 32,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 33,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 34,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 35,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 36,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 37,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 38,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 39,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 40,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
+      },
+      {
+        "baseId": 41,
+        "soilTest": [
+          {
+            "testName": "DDT",
+            "amount": 0.004,
+            "status": "合格"
+          },
+          {
+            "testName": "总汞",
+            "amount": 0.044,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.092,
+            "status": "合格"
+          },
+          {
+            "testName": "总铬",
+            "amount": 84.3,
+            "status": "合格"
+          },
+          {
+            "testName": "锌",
+            "amount": 68.8,
+            "status": "合格"
+          },
+          {
+            "testName": "六六六",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "总砷",
+            "amount": 9.8,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 25.1,
+            "status": "合格"
+          },
+          {
+            "testName": "铜",
+            "amount": 36.5,
+            "status": "合格"
+          },
+          {
+            "testName": "镍",
+            "amount": 39.7,
+            "status": "合格"
+          }
+        ],
+        "airTest": [
+          {
+            "testName": "二氧化硫",
+            "amount": 0.13,
+            "status": "合格"
+          },
+          {
+            "testName": "总悬浮颗粒物",
+            "amount": 0.108,
+            "status": "合格"
+          },
+          {
+            "testName": "二氧化氮",
+            "amount": 0.021,
+            "status": "合格"
+          }
+        ],
+        "waterTest": [
+          {
+            "testName": "化学需氧量",
+            "amount": 5,
+            "status": "合格"
+          },
+          {
+            "testName": "硫化物",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "汞",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "镉",
+            "amount": 0.001,
+            "status": "合格"
+          },
+          {
+            "testName": "蛔虫卵数",
+            "amount": 0,
+            "status": "合格"
+          },
+          {
+            "testName": "氯化物",
+            "amount": 12.4,
+            "status": "合格"
+          },
+          {
+            "testName": "铬（六价）",
+            "amount": 0.003,
+            "status": "合格"
+          },
+          {
+            "testName": "砷",
+            "amount": 0.006,
+            "status": "合格"
+          },
+          {
+            "testName": "铅",
+            "amount": 0.009,
+            "status": "合格"
+          },
+          {
+            "testName": "总大肠菌群",
+            "amount": 0,
+            "status": "合格"
+          }
+        ]
       }
     ]
   }

@@ -3,15 +3,15 @@
       {
         "testTime": "2017-04-03",
         "testItem": "浸出物",
-        "unit": "cm",
-        "realValue": 65.6,
+        "unit": "%",
+        "realValue": 71.7,
         "minstandard": 65,
         "maxstandard": 100
       },
       {
         "testTime": "2017-04-03",
         "testItem": "砷",
-        "unit": "个",
+        "unit": "mg/kg",
         "realValue": 0.05,
         "minstandard": 0,
         "maxstandard": 2.0
@@ -19,10 +19,122 @@
       {
         "testTime": "2017-04-03",
         "testItem": "辛硫磷",
-        "unit": "%",
+        "unit": "mg/kg",
         "realValue": 0.01,
         "minstandard": 0,
         "maxstandard": 0.05
-      }    
+      },
+      {
+        "testTime": "2017-04-03",
+        "testItem": "总糖（蔗糖）",
+        "unit": "%",
+        "realValue": 60.5,
+        "minstandard": 25,
+        "maxstandard": 100
+      }, 
+      {
+        "testTime": "2017-04-03",
+        "testItem": "酸不溶性灰分",
+        "unit": "%",
+        "realValue": 0.4,
+        "minstandard": 0,
+        "maxstandard": 0.5
+      }, 
+      {
+        "testTime": "2017-04-03",
+        "testItem": "六六六",
+        "unit": "mg/kg",
+        "realValue": 0.01,
+        "minstandard": 0,
+        "maxstandard": 0.1
+      },  
+      {
+        "testTime": "2017-04-03",
+        "testItem": "DDT",
+        "unit": "mg/kg",
+        "realValue": 0.01,
+        "minstandard": 0,
+        "maxstandard": 0.1
+      }, 
+      {
+        "testTime": "2017-04-03",
+        "testItem": "多效唑",
+        "unit": "mg/kg",
+        "realValue": 0.1,
+        "minstandard": 0,
+        "maxstandard": 0.5
+      }, 
+      {
+        "testTime": "2017-04-03",
+        "testItem": "五氯硝基苯",
+        "unit": "mg/kg",
+        "realValue": 0.01,
+        "minstandard": 0,
+        "maxstandard": 0.1
+      },
+      {
+        "testTime": "2017-04-03",
+        "testItem": "铅",
+        "unit": "mg/kg",
+        "realValue": 0.1,
+        "minstandard": 0,
+        "maxstandard": 5
+      },
+      {
+        "testTime": "2017-04-03",
+        "testItem": "镉",
+        "unit": "mg/kg",
+        "realValue": 0.1,
+        "minstandard": 0,
+        "maxstandard": 0.3
+      },
+      {
+        "testTime": "2017-04-03",
+        "testItem": "铜",
+        "unit": "mg/kg",
+        "realValue": 3.9,
+        "minstandard": 0,
+        "maxstandard": 20
+      },
+      {
+        "testTime": "2017-04-03",
+        "testItem": "药屑杂质",
+        "unit": "%",
+        "realValue": 0,
+        "minstandard": 0,
+        "maxstandard": 3.0
+      },
+      {
+        "testTime": "2017-04-03",
+        "testItem": "水分",
+        "unit": "%",
+        "realValue": 9.8,
+        "minstandard": 0,
+        "maxstandard": 17.5
+      },
+      {
+        "testTime": "2017-04-03",
+        "testItem": "二氧化硫残留量",
+        "unit": "mg/kg",
+        "realValue": 0.01,
+        "minstandard": 0,
+        "maxstandard": 140
+      },
+      {
+        "testTime": "2017-04-03",
+        "testItem": "总灰分",
+        "unit": "%",
+        "realValue": 2.3,
+        "minstandard": 0,
+        "maxstandard": 4.5
+      },
+      {
+        "testTime": "2017-04-03",
+        "testItem": "麦冬总皂苷",
+        "unit": "%",
+        "realValue": 26,
+        "minstandard": 0.12,
+        "maxstandard": 100
+      }
     ]
   }

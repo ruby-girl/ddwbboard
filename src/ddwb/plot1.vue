@@ -53,7 +53,7 @@
                        </tr>
                        <tr style="text-align:center;color:#fff;font-size:15px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
                          <td style="width:50%;font-size:15px;border: 1px solid rgba(221, 215, 215, 0.3);">所属基地：</td>
-                         <td style="width:50%;color:#f1ff66;border: 1px solid rgba(221, 215, 215, 0.3);">{{base.baseName}}</td>
+                         <td style="width:50%;color:#f1ff66;border: 1px solid rgba(221, 215, 215, 0.3);">{{base.name}}</td>
                        </tr>
                        <tr style="text-align:center;color:#fff;font-size:15px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
                          <td style="width:50%;font-size:15px;border: 1px solid rgba(221, 215, 215, 0.3);">基地类型：</td>
@@ -119,18 +119,18 @@
                    <table id="sroll" style="width:100%;height:100%;position:relative; top:0">
                      <template v-for="(v,k) in work">
                        <tr :key="k" style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:33%;color:fff">{{v.solarTerm}}</td>
-                         <td style="width:33%">{{v.date}}</td>
-                         <td style="width:33%;color:#f1ff66">{{v.farmingName}}</td>
+                         <td style="width:33%;color:fff">{{v.time}}</td>
+                         <td style="width:33%">{{v.start}}</td>
+                         <td style="width:33%;color:#f1ff66">{{v.recordname}}</td>
                        </tr>
                      </template>
                    </table>
                     <table id="sroll1" style="width:100%;height:100%;position:relative; top:0">
                      <template v-for="(v,k) in work">
                        <tr :key="k" style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:33%;color:#fff">{{v.solarTerm}}</td>
-                         <td style="width:33%">{{v.date}}</td>
-                         <td style="width:33%;color:#f1ff66">{{v.farmingName}}</td>
+                         <td style="width:33%;color:fff">{{v.time}}</td>
+                         <td style="width:33%">{{v.start}}</td>
+                         <td style="width:33%;color:#f1ff66">{{v.recordname}}</td>
                        </tr>
                      </template>
                    </table>
@@ -237,15 +237,21 @@ export default {
     this.baseId=this.$route.query.baseId;
     this.plotId=this.$route.query.plotId;
     let that=this;
-     axios.get("/json/baseinfo.json").then((res)=>{
+     axios.get("/json/base_info.json").then((res)=>{
       that.base=res.data.result[that.baseId];
-      that.baseName=res.data.result[that.baseId].baseName;
+      that.baseName=res.data.result[that.baseId].name;
+      that.people=res.data.result[that.baseId].manager;
+      axios.get("/json/plot1.json").then((res)=>{
+        if(that.baseId==34){
+          let a={};
+          a.name=res.data.result[this.baseId].plot[this.plotId].farmer;
+          a.position=res.data.result[this.baseId].plot[this.plotId].position;
+          that.people.push(a);
+        }
+      })
     })
 
-     axios.get("/json/plot1.json").then((res)=>{
-      let a=res.data.result[that.baseId].plot;
-      that.work=a[that.plotId].work;
-    })
+
 
     axios.get("/json/plotre.json").then((res)=>{
       that.blockinfo=res.data.result[that.baseId].plot;
@@ -253,17 +259,21 @@ export default {
     })
   },
   mounted(){
-    axios.get("/json/plot1.json").then((res)=>{
-      let a=res.data.result[that.baseId].plot;
-      that.people=a[that.plotId].manager;
-      that.work=a[that.plotId].work;
-      that.plot=a[that.plotId];
+    axios.get("/json/order.json").then((res)=>{
+      that.work=res.data.workRecord;
       this.$nextTick(() => {
         if (this.baseScroll) {
           clearInterval(this.baseScroll.timer)
         }
-        this.baseScroll = new roll.Roll('srollbox', 'sroll', 'sroll1', -229)
+        this.baseScroll = new roll.Roll('srollbox', 'sroll', 'sroll1', -525)
       })
+    })
+    axios.get("/json/plot1.json").then((res)=>{
+      let a=res.data.result[that.baseId].plot;
+      that.plot=a[that.plotId];
+      that.week=['特级','一级','二级','三级'];
+    that.jiangshui=[(that.plot.plotArea*0.325).toFixed(1),(that.plot.plotArea*0.244).toFixed(1),(that.plot.plotArea*0.264).toFixed(1),(that.plot.plotArea*0.161).toFixed(1)];
+    that.drawLine1();
     })
        axios.get("json/seedtest.json").then((res)=>{
        that.seed=res.data.seedDetection;
@@ -271,22 +281,24 @@ export default {
        this.$refs.but[that.aaa].style.background='blue';
       that.gettestitem();
     })
-    this.week=[];
+    this.week=['特级','一级','二级','三级'];
     this.jiangshui=[];
-      axios.get("json/process.json").then((res)=>{
-        let a=res.data.result[this.baseId].process;
-        console.log(a.length);
-        for(let i=0;i<a.length;i++){
-           if(this.week.indexOf(a[i].leave)==-1){
-              this.week.push(a[i].leave);
-              this.jiangshui.push(a[i].machining);
-           }
-           else{
-              this.jiangshui[this.week.indexOf(a[i].leave)]+=a[i].machining;
-           }
-        }
-        this.drawLine1();
-      })
+    this.drawLine1();
+      // axios.get("json/process.json").then((res)=>{
+      //   //let a=res.data.result[this.baseId].process;
+      //   let a=res.data.result[6].process;
+      //   console.log(a.length);
+      //   for(let i=0;i<a.length;i++){
+      //      if(this.week.indexOf(a[i].leave)==-1){
+      //         this.week.push(a[i].leave);
+      //         this.jiangshui.push(a[i].machining);
+      //      }
+      //      else{
+      //         this.jiangshui[this.week.indexOf(a[i].leave)]+=a[i].machining;
+      //      }
+      //   }
+      //   this.drawLine1();
+      // })
     this. iniMap();
     let that=this;
     window.addEventListener('done3', function(){
@@ -303,12 +315,7 @@ export default {
     if(that.changenum>=that.seed.length){
       that.changenum=0;
     }
-    //that.a.a=this.seed[this.changenum].minstandard+'<{value}<'+this.seed[this.changenum].maxstandard;
-    // if('unit' in this.seed[this.changenum]){
-    //    that.a.a='{value}'+this.seed[this.changenum].unit;
-    // }else{
-       that.a.a='{value}';
-    // }
+         that.a.a='{value}'+that.seed[that.changenum].unit;
          that.a.b=that.seed[that.changenum].testItem;
          if(that.seed[that.changenum].minstandard>5){
          that.a.c=5/(that.seed[that.changenum].maxstandard-that.seed[that.changenum].minstandard+10);
@@ -357,7 +364,7 @@ export default {
        this.seed=res.data.firstDetection;
         this.changenum=0;
        //this.a.a=this.seed[this.changenum].minstandard+'<{value}<'+this.seed[this.changenum].maxstandard;
-       this.a.a='{value}';
+       this.a.a='{value}'+this.seed[this.changenum].unit;
          this.a.b=this.seed[this.changenum].testItem;
          if(this.seed[this.changenum].minstandard>5){
          this.a.c=5/(this.seed[this.changenum].maxstandard-this.seed[this.changenum].minstandard+10);
@@ -380,7 +387,7 @@ export default {
        this.seed=res.data.firstDetection;
        this.changenum=0;
        //this.a.a=this.seed[this.changenum].minstandard+'<{value}<'+this.seed[this.changenum].maxstandard;
-       this.a.a='{value}';
+       this.a.a='{value}'+this.seed[this.changenum].unit;
          this.a.b=this.seed[this.changenum].testItem;
          if(this.seed[this.changenum].minstandard>5){
          this.a.c=5/(this.seed[this.changenum].maxstandard-this.seed[this.changenum].minstandard+10);
@@ -410,6 +417,7 @@ export default {
       }
     },
      backhome(){
+        clearInterval(this.changeint);
        let a=Number(this.baseId)+1;
      this.$router.push({ name: 'base',query:{baseId:a}});
     },
@@ -465,15 +473,16 @@ export default {
         getinfo(){
             var a=this.plot.plotName;
             var b=this.plot.plotArea;
-            var c=this.plot.status;
-            var e=this.plot.altitude.toFixed(2);
+            // var c=this.plot.status;
+            var c='使用中';
+            // var e=this.plot.altitude.toFixed(2);
             var d=this.baseName;
         this.info = [];
         this.info.push("<div style=\"width:175px;margin:20px 25px;\"><table>");
         this.info.push("<tr style=\"color:#fff;line-height:20px;\"><td style=\"width:80px;\">地块名称：</td><td>"+a+"</td></tr>");
         this.info.push("<tr style=\"color:#fff;line-height:20px;\"><td style=\"width:80px;\">地块面积：</td><td>"+b+"亩</td></tr>");
         this.info.push("<tr style=\"color:#fff;line-height:20px;\"><td style=\"width:80px;\">地块状态：</td><td>"+c+"</td></tr>");
-        this.info.push("<tr style=\"color:#fff;line-height:20px;\"><td style=\"width:80px;\">地块海拔：</td><td>"+e+"米</td></tr>");
+        // this.info.push("<tr style=\"color:#fff;line-height:20px;\"><td style=\"width:80px;\">地块海拔：</td><td>"+e+"米</td></tr>");
         this.info.push("<tr style=\"color:#fff;line-height:20px;\"><td style=\"width:80px;\">所属基地：</td><td>"+d+"</td></tr>");
         this.info.push("</table></div>");
 
@@ -584,7 +593,7 @@ this.timeFormate(new Date());
     ],
     yAxis : [
         {
-            name:'单位(kg)',
+            name:'单位(吨)',
              splitLine:{
               show:false
             },

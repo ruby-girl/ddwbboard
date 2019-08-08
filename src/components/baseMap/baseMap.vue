@@ -19,6 +19,36 @@ export default {
                 {itemStyle: {color: '#36CBCB'}},
                 {itemStyle: {color: '#4ECB73'}},
                 {itemStyle: {color: '#FBD437'}},
+                {itemStyle: {color: '#975FE5'}},
+                {itemStyle: {color: '#FE8463'}},
+                {itemStyle: {color: '#36CBCB'}},
+                {itemStyle: {color: '#E55F76'}},
+                {itemStyle: {color: '#3AA1FF'}},
+                {itemStyle: {color: '#5FE583'}},
+                {itemStyle: {color: '#5F95E5'}},
+                {itemStyle: {color: '#E5AF5F'}},
+                {itemStyle: {color: '#36CBCB'}},
+                {itemStyle: {color: '#4ECB73'}},
+                {itemStyle: {color: '#FBD437'}},
+                {itemStyle: {color: '#975FE5'}},
+                {itemStyle: {color: '#FE8463'}},
+                {itemStyle: {color: '#36CBCB'}},
+                {itemStyle: {color: '#E55F76'}},
+                {itemStyle: {color: '#3AA1FF'}},
+                {itemStyle: {color: '#5FE583'}},
+                {itemStyle: {color: '#5F95E5'}},
+                {itemStyle: {color: '#E5AF5F'}},
+                {itemStyle: {color: '#36CBCB'}},
+                {itemStyle: {color: '#4ECB73'}},
+                {itemStyle: {color: '#FBD437'}},
+                {itemStyle: {color: '#975FE5'}},
+                {itemStyle: {color: '#FE8463'}},
+                {itemStyle: {color: '#36CBCB'}},
+                {itemStyle: {color: '#E55F76'}},
+                {itemStyle: {color: '#3AA1FF'}},
+                {itemStyle: {color: '#5FE583'}},
+                {itemStyle: {color: '#5F95E5'}},
+                {itemStyle: {color: '#E5AF5F'}},
             ],
         }
     },
@@ -53,12 +83,12 @@ export default {
                 }
             ]
         };
-        axios.get('json/baseinfo.json').then(res => {
+        axios.get('json/base_info.json').then(res => {
             if (res.status == 200) {
                 let data = res.data.result
                 if (data && data.length) {
                     for (var i = 0; i < data.length; i++) {
-                        this.baseDatas[i].name = data[i].baseName
+                        this.baseDatas[i].name = data[i].name
                         this.baseDatas[i].value = data[i].area
                     } 
                 }

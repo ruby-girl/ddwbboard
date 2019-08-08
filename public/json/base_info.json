@@ -1,0 +1,778 @@
+{
+  "result": [
+    {
+      "baseId": 1,
+      "type": 1,
+      "name": "新德基地",
+      "baseCategory": "生产基地",
+      "area": 450,
+      "lng": 105.062825,
+      "lat": 31.155,
+      "baseType": "合作基地",
+      "baseAddress": "永新镇",
+      "manager": [{
+              "name": "王平",
+              "position": "技术员"
+            }],
+      "tuPic":"tu-01.jpg",
+      "qiPic":"qi-01.png",
+      "shuiPic":"shui-01.jpg"
+      
+    },
+    {
+      "baseId": 2,
+      "type": 1,
+      "name": "里程基地",
+      "baseCategory": "生产基地",
+      "area": 400,
+      "lng": 105.003814,
+      "lat": 31.233803,
+      "baseType": "合作基地",
+      "baseAddress": "里程镇",
+      "manager": [{
+              "name": "黄铭",
+              "position": "技术员"
+            }, {
+              "name": "陈湘",
+              "position": "技术员"
+            }],
+      "tuPic":"tu-02.jpg",
+      "qiPic":"qi-02.png",
+      "shuiPic":"shui-02.jpg"
+    },
+    {
+      "baseId": 3,
+      "type": 1,
+      "name": "刘营基地",
+      "baseCategory": "生产基地",
+      "area": 500,
+      "lng": 104.990243,
+      "lat": 31.22415,
+      "baseType": "合作基地",
+      "baseAddress": "刘营镇",
+      "manager": [{
+              "name": "王平",
+              "position": "技术员"
+            }],
+      "tuPic":"tu-03.jpg",
+      "qiPic":"qi-03.png",
+      "shuiPic":"shui-03.jpg"
+    },
+    {
+      "baseId": 4,
+      "type": 1,
+      "name": "争胜基地",
+      "baseCategory": "生产基地",
+      "area": 200,
+      "lng": 105.032643,
+      "lat": 31.197535,
+      "baseType": "合作基地",
+      "baseAddress": "争胜镇",
+      "manager": [{
+              "name": "易国平",
+              "position": "技术员"
+            }],
+      "tuPic":"tu-04.jpg",
+      "qiPic":"qi-04.png",
+      "shuiPic":"shui-04.jpg"
+    },
+    {
+      "baseId": 5,
+      "type": 1,
+      "name": "灵兴基地",
+      "baseCategory": "生产基地",
+      "area": 400,
+      "lng": 105.015295,
+      "lat": 31.159236,
+      "baseType": "合作基地",
+      "baseAddress": "灵兴镇",
+      "manager": [{
+              "name": "王平",
+              "position": "技术员"
+            }],
+      "tuPic":"tu-05.jpg",
+      "qiPic":"qi-05.png",
+      "shuiPic":"shui-05.jpg"
+    },
+    {
+      "baseId": 6,
+      "type": 1,
+      "name": "芦溪基地",
+      "baseCategory": "生产基地",
+      "area": 200,
+      "lng": 104.886711,
+      "lat": 31.293407,
+      "baseType": "合作基地",
+      "baseAddress": "芦溪镇",
+      "manager": [{
+              "name": "易国平",
+              "position": "技术员"
+            }],
+      "tuPic":"tu-05.jpg",
+      "qiPic":"qi-05.png",
+      "shuiPic":"shui-05.jpg"
+    },
+    {
+      "baseId": 7,
+      "type": 1,
+      "name": "永明基地",
+      "baseCategory": "生产基地",
+      "area": 600,
+      "lng": 104.877623,
+      "lat": 31.349239,
+      "baseType": "合作基地",
+      "baseAddress": "永明镇",
+      "manager": [{
+              "name": "邓胜虎",
+              "position": "技术员"
+            }],
+      "tuPic":"tu-07.png",
+      "qiPic":"qi-07.png",
+      "shuiPic":"shui-07.png"
+    },
+    {
+      "baseId": 8,
+      "type": 1,
+      "name": "老马基地",
+      "baseCategory": "生产基地",
+      "area": 1050,
+      "baseType": "合作基地",
+      "lng": 104.981207,
+      "lat": 31.278101,
+      "baseAddress": "老马镇",
+      "manager": [{
+              "name": "黄铭",
+              "position": "技术员"
+            }, {
+              "name": "陈玲",
+              "position": "技术员"
+            }],
+      "tuPic":"tu-08.png",
+      "qiPic":"qi-08.png",
+      "shuiPic":"shui-08.png"
+    },
+    {
+      "baseId": 9,
+      "type": 1,
+      "name": "花园基地",
+      "baseCategory": "生产基地",
+      "area": 3900,
+      "lng": 104.897097,
+      "lat": 31.335402,
+      "baseType": "合作基地",
+      "baseAddress": "花园镇",
+      "manager": [{
+              "name": "易国平",
+              "position": "技术员"
+            }],
+      "tuPic":"tu-09.png",
+      "qiPic":"qi-09.png",
+      "shuiPic":"shui-09.png"
+    },
+    {
+      "baseId": 10,
+      "type": 1,
+      "name": "花园良种繁育园",
+      "baseCategory": "生产基地",
+      "area": 1010,
+      "lng": 104.947463,
+      "lat": 31.279466,
+      "baseType": "自营基地",
+      "baseAddress": "花园镇",
+      "manager": [{
+              "name": "罗德木",
+              "position": "基地负责人，技术员"
+            }],
+      "tuPic":"tu-10.png",
+      "qiPic":"qi-10.png",
+      "shuiPic":"shui-10.png"
+    },
+    {
+      "baseId": 11,
+      "type": 1,
+      "name": "永明良种繁育基地",
+      "baseCategory": "育苗基地",
+      "area": 530,
+      "lng": 104.885225,
+      "lat": 31.371173,
+      "baseType": "自营基地",
+      "baseAddress": "永明镇",
+      "manager": [{
+              "name": "罗德木",
+              "position": "基地负责人，技术员"
+            }],
+      "tuPic":"tu-11.png",
+      "qiPic":"qi-11.png",
+      "shuiPic":"shui-11.png"
+    },
+    {
+		"baseId": 12,
+        "type":2,
+		"baseCategory": "生产基地",
+		"area": 816,
+		"baseType": "合作社",
+		"baseAddress": "永明镇",
+        "manager": [{
+              "name": "罗德木",
+              "position": "基地负责人"
+            }],
+        "name": "永明镇本源麦冬种植专业合作社",
+        "lng": 104.8646,
+        "lat": 31.363478,
+      	"tuPic":"tu-11.png",
+		"qiPic":"qi-11.png",
+		"shuiPic":"shui-11.png"
+    },
+      {
+        "baseId": 13,
+		"type":2,
+		"baseCategory": "生产基地",
+		"area": 157,
+		"baseType": "合作社",
+		"baseAddress": "里程乡",
+        "manager": [{
+              "name": "赖辉凤",
+              "position": "基地负责人"
+            }],
+        "name": "麦丰麦冬三沼服务专业合作社",
+        "lng": 104.898342,
+        "lat": 31.316161,
+      	"tuPic":"tu-11.png",
+		"qiPic":"qi-11.png",
+		"shuiPic":"shui-11.png"
+        },
+      {
+		"type":2,
+		"baseId": 14,
+        "baseCategory": "生产基地",
+		"area": 200,
+		"baseType": "合作社",
+		"baseAddress": "灵兴镇",
+         "manager": [{
+              "name": "田兵",
+              "position": "基地负责人"
+            }],
+        "name": "灵兴祥福麦冬种植专业合作社",
+        "lng": 105.008986,
+        "lat": 31.154931,
+      	"tuPic":"tu-11.png",
+		"qiPic":"qi-11.png",
+		"shuiPic":"shui-11.png"
+        },
+      {
+		"type":2,
+        "baseId": 15,
+		"baseCategory": "生产基地",
+		"area": 726,
+		"baseType": "合作社",
+		"baseAddress": "争胜乡",
+        "manager": [{
+              "name": "霍辉燕",
+              "position": "基地负责人"
+            }],
+        "name": "争胜乡鼎丰中药材种植专业合作社",
+        "lng": 105.022211,
+        "lat": 31.192272,
+      	"tuPic":"tu-11.png",
+		"qiPic":"qi-11.png",
+		"shuiPic":"shui-11.png"
+        },
+      {
+		"type":2,
+        "baseId": 16,
+		"baseCategory": "生产基地",
+		"area": 230,
+		"baseType": "合作社",
+		"baseAddress": "争胜乡",
+        "manager": [{
+              "name": "杨伟名",
+              "position": "基地负责人"
+            }],
+        "name": "胜源农作物种植专业合作社",
+        "lng": 105.018097,
+        "lat": 31.264033,
+      	"tuPic":"tu-11.png",
+		"qiPic":"qi-11.png",
+		"shuiPic":"shui-11.png"
+        },
+      {
+		"type":2,
+        "baseId": 17,
+		"baseCategory": "生产基地",
+		"area": 424,
+		"baseType": "合作社",
+		"baseAddress": "高堰场镇",
+        "manager": [{
+              "name": "张勇",
+              "position": "基地负责人"
+            }],
+        "name": "永明镇本源麦冬种植专业合作社高堰分社",
+        "lng": 105.07955,
+        "lat": 31.264033,
+      	"tuPic":"tu-11.png",
+		"qiPic":"qi-11.png",
+		"shuiPic":"shui-11.png"
+        },
+      {
+		"type":2,
+        "baseId": 18,
+		"baseCategory": "生产基地",
+		"area": 146,
+		"baseType": "合作社",
+		"baseAddress": "长乐猫儿沟",
+        "manager": [{
+              "name": "安康",
+              "position": "基地负责人"
+            }],
+        "name": "中太镇猫儿沟麦冬种植专业合作社",
+        "lng": 104.988103,
+        "lat": 31.321967,
+      	"tuPic":"tu-11.png",
+		"qiPic":"qi-11.png",
+		"shuiPic":"shui-11.png"
+        },
+      {
+		"type":2,
+        "baseId": 19,
+		"baseCategory": "生产基地",
+		"area": 120,
+		"baseType": "合作社",
+		"baseAddress": "建设镇",
+        "manager": [{
+              "name": "张强",
+              "position": "基地负责人"
+            }],
+        "name": "建设镇梓潼庙村老林湾蔬菜种植和专业合作社",
+        "lng": 104.963544,
+        "lat": 31.347658,
+      	"tuPic":"tu-11.png",
+		"qiPic":"qi-11.png",
+		"shuiPic":"shui-11.png"
+        },
+      {
+		"type":2,
+        "baseId": 20,
+		"baseCategory": "生产基地",
+		"area": 275,
+		"baseType": "合作社",
+		"baseAddress": "金鼓乡",
+        "manager": [{
+              "name": "景俊",
+              "position": "基地负责人"
+            }],
+        "name": "金鼓乡清江种植专业合作社",
+        "lng": 105.141456,
+        "lat": 31.208667,
+      	"tuPic":"tu-11.png",
+		"qiPic":"qi-11.png",
+		"shuiPic":"shui-11.png"
+        },
+      {
+		"type":2,
+        "baseId": 21,
+		"baseCategory": "生产基地",
+		"area": 216,
+		"baseType": "合作社",
+		"baseAddress": "花园镇",
+        "manager": [{
+              "name": "王雪军",
+              "position": "基地负责人"
+            }],
+        "name": "麦源麦冬种植专业合作社",
+        "lng": 104.919381,
+        "lat": 31.268339,
+      	"tuPic":"tu-11.png",
+		"qiPic":"qi-11.png",
+		"shuiPic":"shui-11.png"
+        },
+      {
+		"type":2,
+        "baseId": 22,
+		"baseCategory": "生产基地",
+		"area": 159,
+		"baseType": "合作社",
+		"baseAddress": "花园镇",
+        "manager": [{
+              "name": "杨金",
+              "position": "基地负责人"
+            }],
+        "name": "源合麦冬种植专业合作社",
+        "lng": 104.935419,
+        "lat": 31.279042,
+      	"tuPic":"tu-11.png",
+		"qiPic":"qi-11.png",
+		"shuiPic":"shui-11.png"
+        },
+      {
+		"type":2,
+        "baseId": 23,
+		"baseCategory": "生产基地",
+		"area": 356,
+		"baseType": "合作社",
+		"baseAddress": "花园镇",
+        "manager": [{
+              "name": "王涛",
+              "position": "基地负责人"
+            }],
+        "name": "乡源麦冬种植专业合作社",
+        "lng": 104.936792,
+        "lat": 31.279336,
+      	"tuPic":"tu-11.png",
+		"qiPic":"qi-11.png",
+		"shuiPic":"shui-11.png"
+        },
+      {
+		"type":2,
+        "baseId": 24,
+		"baseCategory": "生产基地",
+		"area": 3000,
+		"baseType": "合作社",
+		"baseAddress": "老马镇",
+        "manager": [{
+              "name": "陈千双",
+              "position": "基地负责人"
+            }],
+        "name": "小围坝麦冬种植专业合作社",
+        "lng": 104.959442,
+        "lat": 31.275603,
+      	"tuPic":"tu-11.png",
+		"qiPic":"qi-11.png",
+		"shuiPic":"shui-11.png"
+        },
+      {
+		"type":2,
+        "baseId": 25,
+		"baseCategory": "生产基地",
+		"area": 150,
+		"baseType": "合作社",
+		"baseAddress": "里程镇",
+        "manager": [{
+              "name": "廖兴林",
+              "position": "基地负责人"
+            }],
+        "name": "鑫林麦冬种植专业合作社",
+        "lng": 104.9949,
+        "lat": 31.229639,
+      	"tuPic":"tu-11.png",
+		"qiPic":"qi-11.png",
+		"shuiPic":"shui-11.png"
+        },
+      {
+		"type":2,
+        "baseId": 26,
+		"baseCategory": "生产基地",
+		"area": 200,
+		"baseType": "合作社",
+		"baseAddress": "刘营镇",
+        "manager": [{
+              "name": "王成斌",
+              "position": "基地负责人"
+            }],
+        "name": "宏炜麦冬种植专业合作社",
+        "lng": 104.960208,
+        "lat": 31.260397,
+      	"tuPic":"tu-11.png",
+		"qiPic":"qi-11.png",
+		"shuiPic":"shui-11.png"
+        },
+      {
+		"type":2,
+        "baseId": 27,
+		"baseCategory": "生产基地",
+		"area": 846,
+		"baseType": "合作社",
+		"baseAddress": "芦溪镇",
+        "manager": [{
+              "name": "钟述军",
+              "position": "基地负责人"
+            }],
+        "name": "芦溪镇狮子桥麦冬种植专业合作社",
+        "lng": 104.888481,
+        "lat": 31.285297,
+      	"tuPic":"tu-11.png",
+		"qiPic":"qi-11.png",
+		"shuiPic":"shui-11.png"
+        },
+   
+      {
+		"type":2,
+        "baseId": 28,
+		"baseCategory": "生产基地",
+		"area": 283,
+		"baseType": "合作社",
+		"baseAddress": "老马乡",
+        "manager": [{
+              "name": "裴世宗",
+              "position": "基地负责人"
+            }],
+        "name": "鸿涛麦冬种植专业合作社",
+        "lng": 104.965075,
+        "lat": 31.273581,
+      	"tuPic":"tu-11.png",
+		"qiPic":"qi-11.png",
+		"shuiPic":"shui-11.png"
+        },
+        {
+		"type":2,
+        "baseId": 29,
+		"baseCategory": "生产基地",
+		"area": 1026,
+		"baseType": "合作社",
+		"baseAddress": "芦溪镇",
+        "manager": [{
+              "name": "杨兴伟",
+              "position": "基地负责人"
+            }],
+        "name": "彭家巷麦冬种植专业合作社",
+        "lng": 104.892739,
+        "lat": 31.288544,
+      	"tuPic":"tu-11.png",
+		"qiPic":"qi-11.png",
+		"shuiPic":"shui-11.png"
+        },
+        
+      {
+        "type": 3, 
+        "baseId": 30,
+        "baseCategory": "生产基地",
+		"area": 60,
+		"baseType": "家庭农场",
+		"baseAddress": "花园镇",
+        "manager": [{
+              "name": "李云松",
+              "position": "基地负责人"
+            }],
+        "name": "花园镇华松家庭农场", 
+        "lng": 104.916081, 
+        "lat": 31.267608, 
+        "tuPic": "tu-11.png", 
+        "qiPic": "qi-11.png", 
+        "shuiPic": "shui-11.png"
+    },
+    {
+        "type": 3, 
+        "baseId": 31,
+        "baseCategory": "生产基地",
+		"area": 40,
+		"baseType": "家庭农场",
+		"baseAddress": "花园镇",
+        "manager": [{
+              "name": "代安全",
+              "position": "基地负责人"
+            }],
+        "name": "花园镇叶林全琴家庭农场", 
+        "lng": 104.952222, 
+        "lat": 31.290469, 
+        "tuPic": "tu-11.png", 
+        "qiPic": "qi-11.png", 
+        "shuiPic": "shui-11.png"
+    }, 
+    {
+        "type": 3, 
+        "baseId": 32,
+        "baseCategory": "生产基地",
+		"area": 80,
+		"baseType": "家庭农场",
+		"baseAddress": "花园镇",
+        "manager": [{
+              "name": "陈铃",
+              "position": "基地负责人"
+            }],
+        "name": "老马湘铃麦冬种植家庭农场", 
+        "lng": 104.992197, 
+        "lat": 31.262458, 
+        "tuPic": "tu-11.png", 
+        "qiPic": "qi-11.png", 
+        "shuiPic": "shui-11.png"
+    },
+        {
+        "type": 3, 
+        "baseId": 33,
+        "baseCategory": "生产基地",
+		"area": 35,
+		"baseType": "家庭农场",
+		"baseAddress": "花园镇",
+        "manager": [{
+              "name": "王和春",
+              "position": "基地负责人"
+            }], 
+        "name": "花园镇梦想家园家庭农场", 
+        "lng": 104.954481, 
+        "lat": 31.28925, 
+        "tuPic": "tu-11.png", 
+        "qiPic": "qi-11.png", 
+        "shuiPic": "shui-11.png"
+    }, 
+    
+     
+    
+    {
+        "type": 4, 
+        "baseId": 34,
+        "baseCategory": "生产基地",
+		"area": 7.73,
+		"baseType": "紧密合作基地",
+		"baseAddress": "凤鸣村",
+        "manager": [{
+              "name": "张勇",
+              "position": "基地现场负责人"
+            },{
+              "name": "易国平",
+              "position": "基地负责人"
+            }], 
+        "name": "凤鸣村", 
+        "lng": 105.047214, 
+        "lat": 31.249067, 
+        "tuPic": "tu-11.png", 
+        "qiPic": "qi-11.png", 
+        "shuiPic": "shui-11.png"
+    }, 
+    {
+        "type": 4, 
+        "baseId": 35,
+        "baseCategory": "生产基地",
+		"area": 18.62,
+		"baseType": "紧密合作基地",
+		"baseAddress": "兴相村",
+        "manager": [{
+              "name": "钟述军",
+              "position": "基地现场负责人"
+            },{
+              "name": "易国平",
+              "position": "基地负责人"
+            }], 
+        "name": "兴相村", 
+        "lng": 104.887864, 
+        "lat": 31.289167, 
+        "tuPic": "tu-11.png", 
+        "qiPic": "qi-11.png", 
+        "shuiPic": "shui-11.png"
+    }, 
+    {
+        "type": 4,
+        "baseId": 36,
+        "baseCategory": "生产基地",
+		"area": 7.49,
+		"baseType": "紧密合作基地",
+		"baseAddress": "涪城村",   
+        "manager": [{
+              "name": "王廷峰",
+              "position": "基地现场负责人"
+            },{
+              "name": "易国平",
+              "position": "基地负责人"
+            }],         
+        "name": "涪城村", 
+        "lng": 104.922947, 
+        "lat": 31.267781, 
+        "tuPic": "tu-11.png", 
+        "qiPic": "qi-11.png", 
+        "shuiPic": "shui-11.png"
+    }, 
+    {
+        "type": 4, 
+        "baseId": 37,
+        "baseCategory": "生产基地",
+		"area": 7.19,
+		"baseType": "紧密合作基地",
+		"baseAddress": "菩提村",
+        "manager": [{
+              "name": "王成斌",
+              "position": "基地现场负责人"
+            },{
+              "name": "王平",
+              "position": "基地负责人"
+            }], 
+        "name": "菩提村", 
+        "lng": 104.960739, 
+        "lat": 31.260711, 
+        "tuPic": "tu-11.png", 
+        "qiPic": "qi-11.png", 
+        "shuiPic": "shui-11.png"
+    }, 
+    {
+        "type": 4, 
+        "baseId": 38,
+        "baseCategory": "生产基地",
+		"area": 4.47,
+		"baseType": "紧密合作基地",
+		"baseAddress": "杨家碥村",
+        "manager": [{
+              "name": "尤志勇",
+              "position": "基地现场负责人"
+            },{
+              "name": "王平",
+              "position": "基地负责人"
+            }], 
+        "name": "杨家碥村", 
+        "lng": 104.960208, 
+        "lat": 31.260397, 
+        "tuPic": "tu-11.png", 
+        "qiPic": "qi-11.png", 
+        "shuiPic": "shui-11.png"
+    }, 
+    {
+        "type": 4, 
+        "baseId": 39,
+        "baseCategory": "生产基地",
+		"area": 43.11,
+		"baseType": "紧密合作基地",
+		"baseAddress": "白衣村",
+        "manager": [{
+              "name": "吴运金",
+              "position": "基地现场负责人"
+            },{
+              "name": "邓胜虎",
+              "position": "基地负责人"
+            }], 
+        "name": "白衣村", 
+        "lng": 104.893072, 
+        "lat": 31.314672, 
+        "tuPic": "tu-11.png", 
+        "qiPic": "qi-11.png", 
+        "shuiPic": "shui-11.png"
+    }, 
+    {
+        "type": 4, 
+        "baseId": 40,
+        "baseCategory": "生产基地",
+		"area": 26.75,
+		"baseType": "紧密合作基地",
+		"baseAddress": "四脊村",
+        "manager": [{
+              "name": "邓少林",
+              "position": "基地现场负责人"
+            },{
+              "name": "邓胜虎",
+              "position": "基地负责人"
+            }], 
+        "name": "四脊村", 
+        "lng": 104.887119, 
+        "lat": 31.327869, 
+        "tuPic": "tu-11.png", 
+        "qiPic": "qi-11.png", 
+        "shuiPic": "shui-11.png"
+    }, 
+    {
+        "type": 4, 
+        "baseId": 41,
+        "baseCategory": "生产基地",
+		"area": 8.32,
+		"baseType": "紧密合作基地",
+		"baseAddress": "镇江村",
+        "manager": [{
+              "name": "刘德海",
+              "position": "基地现场负责人"
+            },{
+              "name": "邓胜虎",
+              "position": "基地负责人"
+            }],     
+        "name": "镇江村", 
+        "lng": 104.894108, 
+        "lat": 31.305353, 
+        "tuPic": "tu-11.png", 
+        "qiPic": "qi-11.png", 
+        "shuiPic": "shui-11.png"
+    }
+  ]
+}

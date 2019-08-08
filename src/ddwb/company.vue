@@ -94,7 +94,7 @@
                             <div class="descs">Company introduction</div>
                         </div>
                         <div class="video-wrapper">
-                            <video src="company.ogg" controls></video>
+                            <video src="company.mp4" controls></video>
                         </div>
                     </div>
                     <div>

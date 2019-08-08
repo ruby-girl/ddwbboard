@@ -27,6 +27,15 @@
             <div class="descs">The data map</div>
           </div>
           <div class="map" ref="mapChart">
+            <div class="twotip">
+               <div class="base-point">
+              <span class="icon2" style="background-color:#9ACD32"></span>
+              <span class="text">麦冬核心区</span>
+            </div><div class="base-point">
+              <span class="icon2" style="background-color:#FFF68F"></span>
+              <span class="text">麦冬适种区</span>
+            </div>
+            </div>
             <div class="tip">{{tip}}</div>
             <div class="changebut" style="background-color:#7e43aa;" @click="changemap">切换卫星地图</div>
             <div class="point">
@@ -87,7 +96,7 @@
                   <li class="base-item" v-for="(item,index) in this.baseDatas"
                   :key="index">
                     <i class='icon' :style="{backgroundColor: item.itemStyle.color}"></i>
-                    <span style="text-align: left;display:inline-block; width: 120px;color: #fff">{{item.name}}</span>
+                    <span style="text-align: left;display:inline-block; width: 150px;color: #fff">{{item.name}}</span>
                     <span style="color: #fff;display:inline-block; width: 80px;">{{item.value}}亩</span>
                   </li>
                 </ul>
@@ -95,7 +104,7 @@
                    <li class="base-item" v-for="(item,index) in this.baseDatas"
                   :key="index">
                     <i class='icon' :style="{backgroundColor: item.itemStyle.color}"></i>
-                    <span style="text-align: left;display:inline-block; width: 120px;color: #fff">{{item.name}}</span>
+                    <span style="text-align: left;display:inline-block; width: 210px;color: #fff">{{item.name}}</span>
                     <span style="color: #fff;display:inline-block; width: 80px;">{{item.value}}亩</span>
                   </li>
                 </ul>
@@ -538,6 +547,36 @@ export default {
           {itemStyle: {color: '#36CBCB'}},
           {itemStyle: {color: '#4ECB73'}},
           {itemStyle: {color: '#FBD437'}},
+          {itemStyle: {color: '#975FE5'}},
+          {itemStyle: {color: '#FE8463'}},
+          {itemStyle: {color: '#36CBCB'}},
+          {itemStyle: {color: '#E55F76'}},
+          {itemStyle: {color: '#3AA1FF'}},
+          {itemStyle: {color: '#5FE583'}},
+          {itemStyle: {color: '#5F95E5'}},
+          {itemStyle: {color: '#E5AF5F'}},
+          {itemStyle: {color: '#36CBCB'}},
+          {itemStyle: {color: '#4ECB73'}},
+          {itemStyle: {color: '#FBD437'}},
+          {itemStyle: {color: '#975FE5'}},
+          {itemStyle: {color: '#FE8463'}},
+          {itemStyle: {color: '#36CBCB'}},
+          {itemStyle: {color: '#E55F76'}},
+          {itemStyle: {color: '#3AA1FF'}},
+          {itemStyle: {color: '#5FE583'}},
+          {itemStyle: {color: '#5F95E5'}},
+          {itemStyle: {color: '#E5AF5F'}},
+          {itemStyle: {color: '#36CBCB'}},
+          {itemStyle: {color: '#4ECB73'}},
+          {itemStyle: {color: '#FBD437'}},
+          {itemStyle: {color: '#975FE5'}},
+          {itemStyle: {color: '#FE8463'}},
+          {itemStyle: {color: '#36CBCB'}},
+          {itemStyle: {color: '#E55F76'}},
+          {itemStyle: {color: '#3AA1FF'}},
+          {itemStyle: {color: '#5FE583'}},
+          {itemStyle: {color: '#5F95E5'}},
+          {itemStyle: {color: '#E5AF5F'}},
       ],
       tip:'',
       markers:[],
@@ -550,24 +589,86 @@ export default {
       hezuoshe2:[],
       jiatingnongchang2:[],
       jinmihezuo2:[],
+      blockinfo:[],
+      polygonss:[],
     }
   },
   created () {
     this._getAddress()
+    if(this.$route.query.time){
+      console.log('开始')
+      let that=this;
+    window.addEventListener('done1', function(){
+
+      that.all();
+
+    })
+    }
   },
   mounted () {
+    if (this.baseScroll) {
+      clearInterval(this.baseScroll.timer)
+    }
     this._drawCityMap()
     this._drawRainMap()
-    this._getJson()
+    // this._getJson()
     let that=this;
-
+    axios.get('json/base_info.json').then(res => {
+      for(let i=0;i<res.data.result.length;i++){
+        that.baseDatas[i].name =res.data.result[i].name
+        that.baseDatas[i].value =res.data.result[i].area
+          if (that.baseScroll) {
+      console.log(that.baseScroll)
+      clearInterval(that.baseScroll.timer)
+    }
+ that.$nextTick(() => {
+              if (that.baseScroll) {
+                clearInterval(that.baseScroll.timer)
+              }
+              that.baseScroll = new roll.Roll('base-info', 'base-ul1', 'base-ul2', -1060)
+            })
+      }
     window.addEventListener('done1', function(){
-  axios.get('json/baseinfo.json').then(res => {
+       let googleLayer = new AMap.TileLayer({
+              getTileUrl: 'http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile'
+           });//定义谷歌卫星切片图层
+
+        let roadNetLayer = new AMap.TileLayer.RoadNet({
+          opacity:0
+        }); //定义一个路网图层
+        // var layer = new AMap.TileLayer();
+      that.map.setLayers([googleLayer,roadNetLayer]);
+      axios.get('json/blockinfo.json').then((res)=>{
+        that.blockinfo=res.data.result;
+        that.addBlockOnMap();
+      })
+      that.baseinfo=[];
+      that.jinmihezuo2=[];
+      that.hezuoshe2=[];
+      that.jiatingnongchang2=[];
+      that.baseLength=0;
+      that.jinmihezuoL=0;
+      that.hezuosheL=0;
+      that.jiatingnongchangL=0;
+
     for(let i=0;i<res.data.result.length;i++){
+
+      if(res.data.result[i].type==1){
+        that.totalArea += res.data.result[i].area
+
+        that.mapDatas.push({
+          name: res.data.result[i].name,
+          value: [res.data.result[i].lng, res.data.result[i].lat],
+          id: res.data.result[i].baseId
+        })
+        that.baseLength++;
+         that.baseinfo.push(res.data.result[i]);
            let lng=res.data.result[i].lng;
            let lat=res.data.result[i].lat;
            let marker= new  AMap.CircleMarker({
               radius:5,
+              topWhenClick:true,
+              zIndex:999,
               fillColor:'#fe5858',
               strokeColor: '#fe5858',
               center: new AMap.LngLat(lng, lat),
@@ -575,70 +676,170 @@ export default {
 that.markers.push(marker);
     that.map.add(marker);
     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(res.data.result[i].baseId)}})});
-     marker.on("mousemove",function(e) {that.tip=res.data.result[i].baseName});
-      marker.on("mouseout",function(e) {that.tip=''});
+     marker.on("mousemove",function(e) {
+       marker.setRadius(8);
+       that.tip=res.data.result[i].name
+       });
+      marker.on("mouseout",function(e) {
+        marker.setRadius(5);
+        that.tip=''
+        });
          }
-      });
-      axios.get('json/hezuoshe.json').then(res=>{
-        that.hezuosheL=res.data.result.length;
-        that.hezuoshe2=res.data.result;
-        for(let i=0;i<res.data.result.length;i++){
+         if(res.data.result[i].type==2){
+      that.hezuosheL++;
+        that.hezuoshe2.push(res.data.result[i]);
            let lng=res.data.result[i].lng;
            let lat=res.data.result[i].lat;
            let marker1= new  AMap.CircleMarker({
               radius:5,
+              topWhenClick:true,
+              zIndex:999,
               fillColor:'#dc9748',
               strokeColor: '#dc9748',
               center: new AMap.LngLat(lng, lat),
 });
 that.hezuoshe.push(marker1);
     that.map.add(marker1);
-     marker1.on("mousemove",function(e) {that.tip=res.data.result[i].name});
-      marker1.on("mouseout",function(e) {that.tip=''});
-         }
-      })
-
- axios.get('json/jiatinnongchang.json').then(res=>{
-   that.jiatingnongchangL=res.data.result.length;
-   that.jiatingnongchang2=res.data.result;
-        for(let i=0;i<res.data.result.length;i++){
+    marker1.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(res.data.result[i].baseId)}})});
+     marker1.on("mousemove",function(e) {marker1.setRadius(8);that.tip=res.data.result[i].name});
+      marker1.on("mouseout",function(e) {marker1.setRadius(5);that.tip=''});
+    }
+    if(res.data.result[i].type==3){
+      that.jiatingnongchangL++;
+        that.jiatingnongchang2.push(res.data.result[i]);
            let lng=res.data.result[i].lng;
            let lat=res.data.result[i].lat;
            let marker2= new  AMap.CircleMarker({
               radius:5,
+              topWhenClick:true,
+              zIndex:999,
               fillColor:'#289CF4',
               strokeColor: '#289CF4',
               center: new AMap.LngLat(lng, lat),
 });
 that.jiatingnongchang.push(marker2);
     that.map.add(marker2);
-    marker2.on("mousemove",function(e) {that.tip=res.data.result[i].name});
-     marker2.on("mouseout",function(e) {that.tip=''});
-         }
-      })
-
-axios.get('json/jinmihezuo.json').then(res=>{
-  that.jinmihezuoL=res.data.result.length;
-  that.jinmihezuo2=res.data.result
-        for(let i=0;i<res.data.result.length;i++){
+    marker2.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(res.data.result[i].baseId)}})});
+     marker2.on("mousemove",function(e) {marker2.setRadius(8);that.tip=res.data.result[i].name});
+      marker2.on("mouseout",function(e) {marker2.setRadius(5);that.tip=''});
+    }
+    if(res.data.result[i].type==4){
+      that.jinmihezuoL++;
+        that.jinmihezuo2.push(res.data.result[i]);
            let lng=res.data.result[i].lng;
            let lat=res.data.result[i].lat;
            let marker3= new  AMap.CircleMarker({
               radius:5,
+              topWhenClick:true,
+              zIndex:999,
               fillColor:'#fe58fe',
               strokeColor: '#fe58fe',
               center: new AMap.LngLat(lng, lat),
 });
 that.jinmihezuo.push(marker3);
     that.map.add(marker3);
-    marker3.on("mousemove",function(e) {that.tip=res.data.result[i].name});
-    marker3.on("mouseout",function(e) {that.tip=''});
-         }
-      })
+    marker3.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(res.data.result[i].baseId)}})});
+     marker3.on("mousemove",function(e) {marker3.setRadius(8);that.tip=res.data.result[i].name});
+      marker3.on("mouseout",function(e) {marker3.setRadius(5);that.tip=''});
+    }
+    }
+
+      });
+//   axios.get('json/baseinfo.json').then(res => {
+//     for(let i=0;i<res.data.result.length;i++){
+//            let lng=res.data.result[i].lng;
+//            let lat=res.data.result[i].lat;
+//            let marker= new  AMap.CircleMarker({
+//               radius:5,
+//               fillColor:'#fe5858',
+//               strokeColor: '#fe5858',
+//               center: new AMap.LngLat(lng, lat),
+// });
+// that.markers.push(marker);
+//     that.map.add(marker);
+//     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(res.data.result[i].baseId)}})});
+//      marker.on("mousemove",function(e) {that.tip=res.data.result[i].baseName});
+//       marker.on("mouseout",function(e) {that.tip=''});
+//          }
+//       });
+//       axios.get('json/hezuoshe.json').then(res=>{
+//         that.hezuosheL=res.data.result.length;
+//         that.hezuoshe2=res.data.result;
+//         for(let i=0;i<res.data.result.length;i++){
+//            let lng=res.data.result[i].lng;
+//            let lat=res.data.result[i].lat;
+//            let marker1= new  AMap.CircleMarker({
+//               radius:5,
+//               fillColor:'#dc9748',
+//               strokeColor: '#dc9748',
+//               center: new AMap.LngLat(lng, lat),
+// });
+// that.hezuoshe.push(marker1);
+//     that.map.add(marker1);
+//      marker1.on("mousemove",function(e) {that.tip=res.data.result[i].name});
+//       marker1.on("mouseout",function(e) {that.tip=''});
+//          }
+//       })
+
+//  axios.get('json/jiatinnongchang.json').then(res=>{
+//    that.jiatingnongchangL=res.data.result.length;
+//    that.jiatingnongchang2=res.data.result;
+//         for(let i=0;i<res.data.result.length;i++){
+//            let lng=res.data.result[i].lng;
+//            let lat=res.data.result[i].lat;
+//            let marker2= new  AMap.CircleMarker({
+//               radius:5,
+//               fillColor:'#289CF4',
+//               strokeColor: '#289CF4',
+//               center: new AMap.LngLat(lng, lat),
+// });
+// that.jiatingnongchang.push(marker2);
+//     that.map.add(marker2);
+//     marker2.on("mousemove",function(e) {that.tip=res.data.result[i].name});
+//      marker2.on("mouseout",function(e) {that.tip=''});
+//          }
+//       })
+
+// axios.get('json/jinmihezuo.json').then(res=>{
+//   that.jinmihezuoL=res.data.result.length;
+//   that.jinmihezuo2=res.data.result
+//         for(let i=0;i<res.data.result.length;i++){
+//            let lng=res.data.result[i].lng;
+//            let lat=res.data.result[i].lat;
+//            let marker3= new  AMap.CircleMarker({
+//               radius:5,
+//               fillColor:'#fe58fe',
+//               strokeColor: '#fe58fe',
+//               center: new AMap.LngLat(lng, lat),
+// });
+// that.jinmihezuo.push(marker3);
+//     that.map.add(marker3);
+//     marker3.on("mousemove",function(e) {that.tip=res.data.result[i].name});
+//     marker3.on("mouseout",function(e) {that.tip=''});
+//          }
+//       })
 
   });
   },
   methods: {
+    addBlockOnMap(){
+        for(let i=0;i<this.blockinfo.length;i++){
+        let item = this.blockinfo[i];
+        if(item.remark!=undefined && item.remark!=null && item.remark.trim()!=""){
+            let remarkJson2 = eval('(' + item.remark + ')');
+            let newPath = [];
+            for(let i=0;i<remarkJson2.path.length;i++){
+            let point=remarkJson2.path[i];
+            newPath.push(new AMap.LngLat(point.lng,point.lat));
+            }
+            remarkJson2.path = newPath;
+            let polygon2 = new AMap.Polygon(remarkJson2);
+            this.polygonss=[];
+            this.polygonss.push(polygon2);
+            this.map.add(polygon2);
+        }
+        }
+        },
     removepoint(){
      this.map.remove(this.markers);
      this.map.remove(this.hezuoshe);
@@ -657,60 +858,74 @@ that.jinmihezuo.push(marker3);
            let lat=that.baseinfo[i].lat;
            let marker= new  AMap.CircleMarker({
               radius:5,
+              topWhenClick:true,
+              zIndex:999,
               fillColor:'#fe5858',
               strokeColor: '#fe5858',
               center: new AMap.LngLat(lng, lat),
 });
-that.markers.push(marker);
+    that.markers.push(marker);
     that.map.add(marker);
     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
-    marker.on("mousemove",function(e) {that.tip=that.baseinfo[i].baseName});
-      marker.on("mouseout",function(e) {that.tip=''});
+    marker.on("mousemove",function(e) {marker.setRadius(8);that.tip=that.baseinfo[i].name});
+      marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
          }
           for(let i=0;i<that.hezuoshe2.length;i++){
            let lng=that.hezuoshe2[i].lng;
            let lat=that.hezuoshe2[i].lat;
            let marker= new  AMap.CircleMarker({
               radius:5,
+              topWhenClick:true,
+              zIndex:999,
               fillColor:'#dc9748',
               strokeColor: '#dc9748',
               center: new AMap.LngLat(lng, lat),
 });
-that.hezuoshe.push(marker);
+    that.hezuoshe.push(marker);
     that.map.add(marker);
-    // marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
-    marker.on("mousemove",function(e) {that.tip=that.hezuoshe2[i].name});
-      marker.on("mouseout",function(e) {that.tip=''});
+    marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.hezuoshe2[i].baseId)}})});
+    marker.on("mousemove",function(e) {marker.setRadius(8);that.tip=that.hezuoshe2[i].name});
+      marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
          }
           for(let i=0;i<that.jiatingnongchang2.length;i++){
            let lng=that.jiatingnongchang2[i].lng;
            let lat=that.jiatingnongchang2[i].lat;
            let marker= new  AMap.CircleMarker({
               radius:5,
+              topWhenClick:true,
+              zIndex:999,
               fillColor:'#289CF4',
               strokeColor: '#289CF4',
               center: new AMap.LngLat(lng, lat),
 });
-that.jiatingnongchang.push(marker);
+    that.jiatingnongchang.push(marker);
     that.map.add(marker);
-    // marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
-    marker.on("mousemove",function(e) {that.tip=that.jiatingnongchang2[i].name});
-      marker.on("mouseout",function(e) {that.tip=''});
+    marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.jiatingnongchang2[i].baseId)}})});
+    marker.on("mousemove",function(e) {marker.setRadius(8);that.tip=that.jiatingnongchang2[i].name});
+      marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
          }
           for(let i=0;i<that.jinmihezuo2.length;i++){
            let lng=that.jinmihezuo2[i].lng;
            let lat=that.jinmihezuo2[i].lat;
            let marker= new  AMap.CircleMarker({
               radius:5,
+              topWhenClick:true,
+              zIndex:999,
               fillColor:'#fe58fe',
               strokeColor: '#fe58fe',
               center: new AMap.LngLat(lng, lat),
 });
-that.jinmihezuo.push(marker);
+    that.jinmihezuo.push(marker);
     that.map.add(marker);
-    // marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
-    marker.on("mousemove",function(e) {that.tip=that.jinmihezuo2[i].name});
-      marker.on("mouseout",function(e) {that.tip=''});
+    marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.jinmihezuo2[i].baseId)}})});
+    marker.on("mousemove",function(e) {
+      marker.setRadius(8);
+      that.tip=that.jinmihezuo2[i].name;
+      });
+      marker.on("mouseout",function(e) {
+        marker.setRadius(5);
+        that.tip='';
+        });
          }
 
     },
@@ -723,6 +938,8 @@ that.jinmihezuo.push(marker);
            let lat=that.baseinfo[i].lat;
            let marker= new  AMap.CircleMarker({
               radius:5,
+              topWhenClick:true,
+              zIndex:999,
               fillColor:'#fe5858',
               strokeColor: '#fe5858',
               center: new AMap.LngLat(lng, lat),
@@ -730,8 +947,8 @@ that.jinmihezuo.push(marker);
 that.markers.push(marker);
     that.map.add(marker);
     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
-    marker.on("mousemove",function(e) {that.tip=that.baseinfo[i].baseName});
-      marker.on("mouseout",function(e) {that.tip=''});
+    marker.on("mousemove",function(e) {marker.setRadius(8);that.tip=that.baseinfo[i].name});
+      marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
          }
 
     },
@@ -745,15 +962,17 @@ that.markers.push(marker);
            let lat=that.hezuoshe2[i].lat;
            let marker= new  AMap.CircleMarker({
               radius:5,
+              topWhenClick:true,
+              zIndex:999,
               fillColor:'#dc9748',
               strokeColor: '#dc9748',
               center: new AMap.LngLat(lng, lat),
 });
 that.hezuoshe.push(marker);
     that.map.add(marker);
-    // marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
-    marker.on("mousemove",function(e) {that.tip=that.hezuoshe2[i].name});
-      marker.on("mouseout",function(e) {that.tip=''});
+    marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.hezuoshe2[i].baseId)}})});
+    marker.on("mousemove",function(e) {marker.setRadius(8);that.tip=that.hezuoshe2[i].name});
+      marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
          }
     },
     jiatin1(){
@@ -766,15 +985,17 @@ that.hezuoshe.push(marker);
            let lat=that.jiatingnongchang2[i].lat;
            let marker= new  AMap.CircleMarker({
               radius:5,
+              topWhenClick:true,
+              zIndex:999,
               fillColor:'#289CF4',
               strokeColor: '#289CF4',
               center: new AMap.LngLat(lng, lat),
 });
 that.jiatingnongchang.push(marker);
     that.map.add(marker);
-    // marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
-    marker.on("mousemove",function(e) {that.tip=that.jiatingnongchang2[i].name});
-      marker.on("mouseout",function(e) {that.tip=''});
+    marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.jiatingnongchang2[i].baseId)}})});
+    marker.on("mousemove",function(e) {marker.setRadius(8);that.tip=that.jiatingnongchang2[i].name});
+      marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
          }
     },
     jinmi1(){
@@ -787,19 +1008,22 @@ that.jiatingnongchang.push(marker);
            let lat=that.jinmihezuo2[i].lat;
            let marker= new  AMap.CircleMarker({
               radius:5,
+              topWhenClick:true,
+              zIndex:999,
               fillColor:'#fe58fe',
               strokeColor: '#fe58fe',
               center: new AMap.LngLat(lng, lat),
 });
 that.jinmihezuo.push(marker);
     that.map.add(marker);
-    // marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
-    marker.on("mousemove",function(e) {that.tip=that.jinmihezuo2[i].name});
-      marker.on("mouseout",function(e) {that.tip=''});
+    marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.jinmihezuo2[i].baseId)}})});
+    marker.on("mousemove",function(e) {marker.setRadius(8);that.tip=that.jinmihezuo2[i].name});
+      marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
          }
     },
     changemap(){
-if(!this.weixin){
+if(this.weixin){
+  this.map.remove(this.map.getLayers());
    let googleLayer = new AMap.TileLayer({
               getTileUrl: 'http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile'
            });//定义谷歌卫星切片图层
@@ -807,12 +1031,17 @@ if(!this.weixin){
         let roadNetLayer = new AMap.TileLayer.RoadNet({
           opacity:0
         }); //定义一个路网图层
-        var layer = new AMap.TileLayer();
+         var layer = new AMap.TileLayer();
       this.map.setLayers([googleLayer,roadNetLayer,layer]);
-      this.weixin=true;
-}else{
-      this.map.remove(this.map.getLayers()[0]);
       this.weixin=false;
+}else{
+       this.map.remove(this.map.getLayers());
+       let roadNetLayer = new AMap.TileLayer.RoadNet({
+          opacity:0
+        }); //定义一个路网图层
+        let layer = new AMap.TileLayer();
+      this.map.setLayers([roadNetLayer,layer]);
+      this.weixin=true;
 }
     },
     _getAddress () {
@@ -829,7 +1058,7 @@ if(!this.weixin){
       // }).then(res => {
       //   console.log(res)
       // })
-      let token = 'accessToken=at.27uf67kq774rrhgz39qzmclyaam50ute-64br33waiv-0si80dk-bmdig7irx'
+      let token = 'accessToken=at.27uf67kq774rrhgz39qzmclyaam50ute-64br33waiv-0si80dk-bmdig7irx&pageStart=0&pageSize=50'
       axios.post('https://open.ys7.com/api/lapp/live/video/list', token, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -838,11 +1067,15 @@ if(!this.weixin){
         if (res.data.code == 200) {
           if (res.data.data && res.data.data.length) {
             this.addresss.push({
-              label: res.data.data[0].deviceName,
-              value: res.data.data[0].deviceSerial,
+              label: res.data.data[3].deviceName,
+              value: res.data.data[3].deviceSerial,
               children: []
             })
             for (let i = 0; i < res.data.data.length; i++) {
+              if (res.data.data[i].deviceName.indexOf('鲜言') > -1) {
+                console.log(111)
+                continue
+              }
               for (let j = 0; j < this.addresss.length; j++) {
                 if (this.addresss[j].label === res.data.data[i].deviceName) {
                   this.curLock = true
@@ -873,68 +1106,68 @@ if(!this.weixin){
         })
       })
     },
-    _getJson() {
-      axios.get('json/baseinfo.json').then(res => {
-        if (res.status == 200) {
-          this.baseinfo=res.data.result;
-          let data = res.data.result
-          if (data && data.length) {
-            this.baseLength = data.length
-            for (var i = 0; i < data.length; i++) {
-              this.totalArea += data[i].area
-              this.baseDatas[i].name = data[i].baseName
-              this.baseDatas[i].value = data[i].area
-              this.mapDatas.push({
-                name: data[i].baseName,
-                value: [data[i].lng, data[i].lat],
-                id: data[i].baseId
-              })
-            }
-            this.$nextTick(() => {
-              if (this.baseScroll) {
-                clearInterval(this.baseScroll.timer)
-              }
-              this.baseScroll = new roll.Roll('base-info', 'base-ul1', 'base-ul2', -280)
-            })
-          }
-        }
-      })
-      axios.get('json/plot.json').then(res => {
-        if (res.status == 200) {
-          let data = res.data.result
-          if (data && data.length) {
-            this.baseLength = data.length
-            for (var i = 0; i < data.length; i++) {
-              var plots = data[i].plot
-              if (plots && plots.length) {
-                this.plotLength += plots.length
-                for (var j = 0; j < plots.length; j++) {
-                  this.plotDatas.push({
-                    name: plots[j].plotName,
-                    value: [plots[j].lng, plots[j].lat],
-                    id: data[i].baseId
-                  })
-                }
-              }
-            }
-          }
-        }
-      })
-      axios.get('json/process.json').then(res => {
-        if (res.status == 200) {
-          let data = res.data.result
-          if (data && data.length) {
-            for(var i = 0; i < data.length; i++) {
-              if (data[i].process && data[i].process.length) {
-                for(var j = 0; j < data[i].process.length; j++) {
-                  this.messages.push(data[i].process[j])
-                }
-              }
-            }
-          }
-        }
-      })
-    },
+    // _getJson() {
+    //   axios.get('json/base_info.json').then(res => {
+    //     if (res.status == 200) {
+    //       this.baseinfo=res.data.result;
+    //       let data = res.data.result
+    //       if (data && data.length) {
+    //         this.baseLength = data.length
+    //         for (var i = 0; i < data.length; i++) {
+    //           this.totalArea += data[i].area
+    //           this.baseDatas[i].name = data[i].baseName
+    //           this.baseDatas[i].value = data[i].area
+    //           this.mapDatas.push({
+    //             name: data[i].baseName,
+    //             value: [data[i].lng, data[i].lat],
+    //             id: data[i].baseId
+    //           })
+    //         }
+    //         this.$nextTick(() => {
+    //           if (this.baseScroll) {
+    //             clearInterval(this.baseScroll.timer)
+    //           }
+    //           this.baseScroll = new roll.Roll('base-info', 'base-ul1', 'base-ul2', -280)
+    //         })
+    //       }
+    //     }
+    //   })
+      // axios.get('json/plot.json').then(res => {
+      //   if (res.status == 200) {
+      //     let data = res.data.result
+      //     if (data && data.length) {
+      //       this.baseLength = data.length
+      //       for (var i = 0; i < data.length; i++) {
+      //         var plots = data[i].plot
+      //         if (plots && plots.length) {
+      //           this.plotLength += plots.length
+      //           for (var j = 0; j < plots.length; j++) {
+      //             this.plotDatas.push({
+      //               name: plots[j].plotName,
+      //               value: [plots[j].lng, plots[j].lat],
+      //               id: data[i].baseId
+      //             })
+      //           }
+      //         }
+      //       }
+      //     }
+      //   }
+      // })
+    //   axios.get('json/process.json').then(res => {
+    //     if (res.status == 200) {
+    //       let data = res.data.result
+    //       if (data && data.length) {
+    //         for(var i = 0; i < data.length; i++) {
+    //           if (data[i].process && data[i].process.length) {
+    //             for(var j = 0; j < data[i].process.length; j++) {
+    //               this.messages.push(data[i].process[j])
+    //             }
+    //           }
+    //         }
+    //       }
+    //     }
+    //   })
+    // },
     _drawRainMap () {
       let rainChart = this.$echarts.init(this.$refs.rainMap);
       var option = chartsType.charts(['镍', '锌', '铜', '总铬', '铅', '镉', '总砷','总汞'], this.metalDatas,'用量（mg/kg）','bar','实际值','#289CF4','x');
@@ -960,11 +1193,10 @@ if(!this.weixin){
       this.$refs.mapChart.style.height = '550px'
       let that = this
       MapLoader().then(AMap => {
-
         that.map = new AMap.Map(this.$refs.mapChart, {
           center: [105.013664,31.206397],
           zooms: [10,18],
-          // layers:[googleLayer,roadNetLayer], //设置图层
+          // layers:[googleLayer,roadNetLayer,layer], //设置图层
           // viewMode:'3D',
         });
 
@@ -1013,8 +1245,8 @@ if(!this.weixin){
      that.map.setFitView(polygons)
    }
     })
-    var bounds = that.map.getBounds();
-    that.map.setLimitBounds(bounds);
+    // var bounds = that.map.getBounds();
+    // that.map.setLimitBounds(bounds);
         that.map.on("complete", function(){
           console.log("地图加载完成！");
           var myEvent = new CustomEvent('done1',{});
@@ -1364,7 +1596,7 @@ if(!this.weixin){
 @media screen and (min-width: 1550px)
   .base-item
     span:nth-of-type(1)
-      width 200px !important
+      width 260px !important
   .monitor-message
     width 150px !important
   .special
@@ -1459,6 +1691,20 @@ if(!this.weixin){
         position relative
         height 550px
         background-color #26374c
+        .twotip
+          position absolute
+          left 5%
+          bottom 10%
+          z-index 99
+          .text
+            color #fff
+          .icon2
+            display inline-block
+            width 25px
+            height 15px
+            border-radius 5px
+            margin-right 10px
+            vertical-align middle
         .tip
           position absolute
           width 30%
@@ -1533,10 +1779,10 @@ if(!this.weixin){
         background-color #26374c
         .base-map
           height 165px
-          width 50%
+          width 40%
           display inline-block
         .base-info
-          width 50%
+          width 60%
           height 165px
           display inline-block
           overflow hidden

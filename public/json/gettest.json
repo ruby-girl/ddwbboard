@@ -3,7 +3,7 @@
       {
         "testTime": "2017-04-03",
         "testItem": "水分",
-        "unit": "cm",
+        "unit": "kg",
         "realValue": 16.9,
         "minstandard": 0,
         "maxstandard": 18
@@ -11,7 +11,7 @@
       {
         "testTime": "2017-04-03",
         "testItem": "总灰分",
-        "unit": "个",
+        "unit": "kg",
         "realValue": 2.3,
         "minstandard": 0,
         "maxstandard": 4
@@ -19,7 +19,7 @@
       {
         "testTime": "2017-04-03",
         "testItem": "麦冬箭根长度",
-        "unit": "%",
+        "unit": "kg",
         "realValue": 0.7,
         "minstandard": 0.5,
         "maxstandard": 1
@@ -27,7 +27,7 @@
       {
         "testTime": "2017-04-03",
         "testItem": "块根堆积时间",
-        "unit": "%",
+        "unit": "kg",
         "realValue": 3,
         "minstandard": 0,
         "maxstandard": 5
