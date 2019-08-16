@@ -594,7 +594,7 @@ export default {
     }
   },
   created () {
-    if (!window.localStorage.token) {
+    // if (!window.localStorage.token) {
       console.log(111)
       let params = 'appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53'
       axios.post('https://open.ys7.com/api/lapp/token/get', params, {
@@ -607,7 +607,7 @@ export default {
           window.localStorage.setItem('token', token)
         }
       })
-    }
+    // }
     this._getAddress()
     if(this.$route.query.time){
       console.log('开始')
@@ -1086,7 +1086,8 @@ if(this.weixin){
                     this.curLock = true
                     this.addresss[j].children.push({
                         label: '通道' + res.data.data[i].channelNo,
-                        value: res.data.data[i].liveAddress
+                        value: res.data.data[i].liveAddress,
+                        name: res.data.data[i].deviceName
                     })
                 }
                 }
@@ -1094,15 +1095,18 @@ if(this.weixin){
                     this.addresss.push({
                     label: res.data.data[i].deviceName,
                     value: res.data.data[i].deviceSerial,
+                    name: res.data.data[i].deviceName,
                     children: [{
                       label: '通道' + res.data.data[i].channelNo,
-                      value: res.data.data[i].liveAddress
+                      value: res.data.data[i].liveAddress,
+                      name: res.data.data[i].deviceName
                       }]
                     })
                 }
                 this.curLock = false
             }
             }
+            console.log(this.addresss)
         } else if (res.data.code == 10002) {
         axios.post('https://open.ys7.com/api/lapp/token/get', params, {
         headers: {
@@ -1601,7 +1605,9 @@ if(this.weixin){
         ]
       };
     },
-    selectAddress(datas) {
+    selectAddress(datas, selectedData) {
+      console.log(datas)
+      console.log(selectedData)
       if (datas.length != 0) {
         this.address = datas[1]
         this.$nextTick(() => {
