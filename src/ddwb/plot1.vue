@@ -242,7 +242,7 @@ export default {
       that.baseName=res.data.result[that.baseId].name;
       that.people=res.data.result[that.baseId].manager;
       axios.get("/json/plot1.json").then((res)=>{
-        if(that.baseId==34){
+        if(that.baseId>=33){
           let a={};
           a.name=res.data.result[this.baseId].plot[this.plotId].farmer;
           a.position=res.data.result[this.baseId].plot[this.plotId].position;

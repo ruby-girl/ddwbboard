@@ -1201,7 +1201,7 @@ if(this.weixin){
     // },
     _drawRainMap () {
       let rainChart = this.$echarts.init(this.$refs.rainMap);
-      var option = chartsType.charts(['镍', '锌', '铜', '总铬', '铅', '镉', '总砷','总汞'], this.metalDatas,'用量（mg/kg）','bar','实际值','#289CF4','x');
+      var option = chartsType.charts(['镍', '锌', '铜', '总铬', '铅', '镉', '总砷','总汞'], this.metalDatas,'检测量（mg/kg）','bar','实际值','#289CF4','x');
       option.legend = {
           left: 'right',
           textStyle: {

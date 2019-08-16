@@ -375,7 +375,7 @@ export default {
               imageOffset: new AMap.Pixel(0, 0),  // 图像相对展示区域的偏移量，适于雪碧图等
               imageSize: new AMap.Size(30, 30)   // 根据所设置的大小拉伸或压缩图片
             });
-            if(that.basenum!=34){
+            if(that.basenum<33){
             if(that.basenum<=10){
     for(let i=0;i<res.data.result[that.basenum].plot.length;i++){
            let lng1=res.data.result[that.basenum].plot[i].lng;
