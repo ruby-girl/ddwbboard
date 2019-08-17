@@ -715,7 +715,7 @@ that.markers.push(marker);
 that.hezuoshe.push(marker1);
     that.map.add(marker1);
     marker1.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(res.data.result[i].baseId)}})});
-     marker1.on("mousemove",function(e) {marker1.setRadius(8);that.tip=res.data.result[i].name});
+     marker1.on("mousemove",function(e) {marker1.setRadius(10);that.tip=res.data.result[i].name});
       marker1.on("mouseout",function(e) {marker1.setRadius(5);that.tip=''});
     }
     if(res.data.result[i].type==3){
@@ -734,7 +734,7 @@ that.hezuoshe.push(marker1);
 that.jiatingnongchang.push(marker2);
     that.map.add(marker2);
     marker2.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(res.data.result[i].baseId)}})});
-     marker2.on("mousemove",function(e) {marker2.setRadius(8);that.tip=res.data.result[i].name});
+     marker2.on("mousemove",function(e) {marker2.setRadius(10);that.tip=res.data.result[i].name});
       marker2.on("mouseout",function(e) {marker2.setRadius(5);that.tip=''});
     }
     if(res.data.result[i].type==4){
@@ -753,7 +753,7 @@ that.jiatingnongchang.push(marker2);
 that.jinmihezuo.push(marker3);
     that.map.add(marker3);
     marker3.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(res.data.result[i].baseId)}})});
-     marker3.on("mousemove",function(e) {marker3.setRadius(8);that.tip=res.data.result[i].name});
+     marker3.on("mousemove",function(e) {marker3.setRadius(10);that.tip=res.data.result[i].name});
       marker3.on("mouseout",function(e) {marker3.setRadius(5);that.tip=''});
     }
     }
@@ -881,7 +881,7 @@ that.jinmihezuo.push(marker3);
     that.markers.push(marker);
     that.map.add(marker);
     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
-    marker.on("mousemove",function(e) {marker.setRadius(8);that.tip=that.baseinfo[i].name});
+    marker.on("mousemove",function(e) {marker.setRadius(10);that.tip=that.baseinfo[i].name});
       marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
          }
           for(let i=0;i<that.hezuoshe2.length;i++){
@@ -898,7 +898,7 @@ that.jinmihezuo.push(marker3);
     that.hezuoshe.push(marker);
     that.map.add(marker);
     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.hezuoshe2[i].baseId)}})});
-    marker.on("mousemove",function(e) {marker.setRadius(8);that.tip=that.hezuoshe2[i].name});
+    marker.on("mousemove",function(e) {marker.setRadius(10);that.tip=that.hezuoshe2[i].name});
       marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
          }
           for(let i=0;i<that.jiatingnongchang2.length;i++){
@@ -915,7 +915,7 @@ that.jinmihezuo.push(marker3);
     that.jiatingnongchang.push(marker);
     that.map.add(marker);
     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.jiatingnongchang2[i].baseId)}})});
-    marker.on("mousemove",function(e) {marker.setRadius(8);that.tip=that.jiatingnongchang2[i].name});
+    marker.on("mousemove",function(e) {marker.setRadius(10);that.tip=that.jiatingnongchang2[i].name});
       marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
          }
           for(let i=0;i<that.jinmihezuo2.length;i++){
@@ -961,7 +961,7 @@ that.jinmihezuo.push(marker3);
 that.markers.push(marker);
     that.map.add(marker);
     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
-    marker.on("mousemove",function(e) {marker.setRadius(8);that.tip=that.baseinfo[i].name});
+    marker.on("mousemove",function(e) {marker.setRadius(10);that.tip=that.baseinfo[i].name});
       marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
          }
 
@@ -985,7 +985,7 @@ that.markers.push(marker);
 that.hezuoshe.push(marker);
     that.map.add(marker);
     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.hezuoshe2[i].baseId)}})});
-    marker.on("mousemove",function(e) {marker.setRadius(8);that.tip=that.hezuoshe2[i].name});
+    marker.on("mousemove",function(e) {marker.setRadius(10);that.tip=that.hezuoshe2[i].name});
       marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
          }
     },
@@ -1008,7 +1008,7 @@ that.hezuoshe.push(marker);
 that.jiatingnongchang.push(marker);
     that.map.add(marker);
     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.jiatingnongchang2[i].baseId)}})});
-    marker.on("mousemove",function(e) {marker.setRadius(8);that.tip=that.jiatingnongchang2[i].name});
+    marker.on("mousemove",function(e) {marker.setRadius(10);that.tip=that.jiatingnongchang2[i].name});
       marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
          }
     },
@@ -1031,8 +1031,8 @@ that.jiatingnongchang.push(marker);
 that.jinmihezuo.push(marker);
     that.map.add(marker);
     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.jinmihezuo2[i].baseId)}})});
-    marker.on("mousemove",function(e) {marker.setRadius(8);that.tip=that.jinmihezuo2[i].name});
-      marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
+    marker.on("mousemove",function(e) {marker.setRadius(10);that.tip=that.jinmihezuo2[i].name});
+    marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
          }
     },
     changemap(){
@@ -1605,9 +1605,29 @@ if(this.weixin){
         ]
       };
     },
+    infowindow(a,b){
+        this.getinfo(b);
+          this.infoWindow = new AMap.InfoWindow({
+          content: this.info.join(""),
+          });
+            this.infoWindow.open(this.map,a);
+        },
+        getinfo(b){
+        this.info = [];
+        this.info.push("<div style=\"color:#fff\">"+b+"</div>");
+
+    },
     selectAddress(datas, selectedData) {
-      console.log(datas)
-      console.log(selectedData)
+      this.all();
+      if(selectedData[0].label.indexOf('老马')!=-1){
+
+        this.infowindow(this.markers[7].getCenter(),'老马基地');
+        this.map.setFitView([ this.markers[7] ]);
+      }
+      if(selectedData[0].label.indexOf('老马')==-1){
+        this.infowindow(this.markers[8].getCenter(),'花园基地');
+        this.map.setFitView([ this.markers[8] ]);
+      }
       if (datas.length != 0) {
         this.address = datas[1]
         this.$nextTick(() => {
@@ -1629,6 +1649,16 @@ if(this.weixin){
   }
 }
 </script>
+<style scoped>
+.map >>> .amap-info-content {
+  background-color:rgba(35, 35, 35, 0.6);
+  border-radius:10px 10px;
+  box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 10px;
+  }
+.map >>> .amap-info-sharp{
+  border-top: 8px solid rgba(35, 35, 35, 0.6);
+}
+</style>
 <style lang="stylus">
 @media screen and (min-width: 1550px)
   .base-item
@@ -1920,4 +1950,6 @@ if(this.weixin){
           box-sizing border-box
     .airs:nth-of-type(1)
       margin-top 0px
+
 </style>
+

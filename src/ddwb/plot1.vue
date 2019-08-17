@@ -473,17 +473,14 @@ export default {
         getinfo(){
             var a=this.plot.plotName;
             var b=this.plot.plotArea;
-            // var c=this.plot.status;
             var c='使用中';
-            // var e=this.plot.altitude.toFixed(2);
             var d=this.baseName;
         this.info = [];
-        this.info.push("<div style=\"width:175px;margin:20px 25px;\"><table>");
-        this.info.push("<tr style=\"color:#fff;line-height:20px;\"><td style=\"width:80px;\">地块名称：</td><td>"+a+"</td></tr>");
-        this.info.push("<tr style=\"color:#fff;line-height:20px;\"><td style=\"width:80px;\">地块面积：</td><td>"+b+"亩</td></tr>");
-        this.info.push("<tr style=\"color:#fff;line-height:20px;\"><td style=\"width:80px;\">地块状态：</td><td>"+c+"</td></tr>");
-        // this.info.push("<tr style=\"color:#fff;line-height:20px;\"><td style=\"width:80px;\">地块海拔：</td><td>"+e+"米</td></tr>");
-        this.info.push("<tr style=\"color:#fff;line-height:20px;\"><td style=\"width:80px;\">所属基地：</td><td>"+d+"</td></tr>");
+        this.info.push("<div style=\"width:275px;margin:20px 25px;\"><table>");
+        this.info.push("<tr style=\"color:#fff;line-height:30px;\"><td style=\"width:120px;\">地块名称：</td><td>"+a+"</td></tr>");
+        this.info.push("<tr style=\"color:#fff;line-height:30px;\"><td style=\"width:120px;\">地块面积：</td><td>"+b+"亩</td></tr>");
+        this.info.push("<tr style=\"color:#fff;line-height:30px;\"><td style=\"width:120px;\">地块状态：</td><td>"+c+"</td></tr>");
+        this.info.push("<tr style=\"color:#fff;line-height:30px;\"><td style=\"width:120px;\">所属基地：</td><td>"+d+"</td></tr>");
         this.info.push("</table></div>");
 
     },
