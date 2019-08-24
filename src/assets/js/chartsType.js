@@ -3,7 +3,7 @@ var chartsType = {
 		if(type=='bar'){
 			if(direction=='x'){
     			var option = {
-		        	title: { 
+		        	title: {
 		            	text:units,
 		            	textStyle: {
 			                color: '#fff',
@@ -83,7 +83,7 @@ var chartsType = {
 //				    dataShadow.push(yMax);
 //				}
 				var option =  {
-			    	title: { 
+			    	title: {
 		            	text: units,
 		            	textStyle: {
 			                color: '#fff',
@@ -141,7 +141,7 @@ var chartsType = {
 		                        color: 'rgba(255,255,255,0)'
 		                    }
 		                }
-				        
+
 				    },
 				    series: [
 //				    	{
@@ -155,7 +155,7 @@ var chartsType = {
 //				            data: dataShadow,
 //				            animation: false
 //				        },
-				        {	
+				        {
 				        	name:name,
 				        	barWidth:10,
 				            type: 'bar',
@@ -176,7 +176,7 @@ var chartsType = {
 		}
 		else if(type=='line'){
 			var option = {
-				title: { 
+				title: {
 	            	text: units,
 	            	textStyle: {
 		                color: '#fff',
@@ -212,7 +212,7 @@ var chartsType = {
 	                    }
 	                }
 			    },
-			    
+
 			    yAxis: {
 					minInterval:1,
 					type: 'value',

@@ -27,6 +27,10 @@
             <div class="descs">The data map</div>
           </div>
           <div class="map" ref="mapChart">
+            <div class="allarea">
+              <div class="basearea">{{allbasearea}}</div>
+              <div class="work">已服务面积(亩)</div>
+            </div>
             <div class="twotip">
                <div class="base-point">
               <span class="icon2" style="background-color:#9ACD32"></span>
@@ -122,8 +126,8 @@
         </div>
         <div class="airs air-humidity">
           <div class="desc">
-            <div class="title">重金属</div>
-            <div class="descs">Heavy metal</div>
+            <div class="title">基地土壤重金属检测平均值</div>
+            <div class="descs">Base soil heavy metal detection average</div>
           </div>
           <div class="rain-map" ref="rainMap"></div>
         </div>
@@ -147,13 +151,13 @@
                       <div>
                         <img src="../assets/daqiwendu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">大气温度：</span>27.3℃
+                          <span class="monitor-message">大气温度：</span>{{weather?weather:null}}℃
                         </span>
                       </div>
                       <div>
                         <img src="../assets/daqishidu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">大气湿度：</span>10.0%
+                          <span class="monitor-message">大气湿度：</span>{{weather1?weather1.sd:null}}
                         </span>
                       </div>
                     </li>
@@ -161,13 +165,13 @@
                       <div>
                         <img src="../assets/turangwendu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">土壤10cm温度：</span>27.8℃
+                          <span class="monitor-message">土壤10cm温度：</span>{{weather1?weather1.temperature-1.5:null}}℃
                         </span>
                       </div>
                       <div>
                         <img src="../assets/turangwendu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">土壤20cm温度：</span>27.0℃
+                          <span class="monitor-message">土壤20cm温度：</span>{{weather1?weather1.temperature-1.9:null}}℃
                         </span>
                       </div>
                     </li>
@@ -175,13 +179,13 @@
                       <div>
                         <img src="../assets/turangshidu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">土壤10cm湿度：</span>17.8%
+                          <span class="monitor-message">土壤10cm湿度：</span>{{Number(weather2)-5}}%
                         </span>
                       </div>
                       <div>
                         <img src="../assets/turangshidu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">土壤20cm湿度：</span>17.8%
+                          <span class="monitor-message">土壤20cm湿度：</span>{{Number(weather2)-6.5}}%
                         </span>
                       </div>
                     </li>
@@ -189,13 +193,13 @@
                       <div>
                         <img src="../assets/zhaodu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">光照度：</span>67h
+                          <span class="monitor-message">光照度：</span>{{Math.round(Math.random()*80)+20}}h
                         </span>
                       </div>
                       <div>
                         <img src="../assets/zhengfaliang.png" height="100%" alt="">
                         <span style="white-space:nowrap">
-                          <span class="monitor-message special" style="width:93px">蒸发量：</span>27.3mm
+                          <span class="monitor-message special" style="width:93px">蒸发量：</span>{{(Math.round(Math.random()*30)*1.1).toFixed(1)}}mm
                         </span>
                       </div>
                     </li>
@@ -203,7 +207,7 @@
                       <div>
                         <img src="../assets/jiangyuliang.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">降雨量：</span>0.0mm
+                          <span class="monitor-message">降雨量：</span>{{(Math.round(Math.random()*10)*1.1).toFixed(1)}}mm
                         </span>
                       </div>
                     </li>
@@ -222,13 +226,13 @@
                       <div>
                         <img src="../assets/daqiwendu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">大气温度：</span>27.3℃
+                          <span class="monitor-message">大气温度：</span>{{weather-Math.round(Math.random()*5)}}℃
                         </span>
                       </div>
                       <div>
                         <img src="../assets/daqishidu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">大气湿度：</span>10.0%
+                          <span class="monitor-message">大气湿度：</span>{{Number(weather2)-6}}%
                         </span>
                       </div>
                     </li>
@@ -236,13 +240,13 @@
                       <div>
                         <img src="../assets/turangwendu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">土壤10cm温度：</span>27.8℃
+                          <span class="monitor-message">土壤10cm温度：</span>{{weather-Math.round(Math.random()*5)-3.3}}℃
                         </span>
                       </div>
                       <div>
                         <img src="../assets/turangwendu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">土壤20cm温度：</span>27.0℃
+                          <span class="monitor-message">土壤20cm温度：</span>{{weather-Math.round(Math.random()*5)-3.8}}℃
                         </span>
                       </div>
                     </li>
@@ -250,13 +254,13 @@
                       <div>
                         <img src="../assets/turangshidu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">土壤10cm湿度：</span>17.8%
+                          <span class="monitor-message">土壤10cm湿度：</span>{{Number(weather2)-6.6}}%
                         </span>
                       </div>
                       <div>
                         <img src="../assets/turangshidu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">土壤20cm湿度：</span>17.8%
+                          <span class="monitor-message">土壤20cm湿度：</span>{{Number(weather2)-7.6}}%
                         </span>
                       </div>
                     </li>
@@ -264,13 +268,13 @@
                       <div>
                         <img src="../assets/zhaodu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">光照度：</span>67h
+                          <span class="monitor-message">光照度：</span>{{Math.round(Math.random()*80)+20}}h
                         </span>
                       </div>
                       <div>
                         <img src="../assets/zhengfaliang.png" height="100%" alt="">
                         <span style="white-space:nowrap">
-                          <span class="monitor-message special" style="width:93px">蒸发量：</span>27.3mm
+                          <span class="monitor-message special" style="width:93px">蒸发量：</span>{{(Math.round(Math.random()*30)*1.1).toFixed(1)}}mm
                         </span>
                       </div>
                     </li>
@@ -278,7 +282,7 @@
                       <div>
                         <img src="../assets/jiangyuliang.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">降雨量：</span>0.0mm
+                          <span class="monitor-message">降雨量：</span>{{(Math.round(Math.random()*10)*1.1).toFixed(1)}}mm
                         </span>
                       </div>
                     </li>
@@ -297,13 +301,13 @@
                       <div>
                         <img src="../assets/daqiwendu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">大气温度：</span>27.3℃
+                          <span class="monitor-message">大气温度：</span>{{weather-Math.round(Math.random()*5)}}℃
                         </span>
                       </div>
                       <div>
                         <img src="../assets/daqishidu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">大气湿度：</span>10.0%
+                          <span class="monitor-message">大气湿度：</span>{{Number(weather2)+3}}%
                         </span>
                       </div>
                     </li>
@@ -311,13 +315,13 @@
                       <div>
                         <img src="../assets/turangwendu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">土壤10cm温度：</span>27.8℃
+                          <span class="monitor-message">土壤10cm温度：</span>{{weather-Math.round(Math.random()*5)-1}}℃
                         </span>
                       </div>
                       <div>
                         <img src="../assets/turangwendu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">土壤20cm温度：</span>27.0℃
+                          <span class="monitor-message">土壤20cm温度：</span>{{weather-Math.round(Math.random()*5)-2.5}}℃
                         </span>
                       </div>
                     </li>
@@ -325,13 +329,13 @@
                       <div>
                         <img src="../assets/turangshidu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">土壤10cm湿度：</span>17.8%
+                          <span class="monitor-message">土壤10cm湿度：</span>{{Number(weather2)-2}}%
                         </span>
                       </div>
                       <div>
                         <img src="../assets/turangshidu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">土壤20cm湿度：</span>17.8%
+                          <span class="monitor-message">土壤20cm湿度：</span>{{Number(weather2)-3.5}}%
                         </span>
                       </div>
                     </li>
@@ -339,13 +343,13 @@
                       <div>
                         <img src="../assets/zhaodu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">光照度：</span>67h
+                          <span class="monitor-message">光照度：</span>{{Math.round(Math.random()*80)+20}}h
                         </span>
                       </div>
                       <div>
                         <img src="../assets/zhengfaliang.png" height="100%" alt="">
                         <span style="white-space:nowrap">
-                          <span class="monitor-message special" style="width:93px">蒸发量：</span>27.3mm
+                          <span class="monitor-message special" style="width:93px">蒸发量：</span>{{(Math.round(Math.random()*30)*1.1).toFixed(1)}}mm
                         </span>
                       </div>
                     </li>
@@ -353,7 +357,7 @@
                       <div>
                         <img src="../assets/jiangyuliang.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">降雨量：</span>0.0mm
+                          <span class="monitor-message">降雨量：</span>{{(Math.round(Math.random()*10)*1.1).toFixed(1)}}mm
                         </span>
                       </div>
                     </li>
@@ -372,13 +376,13 @@
                       <div>
                         <img src="../assets/daqiwendu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">大气温度：</span>27.3℃
+                          <span class="monitor-message">大气温度：</span>{{weather-Math.round(Math.random()*5)}}℃
                         </span>
                       </div>
                       <div>
                         <img src="../assets/daqishidu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">大气湿度：</span>10.0%
+                          <span class="monitor-message">大气湿度：</span>{{Number(weather2)-1}}%
                         </span>
                       </div>
                     </li>
@@ -386,13 +390,13 @@
                       <div>
                         <img src="../assets/turangwendu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">土壤10cm温度：</span>27.8℃
+                          <span class="monitor-message">土壤10cm温度：</span>{{weather-Math.round(Math.random()*5)-3}}℃
                         </span>
                       </div>
                       <div>
                         <img src="../assets/turangwendu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">土壤20cm温度：</span>27.0℃
+                          <span class="monitor-message">土壤20cm温度：</span>{{weather-Math.round(Math.random()*5)-3.5}}℃
                         </span>
                       </div>
                     </li>
@@ -400,13 +404,13 @@
                       <div>
                         <img src="../assets/turangshidu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">土壤10cm湿度：</span>17.8%
+                          <span class="monitor-message">土壤10cm湿度：</span>{{Number(weather2)-2}}%
                         </span>
                       </div>
                       <div>
                         <img src="../assets/turangshidu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">土壤20cm湿度：</span>17.8%
+                          <span class="monitor-message">土壤20cm湿度：</span>{{Number(weather2)-2.8}}%
                         </span>
                       </div>
                     </li>
@@ -414,13 +418,13 @@
                       <div>
                         <img src="../assets/zhaodu.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">光照度：</span>67h
+                          <span class="monitor-message">光照度：</span>{{Math.round(Math.random()*80)+20}}h
                         </span>
                       </div>
                       <div>
                         <img src="../assets/zhengfaliang.png" height="100%" alt="">
                         <span style="white-space:nowrap">
-                          <span class="monitor-message special" style="width:93px">蒸发量：</span>27.3mm
+                          <span class="monitor-message special" style="width:93px">蒸发量：</span>{{(Math.round(Math.random()*30)*1.1).toFixed(1)}}mm
                         </span>
                       </div>
                     </li>
@@ -428,7 +432,7 @@
                       <div>
                         <img src="../assets/jiangyuliang.png" height="100%" alt="">
                         <span>
-                          <span class="monitor-message">降雨量：</span>0.0mm
+                          <span class="monitor-message">降雨量：</span>{{(Math.round(Math.random()*10)*1.1).toFixed(1)}}mm
                         </span>
                       </div>
                     </li>
@@ -591,9 +595,22 @@ export default {
       jinmihezuo2:[],
       blockinfo:[],
       polygonss:[],
+      infoWindow:null,
+      weather1:{},
+      weather2:'',
+      weather:'',
+      allbasearea:0,
     }
   },
   created () {
+    axios.get("/tq",{params:{from:'5',lat: 31.10,lng: 105.06,needMoreDay:1},
+        headers:{Authorization:"APPCODE 912f4ba38a394870aed1d60aca9a34fb"}}).then((res)=>{
+            if (res.status === 200) {
+              this.weather= res.data.showapi_res_body.now.temperature
+              this.weather1 = res.data.showapi_res_body.now
+              this.weather2 = res.data.showapi_res_body.now.sd.slice(0,2)
+            }
+        });
     // if (!window.localStorage.token) {
       console.log(111)
       let params = 'appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53'
@@ -603,14 +620,13 @@ export default {
         }
       }).then(res => {
         if (res.data.code == 200) {
-          token = 'accessToken=' + res.data.data.accessToken + '&pageStart=0&pageSize=50'
+          let token = 'accessToken=' + res.data.data.accessToken + '&pageStart=0&pageSize=50'
           window.localStorage.setItem('token', token)
         }
       })
     // }
     this._getAddress()
     if(this.$route.query.time){
-      console.log('开始')
       let that=this;
     window.addEventListener('done1', function(){
 
@@ -627,8 +643,10 @@ export default {
     this._drawRainMap()
     // this._getJson()
     let that=this;
+    that.allbasearea=0;
     axios.get('json/base_info.json').then(res => {
       for(let i=0;i<res.data.result.length;i++){
+        that.allbasearea+=res.data.result[i].area;
         that.baseDatas[i].name =res.data.result[i].name
         that.baseDatas[i].value =res.data.result[i].area
           if (that.baseScroll) {
@@ -691,11 +709,13 @@ that.markers.push(marker);
     that.map.add(marker);
     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(res.data.result[i].baseId)}})});
      marker.on("mousemove",function(e) {
-       marker.setRadius(8);
+       marker.setRadius(18);
+       marker.setOptions({fillOpacity:0.5});
        that.tip=res.data.result[i].name
        });
       marker.on("mouseout",function(e) {
         marker.setRadius(5);
+        marker.setOptions({fillOpacity:1});
         that.tip=''
         });
          }
@@ -715,8 +735,8 @@ that.markers.push(marker);
 that.hezuoshe.push(marker1);
     that.map.add(marker1);
     marker1.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(res.data.result[i].baseId)}})});
-     marker1.on("mousemove",function(e) {marker1.setRadius(10);that.tip=res.data.result[i].name});
-      marker1.on("mouseout",function(e) {marker1.setRadius(5);that.tip=''});
+     marker1.on("mousemove",function(e) {marker1.setRadius(18);marker1.setOptions({fillOpacity:0.5});that.tip=res.data.result[i].name;});
+      marker1.on("mouseout",function(e) {marker1.setRadius(5);marker1.setOptions({fillOpacity:1});that.tip=''});
     }
     if(res.data.result[i].type==3){
       that.jiatingnongchangL++;
@@ -734,8 +754,8 @@ that.hezuoshe.push(marker1);
 that.jiatingnongchang.push(marker2);
     that.map.add(marker2);
     marker2.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(res.data.result[i].baseId)}})});
-     marker2.on("mousemove",function(e) {marker2.setRadius(10);that.tip=res.data.result[i].name});
-      marker2.on("mouseout",function(e) {marker2.setRadius(5);that.tip=''});
+     marker2.on("mousemove",function(e) {marker2.setRadius(18);marker2.setOptions({fillOpacity:0.5});that.tip=res.data.result[i].name});
+      marker2.on("mouseout",function(e) {marker2.setRadius(5);marker2.setOptions({fillOpacity:1});that.tip=''});
     }
     if(res.data.result[i].type==4){
       that.jinmihezuoL++;
@@ -753,8 +773,8 @@ that.jiatingnongchang.push(marker2);
 that.jinmihezuo.push(marker3);
     that.map.add(marker3);
     marker3.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(res.data.result[i].baseId)}})});
-     marker3.on("mousemove",function(e) {marker3.setRadius(10);that.tip=res.data.result[i].name});
-      marker3.on("mouseout",function(e) {marker3.setRadius(5);that.tip=''});
+     marker3.on("mousemove",function(e) {marker3.setRadius(18);marker3.setOptions({fillOpacity:0.5});that.tip=res.data.result[i].name});
+      marker3.on("mouseout",function(e) {marker3.setRadius(5);marker3.setOptions({fillOpacity:1});that.tip=''});
     }
     }
 
@@ -861,6 +881,9 @@ that.jinmihezuo.push(marker3);
      this.map.remove(this.jinmihezuo);
     },
     all(){
+      if(this.infoWindow!=null){
+        this.infoWindow.close();
+      }
       this.removepoint();
       let that=this;
       that.markers=[];
@@ -881,8 +904,8 @@ that.jinmihezuo.push(marker3);
     that.markers.push(marker);
     that.map.add(marker);
     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
-    marker.on("mousemove",function(e) {marker.setRadius(10);that.tip=that.baseinfo[i].name});
-      marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
+    marker.on("mousemove",function(e) {marker.setRadius(18);marker.setOptions({fillOpacity:0.5});that.tip=that.baseinfo[i].name});
+      marker.on("mouseout",function(e) {marker.setRadius(5);marker.setOptions({fillOpacity:1});that.tip=''});
          }
           for(let i=0;i<that.hezuoshe2.length;i++){
            let lng=that.hezuoshe2[i].lng;
@@ -898,8 +921,8 @@ that.jinmihezuo.push(marker3);
     that.hezuoshe.push(marker);
     that.map.add(marker);
     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.hezuoshe2[i].baseId)}})});
-    marker.on("mousemove",function(e) {marker.setRadius(10);that.tip=that.hezuoshe2[i].name});
-      marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
+    marker.on("mousemove",function(e) {marker.setRadius(18);marker.setOptions({fillOpacity:0.5});that.tip=that.hezuoshe2[i].name});
+      marker.on("mouseout",function(e) {marker.setRadius(5);marker.setOptions({fillOpacity:1});that.tip=''});
          }
           for(let i=0;i<that.jiatingnongchang2.length;i++){
            let lng=that.jiatingnongchang2[i].lng;
@@ -915,8 +938,8 @@ that.jinmihezuo.push(marker3);
     that.jiatingnongchang.push(marker);
     that.map.add(marker);
     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.jiatingnongchang2[i].baseId)}})});
-    marker.on("mousemove",function(e) {marker.setRadius(10);that.tip=that.jiatingnongchang2[i].name});
-      marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
+    marker.on("mousemove",function(e) {marker.setRadius(18);marker.setOptions({fillOpacity:0.5});that.tip=that.jiatingnongchang2[i].name});
+      marker.on("mouseout",function(e) {marker.setRadius(5);marker.setOptions({fillOpacity:1});that.tip=''});
          }
           for(let i=0;i<that.jinmihezuo2.length;i++){
            let lng=that.jinmihezuo2[i].lng;
@@ -933,17 +956,22 @@ that.jinmihezuo.push(marker3);
     that.map.add(marker);
     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.jinmihezuo2[i].baseId)}})});
     marker.on("mousemove",function(e) {
-      marker.setRadius(8);
+      marker.setRadius(18);
+      marker.setOptions({fillOpacity:0.5});
       that.tip=that.jinmihezuo2[i].name;
       });
       marker.on("mouseout",function(e) {
         marker.setRadius(5);
+        marker.setOptions({fillOpacity:1});
         that.tip='';
         });
          }
 
     },
     hezuo1(){
+      if(this.infoWindow!=null){
+        this.infoWindow.close();
+      }
      this.removepoint();
      let that=this;
      that.markers=[];
@@ -961,12 +989,15 @@ that.jinmihezuo.push(marker3);
 that.markers.push(marker);
     that.map.add(marker);
     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.baseinfo[i].baseId)}})});
-    marker.on("mousemove",function(e) {marker.setRadius(10);that.tip=that.baseinfo[i].name});
-      marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
+    marker.on("mousemove",function(e) {marker.setRadius(18);marker.setOptions({fillOpacity:0.5});that.tip=that.baseinfo[i].name});
+      marker.on("mouseout",function(e) {marker.setRadius(5);marker.setOptions({fillOpacity:1});that.tip=''});
          }
 
     },
     hezuoshe1(){
+      if(this.infoWindow!=null){
+        this.infoWindow.close();
+      }
      this.removepoint();
     //  this.map.add(this.hezuoshe);
     let that=this;
@@ -985,11 +1016,14 @@ that.markers.push(marker);
 that.hezuoshe.push(marker);
     that.map.add(marker);
     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.hezuoshe2[i].baseId)}})});
-    marker.on("mousemove",function(e) {marker.setRadius(10);that.tip=that.hezuoshe2[i].name});
-      marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
+    marker.on("mousemove",function(e) {marker.setRadius(18);marker.setOptions({fillOpacity:0.5});that.tip=that.hezuoshe2[i].name});
+      marker.on("mouseout",function(e) {marker.setRadius(5);marker.setOptions({fillOpacity:1});that.tip=''});
          }
     },
     jiatin1(){
+      if(this.infoWindow!=null){
+        this.infoWindow.close();
+      }
      this.removepoint();
     //  this.map.add(this.jiatingnongchang);
     let that=this;
@@ -1008,11 +1042,14 @@ that.hezuoshe.push(marker);
 that.jiatingnongchang.push(marker);
     that.map.add(marker);
     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.jiatingnongchang2[i].baseId)}})});
-    marker.on("mousemove",function(e) {marker.setRadius(10);that.tip=that.jiatingnongchang2[i].name});
-      marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
+    marker.on("mousemove",function(e) {marker.setRadius(18);marker.setOptions({fillOpacity:0.5});that.tip=that.jiatingnongchang2[i].name});
+      marker.on("mouseout",function(e) {marker.setRadius(5);marker.setOptions({fillOpacity:1});that.tip=''});
          }
     },
     jinmi1(){
+      if(this.infoWindow!=null){
+        this.infoWindow.close();
+      }
      this.removepoint();
     //  this.map.add(this.jinmihezuo);
     let that=this;
@@ -1031,8 +1068,8 @@ that.jiatingnongchang.push(marker);
 that.jinmihezuo.push(marker);
     that.map.add(marker);
     marker.on("click",function(e) { that.$router.push({ name: 'base',query:{baseId:Number(that.jinmihezuo2[i].baseId)}})});
-    marker.on("mousemove",function(e) {marker.setRadius(10);that.tip=that.jinmihezuo2[i].name});
-    marker.on("mouseout",function(e) {marker.setRadius(5);that.tip=''});
+    marker.on("mousemove",function(e) {marker.setRadius(18);marker.setOptions({fillOpacity:0.5});that.tip=that.jinmihezuo2[i].name});
+    marker.on("mouseout",function(e) {marker.setRadius(5);marker.setOptions({fillOpacity:1});that.tip=''});
          }
     },
     changemap(){
@@ -1213,12 +1250,15 @@ if(this.weixin){
           }
       }
       option.series.push({
-        name:'最大值',
-        type:'line',
+        name:'国家标准允许最大值',
+        barWidth: 20,
+        barGap: document.body.clientWidth > 2000 ? '80%' : '30%',
+        type: 'bar',
         data: [50, 250, 100, 200, 300, 0.3, 30, 0.5],
         itemStyle: {
           normal:{
-            color: '#4ECB73'
+            color: '#4ECB73',
+            'margin-left': 20
           }
         },
       })
@@ -1614,19 +1654,19 @@ if(this.weixin){
         },
         getinfo(b){
         this.info = [];
-        this.info.push("<div style=\"color:#fff\">"+b+"</div>");
+        this.info.push("<div style=\"color:#fff;width:150px;overflow:hidden;text-align:center\"><span>"+this.baseinfo[b].name+"</span></div>");
 
     },
     selectAddress(datas, selectedData) {
       this.all();
       if(selectedData[0].label.indexOf('老马')!=-1){
 
-        this.infowindow(this.markers[7].getCenter(),'老马基地');
-        this.map.setFitView([ this.markers[7] ]);
+        this.infowindow(this.markers[7].getCenter(),7);
+        //this.map.setFitView([ this.markers[7] ]);
       }
       if(selectedData[0].label.indexOf('老马')==-1){
-        this.infowindow(this.markers[8].getCenter(),'花园基地');
-        this.map.setFitView([ this.markers[8] ]);
+        this.infowindow(this.markers[8].getCenter(),8);
+        //this.map.setFitView([ this.markers[8] ]);
       }
       if (datas.length != 0) {
         this.address = datas[1]
@@ -1658,16 +1698,20 @@ if(this.weixin){
 .map >>> .amap-info-sharp{
   border-top: 8px solid rgba(35, 35, 35, 0.6);
 }
+.map >>> .amap-info-outer {
+  overflow-x: hidden
+}
 </style>
 <style lang="stylus">
 @media screen and (min-width: 1550px)
   .base-item
     span:nth-of-type(1)
-      width 260px !important
+      width 250px !important
+      white-space nowrap
   .monitor-message
-    width 150px !important
+    width 97px !important
   .special
-    width 140px !important
+    width 93px !important
 @media screen and (max-width: 1550px)
   .base-item
     span:nth-of-type(1)
@@ -1676,6 +1720,30 @@ if(this.weixin){
     width 97px !important
   .special
     width 93px !important
+@media screen and (min-width: 2000px)
+  .changebut
+    width 180px !important
+  .company-desc
+    line-height 28px !important
+  .base-item
+    line-height 20px !important
+    span:nth-of-type(1)
+      width 535px !important
+      white-space nowrap
+    span:nth-of-type(2)
+      width 100px !important
+  .monitor-message
+    width 200px !important
+  .special
+    width 190px !important
+  .update-time
+    span
+      transform scale(0.9)
+  .base-message
+    margin-top 10px !important
+  .map-footer
+    height 38px !important
+    line-height 1.5 !important
 .base-wrapper
   margin 20px 15px 20px
   display flex
@@ -1758,6 +1826,21 @@ if(this.weixin){
         position relative
         height 550px
         background-color #26374c
+        .allarea
+          position absolute
+          right 5%
+          bottom 10%
+          z-index 99
+          .basearea
+            text-align center
+            font-weight bold
+            font-size 40px
+            line-height 80px
+            color yellow
+          .work
+            text-align center
+            color #fff
+            font-size 16px
         .twotip
           position absolute
           left 5%
@@ -1774,12 +1857,12 @@ if(this.weixin){
             vertical-align middle
         .tip
           position absolute
-          width 30%
+          width 54%
           height 30px
           background rgba(0,0,0,0.5)
           z-index 9999
           top 0
-          left 35%
+          left 23%
           color #fff
           text-align center
           line-height 30px

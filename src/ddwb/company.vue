@@ -295,4 +295,10 @@ export default {
                             background-color rgba(0, 0, 0, 0.3)
                         .ivu-carousel-arrow:hover
                             background-color rgba(0, 0, 0, 0.8)
+@media screen and (min-width: 2000px)
+  .lunbo-title
+    height 350px !important
+  .name
+    width 185px !important
+    white-space nowrap
 </style>

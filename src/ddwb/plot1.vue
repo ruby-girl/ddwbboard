@@ -73,10 +73,10 @@
                 </div>
                <div style="width:100%;height:70%;">
                    <table style="width:90%;height:80%;margin:2% 4% 4% 4%;background-color:rgba(150, 150, 150, 0.3);">
-                      <tr style="text-align:center;color:#fff;font-size:15px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
+                      <!-- <tr style="text-align:center;color:#fff;font-size:15px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
                          <th style="width:50%;color:#fff;height:30px;border: 1px solid rgba(221, 215, 215, 0.3);">姓名</th>
                          <th style="width:50%;color:#fff;height:30px;border: 1px solid rgba(221, 215, 215, 0.3);">职位</th>
-                       </tr>
+                       </tr> -->
                      <template v-for="(v,k) in people">
                        <tr :key="k" style="text-align:center;color:#fff;font-size:15px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
                          <td style="width:50%;color:#fff;border: 1px solid rgba(221, 215, 215, 0.3);">{{v.name}}</td>
@@ -660,7 +660,7 @@ this.timeFormate(new Date());
 }
 </script>
 <style scoped>
-@media screen and (min-width: 1550px) {
+@media screen and (min-width: 1550px ) {
     .testname {
       width: 100px !important;
     }
@@ -675,6 +675,11 @@ this.timeFormate(new Date());
     .tupian img {
       height: 100% !important
     }
+}
+@media screen and (min-width: 2000px) {
+  .testname {
+    width: 150px !important;
+  }
 }
 .testname:hover{
  background:blue;

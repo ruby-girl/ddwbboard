@@ -20,7 +20,7 @@ export default {
     methods: {
         _drawPolygonal () {
             let polygonalChart = this.$echarts.init(this.$refs.polygonal);
-            var option = chartsType.charts(this.tdataAxis,this.datas,'用量（亩/kg）','bar','有机肥','#F4286D','x');
+            var option = chartsType.charts(this.tdataAxis,this.datas,'用量（亩/kg）','bar','有机肥','#66CD00','x');
             option.legend = {
                 left: 'right',
                 textStyle: {
@@ -36,10 +36,10 @@ export default {
                     emphasis: {
                             shadowBlur: 10,
                             shadowOffsetX: 0,
-                            shadowColor: '#289CF4'
+                            shadowColor: '#F4286D'
                     },
                     normal:{
-                            color: '#289CF4'
+                            color: '#F4286D'
                     }
                 },
             })

@@ -26,6 +26,7 @@ export default {
         axios.get("/tq",{params:{from:'5',lat: 31.10,lng: 105.06,needMoreDay:1},
         headers:{Authorization:"APPCODE 912f4ba38a394870aed1d60aca9a34fb"}}).then((res)=>{
             if (res.status === 200) {
+              console.log(res);
               this.weather = res.data.showapi_res_body.now.weather
             }
         });

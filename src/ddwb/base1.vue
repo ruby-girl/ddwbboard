@@ -52,10 +52,10 @@
               </div>
               <div style="width:100%;height:67%;overflow:hidden;">
                 <table style="width:90%;height:80%;margin:5px auto;background-color:rgba(150, 150, 150, 0.3);">
-                      <tr style="text-align:center;color:#fff;font-size:15px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
+                      <!-- <tr style="text-align:center;color:#fff;font-size:15px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
                         <th style="width:50%;color:#fff;height:30px;border: 1px solid rgba(221, 215, 215, 0.3);">姓名</th>
                          <th style="width:50%;color:#fff;height:30px;border: 1px solid rgba(221, 215, 215, 0.3);">职位</th>
-                       </tr>
+                       </tr> -->
                       <template v-for="(v,k) in basemannager">
                       <tr :key="k" style="text-align:center;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
                         <td style="width:50%;color:	#00FF00;border: 1px solid rgba(221, 215, 215, 0.1);">{{v.name}}</td>
@@ -103,7 +103,7 @@
                 <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">The data map</h4>
               </div>
               <div id="container" style="width:100%;height:90%;position:relative">
-               <div style="position:absolute;width:30%;height:30px;background:rgba(0,0,0,0.5);z-index:99;top:0;left:35%;color:#fff;text-align:center;line-height:30px;">
+               <div style="position:absolute;width:40%;height:30px;background:rgba(0,0,0,0.5);z-index:99;top:0;left:30%;color:#fff;text-align:center;line-height:30px;">
                  {{tip}}
                </div>
               </div>
@@ -117,20 +117,20 @@
                    <table id="sroll" style="width:100%;height:100%;position:relative; top:0">
                      <template v-for="(v,k) in workrecord">
                        <tr :key="k" style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:25%;color:#00FF00">{{v.time}}</td>
-                         <td style="width:25%">{{v.start}}</td>
+                         <td style="width:15%;color:#00FF00">{{v.time}}</td>
+                         <td style="width:20%">{{v.start}}</td>
                          <td style="width:25%;color:#f1ff66">{{v.recordname}}</td>
-                         <td style="width:25%">{{v.name}}</td>
+                         <td style="width:40%">{{v.name}}</td>
                        </tr>
                      </template>
                    </table>
                     <table id="sroll1" style="width:100%;height:100%;position:relative; top:0">
                      <template v-for="(v,k) in workrecord">
                        <tr :key="k" style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:25%;color:#00FF00">{{v.time}}</td>
-                         <td style="width:25%">{{v.start}}</td>
+                         <td style="width:15%;color:#00FF00">{{v.time}}</td>
+                         <td style="width:20%">{{v.start}}</td>
                          <td style="width:25%;color:#f1ff66">{{v.recordname}}</td>
-                         <td style="width:25%">{{v.name}}</td>
+                         <td style="width:40%">{{v.name}}</td>
                        </tr>
                      </template>
                    </table>
@@ -237,6 +237,7 @@
       :title="title"
       v-model="visible"
       @ok="handleOk"
+      :footer="null"
     >
       <img style="width:100%;height:100%;" :src="getbaogao(this.baogao)">
     </a-modal>
@@ -455,7 +456,7 @@ axios.get("json/plot1.json").then((res)=>{
 
   methods:{
     backhome(){
-     this.$router.push({ name: 'home',query:{time:new Date().getTime()}});
+     this.$router.push({ name: 'home'});
     },
      addBlockOnMap(value){
             console.log(value);
@@ -546,13 +547,17 @@ if (res.data.code == 200) {
                 children: []
               })
               res.data.data.forEach((item,i) => {
-                if (item.deviceName.indexOf('老马') ===　-1) {
+                if (item.deviceName.indexOf('老马') ==　-1) {
+                  if(i>2){
+                    let a=i-3;
                   this.addresss[0].children.push({
-                    label: '通道'+i,
+                    label: '通道'+a,
                     value: res.data.data[i].liveAddress
                   })
                 }
+                }
               })
+              console.log(this.addresss);
             }
           }
 } else if (res.data.code == 10002) {
@@ -1084,6 +1089,19 @@ this.timeFormate(new Date());
 }
 </script>
 <style scoped>
+#container >>> .amap-info-content {
+background-color:rgba(35, 35, 35, 0.6);
+ border-radius:10px 10px;
+box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 10px;
+}
+#container >>> .amap-info-sharp{
+border-top: 8px solid rgba(35, 35, 35, 0.6);
+}
+</style>
+<style lang='stylus'>
+@media screen and (min-width: 2000px)
+  body
+    line-height 28px !important
 .headleft
 {
 position: relative;
@@ -1112,12 +1130,5 @@ transform:rotate(37deg);
 -webkit-transform:rotate(37deg); /* Safari 和 Chrome */
 -o-transform:rotate(37deg); /* Opera */
 }
-#container >>> .amap-info-content {
-background-color:rgba(35, 35, 35, 0.6);
- border-radius:10px 10px;
-box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 10px;
-}
-#container >>> .amap-info-sharp{
-border-top: 8px solid rgba(35, 35, 35, 0.6);
-}
+
 </style>
