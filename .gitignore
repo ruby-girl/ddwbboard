@@ -2,8 +2,6 @@
 node_modules
 /src/visual/assets
 /dist
-*.png
-*.jpg
 
 # local env files
 .env.local

@@ -115,7 +115,7 @@
                         <div class="descs">Service Model</div>
                     </div>
                     <div class="servcie">
-                        <img src="../assets/service.jpg" width="100%" height="320px" alt="">
+                        <!-- <img src="../assets/service.jpg" width="100%" height="320px" alt=""> -->
                     </div>
                 </div>
                 <div class="main-honors">
@@ -127,22 +127,22 @@
                         <div class="lunbo">
                             <Carousel autoplay loop class="lunbo-wrapper">
                                 <CarouselItem>
-                                    <img src="../assets/home_0.jpg" width="100%" height="340px" alt="">
+                                   asd 
                                 </CarouselItem>
                                 <CarouselItem>
-                                    <img src="../assets/home_1.jpg" width="100%" height="340px" alt="">
+                                   sedasf 
                                 </CarouselItem>
                                 <CarouselItem>
-                                    <img src="../assets/home_2.jpg" width="100%" height="340px" alt="">
+                                   asd 
                                 </CarouselItem>
                                 <CarouselItem>
-                                    <img src="../assets/home_3.jpg" width="100%" height="340px" alt="">
+                                   asd 
                                 </CarouselItem>
                                 <CarouselItem>
-                                    <img src="../assets/home_4.jpg" width="100%" height="340px" alt="">
+                                   asd 
                                 </CarouselItem>
                                 <CarouselItem>
-                                    <img src="../assets/home_5.jpg" width="100%" height="340px" alt="">
+                                    asd 
                                 </CarouselItem>
                             </Carousel>
                         </div>

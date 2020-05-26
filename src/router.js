@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import home from '@/ddwb/Home.vue'
 import base1 from '@/ddwb/base1.vue'
-import plot1 from '@/ddwb/plot1.vue'
 import company from '@/ddwb/company.vue'
 
 Vue.use(Router);
@@ -33,12 +32,6 @@ export default new Router({
         path: '/base',
         name:'base',
         component: base1,
-        hidden: true,
-      },
-      {
-        path: '/plot',
-        name:'plot',
-        component: plot1,
         hidden: true,
       },
       {
