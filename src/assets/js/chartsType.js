@@ -24,7 +24,7 @@ var chartsType = {
 						bottom:20,
 						containLabel:true
 					},
-				    xAxis: {
+				    xAxis: [{
 				        type: 'category',
 				        data: dataAxis,
 				        axisLabel: {
@@ -38,8 +38,8 @@ var chartsType = {
 		                        color: '#fff'
 		                    }
 		                }
-				    },
-				    yAxis: {
+				    }],
+				    yAxis:[{
 				    	minInterval:1,
 				        type: 'value',
 				        axisLabel: {
@@ -56,7 +56,7 @@ var chartsType = {
 		                        color: '#fff'
 		                    }
 		                }
-				    },
+				    }],
 				    series: [{
 				    	name:name,
 				    	barWidth:20,
@@ -268,6 +268,53 @@ var chartsType = {
 			    ]
 			};
 			return option;
+		}else if(type=='pie'){
+			var option = {
+				tooltip: {
+					trigger: 'item',
+					formatter: '{a} <br/>{b}: {c} ({d}%)'
+				},
+				legend: {
+					orient: 'vertical',
+					left: 10,
+					data: ['订单贷', '农资贷', '劳务贷'],
+					textStyle:{
+						color: '#ffffff'//字体颜色
+					}
+				},
+				series: [
+					{
+						name: '访问来源',
+						type: 'pie',
+						radius: ['40%', '60%'],
+						avoidLabelOverlap: false,
+						label: {
+							show: true,
+							position: 'left'
+						},
+						tooltip : {
+
+							trigger: 'item',
+						  show:false,
+							formatter: "{a} <br/>{b} : {c} ({d}%)"
+						},
+						emphasis: {
+							label: {
+								show: false,
+								fontSize: '30',
+								fontWeight: 'bold'
+							}
+						},
+						
+						data: [
+							{value: 335, name: '订单贷',itemStyle:{color: '#7C89EB'}},
+							{value: 310, name: '农资贷',itemStyle:{color: '#5DC1FA'}},
+							{value: 234, name: '劳务贷',itemStyle:{color: '#14E6C4'}}
+						]
+					}
+				]
+			};
+			return option;			
 		}
 	}
 }

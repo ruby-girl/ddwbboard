@@ -116,362 +116,135 @@
           </div>
         </div>
         <div class="base-message">
-          <div class="base">
+          <div class="base display-flex justify-content-flex-justify">
             <!-- <baseMap></baseMap> -->
-           <div class="item-bg-y">
-             <div class="title">操作工单</div>
-             <ul style="position:relative; top:30px">
-                <li class="base-item">
-                   <span
-                    style="text-align: left;display:inline-block; width: 80px;color: #fff;text-align:center"
-                  >姓名</span>
+            <div class="item-bg-y">
+              <div class="title">操作工单</div>
+              <ul
+                style="position:relative;list-style:none;background:rgba(255,255,255,0.2);font-size:13px;"
+              >
+                <li class="base-item display-flex justify-content-flex-center">
+                  <span style="text-align: left;display:inline-block; width: 80px;color: #fff;">姓名</span>
                   <span
-                    style="text-align: left;display:inline-block; width: 150px;color: #fff;text-align:center"
+                    style="text-align: center;display:inline-block; width: 130px;color: #fff;"
                   >时间</span>
-                  <span style="color: #fff;display:inline-block; width: 80px;text-align:center">数</span>
-                </li>
-              </ul> 
-              <div class="base-info" id="base-info">       
-              <ul id="base-ul1" style="position:relative; top:30px">
-                <li class="base-item" v-for="(item,index) in this.baseDatas" :key="index">
                   <span
-                    style="text-align: left;display:inline-block; width: 150px;color: #fff"
-                  >张三</span>
+                    style="color: #fff;display:inline-block; width: 100px;text-align: center;"
+                  >农事操作</span>
                   <span
-                    style="text-align: left;display:inline-block; width: 150px;color: #fff"
-                  >{{item.name}}</span>
-                  <span style="color: #fff;display:inline-block; width: 80px;">{{item.value}}亩</span>
+                    style="color: #fff;display:inline-block; width: 100px;text-align: center;"
+                  >农事投入</span>
                 </li>
               </ul>
+              <div class="base-info" id="base-info">
+                <ul id="base-ul1" style="position:relative; top:30px">
+                  <li class="base-item" v-for="(item,index) in this.baseDatas" :key="index">
+                    <span
+                      style="text-align: left;display:inline-block; width: 80px;color: #0AFBE2"
+                    >张三</span>
+                    <span
+                      style="text-align: left;display:inline-block; width: 130px;color: #fff"
+                    >2012-12-12 11:11:11</span>
+                    <span
+                      style="color: #0AFBE2;display:inline-block; width: 100px;text-align: center;"
+                    >农事操作</span>
+                    <span
+                      style="color: #fff;display:inline-block; width: 100px;text-align: center;"
+                    >农事投入</span>
+                  </li>
+                </ul>
+              </div>
             </div>
-           </div>
+            <!-- 地图下柱形图 -->
+            <div class="item-bg-y">
+              <div class="title">年度有机肥用量</div>
+              <div style="height:130px;" class="temperature-rain">
+                <div class="airs air-temperature">
+                  <polygonal></polygonal>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 底部轮播 -->
+        <div class="base-wrapper wrapper-box">
+          <div class="temperature-rain" style="margin-top:15px;">
+            <div class="monitor-data" style="position:relative">
+               <div class="wrpper-title">气象监测</div>
+              <Carousel class="lunbo-wrapper" radius-dot>
+                <CarouselItem v-for="i in 5" :key="i">
+                  <div class="display-flex justify-content-flex-justify">
+                    <div></div>
+                    <div class="color-fff">羊基地</div>
+                  </div>
+                  <div class="display-flex justify-content-flex-justify">
+                    <div v-for="(item,n) in warpperList" :key="n" style="text-align:center">
+                    <div class="color-main" style="font-weight:bold;font-size:18px">{{item.num}}</div>
+                    <img style="margin-bottom:5px" src="../assets/new/pic3.png" alt />
+                    <div>
+                      <i :class="['iconfont','color-main',item.icon]"></i>
+                      <span style="color:#fff;margin-left:5px;">{{item.name}}</span>
+                    </div>
+                  </div>
+                  </div>
+                </CarouselItem>
+              </Carousel>
+            </div>
           </div>
         </div>
       </div>
-      <div class="temperature-rain">
-        <div class="airs air-temperature">
+      <div class="temperature-rain" style="margin-left:30px;">
+       <div class="bg-item-box left-height" style="max-height:250px !important;padding:15px 0;">
           <div class="desc">
-            <div class="title">有机肥</div>
-            <div class="descs">Organic fertilizer</div>
+            <div class="title">采购订单</div>
           </div>
-          <polygonal></polygonal>
+          <div>
+           <div class="display-flex justify-content-flex-justify right-box-padding">
+                    <div v-for="(item,n) in rightList" :key="n" style="text-align:center">
+                    <div class="color-main" style="font-weight:bold;font-size:18px">{{item.num}}</div>
+                    <img style="margin-bottom:5px" src="../assets/new/pic3.png" alt />
+                    <div style="color:#fff;">
+                     {{item.name}}
+                    </div>
+                  </div>
+                  </div>
+          </div>
         </div>
-        <div class="airs air-humidity">
+        <div class="bg-item-box left-height" style="max-height:250px !important;padding:15px 0;margin-top:20px;">
           <div class="desc">
-            <div class="title">基地土壤重金属检测平均值</div>
-            <div class="descs">Base soil heavy metal detection average</div>
+            <div class="title">保险服务</div>
           </div>
-          <div class="rain-map" ref="rainMap"></div>
-        </div>
-        <div class="airs air-pressure">
-          <div class="desc pos">
-            <div class="title">监测数据</div>
-          </div>
-          <div class="monitor-data">
-            <Carousel class="lunbo-wrapper" radius-dot>
-              <CarouselItem>
-                <div class="monitor-base">
-                  <span>永明良种繁育基地</span>
-                  <div class="update-time">
-                    <span>{{date}}</span>
-                    <span>{{hours}}</span>
+          <div>
+           <div class="display-flex justify-content-flex-justify right-box-padding">
+                    <div v-for="(item,n) in rightList" :key="n" style="text-align:center">
+                    <div class="color-main right-bx-bg" style="font-weight:bold;font-size:18px">{{item.num}}</div>
+                   
+                    <div style="color:#fff;">
+                     {{item.name}}
+                    </div>
                   </div>
-                </div>
-                <ul>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">大气温度：</span>
-                        {{weather?weather:null}}℃
-                      </span>
-                    </div>
-                    <div>
-                      <span>
-                        <span class="monitor-message">大气湿度：</span>
-                        {{weather1?weather1.sd:null}}
-                      </span>
-                    </div>
-                  </li>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">土壤10cm温度：</span>
-                        {{weather1?weather1.temperature-1.5:null}}℃
-                      </span>
-                    </div>
-                    <div>
-                      <span>
-                        <span class="monitor-message">土壤20cm温度：</span>
-                        {{weather1?weather1.temperature-1.9:null}}℃
-                      </span>
-                    </div>
-                  </li>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">土壤10cm湿度：</span>
-                        {{Number(weather2)-5}}%
-                      </span>
-                    </div>
-                    <div>
-                      <span>
-                        <span class="monitor-message">土壤20cm湿度：</span>
-                        {{Number(weather2)-6.5}}%
-                      </span>
-                    </div>
-                  </li>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">光照度：</span>
-                        {{Math.round(Math.random()*80)+20}}h
-                      </span>
-                    </div>
-                    <div>
-                      <span style="white-space:nowrap">
-                        <span class="monitor-message special" style="width:93px">蒸发量：</span>
-                        {{(Math.round(Math.random()*30)*1.1).toFixed(1)}}mm
-                      </span>
-                    </div>
-                  </li>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">降雨量：</span>
-                        {{(Math.round(Math.random()*10)*1.1).toFixed(1)}}mm
-                      </span>
-                    </div>
-                  </li>
-                </ul>
-              </CarouselItem>
-              <CarouselItem>
-                <div class="monitor-base">
-                  <span>老马基地</span>
-                  <div class="update-time">
-                    <span>{{date}}</span>
-                    <span>{{hours}}</span>
                   </div>
-                </div>
-                <ul>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">大气温度：</span>
-                        {{weather-Math.round(Math.random()*5)}}℃
-                      </span>
-                    </div>
-                    <div>
-                      <span>
-                        <span class="monitor-message">大气湿度：</span>
-                        {{Number(weather2)-6}}%
-                      </span>
-                    </div>
-                  </li>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">土壤10cm温度：</span>
-                        {{weather-Math.round(Math.random()*5)-3.3}}℃
-                      </span>
-                    </div>
-                    <div>
-                      <span>
-                        <span class="monitor-message">土壤20cm温度：</span>
-                        {{weather-Math.round(Math.random()*5)-3.8}}℃
-                      </span>
-                    </div>
-                  </li>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">土壤10cm湿度：</span>
-                        {{Number(weather2)-6.6}}%
-                      </span>
-                    </div>
-                    <div>
-                      <span>
-                        <span class="monitor-message">土壤20cm湿度：</span>
-                        {{Number(weather2)-7.6}}%
-                      </span>
-                    </div>
-                  </li>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">光照度：</span>
-                        {{Math.round(Math.random()*80)+20}}h
-                      </span>
-                    </div>
-                    <div>
-                      <span style="white-space:nowrap">
-                        <span class="monitor-message special" style="width:93px">蒸发量：</span>
-                        {{(Math.round(Math.random()*30)*1.1).toFixed(1)}}mm
-                      </span>
-                    </div>
-                  </li>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">降雨量：</span>
-                        {{(Math.round(Math.random()*10)*1.1).toFixed(1)}}mm
-                      </span>
-                    </div>
-                  </li>
-                </ul>
-              </CarouselItem>
-              <CarouselItem>
-                <div class="monitor-base">
-                  <span>花园基地</span>
-                  <div class="update-time">
-                    <span>{{date}}</span>
-                    <span>{{hours}}</span>
-                  </div>
-                </div>
-                <ul>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">大气温度：</span>
-                        {{weather-Math.round(Math.random()*5)}}℃
-                      </span>
-                    </div>
-                    <div>
-                      <span>
-                        <span class="monitor-message">大气湿度：</span>
-                        {{Number(weather2)+3}}%
-                      </span>
-                    </div>
-                  </li>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">土壤10cm温度：</span>
-                        {{weather-Math.round(Math.random()*5)-1}}℃
-                      </span>
-                    </div>
-                    <div>
-                      <span>
-                        <span class="monitor-message">土壤20cm温度：</span>
-                        {{weather-Math.round(Math.random()*5)-2.5}}℃
-                      </span>
-                    </div>
-                  </li>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">土壤10cm湿度：</span>
-                        {{Number(weather2)-2}}%
-                      </span>
-                    </div>
-                    <div>
-                      <span>
-                        <span class="monitor-message">土壤20cm湿度：</span>
-                        {{Number(weather2)-3.5}}%
-                      </span>
-                    </div>
-                  </li>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">光照度：</span>
-                        {{Math.round(Math.random()*80)+20}}h
-                      </span>
-                    </div>
-                    <div>
-                      <span style="white-space:nowrap">
-                        <span class="monitor-message special" style="width:93px">蒸发量：</span>
-                        {{(Math.round(Math.random()*30)*1.1).toFixed(1)}}mm
-                      </span>
-                    </div>
-                  </li>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">降雨量：</span>
-                        {{(Math.round(Math.random()*10)*1.1).toFixed(1)}}mm
-                      </span>
-                    </div>
-                  </li>
-                </ul>
-              </CarouselItem>
-              <CarouselItem>
-                <div class="monitor-base">
-                  <span>花园良种繁育园</span>
-                  <div class="update-time">
-                    <span>{{date}}</span>
-                    <span>{{hours}}</span>
-                  </div>
-                </div>
-                <ul>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">大气温度：</span>
-                        {{weather-Math.round(Math.random()*5)}}℃
-                      </span>
-                    </div>
-                    <div>
-                      <span>
-                        <span class="monitor-message">大气湿度：</span>
-                        {{Number(weather2)-1}}%
-                      </span>
-                    </div>
-                  </li>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">土壤10cm温度：</span>
-                        {{weather-Math.round(Math.random()*5)-3}}℃
-                      </span>
-                    </div>
-                    <div>
-                      <span>
-                        <span class="monitor-message">土壤20cm温度：</span>
-                        {{weather-Math.round(Math.random()*5)-3.5}}℃
-                      </span>
-                    </div>
-                  </li>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">土壤10cm湿度：</span>
-                        {{Number(weather2)-2}}%
-                      </span>
-                    </div>
-                    <div>
-                      <span>
-                        <span class="monitor-message">土壤20cm湿度：</span>
-                        {{Number(weather2)-2.8}}%
-                      </span>
-                    </div>
-                  </li>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">光照度：</span>
-                        {{Math.round(Math.random()*80)+20}}h
-                      </span>
-                    </div>
-                    <div>
-                      <span style="white-space:nowrap">
-                        <span class="monitor-message special" style="width:93px">蒸发量：</span>
-                        {{(Math.round(Math.random()*30)*1.1).toFixed(1)}}mm
-                      </span>
-                    </div>
-                  </li>
-                  <li class="monitor-item">
-                    <div>
-                      <span>
-                        <span class="monitor-message">降雨量：</span>
-                        {{(Math.round(Math.random()*10)*1.1).toFixed(1)}}mm
-                      </span>
-                    </div>
-                  </li>
-                </ul>
-              </CarouselItem>
-            </Carousel>
           </div>
         </div>
+        <!-- 贷款服务-饼图 -->
+        <div class="bg-item-box left-height" style="max-height:250px !important;padding:15px 0;margin-top:20px;">
+          <div class="desc">
+            <div class="title">贷款服务</div>
+          </div>
+          <div style="position:relative">
+            <img src="../assets/new/pic6.png" class="pie-bg">
+           <div style="height:200px"  ref="loansChart"></div>
+          </div>
+        </div>
+        <!-- 地图下柱形图 -->
+            <div class="item-bg-y bg-item-box"  style="max-height:250px !important;padding:15px 0;margin-top:20px;">
+              <div class="last-title">监测服务</div>
+              <div style="height:165px;" >
+                <div class="airs air-temperature">
+                  <echartslLine></echartslLine>
+                </div>
+              </div>
+            </div>
       </div>
     </div>
     <!-- <Foot style="margin:0px;"/> -->
@@ -482,6 +255,8 @@ import headers from "@/components/header/header";
 import baseMap from "@/components/baseMap/baseMap";
 import MapLoader from "@/utils/loadMap.js";
 import polygonal from "@/components/polygonal/polygonal";
+import echartslLine from "@/components/echartslLine/echartslLine";
+
 import Foot from "@/components/layouts/GlobalFooter.vue";
 import chartsType from "../assets/js/chartsType.js";
 import roll from "../assets/js/roll.js";
@@ -495,6 +270,7 @@ export default {
     headers,
     baseMap,
     polygonal,
+    echartslLine,
     Foot
   },
   data() {
@@ -630,7 +406,22 @@ export default {
       weather1: {},
       weather2: "",
       weather: "",
-      allbasearea: 0
+      allbasearea: 0,
+      warpperList: [
+        { num: "22", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" }
+      ],
+      rightList:[{ num: "22", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" }],
+      mapIcon:require("../assets/new/icon_positioning.png")
     };
   },
   created() {
@@ -679,7 +470,8 @@ export default {
       clearInterval(this.baseScroll.timer);
     }
     this._drawCityMap();
-    this._drawRainMap();
+    // this._drawRainMap();
+    
     this._drawLine(); //左侧折线图
     // this._getJson()
     let that = this;
@@ -718,19 +510,12 @@ export default {
         that.map.setLayers([googleLayer, roadNetLayer]);
         axios.get("json/blockinfo.json").then(res => {
           that.blockinfo = res.data.result;
-          that.addBlockOnMap();
+          // that.addBlockOnMap();
         });
         that.baseinfo = [];
-        that.jinmihezuo2 = [];
-        that.hezuoshe2 = [];
-        that.jiatingnongchang2 = [];
         that.baseLength = 0;
-        that.jinmihezuoL = 0;
-        that.hezuosheL = 0;
-        that.jiatingnongchangL = 0;
-
         for (let i = 0; i < res.data.result.length; i++) {
-          if (res.data.result[i].type == 1) {
+          if (res.data.result[i].type == 3) {
             that.totalArea += res.data.result[i].area;
 
             that.mapDatas.push({
@@ -742,13 +527,10 @@ export default {
             that.baseinfo.push(res.data.result[i]);
             let lng = res.data.result[i].lng;
             let lat = res.data.result[i].lat;
-            let marker = new AMap.CircleMarker({
-              radius: 5,
-              topWhenClick: true,
-              zIndex: 999,
-              fillColor: "#fe5858",
-              strokeColor: "#fe5858",
-              center: new AMap.LngLat(lng, lat)
+            let marker = new AMap.Marker({
+              position: new AMap.LngLat(lng, lat),
+              offset: new AMap.Pixel(-10, -10),
+              icon:that.mapIcon         
             });
             that.markers.push(marker);
             that.map.add(marker);
@@ -769,129 +551,35 @@ export default {
               that.tip = "";
             });
           }
-          if (res.data.result[i].type == 2) {
-            that.hezuosheL++;
-            that.hezuoshe2.push(res.data.result[i]);
-            let lng = res.data.result[i].lng;
-            let lat = res.data.result[i].lat;
-            let marker1 = new AMap.CircleMarker({
-              radius: 5,
-              topWhenClick: true,
-              zIndex: 999,
-              fillColor: "#dc9748",
-              strokeColor: "#dc9748",
-              center: new AMap.LngLat(lng, lat)
-            });
-            that.hezuoshe.push(marker1);
-            that.map.add(marker1);
-            marker1.on("click", function(e) {
-              that.$router.push({
-                name: "base",
-                query: { baseId: Number(res.data.result[i].baseId) }
-              });
-            });
-            marker1.on("mousemove", function(e) {
-              marker1.setRadius(18);
-              marker1.setOptions({ fillOpacity: 0.5 });
-              that.tip = res.data.result[i].name;
-            });
-            marker1.on("mouseout", function(e) {
-              marker1.setRadius(5);
-              marker1.setOptions({ fillOpacity: 1 });
-              that.tip = "";
-            });
-          }
-          if (res.data.result[i].type == 3) {
-            that.jiatingnongchangL++;
-            that.jiatingnongchang2.push(res.data.result[i]);
-            let lng = res.data.result[i].lng;
-            let lat = res.data.result[i].lat;
-            let marker2 = new AMap.CircleMarker({
-              radius: 5,
-              topWhenClick: true,
-              zIndex: 999,
-              fillColor: "#289CF4",
-              strokeColor: "#289CF4",
-              center: new AMap.LngLat(lng, lat)
-            });
-            that.jiatingnongchang.push(marker2);
-            that.map.add(marker2);
-            marker2.on("click", function(e) {
-              that.$router.push({
-                name: "base",
-                query: { baseId: Number(res.data.result[i].baseId) }
-              });
-            });
-            marker2.on("mousemove", function(e) {
-              marker2.setRadius(18);
-              marker2.setOptions({ fillOpacity: 0.5 });
-              that.tip = res.data.result[i].name;
-            });
-            marker2.on("mouseout", function(e) {
-              marker2.setRadius(5);
-              marker2.setOptions({ fillOpacity: 1 });
-              that.tip = "";
-            });
-          }
-          if (res.data.result[i].type == 4) {
-            that.jinmihezuoL++;
-            that.jinmihezuo2.push(res.data.result[i]);
-            let lng = res.data.result[i].lng;
-            let lat = res.data.result[i].lat;
-            let marker3 = new AMap.CircleMarker({
-              radius: 5,
-              topWhenClick: true,
-              zIndex: 999,
-              fillColor: "#fe58fe",
-              strokeColor: "#fe58fe",
-              center: new AMap.LngLat(lng, lat)
-            });
-            that.jinmihezuo.push(marker3);
-            that.map.add(marker3);
-            marker3.on("click", function(e) {
-              that.$router.push({
-                name: "base",
-                query: { baseId: Number(res.data.result[i].baseId) }
-              });
-            });
-            marker3.on("mousemove", function(e) {
-              marker3.setRadius(18);
-              marker3.setOptions({ fillOpacity: 0.5 });
-              that.tip = res.data.result[i].name;
-            });
-            marker3.on("mouseout", function(e) {
-              marker3.setRadius(5);
-              marker3.setOptions({ fillOpacity: 1 });
-              that.tip = "";
-            });
-          }
         }
       });
+
     });
+    this._dramLoansChart()
   },
   methods: {
-    addBlockOnMap() {
-      for (let i = 0; i < this.blockinfo.length; i++) {
-        let item = this.blockinfo[i];
-        if (
-          item.remark != undefined &&
-          item.remark != null &&
-          item.remark.trim() != ""
-        ) {
-          let remarkJson2 = eval("(" + item.remark + ")");
-          let newPath = [];
-          for (let i = 0; i < remarkJson2.path.length; i++) {
-            let point = remarkJson2.path[i];
-            newPath.push(new AMap.LngLat(point.lng, point.lat));
-          }
-          remarkJson2.path = newPath;
-          let polygon2 = new AMap.Polygon(remarkJson2);
-          this.polygonss = [];
-          this.polygonss.push(polygon2);
-          this.map.add(polygon2);
-        }
-      }
-    },
+    // addBlockOnMap() {
+    //   for (let i = 0; i < this.blockinfo.length; i++) {
+    //     let item = this.blockinfo[i];
+    //     if (
+    //       item.remark != undefined &&
+    //       item.remark != null &&
+    //       item.remark.trim() != ""
+    //     ) {
+    //       let remarkJson2 = eval("(" + item.remark + ")");
+    //       let newPath = [];
+    //       for (let i = 0; i < remarkJson2.path.length; i++) {
+    //         let point = remarkJson2.path[i];
+    //         newPath.push(new AMap.LngLat(point.lng, point.lat));
+    //       }
+    //       remarkJson2.path = newPath;
+    //       let polygon2 = new AMap.Polygon(remarkJson2);
+    //       this.polygonss = [];
+    //       this.polygonss.push(polygon2);
+    //       this.map.add(polygon2);
+    //     }
+    //   }
+    // },
     removepoint() {
       this.map.remove(this.markers);
       this.map.remove(this.hezuoshe);
@@ -1090,7 +778,7 @@ export default {
         that.map.add(marker);
         marker.on("click", function(e) {
           that.$router.push({
-            name: "base",
+            name: "company",
             query: { baseId: Number(that.hezuoshe2[i].baseId) }
           });
         });
@@ -1305,6 +993,34 @@ export default {
             });
           });
         });
+    },
+    _dramLoansChart(){
+       //左侧折线图
+      let rainChart = this.$echarts.init(this.$refs.loansChart);
+      var option = chartsType.charts(
+        ["镍", "锌", "铜", "总铬", "铅", "镉", "总砷", "总汞"],
+        this.metalDatas,
+        "万元/吨",
+        "pie",
+        "",
+        "#0AFBE2",
+        ""
+      );
+      // option.series.push({
+      //   name: "国家标准允许最大值",
+      //   barWidth: 20,
+      //   barGap: document.body.clientWidth > 2000 ? "80%" : "30%",
+      //   type: "bar",
+      //   data: [50, 250, 100, 200, 300, 0.3, 30, 0.5],
+      //   itemStyle: {
+      //     normal: {
+      //       color: "#4ECB73",
+      //       "margin-left": 20
+      //     }
+      //   }
+      // });
+      console.info('info',option)
+      rainChart.setOption(option);
     },
     _drawLine() {
       //左侧折线图
@@ -1709,38 +1425,6 @@ export default {
             }
             // zlevel: 0
           }
-          // {
-          //     name: "农户",
-          //     type: "effectScatter",
-          //     coordinateSystem: "geo",
-          //     data: this.plotDatas,
-          //     showEffectOn: "render",
-          //     rippleEffect: {
-          //         brushType: "stroke"
-          //     },
-          //     hoverAnimation: true,
-          //     label: {
-          //         normal: {
-          //             formatter: "{b}",
-          //             position: "top",
-          //             show: false
-          //         },
-          //         emphasis: {
-          //             show: true,
-          //             textStyle: {
-          //                 color: "white",
-          //                 fontSize: 16,
-          //                 fontWeight: 700
-          //             }
-          //         }
-          //     },
-          //     itemStyle: {
-          //         normal: {
-          //             color: '#7f42a0'
-          //         }
-          //     },
-          //     // zlevel: 0
-          // },
         ]
       };
     },
@@ -1803,7 +1487,7 @@ export default {
   overflow-x: hidden;
 }
 </style>
-<style lang="stylus">
+<style lang="stylus" scoped>
 @media screen and (min-width: 1550px) {
   .base-item {
     span:nth-of-type(1) {
@@ -1889,9 +1573,9 @@ export default {
 }
 
 .base-wrapper {
-  margin: 20px 15px 0 15px;
+  margin: 20px 0 0 0;
   display: flex;
-
+  padding:0 20px;
   .desc {
     height: 45px;
     color: #ffffff;
@@ -1932,7 +1616,7 @@ export default {
   }
 
   .company-info {
-    flex: 1.4;
+    flex: 1.2;
     border-radius: 6px;
     min-width: 310px;
 
@@ -1983,8 +1667,8 @@ export default {
   }
 
   .map-message {
-    flex: 2.2;
-    height: 850px;
+    flex: 2.6;
+    height: 160px;
     margin-left: 30px;
     min-width: 400px;
 
@@ -2082,29 +1766,33 @@ export default {
 
     .base-message {
       margin-top: 20px;
-      height: 210px;
+      height: 165px;
 
       .base {
         height: 165px;
+
         .base-map {
           height: 165px;
           width: 40%;
           display: inline-block;
         }
-        .item-bg-y{
-          width:50%;
-           background: url('../assets/new/bg1.png') no-repeat;
-           color: #b1fef6;
+
+        .item-bg-y {
+          width: 49%;
+          background: url('../assets/new/bg1.png') no-repeat;
+          color: #b1fef6;
           line-height: 30px;
-          font-size:16px;
-          padding:0 10px;
+          font-size: 16px;
+          padding: 0 10px;
         }
+
         .base-info {
           width: 100%;
-          height: 165px;
+          height: 98px;
           display: inline-block;
           overflow: hidden;
-          text-align: center;       
+          text-align: center;
+
           .base-item {
             height: 26px;
             padding: 3px 0;
@@ -2127,9 +1815,8 @@ export default {
   }
 
   .temperature-rain {
-    flex: 1.4;
-    margin-left: 30px;
-    height: 850px;
+    flex: 1.2;
+    height: 160px;
     display: flex;
     flex-direction: column;
     padding-bottom: 20px;
@@ -2141,11 +1828,10 @@ export default {
       margin-top: 10px;
 
       .monitor-data {
-        height: 285px;
         background-color: #26374c;
 
         .lunbo-wrapper {
-          height: 285px;
+          height: 160px;
           padding-top: 6px;
           box-sizing: border-box;
 
@@ -2220,7 +1906,7 @@ export default {
       }
 
       .temperature-map, .rain-map {
-        height: 205px;
+        height: 150px;
       }
 
       .rain {
@@ -2310,15 +1996,58 @@ export default {
 
   >div {
     width: 120px;
-    padding:10px 0;
-    text-align:center;
+    padding: 10px 0;
+    text-align: center;
     background: url('../assets/new/button_set.png') no-repeat;
     background-size: 100% 100%;
   }
-  .btn-margin{
-    width:20px;
+
+  .btn-margin {
+    width: 20px;
     display: inline-block;
   }
+}
+
+.wrapper-box {
+  background: url('../assets/new/bg1.png') no-repeat;
+   padding:0 15px;
+}
+.ivu-carousel-dots-inside{
+ top:-10px !important;
+}
+.wrpper-title{
+  position:absolute;
+  top:-6px;
+  left:0px;
+  color:#b1fef6;
+  font-size:16px;
+  z-index:111;
+}
+.right-bx-bg{
+   background: url('../assets/new/pic5.png') no-repeat;
+   background-size:100% 100%;
+   text-align:center;
+   line-height:100px;
+   width:100px;
+   height:100px;
+}
+.right-box-padding{
+  padding-left:15px;
+}
+.last-title{
+  font-size:16px;
+  color:#b1fef6;
+  padding-left:15px;
+}
+.pie-bg{
+  position:absolute;
+  left: 139px;
+  top: 22px;
+  width: 156px;
+  height:auto;
+}
+.air-temperature{
+  height:100%;
 }
 </style>
 

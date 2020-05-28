@@ -20,38 +20,29 @@ export default {
     methods: {
         _drawPolygonal () {
             let polygonalChart = this.$echarts.init(this.$refs.polygonal);
-            var option = chartsType.charts(this.tdataAxis,this.datas,'用量（亩/kg）','bar','有机肥','#14E6C4','x');
+            var option = chartsType.charts(this.tdataAxis,this.datas,'','bar','有机肥','#3C5DFA','x');
             option.legend = {
                 left: 'right',
                 textStyle: {
                     color: '#fff'
-                }
-            }
-            option.series.push({
-                name: '普通肥',
-                barWidth:20,
-                data:[140, 200 ,90,90],
-                type: 'bar',
-                itemStyle: {
-                    emphasis: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: '#F39474'
-                    },
-                    normal:{
-                            color: '#F39474'
-                    }
                 },
-            })
+                show:false
+            }
             // option.series.push({
-            //     name:'百分比',
-            //     type:'line',
-            //     data: [70, 40, 9,9],
+            //     name: '普通肥',
+            //     barWidth:20,
+            //     data:[140, 200 ,90,90],
+            //     type: 'bar',
             //     itemStyle: {
+            //         emphasis: {
+            //                 shadowBlur: 10,
+            //                 shadowOffsetX: 0,
+            //                 shadowColor: '#F39474'
+            //         },
             //         normal:{
-            //             color: '#4ECB73'
+            //                 color: '#F39474'
             //         }
-            //     }
+            //     },
             // })
             polygonalChart.setOption(option);
         }
@@ -59,10 +50,5 @@ export default {
 }
 </script>
 <style lang="stylus">
-.polygonal{
-    height:100%;
-}
-.temperature-map{
-    height:100%;
-}
+
 </style>

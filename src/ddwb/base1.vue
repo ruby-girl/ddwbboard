@@ -1,1134 +1,1824 @@
 <template>
-  <div style="background:#212F41;">
-<headers></headers>
-<div style="position: relative;top:-20px;left:30px;width:70px;height:30px;background:#224665;line-height:30px;text-align:center;color:#fff;cursor:pointer;" @click="backhome">返回</div>
-<!-- <div style="position: relative;top:-20px;left:30px;width:70px;height:30px;background:#224665;line-height:30px;text-align:center;color:#fff;cursor:pointer;">
-  <router-link :to="{name:'home',query:{time:new Date().getTime()}}">返回</router-link>
-  <router-view :key="$route.fullPath"></router-view>
-</div> -->
-
-    <a-row :gutter="16" style="background-color:#212F41;padding:0 20px 20px 20px;margin:0;">
-
-  <a-col :span="6">
-        <div style="width:100%;height:270px;margin-bottom:20px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-          <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
-                <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">基础信息</h3>
-                <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">Basic information</h4>
-              </div>
-              <!-- <div id="graphwendu" style=" width: 100%;height: 80%;"></div> -->
-              <div style="width:100%;height:80%;">
-                <table style="width:100%;height:100%;">
-                       <tr style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:50%;">所在地区：</td>
-                         <td style="width:50%;color:#f1ff66">{{baseinformation.baseAddress}}</td>
-                       </tr>
-                        <tr style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:50%">基地：</td>
-                         <td style="width:50%;color:#f1ff66">{{baseinformation.name}}</td>
-                       </tr>
-                        <tr style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:50%">基地范畴：</td>
-                         <td style="width:50%;color:#f1ff66">{{baseinformation.baseCategory}}</td>
-                       </tr>
-                        <tr style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:50%">基地类型：</td>
-                         <td style="width:50%;color:#f1ff66">{{baseinformation.baseType}}</td>
-                       </tr>
-                       <tr style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:50%">面积（亩）：</td>
-                         <td style="width:50%;color:#f1ff66">{{baseinformation.area}}</td>
-                       </tr>
-                       <tr style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:50%">产量（吨）：</td>
-                         <td style="width:50%;color:#f1ff66">{{baseinformation.yield}}</td>
-                       </tr>
-                   </table>
-              </div>
+  <div class="base base-container">
+    <headers></headers>
+    <div class="base-wrapper">
+      <div class="company-info">
+        <div class="bg-item-box left-height" style="padding-bottom:10px">
+          <div class="desc">
+            <div class="title">基础信息</div>
+          </div>
+          <div class="company">
+            <div class="title-item-y display-flex">
+              <span class="color-fff" style="width:100px">农户名称</span>
+              <span class="color-main">羊子兮基地</span>
+            </div>
+            <div class="title-item-y display-flex">
+              <span class="color-fff" style="width:100px">农户年龄</span>
+              <span class="color-main">11岁</span>
+            </div>
+            <div class="title-item-y display-flex">
+              <span class="color-fff" style="width:100px">地块数量</span>
+              <span class="color-main">6块</span>
+            </div>
+            <div class="title-item-y display-flex">
+              <span class="color-fff">拥有种植猫冬撒大大阿斯达撒大声地阿斯达手打阿斯达阿斯达阿斯达阿斯达</span>
+            </div>
+            <img class="head-img" src="../assets/new/pic6.png" alt="">
+          </div>
         </div>
-        <div style="width:100%;height:150px;margin-bottom:19px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-          <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
-                <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">基地相关人员信息</h3>
-                <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">Service</h4>
-              </div>
-              <div style="width:100%;height:67%;overflow:hidden;">
-                <table style="width:90%;height:80%;margin:5px auto;background-color:rgba(150, 150, 150, 0.3);">
-                      <!-- <tr style="text-align:center;color:#fff;font-size:15px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                        <th style="width:50%;color:#fff;height:30px;border: 1px solid rgba(221, 215, 215, 0.3);">姓名</th>
-                         <th style="width:50%;color:#fff;height:30px;border: 1px solid rgba(221, 215, 215, 0.3);">职位</th>
-                       </tr> -->
-                      <template v-for="(v,k) in basemannager">
-                      <tr :key="k" style="text-align:center;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                        <td style="width:50%;color:	#00FF00;border: 1px solid rgba(221, 215, 215, 0.1);">{{v.name}}</td>
-                        <td style="width:50%;color:	#00FF00;border: 1px solid rgba(221, 215, 215, 0.1);">{{v.position}}</td>
-                      </tr>
-                  </template>
-                </table>
-                <!-- <table style="width:100%;height:100%">
-                  <template v-for="(v,k) in basemannager">
-                      <tr :key="k" style="text-align:center;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                        <td style="width:50%;color:	#00FF00;border: 1px solid rgba(221, 215, 215, 0.1);">{{v.position}}</td>
-                        <td style="width:50%;color:	#00FF00;border: 1px solid rgba(221, 215, 215, 0.1);">{{v.name}}</td>
-                      </tr>
-                  </template>
-                </table> -->
-              </div>
-              <!-- <div id="graphjiangyu" style=" width: 100%;height: 67%;"></div> -->
+        <div class="item-bg-y bg-item-box left-height" style="padding:15px 0;margin-top:20px;">
+          <div class="last-title">金融占比</div>
+          <div class="base-progress-box">
+          
+              <polygonal-reversal />
+           
+          </div>
         </div>
-        <div style="width:100%;height:400px;border-radius:15px;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-          <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
-             <a-row>
-              <a-col :span="12">
-                 <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">视频监控</h3>
-                <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">Video Surveillance</h4>
-              </a-col>
-              <a-col :span="12">
-                 <Cascader @on-change="selectAddress" class="select" :data="addresss" style="margin-right:10px;"></Cascader>
-              </a-col>
-            </a-row>
+        <!-- 左侧下柱形图 -->
+        <div class="item-bg-y bg-item-box left-height" style="padding:15px 0;margin-top:20px;">
+          <div class="last-title display-flex justify-content-flex-justify">
+            <div>土壤检测平均值</div>
+            <div>
+              <div class="display-flex">
+                <div
+                  @click="tabFunc(1)"
+                  :class="{'base-tab':true,'base-tab-action':tab==1?true:false}"
+                >土壤检测</div>
+                <div
+                  @click="tabFunc(2)"
+                  :class="{'base-tab':true,'base-tab-action':tab==2?true:false}"
+                >空气检测</div>
+                <div
+                  @click="tabFunc(3)"
+                  :class="{'base-tab':true,'base-tab-action':tab==3?true:false}"
+                >水源检测</div>
               </div>
-              <div style="width:100%;height:338px;border-radius:15px;overflow: hidden;">
-          <video id="myVideo"  style="width:100%;height:100%" ref="myPlayer" controls :src="address"></video>
-                 <!-- <video style="width:100%;height:100%;" id="myPlayer" controls playsinline webkit-playsinline autoplay>
-                    <source type="application/x-mpegURL" src="http://hls01open.ys7.com/openlive/18a69a040bcb45c9a08dfe9c5129399b.m3u8"/>
-                    <source src="rtmp://rtmp01open.ys7.com/openlive/18a69a040bcb45c9a08dfe9c5129399b"/>
-                </video> -->
+            </div>
+          </div>
+          <div style="height:80%">
+            <div class="airs air-temperature" style="height:100%">
+              <echartslLine></echartslLine>
+            </div>
+          </div>
+        </div>
+        <div class="item-bg-y bg-item-box left-height" style="padding:15px 0;margin-top:20px;">
+          <div class="last-title display-flex justify-content-flex-justify">
+            <div>土壤检测平均值</div>
+            <div>
+              <div class="display-flex">
+                <div
+                  @click="tabFunc(1)"
+                  :class="{'base-tab':true,'base-tab-action':tab==1?true:false}"
+                >土壤检测</div>
+                <div
+                  @click="tabFunc(2)"
+                  :class="{'base-tab':true,'base-tab-action':tab==2?true:false}"
+                >空气检测</div>
+                <div
+                  @click="tabFunc(3)"
+                  :class="{'base-tab':true,'base-tab-action':tab==3?true:false}"
+                >水源检测</div>
+              </div>
+            </div>
+          </div>
+          <div style="height:80%">
+            <div class="airs air-temperature" style="height:100%">
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="map-message">
+        <div class="map-wrapper">
+          <div class="map" ref="mapChart">
+            <div class="map-title-box display-flex align-items-center justify-content-flex-center">
+              <div class="map-title-item">
+                <div class="map-title-item-num">123123</div>
+                <div>已服务面积（亩）</div>
+              </div>
+              <div class="map-title-item" style="margin:0 20px">
+                <div class="map-title-item-num">1223</div>
+                <div>麦冬年产量（吨）</div>
+              </div>
+              <div class="map-title-item">
+                <div class="map-title-item-num">3123</div>
+                <div>麦冬年产值（万元）</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="base-message">
+          <div
+            class="base display-flex justify-content-flex-justify"
+            ref="baseMessage"
+            :style="{'height':baseMessageHeight}"
+          >
+            <!-- <baseMap></baseMap> -->
+            <div class="item-bg-y">
+              <div class="last-title display-flex justify-content-flex-justify">
+                <div>土壤环境</div>
+                <div>
+                  <div class="display-flex">
+                    <div
+                      @click="tabFunc(1)"
+                      :class="{'base-tab-small':true,'base-tab-action-small':tab==1?true:false}"
+                    >湿度</div>
+                    <div
+                      @click="tabFunc(2)"
+                      :class="{'base-tab-small':true,'base-tab-action-small':tab==2?true:false}"
+                    >温度</div>
+                    <div
+                      @click="tabFunc(3)"
+                      :class="{'base-tab-small':true,'base-tab-action-small':tab==3?true:false}"
+                    >电导率</div>
+                    <div
+                      @click="tabFunc(4)"
+                      :class="{'base-tab-small':true,'base-tab-action-small':tab==3?true:false}"
+                    >PH值</div>
+                  </div>
                 </div>
-        </div>
-      </a-col>
-
-<a-col :span="10">
-       <div style="width:100%;height:500px;margin-bottom:20px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-         <div style="width:100%;height:60px;padding:10px 0;border-bottom: 1px solid rgba(221, 215, 215, 0.2);">
-                <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">地图数据</h3>
-                <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">The data map</h4>
               </div>
-              <div id="container" style="width:100%;height:90%;position:relative">
-               <div style="position:absolute;width:40%;height:30px;background:rgba(0,0,0,0.5);z-index:99;top:0;left:30%;color:#fff;text-align:center;line-height:30px;">
-                 {{tip}}
-               </div>
-              </div>
-       </div>
-       <div style="width:100%;height:340px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-         <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
-                <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">种植工单</h3>
-                <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">Planting scheme</h4>
-              </div>
-              <div id="srollbox" style="width:100%;height:85%;overflow:hidden;">
-                   <table id="sroll" style="width:100%;height:100%;position:relative; top:0">
-                     <template v-for="(v,k) in workrecord">
-                       <tr :key="k" style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:15%;color:#00FF00">{{v.time}}</td>
-                         <td style="width:20%">{{v.start}}</td>
-                         <td style="width:25%;color:#f1ff66">{{v.recordname}}</td>
-                         <td style="width:40%">{{v.name}}</td>
-                       </tr>
-                     </template>
-                   </table>
-                    <table id="sroll1" style="width:100%;height:100%;position:relative; top:0">
-                     <template v-for="(v,k) in workrecord">
-                       <tr :key="k" style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:15%;color:#00FF00">{{v.time}}</td>
-                         <td style="width:20%">{{v.start}}</td>
-                         <td style="width:25%;color:#f1ff66">{{v.recordname}}</td>
-                         <td style="width:40%">{{v.name}}</td>
-                       </tr>
-                     </template>
-                   </table>
-                   <!-- <table id="sroll1" style="width:100%;height:100%;"></table> -->
+              <div class="rain-map" ref="bottomLine1" style="height:80%"></div>
+            </div>
+            <!-- 地图下柱形图 -->
+            <div class="item-bg-y">
+              <div class="last-title display-flex justify-content-flex-justify">
+                <div>空气环境</div>
+                <div>
+                  <div class="display-flex">
+                    <div
+                      @click="tabFunc(1)"
+                      :class="{'base-tab-small':true,'base-tab-action-small':tab==1?true:false}"
+                    >湿度</div>
+                    <div
+                      @click="tabFunc(2)"
+                      :class="{'base-tab-small':true,'base-tab-action-small':tab==2?true:false}"
+                    >温度</div>
+                    <div
+                      style="width:49px"
+                      @click="tabFunc(3)"
+                      :class="{'base-tab-small':true,'base-tab-action-small':tab==3?true:false}"
+                    >CO2浓度</div>
+                    <div
+                      @click="tabFunc(4)"
+                      :class="{'base-tab-small':true,'base-tab-action-small':tab==3?true:false}"
+                    >压强</div>
+                    <div
+                      @click="tabFunc(4)"
+                      :class="{'base-tab-small':true,'base-tab-action-small':tab==3?true:false}"
+                    >PM2.5</div>
+                    <div
+                      @click="tabFunc(4)"
+                      :class="{'base-tab':true,'base-tab-action-small':tab==3?true:false}"
+                    >光照强度</div>
+                    <div
+                      @click="tabFunc(4)"
+                      :class="{'base-tab':true,'base-tab-action-small':tab==3?true:false}"
+                    >降水量</div>
+                  </div>
                 </div>
-               <!-- <div style="width:100%;height:85%;">
-                 <video style="width:50%;height:100%;" width="400" height="300" id="myPlayer" controls playsinline webkit-playsinline autoplay>
-                    <source type="application/x-mpegURL" src="http://hls01open.ys7.com/openlive/18a69a040bcb45c9a08dfe9c5129399b.m3u8"/>
-                    <source src="rtmp://rtmp01open.ys7.com/openlive/18a69a040bcb45c9a08dfe9c5129399b"/>
-                </video> -->
-                <!-- <video style="width:50%;height:100%;" width="400" height="300" id="myPlayer1" controls playsinline webkit-playsinline autoplay>
-                    <source type="application/x-mpegURL" src="http://hls01open.ys7.com/openlive/a93c67e6dc83420baeba01d0b0fbf416.m3u8"/>
-                    <source src="rtmp://rtmp01open.ys7.com/openlive/a93c67e6dc83420baeba01d0b0fbf416"/>
-                </video> -->
-                <!-- </div> -->
-       </div>
-      </a-col>
-
-      <a-col :span="8">
-        <div style="width:100%;height:290px;margin-bottom:10px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-          <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
-            <a-row>
-              <a-col :span="12">
-                <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">土壤检测</h3>
-                <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">Soil monitoring</h4>
-              </a-col>
-              <a-col :span="12">
-                <div @click="showbaogao(1)" style="float:right;margin-right:20px;border-radius:3px;min-width:70px;background-color:#2899EF;color:#fff;text-align:center;line-height:30px;cursor:pointer;">查看报告</div>
-              </a-col>
-            </a-row>
               </div>
-
-              <div id="graph1" style=" width: 100%;height: 82%;"></div>
-
-              <!-- <div style="width:100%;height:84%;">
-                   <table style="width:100%;height:100%;">
-                     <template v-for="v in soiltest">
-                       <tr :key="v.id" style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:33%">{{v.testName}}</td>
-                         <td style="width:33%">{{v.amount}}mg/kg</td>
-                         <td style="width:33%;color:#66F8AF;">{{v.status}}</td>
-                       </tr>
-                     </template>
-                   </table>
-                </div> -->
+              <div class="rain-map" ref="bottomLine2" style="height:80%"></div>
+            </div>
+          </div>
         </div>
-         <div style="width:100%;height:275px;margin-bottom:10px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-          <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
-                 <a-row>
-              <a-col :span="12">
-                <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">大气检测</h3>
-                <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">Atmospheric monitoring</h4>
-              </a-col>
-              <a-col :span="12">
-                <div @click="showbaogao(2)" style="float:right;margin-right:20px;border-radius:3px;min-width:70px;background-color:#2899EF;color:#fff;text-align:center;line-height:30px;cursor:pointer;">查看报告</div>
-              </a-col>
-            </a-row>
-              </div>
-              <div id="graph3" style=" width: 100%;height: 81%;"></div>
-               <!-- <div style="width:100%;height:67%;">
-                   <table style="width:100%;height:100%;">
-                     <template v-for="v in airtest">
-                       <tr :key="v.id" style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:33%">{{v.testName}}</td>
-                         <td style="width:33%">{{v.amount}}mg/L</td>
-                         <td style="width:33%;color:#66F8AF;">{{v.status}}</td>
-                       </tr>
-                     </template>
-                   </table>
-                </div> -->
+      </div>
+      <!-- 右侧 -->
+      <div class="company-info" style="margin-left:30px">
+        <div class="bg-item-box left-height" style="padding-bottom:10px">
+          <div class="desc">
+            <div class="title">平台简介</div>
+          </div>
+          <div style="position:relative" ref="pieBox">
+            <img
+              src="../assets/new/pic6.png"
+              class="pie-bg"
+              :style="{'top':pieTop,'left':pieLeft}"
+              ref="pieImg"
+            />
+            <div style="height:180px" ref="loansChart"></div>
+          </div>
         </div>
-        <div style="width:100%;height:275px;border-radius:15px;overflow: hidden;background-color:rgba(150, 150, 150, 0.1);border: 1px solid rgba(221, 215, 215, 0.2);">
-          <div style="width:100%;height:60px;border-bottom: 1px solid rgba(221, 215, 215, 0.2);padding:10px 0;">
-                 <a-row>
-              <a-col :span="12">
-                <h3 style="margin:-1% 0 0 3%;color:#2899EF;font-weight: bold;">水源检测</h3>
-                <h4 style="margin:0 0 0 3%;color:#fff;font-weight: bold;">Water monitoring</h4>
-              </a-col>
-              <a-col :span="12">
-                <div @click="showbaogao(3)" style="float:right;margin-right:20px;border-radius:3px;min-width:70px;background-color:#2899EF;color:#fff;text-align:center;line-height:30px;cursor:pointer;">查看报告</div>
-              </a-col>
-            </a-row>
-              </div>
-
-              <div id="graph2" style=" width: 100%;height: 81%;"></div>
-
-              <!-- <div style="width:100%;height:86%;">
-                   <table style="width:100%;height:100%;">
-                     <template v-for="v in watertest">
-                       <tr :key="v.id" style="text-align:center;color:#fff;font-size:16px;border-bottom: 1px solid rgba(221, 215, 215, 0.1);">
-                         <td style="width:33%">{{v.testName}}</td>
-                         <td style="width:33%">{{v.amount}}mg/m²</td>
-                         <td style="width:33%;color:#66F8AF;">{{v.status}}</td>
-                       </tr>
-                     </template>
-                   </table>
-                </div> -->
+        <div class="item-bg-y bg-item-box left-height" style="padding:15px 0;margin-top:20px;">
+          <div class="last-title">农事执行进度</div>
+          <div class="base-progress-box">
+            <div
+              style="padding:60px 20px 0 40px;"
+              class="base-info display-flex justify-content-flex-justify"
+              id="base-info"
+            >
+              <circle-progress
+                ref="$circle"
+                key="animation-model"
+                :isAnimation="true"
+                :isRound="true"
+                :width="130"
+                title="投保面积"
+                :radius="20"
+                :progress="70"
+                :barColor="'#7C89EB'"
+                :duration="1000"
+                :delay="20"
+                :timeFunction="'cubic-bezier(0.99, 0.01, 0.22, 0.94)'"
+                :backgroundColor="'#4452B9'"
+              />
+              <circle-progress
+                ref="$circles"
+                key="animation-model"
+                :isAnimation="true"
+                :isRound="true"
+                :width="130"
+                :radius="20"
+                title="投保农户"
+                :progress="70"
+                :barColor="'#75CDFA'"
+                :duration="1000"
+                :delay="20"
+                :timeFunction="'cubic-bezier(0.99, 0.01, 0.22, 0.94)'"
+                :backgroundColor="'#4452B9'"
+              />
+            </div>
+          </div>
         </div>
-      </a-col>
-
-    </a-row>
-    <Foot style="margin:0px;"/>
-    <a-modal
-      :title="title"
-      v-model="visible"
-      @ok="handleOk"
-      :footer="null"
-    >
-      <img style="width:100%;height:100%;" :src="getbaogao(this.baogao)">
-    </a-modal>
+        <!-- 左侧下柱形图 -->
+        <div class="item-bg-y bg-item-box left-height" style="padding:15px 0;margin-top:20px;">
+          <div class="last-title display-flex justify-content-flex-justify">
+            <div>基地贷款概况</div>
+          </div>
+          <div style="height:90%">
+            <div class="airs air-temperature" style="height:100%">
+              <!-- <polygonal-two /> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <Foot style="margin:0px;"/> -->
   </div>
 </template>
 <script>
-import roll from '../assets/js/roll.js';
-import MapLoader from '@/utils/loadMap.js'
-import headers from '@/components/header/header'
-import Foot from '@/components/layouts/GlobalFooter.vue'
-import axios from 'axios'
+import headers from "@/components/header/header";
+import baseMap from "@/components/baseMap/baseMap";
+import MapLoader from "@/utils/loadMap.js";
+import polygonalReversal from "@/components/polygonal/polygonalReversal";
+
+import echartslLine from "@/components/echartslLine/echartslLine";
+import circleProgress from "@/components/circle-progress";
+import Foot from "@/components/layouts/GlobalFooter.vue";
+import chartsType from "../assets/js/chartsType.js";
+import roll from "../assets/js/roll.js";
+import axios from "axios";
+
+const dataAxis = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
 export default {
+  name: "home",
   components: {
-      headers,
-      Foot
-    },
-  data(){
-    return{
-       workrecord:[],
-        soiltest:[],
-        watertest:[],
-        airtest:[],
-        baseinformation:{},
-        basemannager:[],
-        map:null,
-        basemarker:null,
-        info:[],
-        infoWindow:null,
-        basenum:0,
-        nowTimed:'',
-        nowTimem:'',
-        baseinfo:[],
-        plotinfo:[],
-        temperature:[],
-        time:[],
-        amount1:[],
-        item1:[],
-        amount2:[],
-        item2:[],
-        amount3:[],
-        item3:[],
-        tianqi:[],
-        visible:false,
-        title:'',
-        baogao:'',
-        addresss: [],
-        address: '',
-        curLock: false,
-        tip:'',
-        plot5:[],
-        polygonss:[],
-    }
+    headers,
+    baseMap,
+    polygonalReversal,
+    echartslLine,
+    Foot,
+    circleProgress
   },
-  created(){
-
-   this.basenum=Number(this.$route.query.baseId)-1;
-   this.getAddress();
-  },
-  mounted(){
-    // this.player = new EZUIPlayer('myPlayer');
-    // this.player1 = new EZUIPlayer('myPlayer1');
-    // axios.get("/sqtq",{params:{area:'三台'},headers:{Authorization:"APPCODE 912f4ba38a394870aed1d60aca9a34fb"}}).then((res)=>{
-    //     if(res.statusText=="OK"){
-    //       this.time=[];
-    //       this.temperature=[];
-    //       for(let i=0;i<res.data.showapi_res_body.hourList.length;i++){
-    //         let a=res.data.showapi_res_body.hourList[i].time.slice(8,10)+':'+res.data.showapi_res_body.hourList[i].time.slice(10,12);
-    //         this.time.push(a);
-    //         this.temperature.push(Number(res.data.showapi_res_body.hourList[i].temperature));
-    //       }
-
-    //  that.drawLine();
-    //     }
-    //   });
-    let that=this;
-    that.baseinformation={};
-    that.basemannager=[];
-    // axios.get("json/order.json").then((res)=>{
-    //   this.workrecord=res.data.result;
-    //   for(let i=0;i<this.workrecord;i++){
-    //     this.workrecord[i].name='2019-2020'+this.baseinfo.name;
-    //   }
-    //   this.$nextTick(() => {
-    //     if (this.baseScroll) {
-    //       clearInterval(this.baseScroll.timer)
-    //     }
-    //     this.baseScroll = new roll.Roll('srollbox', 'sroll', 'sroll1', -280)
-    //   })
-    // })
-    // axios.get("json/plot1.json").then((res)=>{
-    //   that.basemannager=res.data.result[that.basenum].plot[0].manager;
-    // })
-     axios.get("json/base_info.json").then((res)=>{
-      //  console.log(res.data.result);
-       that.baseinfo=res.data.result;
-       that.baseinformation=res.data.result[that.basenum];
-       that.baseinformation.yield=(that.baseinformation.area*0.24).toFixed(2);
-       that.basemannager=res.data.result[that.basenum].manager;
-       axios.get("json/order.json").then((res)=>{
-      that.workrecord=res.data.workRecord;
-      console.log(res.data.workRecord);
-      for(let i=0;i<that.workrecord.length;i++){
-        that.workrecord[i].name='2019-2020'+that.baseinformation.name+'种植批次';
-      }
-      that.$nextTick(() => {
-        if (that.baseScroll) {
-          clearInterval(that.baseScroll.timer)
+  data() {
+    return {
+      baseMessageHeight: 0,
+      pieTop: 0,
+      pieLeft: 0,
+      tab: 1,
+      messages: [],
+      mapDatas: [],
+      weixin: false,
+      showColorDatas: [
+        {
+          name: "石安镇",
+          value: 1
+        },
+        {
+          name: "芦溪镇",
+          value: 1
+        },
+        {
+          name: "刘营镇",
+          value: 1
+        },
+        {
+          name: "永新镇",
+          value: 1
+        },
+        {
+          name: "高堰乡",
+          value: 1
+        },
+        {
+          name: "中太镇",
+          value: 1
+        },
+        {
+          name: "灵兴镇",
+          value: 2
+        },
+        {
+          name: "争胜镇",
+          value: 2
+        },
+        {
+          name: "里程镇",
+          value: 2
+        },
+        {
+          name: "老马镇",
+          value: 2
+        },
+        {
+          name: "光辉镇",
+          value: 2
+        },
+        {
+          name: "花园镇",
+          value: 2
+        },
+        {
+          name: "永明镇",
+          value: 2
         }
-        that.baseScroll = new roll.Roll('srollbox', 'sroll', 'sroll1', -525)
+      ],
+      plotDatas: [],
+      mapChart: "",
+      baseLength: 0,
+      plotLength: 0,
+      totalArea: 0,
+      option: {},
+      addresss: [],
+      baseinfo: [],
+      address: "",
+      curLock: false,
+      serviceData: [],
+      date: "",
+      hours: "",
+      metalDatas: [40, 200, 90, 140, 130, 0.2, 20, 0.4],
+      baseDatas: [
+        { itemStyle: { color: "#975FE5" } },
+        { itemStyle: { color: "#FE8463" } },
+        { itemStyle: { color: "#36CBCB" } },
+        { itemStyle: { color: "#E55F76" } },
+        { itemStyle: { color: "#3AA1FF" } },
+        { itemStyle: { color: "#5FE583" } },
+        { itemStyle: { color: "#5F95E5" } },
+        { itemStyle: { color: "#E5AF5F" } },
+        { itemStyle: { color: "#36CBCB" } },
+        { itemStyle: { color: "#4ECB73" } },
+        { itemStyle: { color: "#FBD437" } },
+        { itemStyle: { color: "#975FE5" } },
+        { itemStyle: { color: "#FE8463" } },
+        { itemStyle: { color: "#36CBCB" } },
+        { itemStyle: { color: "#E55F76" } },
+        { itemStyle: { color: "#3AA1FF" } },
+        { itemStyle: { color: "#5FE583" } },
+        { itemStyle: { color: "#5F95E5" } },
+        { itemStyle: { color: "#E5AF5F" } },
+        { itemStyle: { color: "#36CBCB" } },
+        { itemStyle: { color: "#4ECB73" } },
+        { itemStyle: { color: "#FBD437" } },
+        { itemStyle: { color: "#975FE5" } },
+        { itemStyle: { color: "#FE8463" } },
+        { itemStyle: { color: "#36CBCB" } },
+        { itemStyle: { color: "#E55F76" } },
+        { itemStyle: { color: "#3AA1FF" } },
+        { itemStyle: { color: "#5FE583" } },
+        { itemStyle: { color: "#5F95E5" } },
+        { itemStyle: { color: "#E5AF5F" } },
+        { itemStyle: { color: "#36CBCB" } },
+        { itemStyle: { color: "#4ECB73" } },
+        { itemStyle: { color: "#FBD437" } },
+        { itemStyle: { color: "#975FE5" } },
+        { itemStyle: { color: "#FE8463" } },
+        { itemStyle: { color: "#36CBCB" } },
+        { itemStyle: { color: "#E55F76" } },
+        { itemStyle: { color: "#3AA1FF" } },
+        { itemStyle: { color: "#5FE583" } },
+        { itemStyle: { color: "#5F95E5" } },
+        { itemStyle: { color: "#E5AF5F" } }
+      ],
+      tip: "",
+      markers: [],
+      hezuoshe: [],
+      jiatingnongchang: [],
+      jinmihezuo: [],
+      hezuosheL: "",
+      jiatingnongchangL: "",
+      jinmihezuoL: "",
+      hezuoshe2: [],
+      jiatingnongchang2: [],
+      jinmihezuo2: [],
+      blockinfo: [],
+      polygonss: [],
+      infoWindow: null,
+      weather1: {},
+      weather2: "",
+      weather: "",
+      allbasearea: 0,
+      warpperList: [
+        { num: "22", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" }
+      ],
+      rightList: [
+        { num: "22", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
+        { num: "33", name: "空气湿度", icon: "iconkongqishidu" }
+      ],
+      mapIcon: require("../assets/new/icon_positioning.png")
+    };
+  },
+  created() {
+    axios
+      .get("/tq", {
+        params: { from: "5", lat: 31.1, lng: 105.06, needMoreDay: 1 },
+        headers: { Authorization: "APPCODE 912f4ba38a394870aed1d60aca9a34fb" }
       })
-    })
-       axios.get("json/plot1.json").then((res)=>{
-         that.iniMap();
-
-    window.addEventListener('done2', function(){
-      let lng=that.baseinfo[that.basenum].lng;
-      let lat=that.baseinfo[that.basenum].lat;
-      var icon = new AMap.Icon({
-              size: new AMap.Size(30, 30),    // 图标尺寸
-              image: require('../assets/base.png'),  // Icon的图像
-              imageOffset: new AMap.Pixel(0, 0),  // 图像相对展示区域的偏移量，适于雪碧图等
-              imageSize: new AMap.Size(30, 30)   // 根据所设置的大小拉伸或压缩图片
-            });
-      that.basemarker= new AMap.Marker({
-    position: new AMap.LngLat(lng, lat),
-    icon:icon
-});
-    that.map.add(that.basemarker);
-    that.map.setFitView([that.basemarker]);
-    that.basemarker.on("click",function(e) {that.infowindow(e);});
-    that.basemarker.on("mousemove",function(e) {that.tip=that.baseinfo[that.basenum].name});
-    that.basemarker.on("mouseout",function(e) {that.tip=''});
-    var icon1 = new AMap.Icon({
-              size: new AMap.Size(30, 30),    // 图标尺寸
-              image: require('../assets/plot.png'),  // Icon的图像
-              imageOffset: new AMap.Pixel(0, 0),  // 图像相对展示区域的偏移量，适于雪碧图等
-              imageSize: new AMap.Size(30, 30)   // 根据所设置的大小拉伸或压缩图片
-            });
-            if(that.basenum<33){
-            if(that.basenum<=10){
-    for(let i=0;i<res.data.result[that.basenum].plot.length;i++){
-           let lng1=res.data.result[that.basenum].plot[i].lng;
-           let lat1=res.data.result[that.basenum].plot[i].lat;
-           let plotmarker= new AMap.Marker({
-    position: new AMap.LngLat(lng1, lat1),
-    icon:icon1
-});
-    that.map.add(plotmarker);
-    that.map.setFitView();
-    plotmarker.on("click",function(e) { that.$router.push({ name: 'plot',query:{baseId:Number(that.basenum),plotId:i}})});
-    plotmarker.on("mousemove",function(e) {that.tip=res.data.result[that.basenum].plot[i].plotName});
-    plotmarker.on("mouseout",function(e) {that.tip=''});
-         }
-         }else{
-          let lng1=that.baseinfo[that.basenum].lng+0.0003;
-          let lat1=that.baseinfo[that.basenum].lat+0.0003;
-           let plotmarker= new AMap.Marker({
-          position: new AMap.LngLat(lng1, lat1),
-          icon:icon1
+      .then(res => {
+        if (res.status === 200) {
+          this.weather = res.data.showapi_res_body.now.temperature;
+          this.weather1 = res.data.showapi_res_body.now;
+          this.weather2 = res.data.showapi_res_body.now.sd.slice(0, 2);
+        }
       });
-    that.map.add(plotmarker);
-    that.map.setFitView();
-    plotmarker.on("click",function(e) { that.$router.push({ name: 'plot',query:{baseId:Number(that.basenum),plotId:0}})});
-    // plotmarker.on("mousemove",function(e) {that.tip=res.data.result[that.basenum].plot[i].plotName});
-    plotmarker.on("mousemove",function(e) {that.tip=that.baseinfo[that.basenum].name+'的地块'});
-    plotmarker.on("mouseout",function(e) {that.tip=''});
+    // if (!window.localStorage.token) {
+    console.log(111);
+    let params =
+      "appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53";
+    axios
+      .post("https://open.ys7.com/api/lapp/token/get", params, {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      })
+      .then(res => {
+        if (res.data.code == 200) {
+          let token =
+            "accessToken=" +
+            res.data.data.accessToken +
+            "&pageStart=0&pageSize=50";
+          window.localStorage.setItem("token", token);
+        }
+      });
+    // }
+    this._getAddress();
+    if (this.$route.query.time) {
+      let that = this;
+      window.addEventListener("done1", function() {
+        that.all();
+      });
     }
-      }else{
-        axios.get('json/plot1.json').then((res)=>{
-          that.plot5=res.data.result[that.basenum].plot;
-          let a=[];
-          for(let i=0;i<that.plot5.length;i++){
-          a.push(i);
+  },
+  mounted() {
+    if (this.baseScroll) {
+      clearInterval(this.baseScroll.timer);
+    }
+    this._drawCityMap();
+    // this._drawRainMap();
+    // 设置饼图背景图
+    let pieBox = this.$refs.pieBox.offsetHeight;
+    let pieBoxW = this.$refs.pieBox.offsetWidth;
+    this.pieTop = (pieBox - 156) / 2 + "px";
+    this.pieLeft = (pieBoxW - 156) / 2 + "px";
+    // 地图下折线图高度
+    let height = document.body.clientHeight;
+    this.$refs.mapChart.style.height = height - 400 + "px";
+    let mapHeight = this.$refs.mapChart.offsetHeight;
+    let m = height * 0.15;
+    this.baseMessageHeight = height - parseFloat(mapHeight) - m + "px";
+    let that = this;
+    setTimeout(function() {
+      that._drawLine(); //左侧折线图
+      that._drawLine2(); //左侧折线图
+    }, 1000);
+    // this._getJson()
+
+    that.allbasearea = 0;
+    axios.get("json/base_info.json").then(res => {
+      for (let i = 0; i < res.data.result.length; i++) {
+        that.allbasearea += res.data.result[i].area;
+        that.baseDatas[i].name = res.data.result[i].name;
+        that.baseDatas[i].value = res.data.result[i].area;
+        if (that.baseScroll) {
+          console.log(that.baseScroll);
+          clearInterval(that.baseScroll.timer);
+        }
+        that.$nextTick(() => {
+          if (that.baseScroll) {
+            clearInterval(that.baseScroll.timer);
           }
-          that.addBlockOnMap(a);
-        })
-      }
-
-      });
-       })
-          });
-axios.get("json/plot1.json").then((res)=>{
-       console.log(res.data.result);
-       that.plotinfo=res.data.result;
-          });
-
-           axios.get("testitem.json").then((res)=>{
-             console.log(res.data.result);
-             that.soiltest=res.data.result[that.basenum].soilTest;
-             that.watertest=res.data.result[that.basenum].waterTest;
-             that.airtest=res.data.result[that.basenum].airTest;
-             that.amount1=[];
-             that.item1=[];
-             that.amount2=[];
-             that.item2=[];
-             that.amount3=[];
-             that.item3=[];
-             for(let i=0;i<that.soiltest.length;i++){
-               that.amount1.push(that.soiltest[i].amount);
-               that.item1.push(that.soiltest[i].testName);
-             }
-             for(let i=0;i<that.watertest.length;i++){
-               that.amount2.push(that.watertest[i].amount);
-               that.item2.push(that.watertest[i].testName);
-             }
-             for(let i=0;i<that.airtest.length;i++){
-               that.amount3.push(that.airtest[i].amount);
-               that.item3.push(that.airtest[i].testName);
-             }
-             this.drawLine1();
-             this.drawLine2();
-             this.drawLine3();
-           });
-    //  setInterval(this.nowTimes,1000);
-  },
-
-  methods:{
-    backhome(){
-     this.$router.push({ name: 'home'});
-    },
-     addBlockOnMap(value){
-            console.log(value);
-        // if(this.block.length>0){
-        //     for(let b=0;b<this.block.length;b++){
-        //         this.map.remove(this.block[b]);
-        //     }
-        // }
-        this.polygonss=[];
-        for(let j=0; j<value.length;j++){
-        let a=value[j];
-        for(let i=0;i<this.plot5.length;i++){
-        let item = this.plot5[i];
-        if(i==a){
-        if(item.remark!=undefined && item.remark!=null && item.remark.trim()!=""){
-            let remarkJson2 = eval('(' + item.remark + ')');
-            //let polygon = new AMap.Polygon(remarkJson2);
-            // console.log(remarkJson2.path);
-            let newPath = [];
-            for(let i=0;i<remarkJson2.path.length;i++){
-            let point=remarkJson2.path[i];
-            newPath.push(new AMap.LngLat(point.lng,point.lat));
-            }
-            remarkJson2.path = newPath;
-            let polygon2 = new AMap.Polygon(remarkJson2);
-            // this.polygonss=[];
-            this.polygonss.push(polygon2);
-            // this.block.push(polygon2);
-            this.map.add(polygon2);
-            // polygon2.on("click",function(e) {this.$router.push({ name: 'plot',query:{baseId:Number(this.basenum),plotId:i}})});
-            this.map.setFitView([ polygon2 ]);
-
-        }
-        }
-        }
-            }
-            let that=this;
-            console.log(that.polygonss);
-            //polygon2.close();
-            for(let i=0;i<that.polygonss.length;i++){
-            that.polygonss[i].on("click",function(e) {that.$router.push({ name: 'plot',query:{baseId:Number(that.basenum),plotId:i}})});
-            that.polygonss[i].on("mousemove",function(e) {that.tip=that.plot5[i].plotName});
-            that.polygonss[i].on("mouseout",function(e) {that.tip=''});
-            }
-        },
-    selectAddress(datas) {
-      if (datas.length != 0) {
-        this.address = datas[1]
-        this.$nextTick(() => {
-          this.player = new EZUIPlayer('myVideo');
-        })
-      }
-    },
-    getAddress (token) {
-var date = new Date().toString().split(' ')
-var month = new Date().getMonth() + 1
-var str = ''
-this.date = str + date[3] + '-' + month + '-' + date[2]
-this.hours = date[4]
-let params = 'appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53'
-let curToken = token ? token : window.localStorage.token
-axios.post('https://open.ys7.com/api/lapp/live/video/list', curToken, {
-headers: {
-'Content-Type': 'application/x-www-form-urlencoded'
-}
-}).then(res => {
-console.log(res)
-if (res.data.code == 200) {
- if (res.data.data && res.data.data.length) {
-            console.log(res.data.data)
-            if (this.$route.query.baseId == 8) {
-              this.addresss.push({
-                label: '老马基地',
-                children: []
-              })
-              res.data.data.forEach((item,i) => {
-                if (item.deviceName.indexOf('老马') >　-1) {
-                  this.addresss[0].children.push({
-                    label: '通道' + res.data.data[i].channelNo,
-                    value: res.data.data[i].liveAddress
-                  })
-                }
-              })
-            }
-            if (this.$route.query.baseId == 9) {
-              this.addresss.push({
-                label: '花园基地',
-                children: []
-              })
-              res.data.data.forEach((item,i) => {
-                if (item.deviceName.indexOf('老马') ==　-1) {
-                  if(i>2){
-                    let a=i-3;
-                  this.addresss[0].children.push({
-                    label: '通道'+a,
-                    value: res.data.data[i].liveAddress
-                  })
-                }
-                }
-              })
-              console.log(this.addresss);
-            }
-          }
-} else if (res.data.code == 10002) {
-axios.post('https://open.ys7.com/api/lapp/token/get', params, {
-headers: {
-'Content-Type': 'application/x-www-form-urlencoded'
-}
-}).then(res => {
-if (res.data.code == 200) {
-console.log(res)
-token = 'accessToken=' + res.data.data.accessToken + '&pageStart=0&pageSize=50'
-window.localStorage.setItem('token', token)
-this.getAddress(token)
-}
-})
-}
-this.$nextTick(() => {
-myVideo.addEventListener('play', () => {
-this.player.on()
-})
-})
-})
-},
-
-
-
-    getbaogao(a){
-      if(a==1){
-      return require('@/assets/'+this.baseinformation.tuPic);
-      }
-      if(a==2){
-      return require('@/assets/'+this.baseinformation.qiPic);
-      }
-      if(a==3){
-      return require('@/assets/'+this.baseinformation.shuiPic);
-      }
-    },
-    showbaogao(a){
-      switch (a) {
-        case 1:
-          this.title='土壤检测报告';
-          this.baogao=1;
-          break;
-        case 2:
-          this.title='大气检测报告';
-          this.baogao=2;
-          break;
-        case 3:
-          this.title='水源检测报告';
-          this.baogao=3;
-          break;
-        default:
-          break;
-      }
-      this.visible=true;
-    },
-    handleOk(){
-      this.visible=false;
-    },
-     timeFormate(timeStamp) {
-      let year = new Date(timeStamp).getFullYear();
-      let month =new Date(timeStamp).getMonth() + 1 < 10? "0" + (new Date(timeStamp).getMonth() + 1): new Date(timeStamp).getMonth() + 1;
-      let date =new Date(timeStamp).getDate() < 10? "0" + new Date(timeStamp).getDate(): new Date(timeStamp).getDate();
-      let hh =new Date(timeStamp).getHours() < 10? "0" + new Date(timeStamp).getHours(): new Date(timeStamp).getHours();
-      let mm =new Date(timeStamp).getMinutes() < 10? "0" + new Date(timeStamp).getMinutes(): new Date(timeStamp).getMinutes();
-      // let ss =new Date(timeStamp).getSeconds() < 10? "0" + new Date(timeStamp).getSeconds(): new Date(timeStamp).getSeconds();
-      // return year + "年" + month + "月" + date +"日"+" "+hh+":"+mm ;
-      this.nowTimed = year + "/" + month + "/" + date +"/";
-      this.nowTimem = hh+":"+mm ;
-    },
-    nowTimes(){
-this.timeFormate(new Date());
-},
-     drawLine(){
-        let that=this;
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = that.$echarts.init(document.getElementById('graphwendu'))
-        window.addEventListener("resize", function() {
-	     myChart.resize();
-	})
-        // 绘制图表
-        myChart.setOption({
-          tooltip : {
-        trigger: 'axis',
-        axisPointer: {
-            type: 'cross',
-            label: {
-                backgroundColor: '#6a7985'
-            }
-        }
-    },
-    grid: {
-        left: '3%',
-        right: '5%',
-        bottom: '3%',
-        top: '15%',
-        containLabel: true
-    },
-    xAxis : [
-        {
-            type : 'category',
-            boundaryGap : false,
-            data : that.time,
-            axisLine:{
-                        lineStyle:{
-                            color:'#fff',
-                        }
-            }
-
-        }
-    ],
-    yAxis : [
-
-        {
-          name:'单位(℃)',
-            type : 'value',
-            splitLine:{
-              show:false
-            },
-             axisLine:{
-                        lineStyle:{
-                            color:'#fff',
-                        }
-            }
-        }
-    ],
-    series : [
-        {
-            name:'气温',
-            type:'line',
-            stack: '总量',
-            data:that.temperature,
-            smooth: true,
-            symbol: "none",
-             itemStyle: {
-                color: '#0154C8'
-            },
-            areaStyle: {
-                color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                    offset: 0,
-                    color: 'rgb(0, 0, 255,0.7)'
-                }, {
-                    offset: 1,
-                    color: 'rgb(255, 255, 255,0.1)'
-                }])
-            },
-
-        },
-    ]
+          //滚动距离可以用一条的高度*条数~~~~~~~~~~~~~
+          that.baseScroll = new roll.Roll(
+            "base-info",
+            "base-ul1",
+            "base-ul2",
+            -660
+          );
         });
-
-  },
-  drawLine1(){
-        let that=this;
-         var myChart1 = that.$echarts.init(document.getElementById('graph1'))
-        window.addEventListener("resize", function() {
-	     myChart1.resize();
-	})
-        // 绘制图表
-        myChart1.setOption({
-           color: ['#3398DB'],
-    tooltip : {
-        trigger: 'axis',
-        axisPointer : {
-            type : 'shadow'
-        }
-    },
-     grid: {
-        left: '3%',
-        right: '5%',
-        bottom: '3%',
-        top: '15%',
-        containLabel: true
-    },
-    xAxis : [
-        {
-            type : 'category',
-            data : that.item1,
-             axisLine:{
-                        lineStyle:{
-                            color:'#fff',
-                        }
-            },
-            axisTick: {
-                alignWithLabel: true
-            },
-            axisLabel: {//坐标轴刻度标签的相关设置。
-                    rotate: 0,
-                    margin: 20,
-                    formatter: function(params) {
-                        var newParamsName = '';// 最终拼接成的字符串
-                        var paramsNameNumber = params.length;// 实际标签的个数
-                        var provideNumber = 3;// 每行能显示的字的个数
-                        var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
-                        /**
-                         * 判断标签的个数是否大于规定的个数， 如果大于，则进行换行处理 如果不大于，即等于或小于，就返回原标签
-                         */
-                        // 条件等同于rowNumber>1
-                        if (paramsNameNumber > provideNumber) {
-                            /** 循环每一行,p表示行 */
-                            for (var p = 0; p < rowNumber; p++) {
-                                var tempStr = '';// 表示每一次截取的字符串
-                                var start = p * provideNumber;// 开始截取的位置
-                                var end = start + provideNumber;// 结束截取的位置
-                                // 此处特殊处理最后一行的索引值
-                                if (p == rowNumber - 1) {
-                                    // 最后一次不换行
-                                    tempStr = params.substring(start, paramsNameNumber);
-                                } else {
-                                    // 每一次拼接字符串并换行
-                                    tempStr = params.substring(start, end) + '\n';
-                                }
-                                newParamsName += tempStr;// 最终拼成的字符串
-                            }
-                        } else {
-                            // 将旧标签的值赋给新标签
-                            newParamsName = params;
-                        }
-                        //将最终的字符串返回
-                        return newParamsName
-                    }
-
-                },
-        }
-    ],
-    yAxis : [
-        {
-            name:'单位(mg/kg)',
-             splitLine:{
-              show:false
-            },
-             axisLine:{
-                        lineStyle:{
-                            color:'#fff',
-                        }
-            },
-            type : 'value'
-        }
-    ],
-    series : [
-        {
-            name:'每千克中含量',
-            type:'bar',
-            barWidth: '60%',
-            data:that.amount1,
-            itemStyle: {
-							normal: {
-                color: new that.$echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                   {offset: 0,color: "#FDAD7B"},
-                   {offset: 1,color: "#FDAD7B"}
-                   ]),
-								label: {
-									show: true, //开启显示
-									position: 'top', //在上方显示
-									textStyle: { //数值样式
-										color: '#fff',
-										fontSize: 10
-									}
-								}
-							}
-						},
-        }
-    ]
-        });
-  },
-  drawLine2(){
-        let that=this;
-         var myChart1 = that.$echarts.init(document.getElementById('graph2'))
-        window.addEventListener("resize", function() {
-	     myChart1.resize();
-	})
-        // 绘制图表
-        myChart1.setOption({
-           color: ['#3398DB'],
-    tooltip : {
-        trigger: 'axis',
-        axisPointer : {
-            type : 'shadow'
-        }
-    },
-     grid: {
-        left: '3%',
-        right: '5%',
-        bottom: '3%',
-        top: '15%',
-        containLabel: true
-    },
-    xAxis : [
-        {
-            type : 'category',
-            data : that.item2,
-             axisLine:{
-                        lineStyle:{
-                            color:'#fff',
-                        }
-            },
-            axisTick: {
-                alignWithLabel: true
-            },
-            axisLabel: {//坐标轴刻度标签的相关设置。
-                    rotate: 0,
-                    margin: 20,
-                    formatter: function(params) {
-                        var newParamsName = '';// 最终拼接成的字符串
-                        var paramsNameNumber = params.length;// 实际标签的个数
-                        var provideNumber = 3;// 每行能显示的字的个数
-                        var rowNumber = Math.ceil(paramsNameNumber / provideNumber);// 换行的话，需要显示几行，向上取整
-                        /**
-                         * 判断标签的个数是否大于规定的个数， 如果大于，则进行换行处理 如果不大于，即等于或小于，就返回原标签
-                         */
-                        // 条件等同于rowNumber>1
-                        if (paramsNameNumber > provideNumber) {
-                            /** 循环每一行,p表示行 */
-                            for (var p = 0; p < rowNumber; p++) {
-                                var tempStr = '';// 表示每一次截取的字符串
-                                var start = p * provideNumber;// 开始截取的位置
-                                var end = start + provideNumber;// 结束截取的位置
-                                // 此处特殊处理最后一行的索引值
-                                if (p == rowNumber - 1) {
-                                    // 最后一次不换行
-                                    tempStr = params.substring(start, paramsNameNumber);
-                                } else {
-                                    // 每一次拼接字符串并换行
-                                    tempStr = params.substring(start, end) + '\n';
-                                }
-                                newParamsName += tempStr;// 最终拼成的字符串
-                            }
-                        } else {
-                            // 将旧标签的值赋给新标签
-                            newParamsName = params;
-                        }
-                        //将最终的字符串返回
-                        return newParamsName
-                    }
-
-                },
-        }
-    ],
-    yAxis : [
-        {
-            name:'单位(mg/L)',
-             splitLine:{
-              show:false
-            },
-             axisLine:{
-                        lineStyle:{
-                            color:'#fff',
-                        }
-            },
-            type : 'value'
-        }
-    ],
-    series : [
-        {
-            name:'每升中的含量',
-            type:'bar',
-            barWidth: '60%',
-            data:that.amount2,
-            itemStyle: {
-							normal: {
-                 color: new that.$echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                   {offset: 0,color: "#FE7A58"},
-                   {offset: 1,color: "#FE7A58"}
-                   ]),
-								label: {
-									show: true, //开启显示
-									position: 'top', //在上方显示
-									textStyle: { //数值样式
-										color: '#fff',
-										fontSize: 10
-									}
-								}
-							}
-						},
-        }
-    ]
-        });
-  },
-  drawLine3(){
-        let that=this;
-         var myChart1 = that.$echarts.init(document.getElementById('graph3'))
-        window.addEventListener("resize", function() {
-	     myChart1.resize();
-	})
-        // 绘制图表
-        myChart1.setOption({
-           color: ['#3398DB'],
-    tooltip : {
-        trigger: 'axis',
-        axisPointer : {
-            type : 'shadow'
-        }
-    },
-     grid: {
-        left: '3%',
-        right: '5%',
-        bottom: '3%',
-        top: '15%',
-        containLabel: true
-    },
-    xAxis : [
-        {
-            type : 'category',
-            data : that.item3,
-             axisLine:{
-                        lineStyle:{
-                            color:'#fff',
-                        }
-            },
-            axisTick: {
-                alignWithLabel: true
-            }
-        }
-    ],
-    yAxis : [
-        {
-            name:'单位(mg/m²)',
-             splitLine:{
-              show:false
-            },
-             axisLine:{
-                        lineStyle:{
-                            color:'#fff',
-                        }
-            },
-            type : 'value'
-        }
-    ],
-    series : [
-        {
-            name:'每平方米中的含量',
-            type:'bar',
-            barWidth: '60%',
-            data:that.amount3,
-            itemStyle: {
-							normal: {
-                 color: new that.$echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                   {offset: 0,color: "#55A1EF"},
-                   {offset: 1,color: "#55A1EF"}
-                   ]),
-								label: {
-									show: true, //开启显示
-									position: 'top', //在上方显示
-									textStyle: { //数值样式
-										color: '#fff',
-										fontSize: 10
-									}
-                },
-
-							}
-            },
-        }
-    ]
-        });
-  },
-     //地块弹窗
-        infowindow(e){
-        //console.log(info);
-        this.info=[];
-        this.getinfo();
-          this.infoWindow = new AMap.InfoWindow({
-          content: this.info.join(""),
-          });
-            this.infoWindow.open(this.map,[e.lnglat.lng,e.lnglat.lat]);
-        },
-        getinfo(){
-        // console.log(this.defblockid);
-        // if(!isNaN(this.defblockid)&&this.defblockid!=null&&this.defblockid!=''){
-        //     console.log(this.defblockid);
-        //     let aaa={};
-        //     for(let i=0;i<this.blockinfo.length;i++){
-        //         if(this.blockinfo[i].id==this.defblockid){
-        //           aaa=this.blockinfo[i];
-        //         }
-        //     }
-        //     var a=aaa.crop?aaa.crop.cropName:'暂无作物';
-        //     var b=aaa.land?aaa.land.landName:'暂无类型';
-        //     var c=aaa.soil?aaa.soil.soilName:'暂无类型';
-        //     var d=aaa.lotName;
-        //     var e=aaa.lotAcreage;
-        // }
-        this.info = [];
-        var a=this.baseinfo[this.basenum].baseAddress;
-        var b=this.baseinfo[this.basenum].baseCategory;
-        var c=this.baseinfo[this.basenum].baseType;
-        var d=this.baseinfo[this.basenum].name;
-        var e=this.baseinfo[this.basenum].area;
-        var f=this.plotinfo[this.basenum].plot.length;
-
-        this.info.push("<div style=\"width:175px;margin:20px 25px;\"><table>");
-        this.info.push("<tr style=\"color:#fff;line-height:20px;\"><td style=\"width:80px;\">基地名称：</td><td>"+d+"</td></tr>");
-        this.info.push("<tr style=\"color:#fff;line-height:20px;\"><td style=\"width:80px;\">基地面积：</td><td>"+e+"亩</td></tr>");
-        this.info.push("<tr style=\"color:#fff;line-height:20px;\"><td style=\"width:80px;\">基地地址：</td><td>"+a+"</td></tr>");
-        this.info.push("<tr style=\"color:#fff;line-height:20px;\"><td style=\"width:80px;\">基地范畴：</td><td>"+b+"</td></tr>");
-        this.info.push("<tr style=\"color:#fff;line-height:20px;\"><td style=\"width:80px;\">基地类型：</td><td>"+c+"</td></tr>");
-        this.info.push("<tr style=\"color:#fff;line-height:20px;\"><td style=\"width:80px;\">地块数量：</td><td>"+f+"个</td></tr>");
-        this.info.push("</table></div>");
-
-    },
-   iniMap(){
-     let that = this
-      MapLoader().then(AMap => {
+      }
+      window.addEventListener("done1", function() {
         let googleLayer = new AMap.TileLayer({
-              getTileUrl: 'http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile'
-           });//定义谷歌卫星切片图层
+          getTileUrl:
+            "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
+        }); //定义谷歌卫星切片图层
 
         let roadNetLayer = new AMap.TileLayer.RoadNet({
-          opacity:0
+          opacity: 0
         }); //定义一个路网图层
-
-        that.map = new AMap.Map('container', {
-          // center: that.center,
-          zoom: 15,
-          layers:[googleLayer,roadNetLayer], //设置图层
+        // var layer = new AMap.TileLayer();
+        that.map.setLayers([googleLayer, roadNetLayer]);
+        axios.get("json/blockinfo.json").then(res => {
+          that.blockinfo = res.data.result;
+          that.addBlockOnMap();
         });
-        that.map.on("complete", function(){
-          var myEvent = new CustomEvent('done2',{});
-          if(window.dispatchEvent) {
-            window.dispatchEvent(myEvent);
-          } else {
-            window.fireEvent(myEvent);
+      });
+    });
+    this._dramLoansChart();
+  },
+  methods: {
+    tabFunc(n) {
+      console.log(n);
+      this.tab = n;
+    },
+    addBlockOnMap() {
+      //这里删除了地块length~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      for (let i = 0; i < this.blockinfo.length - 3; i++) {
+        let item = this.blockinfo[i];
+        if (
+          item.remark != undefined &&
+          item.remark != null &&
+          item.remark.trim() != ""
+        ) {
+          let remarkJson2 = eval("(" + item.remark + ")");
+          let newPath = [];
+          for (let i = 0; i < remarkJson2.path.length; i++) {
+            let point = remarkJson2.path[i];
+            newPath.push(new AMap.LngLat(point.lng, point.lat));
+          }
+          remarkJson2.path = newPath;
+          let polygon2 = new AMap.Polygon(remarkJson2);
+          this.polygonss = [];
+          this.polygonss.push(polygon2);
+          this.map.add(polygon2);
+        }
+      }
+    },
+    removepoint() {
+      this.map.remove(this.markers);
+      this.map.remove(this.hezuoshe);
+      this.map.remove(this.jiatingnongchang);
+      this.map.remove(this.jinmihezuo);
+    },
+    changemap() {
+      if (this.weixin) {
+        this.map.remove(this.map.getLayers());
+        let googleLayer = new AMap.TileLayer({
+          getTileUrl:
+            "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
+        }); //定义谷歌卫星切片图层
+
+        let roadNetLayer = new AMap.TileLayer.RoadNet({
+          opacity: 0
+        }); //定义一个路网图层
+        var layer = new AMap.TileLayer();
+        this.map.setLayers([googleLayer, roadNetLayer, layer]);
+        this.weixin = false;
+      } else {
+        this.map.remove(this.map.getLayers());
+        let roadNetLayer = new AMap.TileLayer.RoadNet({
+          opacity: 0
+        }); //定义一个路网图层
+        let layer = new AMap.TileLayer();
+        this.map.setLayers([roadNetLayer, layer]);
+        this.weixin = true;
+      }
+    },
+    _getAddress(token) {
+      var date = new Date().toString().split(" ");
+      var month = new Date().getMonth() + 1;
+      var str = "";
+      this.date = str + date[3] + "-" + month + "-" + date[2];
+      this.hours = date[4];
+      let params =
+        "appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53";
+      let curToken = token ? token : window.localStorage.token;
+      axios
+        .post("https://open.ys7.com/api/lapp/live/video/list", curToken, {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          }
+        })
+        .then(res => {
+          console.log(res);
+          if (res.data.code == 200) {
+            if (res.data.data && res.data.data.length) {
+              console.log(res.data.data);
+              this.addresss.push({
+                label: res.data.data[3].deviceName,
+                value: res.data.data[3].deviceSerial,
+                children: []
+              });
+              for (let i = 3; i < res.data.data.length; i++) {
+                for (let j = 0; j < this.addresss.length; j++) {
+                  if (this.addresss[j].label === res.data.data[i].deviceName) {
+                    this.curLock = true;
+                    this.addresss[j].children.push({
+                      label: "通道" + res.data.data[i].channelNo,
+                      value: res.data.data[i].liveAddress,
+                      name: res.data.data[i].deviceName
+                    });
+                  }
+                }
+                if (!this.curLock) {
+                  this.addresss.push({
+                    label: res.data.data[i].deviceName,
+                    value: res.data.data[i].deviceSerial,
+                    name: res.data.data[i].deviceName,
+                    children: [
+                      {
+                        label: "通道" + res.data.data[i].channelNo,
+                        value: res.data.data[i].liveAddress,
+                        name: res.data.data[i].deviceName
+                      }
+                    ]
+                  });
+                }
+                this.curLock = false;
+              }
+            }
+            console.log(this.addresss);
+          } else if (res.data.code == 10002) {
+            axios
+              .post("https://open.ys7.com/api/lapp/token/get", params, {
+                headers: {
+                  "Content-Type": "application/x-www-form-urlencoded"
+                }
+              })
+              .then(res => {
+                if (res.data.code == 200) {
+                  console.log(res);
+                  token =
+                    "accessToken=" +
+                    res.data.data.accessToken +
+                    "&pageStart=0&pageSize=50";
+                  window.localStorage.setItem("token", token);
+                  this._getAddress(token);
+                }
+              });
+          } else if (res.data.code == 10001) {
+            axios
+              .post("https://open.ys7.com/api/lapp/token/get", params, {
+                headers: {
+                  "Content-Type": "application/x-www-form-urlencoded"
+                }
+              })
+              .then(res => {
+                if (res.data.code == 200) {
+                  console.log(res);
+                  token =
+                    "accessToken=" +
+                    res.data.data.accessToken +
+                    "&pageStart=0&pageSize=50";
+                  window.localStorage.setItem("token", token);
+                  this._getAddress(token);
+                }
+              });
           }
         });
-      })
+    },
+    _dramLoansChart() {
+      //左侧折线图
+      let rainChart = this.$echarts.init(this.$refs.loansChart);
+      var option = chartsType.charts(
+        ["镍", "锌", "铜", "总铬", "铅", "镉", "总砷", "总汞"],
+        this.metalDatas,
+        "万元/吨",
+        "pie",
+        "",
+        "#0AFBE2",
+        ""
+      );
+      rainChart.setOption(option);
+    },
+    _drawLine2() {
+      let rainChart = this.$echarts.init(this.$refs.bottomLine2);
+      var option = chartsType.charts(
+        ["镍", "锌", "铜", "总铬", "铅", "镉", "总砷", "总汞"],
+        this.metalDatas,
+        "万元/吨",
+        "line",
+        "",
+        "#0AFBE2",
+        "x"
+      );
+      option.legend = {
+        left: "right",
+        textStyle: {
+          color: "#fff"
+        }
+      };
+      // option.series.push({
+      //   name: "国家标准允许最大值",
+      //   barWidth: 20,
+      //   barGap: document.body.clientWidth > 2000 ? "80%" : "30%",
+      //   type: "bar",
+      //   data: [50, 250, 100, 200, 300, 0.3, 30, 0.5],
+      //   itemStyle: {
+      //     normal: {
+      //       color: "#4ECB73",
+      //       "margin-left": 20
+      //     }
+      //   }
+      // });
+      rainChart.setOption(option);
+    },
+    _drawLine() {
+      //左侧折线图
+      let rainChart = this.$echarts.init(this.$refs.bottomLine1);
+      var option = chartsType.charts(
+        ["镍", "锌", "铜", "总铬", "铅", "镉", "总砷", "总汞"],
+        this.metalDatas,
+        "万元/吨",
+        "line",
+        "",
+        "#0AFBE2",
+        "x"
+      );
+      option.legend = {
+        left: "right",
+        textStyle: {
+          color: "#fff"
+        }
+      };
+      // option.series.push({
+      //   name: "国家标准允许最大值",
+      //   barWidth: 20,
+      //   barGap: document.body.clientWidth > 2000 ? "80%" : "30%",
+      //   type: "bar",
+      //   data: [50, 250, 100, 200, 300, 0.3, 30, 0.5],
+      //   itemStyle: {
+      //     normal: {
+      //       color: "#4ECB73",
+      //       "margin-left": 20
+      //     }
+      //   }
+      // });
+      rainChart.setOption(option);
+    },
+    _drawRainMap() {
+      let rainChart = this.$echarts.init(this.$refs.rainMap);
+      var option = chartsType.charts(
+        ["镍", "锌", "铜", "总铬", "铅", "镉", "总砷", "总汞"],
+        this.metalDatas,
+        "检测量（mg/kg）",
+        "bar",
+        "实际值",
+        "#289CF4",
+        "x"
+      );
+      option.legend = {
+        left: "right",
+        textStyle: {
+          color: "#fff"
+        }
+      };
+      option.series.push({
+        name: "国家标准允许最大值",
+        barWidth: 20,
+        barGap: document.body.clientWidth > 2000 ? "80%" : "30%",
+        type: "bar",
+        data: [50, 250, 100, 200, 300, 0.3, 30, 0.5],
+        itemStyle: {
+          normal: {
+            color: "#4ECB73",
+            "margin-left": 20
+          }
+        }
+      });
+      rainChart.setOption(option);
+    },
+    _drawCityMap() {
+      let that = this;
+      MapLoader().then(AMap => {
+        that.map = new AMap.Map(this.$refs.mapChart, {
+          center: [105.013664, 31.206397],
+          zooms: [10, 10]
+        });
+
+        AMap.plugin("AMap.DistrictSearch", function() {
+          var district = new AMap.DistrictSearch({
+            extensions: "all",
+            subdistrict: 0
+          });
+          district.search("三台县", function(status, result) {
+            // 外多边形坐标数组和内多边形坐标数组
+            var bounds = result.districtList[0].boundaries;
+            var outer = [
+              new AMap.LngLat(-360, 90, true),
+              new AMap.LngLat(-360, -90, true),
+              new AMap.LngLat(360, -90, true),
+              new AMap.LngLat(360, 90, true)
+            ];
+            var pathArray = [outer];
+            pathArray.push.apply(pathArray, bounds);
+            var polygon = new AMap.Polygon({
+              path: pathArray,
+              strokeColor: "#0AFBE2",
+              strokeWeight: 1,
+              fillColor: "#26374C",
+              fillOpacity: 0.5
+            });
+            polygon.setPath(pathArray);
+            that.map.add(polygon);
+            var polygons = [];
+            if (bounds) {
+              for (var i = 0, l = bounds.length; i < l; i++) {
+                //生成行政区划polygon
+                var polygon1 = new AMap.Polygon({
+                  map: that.map,
+                  strokeWeight: 1,
+                  path: bounds[i],
+                  fillOpacity: 0,
+                  fillColor: "#CCF3FF",
+                  strokeColor: "#CC66CC"
+                });
+                polygons.push(polygon1);
+              }
+              // 地图自适应
+              that.map.setFitView(polygons);
+            }
+          });
+          // var bounds = that.map.getBounds();
+          // that.map.setLimitBounds(bounds);
+          that.map.on("complete", function() {
+            console.log("地图加载完成！");
+            var myEvent = new CustomEvent("done1", {});
+            if (window.dispatchEvent) {
+              window.dispatchEvent(myEvent);
+            } else {
+              window.fireEvent(myEvent);
+            }
+          });
+        });
+      });
+    },
+    _setOption() {
+      this.option = {
+        tooltip: {
+          trigger: "item",
+          formatter: function() {
+            return "";
+          }
+        },
+        legend: {
+          bottom: 20,
+          left: 20,
+          orient: "vertical",
+          textStyle: {
+            color: "#fff"
+          },
+          selectedMode: true
+        },
+        visualMap: {
+          show: false,
+          min: 0,
+          max: 2,
+          left: "left",
+          top: "top",
+          text: ["高", "低"], // 文本，默认为数值文本
+          textStyle: {
+            color: "#fff"
+          },
+          calculable: true,
+          seriesIndex: [1],
+          inRange: {
+            // color: ['#3B5077', '#031525'] // 蓝黑
+            // color: ['#ffc0cb', '#800080'] // 红紫
+            // color: ['#3C3B3F', '#605C3C'] // 黑绿
+            // color: ['#0f0c29', '#302b63', '#24243e'] // 黑紫黑
+            // color: ['#23074d', '#cc5333'] // 紫红
+            //99CC99
+            color: ["#00b583", "#009a6a"] // 蓝绿
+            // color: ['#1488CC', '#2B32B2'] // 浅蓝
+            // color: ['#00467F', '#A5CC82'] // 蓝绿
+            // color: ['#00467F', '#A5CC82'] // 蓝绿
+            // color: ['#00467F', '#A5CC82'] // 蓝绿
+            // color: ['#00467F', '#A5CC82'] // 蓝绿
+          }
+        },
+        //地图坐标系组建
+        geo: {
+          show: true,
+          map: "santai",
+          aspectScale: 1,
+          label: {
+            normal: {
+              show: false,
+              textStyle: {
+                color: "#fff",
+                fontSize: 16
+              }
+            },
+            emphasis: {
+              show: true,
+              textStyle: {
+                color: "#000",
+                fontSize: 12
+              }
+            }
+          },
+          //地图颜色配置
+          itemStyle: {
+            normal: {
+              //区域和区域线条颜色（无数据时候）
+              areaColor: "#baaea0",
+              borderColor: "#eee"
+            },
+            emphasis: {
+              areaColor: "#fff",
+              textStyle: {
+                color: "#000"
+              }
+            }
+          },
+          zoom: 1.3
+        },
+        //数据展示
+        series: [
+          //合作社坐标点，黄点
+          {
+            name: "基地",
+            type: "effectScatter",
+            coordinateSystem: "geo",
+            data: this.mapDatas,
+            symbolSize: function(val) {
+              return 12;
+            },
+            showEffectOn: "render",
+            rippleEffect: {
+              brushType: "stroke"
+            },
+            hoverAnimation: true,
+            label: {
+              normal: {
+                formatter: "{b}",
+                position: "top",
+                show: false
+              },
+              emphasis: {
+                show: true,
+                textStyle: {
+                  color: "white",
+                  fontSize: 16,
+                  fontWeight: 700
+                }
+              }
+            },
+            itemStyle: {
+              normal: {
+                color: "#fe5858"
+              }
+            }
+            // zlevel: 1
+          },
+          {
+            type: "map",
+            map: "santai",
+            geoIndex: 0,
+            label: {
+              normal: {
+                show: false
+              },
+              emphasis: {
+                show: true,
+                textStyle: {
+                  color: "#fff"
+                }
+              }
+            },
+            roam: false,
+            itemStyle: {
+              normal: {
+                areaColor: "#031525",
+                borderColor: "#000"
+              },
+              emphasis: {
+                areaColor: "#2B91B7"
+              }
+            },
+            animation: false,
+            data: this.showColorDatas
+          },
+          {
+            name: "合作社",
+            type: "effectScatter",
+            coordinateSystem: "geo",
+            symbolSize: function(val) {
+              return 12;
+            },
+            data: [
+              {
+                name: "合作社",
+                value: [104.90298, 31.2453],
+                id: 1
+              }
+            ],
+            showEffectOn: "render",
+            rippleEffect: {
+              brushType: "stroke"
+            },
+            hoverAnimation: true,
+            label: {
+              normal: {
+                formatter: "{b}",
+                position: "top",
+                show: false
+              },
+              emphasis: {
+                show: true,
+                textStyle: {
+                  color: "white",
+                  fontSize: 16,
+                  fontWeight: 700
+                }
+              }
+            },
+            itemStyle: {
+              normal: {
+                color: "#dc9748"
+              }
+            }
+            // zlevel: 0
+          },
+          {
+            name: "家庭农场",
+            type: "effectScatter",
+            coordinateSystem: "geo",
+            symbolSize: function(val) {
+              return 12;
+            },
+            data: [
+              {
+                name: "家庭农场",
+                value: [104.98298, 31.1653],
+                id: 1
+              }
+            ],
+            showEffectOn: "render",
+            rippleEffect: {
+              brushType: "stroke"
+            },
+            hoverAnimation: true,
+            label: {
+              normal: {
+                formatter: "{b}",
+                position: "top",
+                show: false
+              },
+              emphasis: {
+                show: true,
+                textStyle: {
+                  color: "white",
+                  fontSize: 16,
+                  fontWeight: 700
+                }
+              }
+            },
+            itemStyle: {
+              normal: {
+                color: "#289CF4"
+              }
+            }
+            // zlevel: 0
+          },
+          {
+            name: "农户",
+            type: "effectScatter",
+            coordinateSystem: "geo",
+            symbolSize: function(val) {
+              return 12;
+            },
+            data: [
+              {
+                name: "农户",
+                value: [104.93298, 31.2053],
+                id: 1
+              }
+            ],
+            showEffectOn: "render",
+            rippleEffect: {
+              brushType: "stroke"
+            },
+            hoverAnimation: true,
+            label: {
+              normal: {
+                formatter: "{b}",
+                position: "top",
+                show: false
+              },
+              emphasis: {
+                show: true,
+                textStyle: {
+                  color: "white",
+                  fontSize: 16,
+                  fontWeight: 700
+                }
+              }
+            },
+            itemStyle: {
+              normal: {
+                color: "#fe58fe"
+              }
+            }
+            // zlevel: 0
+          }
+        ]
+      };
+    },
+    infowindow(a, b) {
+      this.getinfo(b);
+      this.infoWindow = new AMap.InfoWindow({
+        content: this.info.join("")
+      });
+      this.infoWindow.open(this.map, a);
+    },
+    getinfo(b) {
+      this.info = [];
+      this.info.push(
+        '<div style="color:#fff;width:150px;overflow:hidden;text-align:center"><span>' +
+          this.baseinfo[b].name +
+          "</span></div>"
+      );
+    },
+    selectAddress(datas, selectedData) {
+      this.all();
+      if (selectedData[0].label.indexOf("老马") != -1) {
+        this.infowindow(this.markers[7].getCenter(), 7);
+        //this.map.setFitView([ this.markers[7] ]);
+      }
+      if (selectedData[0].label.indexOf("老马") == -1) {
+        this.infowindow(this.markers[8].getCenter(), 8);
+        //this.map.setFitView([ this.markers[8] ]);
+      }
+      if (datas.length != 0) {
+        this.address = datas[1];
+      }
+      // else {
+      //   monitor.removeChild(monitor.firstElementChild)
+      //   let dom = document.createElement('video')
+      //   dom.id = 'myVideo'
+      //   dom.style.width = '100%'
+      //   dom.style.height = '100%'
+      //   dom.src = this.address
+      //   dom.controls = true
+      //   console.dir(dom)
+      //   monitor.appendChild(dom)
+      // }
     }
-
   }
-
-}
+};
 </script>
 <style scoped>
-#container >>> .amap-info-content {
-background-color:rgba(35, 35, 35, 0.6);
- border-radius:10px 10px;
-box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 10px;
+.map >>> .amap-info-content {
+  background-color: rgba(35, 35, 35, 0.6);
+  border-radius: 10px 10px;
+  box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 10px;
 }
-#container >>> .amap-info-sharp{
-border-top: 8px solid rgba(35, 35, 35, 0.6);
+.map >>> .amap-info-sharp {
+  border-top: 8px solid rgba(35, 35, 35, 0.6);
+}
+.map >>> .amap-info-outer {
+  overflow-x: hidden;
 }
 </style>
-<style lang='stylus'>
-@media screen and (min-width: 2000px)
-  body
-    line-height 28px !important
-.headleft
-{
-position: relative;
-top:32px;
-left: -8px;
-width:56px;
-height:2px;
-background-color:#2899EF;
-/* Rotate div */
-transform:rotate(-37deg);
--moz-transform:rotate(-37deg); /* Firefox */
--webkit-transform:rotate(-37deg); /* Safari 和 Chrome */
--o-transform:rotate(-37deg); /* Opera */
-}
-.headright
-{
-position: relative;
-top:34px;
-right: 8px;
-width:56px;
-height:2px;
-background-color:#2899EF;
-/* Rotate div */
-transform:rotate(37deg);
--moz-transform:rotate(37deg); /* Firefox */
--webkit-transform:rotate(37deg); /* Safari 和 Chrome */
--o-transform:rotate(37deg); /* Opera */
+<style lang="stylus" scoped>
+@media screen and (min-width: 1550px) {
+  .base-item {
+    span:nth-of-type(1) {
+      width: 80px !important;
+      white-space: nowrap;
+    }
+  }
+
+  .monitor-message {
+    width: 97px !important;
+  }
+
+  .special {
+    width: 93px !important;
+  }
 }
 
+@media screen and (max-width: 1550px) {
+  .base-item {
+    span:nth-of-type(1) {
+      width: 80px !important;
+    }
+  }
+
+  .monitor-message {
+    width: 97px !important;
+  }
+
+  .special {
+    width: 93px !important;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  .changebut {
+    width: 180px !important;
+  }
+
+  .company-desc {
+    line-height: 28px !important;
+  }
+
+  .base-item {
+    line-height: 20px !important;
+
+    span:nth-of-type(1) {
+      width: 535px !important;
+      white-space: nowrap;
+    }
+
+    span:nth-of-type(2) {
+      width: 100px !important;
+    }
+  }
+
+  .monitor-message {
+    width: 200px !important;
+  }
+
+  .special {
+    width: 190px !important;
+  }
+
+  .update-time {
+    span {
+      transform: scale(0.9);
+    }
+  }
+
+  .base-message {
+    margin-top: 10px !important;
+  }
+
+  .map-footer {
+    height: 38px !important;
+    line-height: 1.5 !important;
+  }
+}
+
+.bg-item-box {
+  width: 100%;
+  background: url('../assets/new/bg1.png') no-repeat;
+}
+
+.base-wrapper {
+  margin: 20px 0 0 0;
+  display: flex;
+  padding: 0 20px;
+  height: calc(100vh - 80px);
+
+  .desc {
+    height: 45px;
+    color: #ffffff;
+    font-size: 16px;
+    padding-left: 10px;
+    box-sizing: border-box;
+
+    .title {
+      height: 20px;
+      color: #B1FEF6;
+      line-height: 30px;
+    }
+
+    .descs {
+      font-size: 6px;
+    }
+  }
+
+  .pos {
+    position: relative;
+
+    .select {
+      width: 200px;
+      position: absolute;
+      right: 20px;
+      top: 5px;
+    }
+
+    .monitor-title {
+      color: #fff;
+      text-align: center;
+      padding-top: 5px;
+      font-size: 18px;
+      position: absolute;
+      right: 10px;
+      top: 5px;
+    }
+  }
+
+  .company-info {
+    flex: 1.2;
+    border-radius: 6px;
+    min-width: 310px;
+
+    .company {
+      width: 100%;
+      position:relative;
+      padding: 0 10px;
+      box-sizing: border-box;
+      overflow: hidden;
+
+      img {
+        margin-top: 15px;
+        width: 100%;
+        height: 235px;
+      }
+
+      .company-desc {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #EEEEEE;
+        padding-bottom: 10px;
+        line-height: 22px;
+      }
+    }
+
+    .monitor {
+      height: 335px;
+
+      .lunbo-wrapper {
+        height: 100%;
+
+        .demo {
+          height: 335px;
+          line-height: 335px;
+          text-align: center;
+          color: #fff;
+          font-size: 30px;
+        }
+
+        .ivu-carousel-arrow {
+          background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .ivu-carousel-arrow:hover {
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+      }
+    }
+  }
+
+  .map-message {
+    flex: 2.6;
+    height: 160px;
+    margin-left: 30px;
+    min-width: 400px;
+
+    .map-wrapper {
+      width: 100%;
+      border-radius: 6px;
+      background: url('../assets/new/bg1.png') no-repeat;
+
+      .map {
+        position: relative;
+        height: 550px;
+
+        .changebut {
+          position: absolute;
+          width: 80px;
+          height: 25px;
+          text-align: center;
+          line-height: 25px;
+          border-radius: 15px;
+          top: 10%;
+          right: 5%;
+          color: #fff;
+          z-index: 99999;
+          cursor: pointer;
+        }
+
+        .point {
+          position: absolute;
+          left: 5%;
+          top: 10%;
+          z-index: 99999;
+
+          .text {
+            color: #fff;
+          }
+
+          .icon1 {
+            display: inline-block;
+            cursor: pointer;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin-right: 10px;
+            vertical-align: middle;
+          }
+        }
+      }
+
+      .map-footer {
+        display: flex;
+        height: 25px;
+        color: #ffffff;
+        font-size: 16px;
+        background-color: #2E4562;
+
+        .earth-count {
+          border-left: 1px solid rgba(255, 255, 255, 0.08);
+          border-right: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .area-count {
+          border-right: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        div {
+          flex: 1;
+          text-align: center;
+
+          span {
+            font-size: 12px;
+            vertical-align: middle;
+          }
+
+          .count {
+            color: #6DD230;
+          }
+
+          span:nth-of-type(1) {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+          }
+
+          span:nth-of-type(2) {
+            margin-left: 5px;
+          }
+
+          span:nth-of-type(3) {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+
+    .base-message {
+      margin-top: 20px;
+
+      .base {
+        height: calc(100vh - 665px);
+
+        .base-map {
+          height: 165px;
+          width: 40%;
+          display: inline-block;
+        }
+
+        .item-bg-y {
+          width: 49%;
+          background: url('../assets/new/bg1.png') no-repeat;
+          color: #b1fef6;
+          line-height: 30px;
+          font-size: 16px;
+          padding: 0 10px;
+        }
+
+        .base-info {
+          width: 100%;
+          height: 98px;
+          display: inline-block;
+          overflow: hidden;
+          text-align: center;
+
+          .base-item {
+            height: 26px;
+            padding: 3px 0;
+            box-sizing: border-box;
+            font-size: 12px;
+            letter-spacing: 1px;
+
+            .icon {
+              display: inline-block;
+              width: 5px;
+              height: 5px;
+              border-radius: 50%;
+              margin-right: 10px;
+              vertical-align: middle;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .temperature-rain {
+    flex: 1.2;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    min-width: 400px;
+
+    .airs {
+      position: relative;
+      flex: 1;
+      margin-top: 10px;
+
+      .monitor-data {
+        background-color: #26374c;
+
+        .lunbo-wrapper {
+          height: 160px;
+          padding-top: 6px;
+          box-sizing: border-box;
+
+          .ivu-carousel-arrow {
+            background-color: rgba(0, 0, 0, 0.2);
+          }
+
+          .ivu-carousel-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+          }
+        }
+
+        .monitor-base {
+          height: 40px;
+          margin-left: 10px;
+          color: #fff;
+          font-size: 20px;
+          line-height: 20px;
+
+          span {
+            display: inline-block;
+            height: 40px;
+            line-height: 40px;
+            width: 55%;
+            text-align: center;
+          }
+
+          .update-time {
+            width: 45%;
+            float: right;
+            font-size: 16px;
+
+            span {
+              width: 100%;
+              height: 20px;
+              line-height: 20px;
+            }
+          }
+        }
+
+        .monitor-item:nth-of-type(1) {
+          margin-top: 12px;
+        }
+
+        .monitor-item {
+          padding: 0 10px;
+          text-align: left;
+          display: flex;
+          height: 40px;
+          color: #43cfe0;
+
+          .monitor-message {
+            display: inline-block;
+            width: 97px;
+            text-align: right;
+          }
+
+          div {
+            flex: 1;
+            line-height: 40px;
+            height: 40px;
+
+            img {
+              margin-right: 5px;
+            }
+          }
+
+          div:nth-of-type(1) {
+            margin-right: 10px;
+          }
+        }
+      }
+
+      .temperature-map, .rain-map {
+        height: 150px;
+      }
+
+      .rain {
+        margin-top: 46px;
+      }
+
+      .message-wrapper {
+        display: flex;
+        height: 45px;
+        color: #ffffff;
+        font-size: 16px;
+        padding-left: 10px;
+        box-sizing: border-box;
+        background-color: #26374C;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08235294117647057);
+
+        div {
+          padding-left: 10px;
+          box-sizing: border-box;
+        }
+      }
+    }
+
+    .airs:nth-of-type(1) {
+      margin-top: 0px;
+    }
+  }
+}
+
+.left-height {
+  height: 22%;
+}
+
+.base-container {
+  min-height: 100%;
+  background: url('../assets/new/bg.jpg') no-repeat;
+  background-size: 100% 100%;
+}
+
+.map-title-box {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 111;
+  color: #fff;
+
+  >div {
+    width: 20%;
+    background: rgba(0, 14, 30, 0.3);
+  }
+}
+
+.map-title-item {
+  padding: 10px;
+  text-align: center;
+
+  .map-title-item-num {
+    font-size: 35px;
+    color: #0AFBE2;
+  }
+}
+
+.wrapper-box {
+  background: url('../assets/new/bg1.png') no-repeat;
+  padding: 0 15px;
+}
+
+.ivu-carousel-dots-inside {
+  top: -10px !important;
+}
+
+.wrpper-title {
+  position: absolute;
+  top: -6px;
+  left: 0px;
+  color: #b1fef6;
+  font-size: 16px;
+  z-index: 111;
+}
+
+.right-bx-bg {
+  background: url('../assets/new/pic5.png') no-repeat;
+  background-size: 100% 100%;
+  text-align: center;
+  line-height: 100px;
+  width: 100px;
+  height: 100px;
+}
+
+.right-box-padding {
+  padding-left: 15px;
+}
+
+.last-title {
+  font-size: 16px;
+  color: #b1fef6;
+  padding-left: 15px;
+}
+
+.pie-bg {
+  position: absolute;
+  width: 156px;
+  height: auto;
+}
+
+.progress {
+  width: 50%;
+  height: 15px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 8px 15px 0 15px;
+  border-radius: 10px;
+  text-align: center;
+  color: #fff;
+
+  .progressing {
+    position: relative;
+    float: left;
+    margin: 0 auto;
+    height: 15px;
+    background-image: linear-gradient(to left, #2DB7FF 5%, #4349A9);
+    border-radius: 10px;
+
+    .percentage {
+      margin-left: 50px;
+    }
+  }
+}
+
+.base-progress-box {
+  height: calc(100% - 30px);
+  overflow-y: hidden;
+}
+
+.base-progress-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  color: #fff;
+  line-height: 26px;
+  margin-bottom: 20px;
+}
+
+.base-tab {
+  width: 60px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 1);
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.base-tab-action {
+  color: #fff;
+  position: relative;
+  opacity: 1;
+
+  &:after {
+    content: '';
+    width: 20px;
+    position: absolute;
+    border: 1px solid #fff;
+    bottom: -5px;
+    left: 20px;
+  }
+}
+
+.base-tab-small {
+  width: 40px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 1);
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.base-tab-action-small {
+  color: #fff;
+  position: relative;
+  opacity: 1;
+
+  &:after {
+    content: '';
+    width: 20px;
+    position: absolute;
+    border: 1px solid #fff;
+    bottom: 0px;
+    left: 30%;
+  }
+}
+.head-img{
+ width: 90px !important;
+    height: 90px !important;
+    right: 20px;
+    top: -16px;
+    border-radius: 10px;
+    position: absolute;
+    z-index: 111;
+}
 </style>
+
