@@ -1,7 +1,7 @@
 <template>
   <div class="base base-container">
     <headers></headers>
-    <div class="base-wrapper">
+    <div class="base-wrapper home-height">
       <div class="company-info">
         <div class="bg-item-box left-height">
           <div class="desc">
@@ -28,7 +28,7 @@
           </div>
         </div>
         <!-- 图表 -->
-        <div class="bg-item-box left-height" style="margin:20px 0;max-height:250px !important">
+        <div class="bg-item-box left-height" style="margin:20px 0;">
           <div class="desc">
             <div class="title">麦冬历史价格走势</div>
           </div>
@@ -36,7 +36,7 @@
             <div class="rain-map" ref="leftLine" style="height:200px"></div>
           </div>
         </div>
-        <div class="bg-item-box left-height" style="height:360px;padding-top:10px;">
+        <div class="bg-item-box left-height" style="padding-top:10px;">
           <div class="desc pos">
             <div class="title">基地监控</div>
             <Cascader @on-change="selectAddress" class="select" :data="addresss"></Cascader>
@@ -115,7 +115,7 @@
             </div>
           </div>
         </div>
-        <div class="base-message">
+        <div class="base-message" :style="{'height':baseMessageHeight}">
           <div class="base display-flex justify-content-flex-justify">
             <!-- <baseMap></baseMap> -->
             <div class="item-bg-y">
@@ -158,8 +158,8 @@
             <!-- 地图下柱形图 -->
             <div class="item-bg-y">
               <div class="title">年度有机肥用量</div>
-              <div style="height:130px;" class="temperature-rain">
-                <div class="airs air-temperature">
+              <div style="height:100%" class="temperature-rain">
+                <div class="airs air-temperature" style="height:100%" v-if="show">
                   <polygonal></polygonal>
                 </div>
               </div>
@@ -167,7 +167,7 @@
           </div>
         </div>
         <!-- 底部轮播 -->
-        <div class="base-wrapper wrapper-box">
+        <div class="base-wrapper wrapper-box" :style="{'height':baseMessageHeight}">
           <div class="temperature-rain" style="margin-top:15px;">
             <div class="monitor-data" style="position:relative">
                <div class="wrpper-title">气象监测</div>
@@ -180,7 +180,7 @@
                   <div class="display-flex justify-content-flex-justify">
                     <div v-for="(item,n) in warpperList" :key="n" style="text-align:center">
                     <div class="color-main" style="font-weight:bold;font-size:18px">{{item.num}}</div>
-                    <img style="margin-bottom:5px" src="../assets/new/pic3.png" alt />
+                    <img style="margin-bottom:5px" class="wrapper-img" src="../assets/new/pic3.png" alt />
                     <div>
                       <i :class="['iconfont','color-main',item.icon]"></i>
                       <span style="color:#fff;margin-left:5px;">{{item.name}}</span>
@@ -194,7 +194,7 @@
         </div>
       </div>
       <div class="temperature-rain" style="margin-left:30px;">
-       <div class="bg-item-box left-height" style="max-height:250px !important;padding:15px 0;">
+       <div class="bg-item-box left-height left-height-right" style="max-height:250px !important;padding:15px 0;">
           <div class="desc">
             <div class="title">采购订单</div>
           </div>
@@ -210,7 +210,7 @@
                   </div>
           </div>
         </div>
-        <div class="bg-item-box left-height" style="max-height:250px !important;padding:15px 0;margin-top:20px;">
+        <div class="bg-item-box left-height left-height-right" style="max-height:250px !important;padding:15px 0;margin-top:20px;">
           <div class="desc">
             <div class="title">保险服务</div>
           </div>
@@ -227,20 +227,37 @@
           </div>
         </div>
         <!-- 贷款服务-饼图 -->
-        <div class="bg-item-box left-height" style="max-height:250px !important;padding:15px 0;margin-top:20px;">
+        <div class="bg-item-box left-height left-height-right" style="max-height:250px !important;padding:15px 0;margin-top:20px;">
           <div class="desc">
             <div class="title">贷款服务</div>
           </div>
-          <div style="position:relative">
-            <img src="../assets/new/pic6.png" class="pie-bg">
-           <div style="height:200px"  ref="loansChart"></div>
+          <div style="position:relative;top:-40px" ref="pieBox">
+            <img src="../assets/new/pic6.png" :style="{'top':pieTop,'left':pieLeft}"
+              ref="pieImg" class="pie-bg">
+           <div style="height:180px"  ref="loansChart"></div>
+           <!-- 饼图说明 -->
+           <div class="pie-color-box">
+           
+            <div class="display-flex align-items-center">
+              <div class="pie-color-1"></div>
+              <span>农资贷</span>
+           </div>
+           <div class="display-flex align-items-center">
+              <div class="pie-color-2"></div>
+              <span>订单贷</span>
+           </div>
+           <div class="display-flex align-items-center">
+              <div class="pie-color-3"></div>
+              <span>劳务贷</span>
+           </div>
+           </div>
           </div>
         </div>
         <!-- 地图下柱形图 -->
-            <div class="item-bg-y bg-item-box"  style="max-height:250px !important;padding:15px 0;margin-top:20px;">
+            <div class="item-bg-y bg-item-box left-height-right"  style="padding:15px 0;margin-top:20px;">
               <div class="last-title">监测服务</div>
-              <div style="height:165px;" >
-                <div class="airs air-temperature">
+              <div style="height:85%">
+                <div class="airs air-temperature" style="height:100%">
                   <echartslLine></echartslLine>
                 </div>
               </div>
@@ -277,7 +294,10 @@ export default {
     return {
       messages: [],
       mapDatas: [],
+      pieTop:0,
+      pieLeft:0,
       weixin: false,
+      show:false,
       showColorDatas: [
         {
           name: "石安镇",
@@ -334,6 +354,7 @@ export default {
       ],
       plotDatas: [],
       mapChart: "",
+      baseMessageHeight:'50px',
       baseLength: 0,
       plotLength: 0,
       totalArea: 0,
@@ -469,12 +490,29 @@ export default {
     if (this.baseScroll) {
       clearInterval(this.baseScroll.timer);
     }
-    this._drawCityMap();
+
+  // 设置饼图背景图
+    let pieBox = this.$refs.pieBox.offsetHeight;
+    let pieBoxW = this.$refs.pieBox.offsetWidth;
+    this.pieTop = (pieBox - 156) / 2 + "px";
+    this.pieLeft = (pieBoxW - 156) / 2 + "px";
+     // 地图下折线图高度
+ let height = document.body.clientHeight;
+ let map=height*0.55
+     this.$refs.mapChart.style.height = map+ "px";
+    let mapHeight = this.$refs.mapChart.offsetHeight;
+     let m=height*0.15
+    this.baseMessageHeight = (height - parseFloat(mapHeight) - m-30)/2 + "px";
+let that = this;
+   setTimeout(function(){
+     that.show=true
+      // 这里要重绘柱形图--------------------柱形图组件传参或者用方法
+   },1000)
     // this._drawRainMap();
     
     this._drawLine(); //左侧折线图
     // this._getJson()
-    let that = this;
+    this._drawCityMap()
     that.allbasearea = 0;
     axios.get("json/base_info.json").then(res => {
       for (let i = 0; i < res.data.result.length; i++) {
@@ -536,7 +574,7 @@ export default {
             that.map.add(marker);
             marker.on("click", function(e) {
               that.$router.push({
-                name: "base",
+                name: "company",
                 query: { baseId: Number(res.data.result[i].baseId) }
               });
             });
@@ -558,28 +596,6 @@ export default {
     this._dramLoansChart()
   },
   methods: {
-    // addBlockOnMap() {
-    //   for (let i = 0; i < this.blockinfo.length; i++) {
-    //     let item = this.blockinfo[i];
-    //     if (
-    //       item.remark != undefined &&
-    //       item.remark != null &&
-    //       item.remark.trim() != ""
-    //     ) {
-    //       let remarkJson2 = eval("(" + item.remark + ")");
-    //       let newPath = [];
-    //       for (let i = 0; i < remarkJson2.path.length; i++) {
-    //         let point = remarkJson2.path[i];
-    //         newPath.push(new AMap.LngLat(point.lng, point.lat));
-    //       }
-    //       remarkJson2.path = newPath;
-    //       let polygon2 = new AMap.Polygon(remarkJson2);
-    //       this.polygonss = [];
-    //       this.polygonss.push(polygon2);
-    //       this.map.add(polygon2);
-    //     }
-    //   }
-    // },
     removepoint() {
       this.map.remove(this.markers);
       this.map.remove(this.hezuoshe);
@@ -611,7 +627,7 @@ export default {
         that.map.add(marker);
         marker.on("click", function(e) {
           that.$router.push({
-            name: "base",
+            name: "company",
             query: { baseId: Number(that.baseinfo[i].baseId) }
           });
         });
@@ -1006,19 +1022,6 @@ export default {
         "#0AFBE2",
         ""
       );
-      // option.series.push({
-      //   name: "国家标准允许最大值",
-      //   barWidth: 20,
-      //   barGap: document.body.clientWidth > 2000 ? "80%" : "30%",
-      //   type: "bar",
-      //   data: [50, 250, 100, 200, 300, 0.3, 30, 0.5],
-      //   itemStyle: {
-      //     normal: {
-      //       color: "#4ECB73",
-      //       "margin-left": 20
-      //     }
-      //   }
-      // });
       console.info('info',option)
       rainChart.setOption(option);
     },
@@ -1088,7 +1091,7 @@ export default {
       rainChart.setOption(option);
     },
     _drawCityMap() {
-      this.$refs.mapChart.style.height = "520px";
+      //  this.$refs.mapChart.style.height = "520px";
       let that = this;
       MapLoader().then(AMap => {
         that.map = new AMap.Map(this.$refs.mapChart, {
@@ -1571,7 +1574,9 @@ export default {
   width: 100%;
   background: url('../assets/new/bg1.png') no-repeat;
 }
-
+.home-height{
+  height: calc(100vh - 80px);
+}
 .base-wrapper {
   margin: 20px 0 0 0;
   display: flex;
@@ -1642,7 +1647,7 @@ export default {
     }
 
     .monitor {
-      height: 335px;
+      height: 90%;
 
       .lunbo-wrapper {
         height: 100%;
@@ -1667,11 +1672,10 @@ export default {
   }
 
   .map-message {
+    
     flex: 2.6;
-    height: 160px;
     margin-left: 30px;
     min-width: 400px;
-
     .map-wrapper {
       width: 100%;
       border-radius: 6px;
@@ -1766,13 +1770,13 @@ export default {
 
     .base-message {
       margin-top: 20px;
-      height: 165px;
+      height:100%;
 
       .base {
-        height: 165px;
+       height:100%;
 
         .base-map {
-          height: 165px;
+          
           width: 40%;
           display: inline-block;
         }
@@ -1788,13 +1792,13 @@ export default {
 
         .base-info {
           width: 100%;
-          height: 98px;
+          height: 48%;
           display: inline-block;
           overflow: hidden;
           text-align: center;
-
+          line-height:32px;
           .base-item {
-            height: 26px;
+            height: 32px;
             padding: 3px 0;
             box-sizing: border-box;
             font-size: 12px;
@@ -1816,12 +1820,11 @@ export default {
 
   .temperature-rain {
     flex: 1.2;
-    height: 160px;
     display: flex;
     flex-direction: column;
     padding-bottom: 20px;
     min-width: 400px;
-
+    height: calc(100vh - 80px);
     .airs {
       position: relative;
       flex: 1;
@@ -1904,11 +1907,6 @@ export default {
           }
         }
       }
-
-      .temperature-map, .rain-map {
-        height: 150px;
-      }
-
       .rain {
         margin-top: 46px;
       }
@@ -1937,11 +1935,14 @@ export default {
 }
 
 .left-height {
-  max-height: 36%;
+  height: 30%;
 }
-
+.left-height-right{
+  height:22%;
+}
 .base-container {
-  min-height: 100%;
+  height: 100%;
+  overflow: hidden;
   background: url('../assets/new/bg.jpg') no-repeat;
   background-size: 100% 100%;
 }
@@ -2048,6 +2049,41 @@ export default {
 }
 .air-temperature{
   height:100%;
+}
+.map-message{
+  height: calc(100vh - 80px) !important;
+}
+.pie-color-box{
+  position:absolute;
+  bottom:20px;
+  right:20px;
+  line-height:35px;
+  color:#fff;
+  .pie-color-1{
+    background:#5DC1FA;
+    width:20px;
+    height:10px;
+    margin-right:5px;
+    border-radius:2px;
+  }
+  .pie-color-2{
+    background:#7C89EB;
+    width:20px;
+    margin-right:5px;
+    height:10px;
+    border-radius:2px;
+  }
+  .pie-color-3{
+    background:#14E6C4;
+    width:18px;
+    margin-right:5px;
+    height:8px;
+    border-radius:2px;
+  }
+}
+.wrapper-img{
+  width:60px;
+  height:45px;
 }
 </style>
 

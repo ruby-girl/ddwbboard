@@ -1,5 +1,5 @@
 var chartsType = {
-	charts(dataAxis, data, units, type, name, color, direction) {
+	charts(dataAxis, data, units, type, name, color, direction,pieWiath,pieHeight) {
 		if(type=='bar'){
 			if(direction=='x'){
     			var option = {
@@ -269,6 +269,12 @@ var chartsType = {
 			};
 			return option;
 		}else if(type=='pie'){
+			let arr;
+			if(pieWiath){
+				arr=['20%','40%']
+			}else{
+				arr=['40%','60%']
+			}
 			var option = {
 				tooltip: {
 					trigger: 'item',
@@ -280,13 +286,14 @@ var chartsType = {
 					data: ['订单贷', '农资贷', '劳务贷'],
 					textStyle:{
 						color: '#ffffff'//字体颜色
-					}
+					},
+					show:false
 				},
 				series: [
 					{
 						name: '访问来源',
 						type: 'pie',
-						radius: ['40%', '60%'],
+						radius: arr,
 						avoidLabelOverlap: false,
 						label: {
 							show: true,

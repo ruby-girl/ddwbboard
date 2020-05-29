@@ -43,16 +43,6 @@ export default {
                     }
                 },
             })
-            // option.series.push({
-            //     name:'百分比',
-            //     type:'line',
-            //     data: [70, 40, 9,9],
-            //     itemStyle: {
-            //         normal:{
-            //             color: '#4ECB73'
-            //         }
-            //     }
-            // })
             polygonalChart.setOption(option);
         }
     }
@@ -63,6 +53,9 @@ export default {
     height:100%;
 }
 .temperature-map{
-    height:100%;
+    height:100% !important;
+    div{
+        height:100% !important;
+    }
 }
 </style>

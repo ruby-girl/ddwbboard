@@ -182,7 +182,7 @@
       <div class="company-info" style="margin-left:30px">
         <div class="bg-item-box left-height" style="padding-bottom:10px">
           <div class="desc">
-            <div class="title">平台简介</div>
+            <div class="title">基地订单合同</div>
           </div>
           <div style="position:relative" ref="pieBox">
             <img
@@ -192,6 +192,17 @@
               ref="pieImg"
             />
             <div style="height:180px" ref="loansChart"></div>
+             <!-- 饼图说明 -->
+           <div class="pie-color-box">
+           <div class="display-flex align-items-center">
+              <div class="pie-color-2"></div>
+              <span>有订单</span>
+           </div>
+           <div class="display-flex align-items-center">
+              <div class="pie-color-3"></div>
+              <span>没有订单</span>
+           </div>
+           </div>
           </div>
         </div>
         <div class="item-bg-y bg-item-box left-height" style="padding:15px 0;margin-top:20px;">
@@ -232,6 +243,7 @@
                 :timeFunction="'cubic-bezier(0.99, 0.01, 0.22, 0.94)'"
                 :backgroundColor="'#4452B9'"
               />
+              
             </div>
           </div>
         </div>
@@ -691,7 +703,7 @@ export default {
         });
     },
     _dramLoansChart() {
-      //左侧折线图
+      //右侧饼图
       let rainChart = this.$echarts.init(this.$refs.loansChart);
       var option = chartsType.charts(
         ["镍", "锌", "铜", "总铬", "铅", "镉", "总砷", "总汞"],
@@ -1802,6 +1814,34 @@ export default {
     border: 1px solid #fff;
     bottom: 0px;
     left: 30%;
+  }
+}
+.pie-color-box{
+  position:absolute;
+  bottom:20px;
+  right:20px;
+  line-height:35px;
+  color:#fff;
+  .pie-color-1{
+    background:#5DC1FA;
+    width:20px;
+    height:10px;
+    margin-right:5px;
+    border-radius:2px;
+  }
+  .pie-color-2{
+    background:#7C89EB;
+    width:20px;
+    margin-right:5px;
+    height:10px;
+    border-radius:2px;
+  }
+  .pie-color-3{
+    background:#14E6C4;
+    width:18px;
+    margin-right:5px;
+    height:8px;
+    border-radius:2px;
   }
 }
 </style>

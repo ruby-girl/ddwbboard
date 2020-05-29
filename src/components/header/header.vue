@@ -20,8 +20,8 @@
             <img style="width:50px" :src="now.weather_pic" alt />
           </div>
           <div>
-            <span>{{now.temperature}}</span>
-            <span class="weather">{{weather}}</span>
+            <span>{{now.temperature}}℃</span>
+            <span class="weather" style="margin-left:5px">{{weather}}</span>
           </div>
         </div>
       </div>
