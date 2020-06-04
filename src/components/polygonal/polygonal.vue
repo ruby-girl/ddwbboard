@@ -8,6 +8,7 @@ import chartsType from '../../assets/js/chartsType.js';
 import axios from 'axios'
 
 export default {
+    props:['datas','tdataAxis'],
     data() {
         return {
             datas: [200, 500, 1000 , 1000],

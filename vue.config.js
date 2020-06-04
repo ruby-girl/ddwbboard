@@ -10,14 +10,14 @@ module.exports = {
     proxy: {
       '/api': {
         // 目标 API 地址
-        target: 'http://192.168.101.119:8081',
+        target: 'http://192.168.101.30:8088',
         //target: 'http://192.168.1.107:8081',
         // 如果要代理 websockets
         ws: false,
         // 将主机标头的原点更改为目标URL
         changeOrigin: true,
         pathRewrite: {
-          '/api': ' '  //默认所有请求都加了api前缀，需要去掉
+          '/api': ''  //默认所有请求都加了api前缀，需要去掉
         }
       },
       '/lunar/now': {

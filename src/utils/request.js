@@ -9,12 +9,9 @@ const service = axios.create({
 })
 
 const err = (error) => {
-  console.log("in error")
   if (error.response) {
     let data = error.response.data
     const token = Vue.ls.get(ACCESS_TOKEN)
-    console.log("------异常响应------",token)
-    console.log("------异常响应------",error.response.status)
     switch (error.response.status) {
       case 403:
         notification.error({ message: '系统提示', description: '拒绝访问',duration: 4})
@@ -70,9 +67,6 @@ const err = (error) => {
 
 service.interceptors.request.use(config=>{
     const token = Vue.ls.get(ACCESS_TOKEN);
-    //const token = 'xx';
-    console.log("service.interceptors.request config");
-    console.log(config);
     if(token){
       config.headers['X-Access-Token'] = token
     }

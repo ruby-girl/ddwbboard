@@ -89,7 +89,7 @@
             <div class="map-title-box display-flex align-items-center justify-content-flex-center">
               <div class="map-title-item">
                 <div class="map-title-item-num">123123</div>
-                <div>已服务面积（亩）</div>
+                <div>基地面积（亩）</div>
               </div>
               <div class="map-title-item" style="margin:0 20px">
                 <div class="map-title-item-num">1223</div>
@@ -206,7 +206,7 @@
           </div>
         </div>
         <div class="item-bg-y bg-item-box left-height" style="padding:15px 0;margin-top:20px;">
-          <div class="last-title">农事执行进度</div>
+          <div class="last-title">基地保险概况</div>
           <div class="base-progress-box">
             <div
               style="padding:60px 20px 0 40px;"
@@ -1662,7 +1662,8 @@ export default {
 }
 
 .base-container {
-  min-height: 100%;
+  height: 100%;
+   overflow: hidden;
   background: url('../assets/new/bg.jpg') no-repeat;
   background-size: 100% 100%;
 }

@@ -10,20 +10,18 @@
           <div class="company">
             <div class="title-item-y display-flex justify-content-flex-justify">
               <span class="color-fff">企业名称</span>
-              <span class="color-main">四川代代为本农业科技有限公司</span>
+              <span class="color-main">{{subjectInfo.name}}</span>
             </div>
             <div class="title-item-y display-flex justify-content-flex-justify">
               <span class="color-fff">基地位置</span>
-              <span class="color-main">四川省绵阳市三台县</span>
+              <span class="color-main">{{subjectInfo.provinceName}}{{subjectInfo.cityName}}{{subjectInfo.areaName}}{{subjectInfo.addr}}</span>
             </div>
             <div class="title-item-y display-flex justify-content-flex-justify">
               <span class="color-fff">主要品种</span>
-              <span class="color-main">麦冬</span>
+              <span class="color-main">{{subjectInfo.breedName}}</span>
             </div>
             <p class="company-desc">
-              道地药材7S全程质量控制服务平台，是中国中药协会中药材检测认证技术专业委员会联合现代中药资源动态检测信息和技术服务中心依
-              托行业资源优势建设，通过建立标准、植保、检测、认证、溯源、仓单监管、信息监测发布等一站式的第三方质量管理体系，为全国道地药材生产基地
-              建设，和产销一体化模式，提供第三方质量管理和品质保障，促进中药材产业高质量发展。
+            {{subjectInfo.intro}}
             </p>
           </div>
         </div>
@@ -160,7 +158,9 @@
               <div class="title">年度有机肥用量</div>
               <div style="height:100%" class="temperature-rain">
                 <div class="airs air-temperature" style="height:100%" v-if="show">
-                  <polygonal></polygonal>
+                   <div class="polygonal">
+                      <div class="temperature-map" ref="polygonal"></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -271,14 +271,14 @@
 import headers from "@/components/header/header";
 import baseMap from "@/components/baseMap/baseMap";
 import MapLoader from "@/utils/loadMap.js";
-import polygonal from "@/components/polygonal/polygonal";
+
 import echartslLine from "@/components/echartslLine/echartslLine";
 
 import Foot from "@/components/layouts/GlobalFooter.vue";
 import chartsType from "../assets/js/chartsType.js";
 import roll from "../assets/js/roll.js";
 import axios from "axios";
-
+import {getSubjectInfo,getAnnualFertilizer} from "../api/apiYZX"
 const dataAxis = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 export default {
@@ -286,7 +286,6 @@ export default {
   components: {
     headers,
     baseMap,
-    polygonal,
     echartslLine,
     Foot
   },
@@ -442,7 +441,9 @@ export default {
       rightList:[{ num: "22", name: "空气湿度", icon: "iconkongqishidu" },
         { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
         { num: "33", name: "空气湿度", icon: "iconkongqishidu" }],
-      mapIcon:require("../assets/new/icon_positioning.png")
+      mapIcon:require("../assets/new/icon_positioning.png"),
+      subjectInfo:{},//主体信息
+      annualFertilizer:{}//年度有机肥用量
     };
   },
   created() {
@@ -458,8 +459,6 @@ export default {
           this.weather2 = res.data.showapi_res_body.now.sd.slice(0, 2);
         }
       });
-    // if (!window.localStorage.token) {
-    console.log(111);
     let params =
       "appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53";
     axios
@@ -594,8 +593,62 @@ let that = this;
 
     });
     this._dramLoansChart()
+    this.getSubjectInfo()
+    this.getAnnualFertilizer()
   },
   methods: {
+    getSubjectInfo(){//获取主体信息
+      getSubjectInfo({organId:1}).then(res=>{
+        this.subjectInfo=res.data
+      })
+    },
+    getAnnualFertilizer(){//获取年度有机肥
+      getAnnualFertilizer({organId:1}).then(res=>{  
+        let arr=res.data
+         let Xdata=arr.map(item=>{
+          
+           return item.year
+         })    
+         let data1=arr.map(item=>{//有机
+           return item['organicFertilizer']
+         })
+          let data2=arr.map(item=>{//无机
+           return item['inorganicFertilizer']
+         })
+         
+         let _this=this
+          setTimeout(function(){
+            let polygonalChart = _this.$echarts.init(_this.$refs.polygonal);
+            _this._drawPolygonal(polygonalChart,Xdata,data1,data2)
+          },1000)
+      })
+    },
+    _drawPolygonal(polygonalChart,tdataAxis,datas,datas2) {
+            var option = chartsType.charts(tdataAxis,datas,'用量（亩/kg）','bar','有机肥','#14E6C4','x');
+            option.legend = {
+                left: 'right',
+                textStyle: {
+                    color: '#fff'
+                }
+            }
+            option.series.push({
+                name: '普通肥',
+                barWidth:20,
+                data:datas2,
+                type: 'bar',
+                itemStyle: {
+                    emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: '#F39474'
+                    },
+                    normal:{
+                            color: '#F39474'
+                    }
+                },
+            })
+            polygonalChart.setOption(option);   
+    },
     removepoint() {
       this.map.remove(this.markers);
       this.map.remove(this.hezuoshe);
@@ -2084,6 +2137,15 @@ let that = this;
 .wrapper-img{
   width:60px;
   height:45px;
+}
+.polygonal{
+    height:100%;
+}
+.temperature-map{
+    height:100% !important;
+    div{
+        height:100% !important;
+    }
 }
 </style>
 
