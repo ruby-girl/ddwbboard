@@ -9,21 +9,14 @@ import axios from "axios";
 
 export default {
   data() {
-    return {
-      datas: [200, 500, 1000, 1000],
-      tdataAxis: [2015, 2016, 2017, 2018]
-    };
-  },
-  mounted() {
-    this._drawPolygonal();
+    return {};
   },
   methods: {
-    _drawPolygonal() {
+    _drawPolygonal(dataLeft,dataRight) {
+      console.log()
+      let _this = this;
       let polygonalChart = this.$echarts.init(this.$refs.polygonal);
-      var colors = [
-        "#0089FF",
-        "#B865DF"
-      ];
+      var colors = ["#0089FF", "#B865DF"];
       // 指定图表的配置项和数据
       var option = {
         color: colors,
@@ -36,17 +29,17 @@ export default {
             }
           }
         },
-       legend: {
-                        data:['组数','CMI'],
-                        y:10,
-                         textStyle: {
-                    color: '#fff'
-                }
-       },
+        legend: {
+          data: ["贷款金额", "贷款人数"],
+          y: 10,
+          textStyle: {
+            color: "#fff"
+          }
+        },
         xAxis: [
           {
             type: "category",
-            data: [10, 20, 35],
+            data: ["订单贷", "劳务贷", "农资贷"],
             axisPointer: {
               type: "shadow"
             },
@@ -73,7 +66,7 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "组数整体指标",
+            name: "",
             position: "left",
             splitLine: { show: false },
             axisLine: {
@@ -92,7 +85,7 @@ export default {
           },
           {
             type: "value",
-            name: "CMI",
+            name: "",
             position: "right",
 
             splitLine: { show: false },
@@ -116,14 +109,14 @@ export default {
             name: "组数",
             type: "bar",
             barWidth: 20,
-            data: [1, 20, 35],
+            data:dataLeft,
             yAxisIndex: 0
           },
           {
             name: "CMI",
             type: "bar",
             barWidth: 20,
-            data: [1, 10, 15],
+            data:dataRight,
             yAxisIndex: 1
           }
         ]

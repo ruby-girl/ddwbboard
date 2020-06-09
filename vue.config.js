@@ -10,7 +10,7 @@ module.exports = {
     proxy: {
       '/api': {
         // 目标 API 地址
-        target: 'http://192.168.101.30:8088',
+        target: 'http://192.168.101.52:8088',
         //target: 'http://192.168.1.107:8081',
         // 如果要代理 websockets
         ws: false,

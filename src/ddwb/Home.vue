@@ -14,15 +14,15 @@
             </div>
             <div class="title-item-y display-flex justify-content-flex-justify">
               <span class="color-fff">基地位置</span>
-              <span class="color-main">{{subjectInfo.provinceName}}{{subjectInfo.cityName}}{{subjectInfo.areaName}}{{subjectInfo.addr}}</span>
+              <span
+                class="color-main"
+              >{{subjectInfo.provinceName}}{{subjectInfo.cityName}}{{subjectInfo.areaName}}{{subjectInfo.addr}}</span>
             </div>
             <div class="title-item-y display-flex justify-content-flex-justify">
               <span class="color-fff">主要品种</span>
               <span class="color-main">{{subjectInfo.breedName}}</span>
             </div>
-            <p class="company-desc">
-            {{subjectInfo.intro}}
-            </p>
+            <p class="company-desc">{{subjectInfo.intro}}</p>
           </div>
         </div>
         <!-- 图表 -->
@@ -51,29 +51,6 @@
             <div class="descs">The data map</div>
           </div>-->
           <div class="map" ref="mapChart">
-            <!-- <div class="changebut" style="background-color:#7e43aa;" @click="changemap">切换卫星地图</div> -->
-            <!-- <div class="point">
-              <div class="base-point">
-                <span class="icon1" style="background-color:red" ref="all" @click="all"></span>
-                <span class="text">全部</span>
-              </div>
-              <div class="base-point">
-                <span class="icon1" style="background-color:#fe5858" ref="hz" @click="hezuo1"></span>
-                <span class="text">合作基地</span>
-              </div>
-              <div class="earth-point">
-                <span class="icon1" style="background-color:#dc9748" ref="hzs" @click="hezuoshe1"></span>
-                <span class="text">合作社</span>
-              </div>
-              <div class="area-point">
-                <span class="icon1" style="background-color:#289CF4" ref="jt" @click="jiatin1"></span>
-                <span class="text">家庭农场</span>
-              </div>
-              <div class="farmar-point">
-                <span class="icon1" style="background-color:#fe58fe" ref="jm" @click="jinmi1"></span>
-                <span class="text">紧密合作基地</span>
-              </div>
-            </div>-->
             <div class="map-title-box display-flex align-items-center justify-content-flex-center">
               <div class="map-title-item">
                 <div class="map-title-item-num">123123</div>
@@ -107,9 +84,9 @@
               </div>
             </div>
             <div class="map-footer-box display-flex align-items-center justify-content-flex-center">
-              <div>农户</div>
+              <div @click="changeMapData2">农户</div>
               <span class="btn-margin"></span>
-              <div>基地</div>
+              <div @click="changeMapData1">基地</div>
             </div>
           </div>
         </div>
@@ -135,8 +112,8 @@
                 </li>
               </ul>
               <div class="base-info" id="base-info">
-                <ul id="base-ul1" style="position:relative; top:30px">
-                  <li class="base-item" v-for="(item,index) in this.baseDatas" :key="index">
+                <ul id="base-ul1" style="position:relative; top:30px" v-if="orderData.length>0">
+                  <li class="base-item" v-for="(item,index) in orderData" :key="index">
                     <span
                       style="text-align: left;display:inline-block; width: 80px;color: #0AFBE2"
                     >张三</span>
@@ -151,6 +128,9 @@
                     >农事投入</span>
                   </li>
                 </ul>
+                <div v-else>
+                  暂无数据
+                </div>
               </div>
             </div>
             <!-- 地图下柱形图 -->
@@ -158,8 +138,8 @@
               <div class="title">年度有机肥用量</div>
               <div style="height:100%" class="temperature-rain">
                 <div class="airs air-temperature" style="height:100%" v-if="show">
-                   <div class="polygonal">
-                      <div class="temperature-map" ref="polygonal"></div>
+                  <div class="polygonal">
+                    <div class="temperature-map" ref="polygonal"></div>
                   </div>
                 </div>
               </div>
@@ -170,22 +150,27 @@
         <div class="base-wrapper wrapper-box" :style="{'height':baseMessageHeight}">
           <div class="temperature-rain" style="margin-top:15px;">
             <div class="monitor-data" style="position:relative">
-               <div class="wrpper-title">气象监测</div>
+              <div class="wrpper-title">气象监测</div>
               <Carousel class="lunbo-wrapper" radius-dot>
-                <CarouselItem v-for="i in 5" :key="i">
+                <CarouselItem v-for="(item,i) in warpperList" :key="i">
                   <div class="display-flex justify-content-flex-justify">
                     <div></div>
-                    <div class="color-fff">羊基地</div>
+                    <div class="color-fff">{{item.name}}</div>
                   </div>
                   <div class="display-flex justify-content-flex-justify">
-                    <div v-for="(item,n) in warpperList" :key="n" style="text-align:center">
-                    <div class="color-main" style="font-weight:bold;font-size:18px">{{item.num}}</div>
-                    <img style="margin-bottom:5px" class="wrapper-img" src="../assets/new/pic3.png" alt />
-                    <div>
-                      <i :class="['iconfont','color-main',item.icon]"></i>
-                      <span style="color:#fff;margin-left:5px;">{{item.name}}</span>
+                    <div v-for="(li,n) in item.warpperData" :key="n" style="text-align:center">
+                      <div class="color-main" style="font-weight:bold;font-size:18px">{{li.num}}</div>
+                      <img
+                        style="margin-bottom:5px"
+                        class="wrapper-img"
+                        src="../assets/new/pic3.png"
+                        alt
+                      />
+                      <div>
+                        <i :class="['iconfont','color-main',li.icon]"></i>
+                        <span style="color:#fff;margin-left:5px;">{{li.name}}</span>
+                      </div>
                     </div>
-                  </div>
                   </div>
                 </CarouselItem>
               </Carousel>
@@ -194,74 +179,88 @@
         </div>
       </div>
       <div class="temperature-rain" style="margin-left:30px;">
-       <div class="bg-item-box left-height left-height-right" style="max-height:250px !important;padding:15px 0;">
+        <div
+          class="bg-item-box left-height left-height-right"
+          style="max-height:250px !important;padding:15px 0;"
+        >
           <div class="desc">
             <div class="title">采购订单</div>
           </div>
           <div>
-           <div class="display-flex justify-content-flex-justify right-box-padding">
-                    <div v-for="(item,n) in rightList" :key="n" style="text-align:center">
-                    <div class="color-main" style="font-weight:bold;font-size:18px">{{item.num}}</div>
-                    <img style="margin-bottom:5px" src="../assets/new/pic3.png" alt />
-                    <div style="color:#fff;">
-                     {{item.name}}
-                    </div>
-                  </div>
-                  </div>
+            <div class="display-flex justify-content-flex-justify right-box-padding">
+              <div v-for="(item,n) in rightList" :key="n" style="text-align:center">
+                <div class="color-main" style="font-weight:bold;font-size:18px">{{item.num}}</div>
+                <img style="margin-bottom:5px" src="../assets/new/pic3.png" alt />
+                <div style="color:#fff;">{{item.name}}</div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="bg-item-box left-height left-height-right" style="max-height:250px !important;padding:15px 0;margin-top:20px;">
+        <div
+          class="bg-item-box left-height left-height-right"
+          style="max-height:250px !important;padding:15px 0;margin-top:20px;"
+        >
           <div class="desc">
             <div class="title">保险服务</div>
           </div>
           <div>
-           <div class="display-flex justify-content-flex-justify right-box-padding">
-                    <div v-for="(item,n) in rightList" :key="n" style="text-align:center">
-                    <div class="color-main right-bx-bg" style="font-weight:bold;font-size:18px">{{item.num}}</div>
-                   
-                    <div style="color:#fff;">
-                     {{item.name}}
-                    </div>
-                  </div>
-                  </div>
+            <div class="display-flex justify-content-flex-justify right-box-padding">
+              <div v-for="(item,n) in InsuranceList" :key="n" style="text-align:center">
+                <div
+                  class="color-main right-bx-bg"
+                  style="font-weight:bold;font-size:18px"
+                >{{item.num}}</div>
+
+                <div style="color:#fff;">{{item.name}}</div>
+              </div>
+            </div>
           </div>
         </div>
         <!-- 贷款服务-饼图 -->
-        <div class="bg-item-box left-height left-height-right" style="max-height:250px !important;padding:15px 0;margin-top:20px;">
+        <div
+          class="bg-item-box left-height left-height-right"
+          style="max-height:250px !important;padding:15px 0;margin-top:20px;"
+        >
           <div class="desc">
             <div class="title">贷款服务</div>
           </div>
           <div style="position:relative;top:-40px" ref="pieBox">
-            <img src="../assets/new/pic6.png" :style="{'top':pieTop,'left':pieLeft}"
-              ref="pieImg" class="pie-bg">
-           <div style="height:180px"  ref="loansChart"></div>
-           <!-- 饼图说明 -->
-           <div class="pie-color-box">
-           
-            <div class="display-flex align-items-center">
-              <div class="pie-color-1"></div>
-              <span>农资贷</span>
-           </div>
-           <div class="display-flex align-items-center">
-              <div class="pie-color-2"></div>
-              <span>订单贷</span>
-           </div>
-           <div class="display-flex align-items-center">
-              <div class="pie-color-3"></div>
-              <span>劳务贷</span>
-           </div>
-           </div>
+            <img
+              src="../assets/new/pic6.png"
+              :style="{'top':pieTop,'left':pieLeft}"
+              ref="pieImg"
+              class="pie-bg"
+            />
+            <div style="height:180px" ref="loansChart"></div>
+            <!-- 饼图说明 -->
+            <div class="pie-color-box">
+              <div class="display-flex align-items-center">
+                <div class="pie-color-1"></div>
+                <span>农资贷</span>
+              </div>
+              <div class="display-flex align-items-center">
+                <div class="pie-color-2"></div>
+                <span>订单贷</span>
+              </div>
+              <div class="display-flex align-items-center">
+                <div class="pie-color-3"></div>
+                <span>劳务贷</span>
+              </div>
+            </div>
           </div>
         </div>
         <!-- 地图下柱形图 -->
-            <div class="item-bg-y bg-item-box left-height-right"  style="padding:15px 0;margin-top:20px;">
-              <div class="last-title">监测服务</div>
-              <div style="height:85%">
-                <div class="airs air-temperature" style="height:100%">
-                  <echartslLine></echartslLine>
-                </div>
-              </div>
+        <div
+          class="item-bg-y bg-item-box left-height-right"
+          style="padding:15px 0;margin-top:20px;"
+        >
+          <div class="last-title">监测服务</div>
+          <div style="height:85%">
+            <div class="airs air-temperature" style="height:100%">
+              <echartslLine></echartslLine>
             </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- <Foot style="margin:0px;"/> -->
@@ -278,7 +277,17 @@ import Foot from "@/components/layouts/GlobalFooter.vue";
 import chartsType from "../assets/js/chartsType.js";
 import roll from "../assets/js/roll.js";
 import axios from "axios";
-import {getSubjectInfo,getAnnualFertilizer} from "../api/apiYZX"
+import {
+  getSubjectInfo,
+  getAnnualFertilizer,
+  getBaseMapInfo,
+  getWorkOrderByRealTime,
+  getFarmerMapInfo,
+  getOrgMonitorTj,
+  getOrgOrderTj,
+  getOrgInsuranceTj,
+  getOrgLoanTj
+} from "../api/apiYZX";
 const dataAxis = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 export default {
@@ -293,10 +302,12 @@ export default {
     return {
       messages: [],
       mapDatas: [],
-      pieTop:0,
-      pieLeft:0,
+      mapRemarks: [],
+      orderData:[],
+      pieTop: 0,
+      pieLeft: 0,
       weixin: false,
-      show:false,
+      show: false,
       showColorDatas: [
         {
           name: "石安镇",
@@ -353,7 +364,7 @@ export default {
       ],
       plotDatas: [],
       mapChart: "",
-      baseMessageHeight:'50px',
+      baseMessageHeight: "50px",
       baseLength: 0,
       plotLength: 0,
       totalArea: 0,
@@ -427,26 +438,24 @@ export default {
       weather2: "",
       weather: "",
       allbasearea: 0,
-      warpperList: [
-        { num: "22", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" }
+      warpperList: [],
+      rightList: [
+        { num: "", name: "订单合同数量"},
+        { num: "", name: "订单合同面积"},
+        { num: "", name: "订单合同预估量"}
       ],
-      rightList:[{ num: "22", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" }],
-      mapIcon:require("../assets/new/icon_positioning.png"),
-      subjectInfo:{},//主体信息
-      annualFertilizer:{}//年度有机肥用量
+      InsuranceList:[
+        { num: "", name: "保险被保面积"},
+        { num: "", name: "保单保费总额"},
+        { num: "", name: "保险参保人"}
+      ],//保险服务
+      mapIcon: require("../assets/new/icon_positioning.png"),
+      subjectInfo: {}, //主体信息
+      annualFertilizer: {} //年度有机肥用量
     };
   },
   created() {
+    this.getMap();
     axios
       .get("/tq", {
         params: { from: "5", lat: 31.1, lng: 105.06, needMoreDay: 1 },
@@ -481,7 +490,7 @@ export default {
     if (this.$route.query.time) {
       let that = this;
       window.addEventListener("done1", function() {
-        that.all();
+        // that.all();
       });
     }
   },
@@ -490,28 +499,29 @@ export default {
       clearInterval(this.baseScroll.timer);
     }
 
-  // 设置饼图背景图
+    // 设置饼图背景图
     let pieBox = this.$refs.pieBox.offsetHeight;
     let pieBoxW = this.$refs.pieBox.offsetWidth;
     this.pieTop = (pieBox - 156) / 2 + "px";
     this.pieLeft = (pieBoxW - 156) / 2 + "px";
-     // 地图下折线图高度
- let height = document.body.clientHeight;
- let map=height*0.55
-     this.$refs.mapChart.style.height = map+ "px";
+    // 地图下折线图高度
+    let height = document.body.clientHeight;
+    let map = height * 0.55;
+    this.$refs.mapChart.style.height = map + "px";
     let mapHeight = this.$refs.mapChart.offsetHeight;
-     let m=height*0.15
-    this.baseMessageHeight = (height - parseFloat(mapHeight) - m-30)/2 + "px";
-let that = this;
-   setTimeout(function(){
-     that.show=true
+    let m = height * 0.15;
+    this.baseMessageHeight =
+      (height - parseFloat(mapHeight) - m - 30) / 2 + "px";
+    let that = this;
+    setTimeout(function() {
+      that.show = true;
       // 这里要重绘柱形图--------------------柱形图组件传参或者用方法
-   },1000)
+    }, 1000);
     // this._drawRainMap();
-    
+
     this._drawLine(); //左侧折线图
     // this._getJson()
-    this._drawCityMap()
+    this._drawCityMap();
     that.allbasearea = 0;
     axios.get("json/base_info.json").then(res => {
       for (let i = 0; i < res.data.result.length; i++) {
@@ -526,12 +536,12 @@ let that = this;
           if (that.baseScroll) {
             clearInterval(that.baseScroll.timer);
           }
-          that.baseScroll = new roll.Roll(
-            "base-info",
-            "base-ul1",
-            "base-ul2",
-            -1060
-          );
+          // that.baseScroll = new roll.Roll(
+          //   "base-info",
+          //   "base-ul1",
+          //   "base-ul2",
+          //   -1060
+          // );
         });
       }
       window.addEventListener("done1", function() {
@@ -551,395 +561,212 @@ let that = this;
         });
         that.baseinfo = [];
         that.baseLength = 0;
-        for (let i = 0; i < res.data.result.length; i++) {
-          if (res.data.result[i].type == 3) {
-            that.totalArea += res.data.result[i].area;
 
-            that.mapDatas.push({
-              name: res.data.result[i].name,
-              value: [res.data.result[i].lng, res.data.result[i].lat],
-              id: res.data.result[i].baseId
-            });
-            that.baseLength++;
-            that.baseinfo.push(res.data.result[i]);
-            let lng = res.data.result[i].lng;
-            let lat = res.data.result[i].lat;
+        setTimeout(function() {
+          for (let i = 0; i < that.mapRemarks.length; i++) {
+            let remark = that.mapRemarks[i].mapAddr;
+            let remarkJson2 = eval("(" + remark + ")");
+
+            let lng = remarkJson2.path[0].lng;
+            let lat = remarkJson2.path[0].lat;
             let marker = new AMap.Marker({
               position: new AMap.LngLat(lng, lat),
               offset: new AMap.Pixel(-10, -10),
-              icon:that.mapIcon         
+              icon: that.mapIcon
             });
             that.markers.push(marker);
             that.map.add(marker);
-            marker.on("click", function(e) {
+             marker.on("click", function(e) {
               that.$router.push({
-                name: "company",
-                query: { baseId: Number(res.data.result[i].baseId) }
+                name: "base",
+                query: { baseId:that.mapRemarks[i].id}
               });
             });
-            marker.on("mousemove", function(e) {
-              marker.setRadius(18);
-              marker.setOptions({ fillOpacity: 0.5 });
-              that.tip = res.data.result[i].name;
+          }
+        }, 1500);
+      });
+    });
+    this.getSubjectInfo();
+    this.getAnnualFertilizer();
+    this.getWorkOrderByRealTime()
+    this.getOrgMonitorTj()
+    this.getOrgOrderTj()
+    this.getOrgInsuranceTj()
+    this.getOrgLoanTj()
+  },
+  methods: {
+    getOrgLoanTj(){
+      getOrgLoanTj({orgId:1}).then(res=>{
+          this._dramLoansChart(res.data)
+      })
+    },
+    getOrgInsuranceTj(){
+      getOrgInsuranceTj({orgId:1}).then(res=>{
+          this.InsuranceList[0].num=res.data.bx_amount+'亩'
+           this.InsuranceList[1].num=res.data.bx_forests+'万'
+           this.InsuranceList[2].num=res.data.count+'人'
+      })
+    },
+    getOrgOrderTj(){//采购订单数据
+        getOrgOrderTj({orgId:1}).then(res=>{
+            this.rightList[0].num=res.data.count+'份'
+             this.rightList[1].num=res.data.order_forests+"亩"
+             this.rightList[2].num=res.data.order_pre_amount+'吨'
+        })
+    },
+    getOrgMonitorTj(){//获取气象数据
+      getOrgMonitorTj({orgId:1}).then(res=>{
+        let datas=res.data
+        for(var i=0;i<datas.length;i++){
+          let obj=datas[i]
+          let arr=[{ num:obj.air_humidity||'0', name: "空气湿度", icon: "iconkongqishidu"},
+          { num:obj.air_pressure||'0', name: "空气压力", icon: "icondaqiyali"},
+          { num:obj.air_temperature||'0', name: "空气温度", icon: "iconshangpinwenduji"},
+          { num:obj.co2value||'0', name: "CO2浓度", icon: "iconeryanghuatan"},
+          { num:obj.ill_intensity||'0', name: "光照强度", icon: "icontaiyangfushe"},
+          { num:obj.rainfall||'0', name: "降雨量", icon: "iconjiangyuliang"},
+          { num:obj.soil_ec||'0', name: "土壤EC值", icon: "iconjiangyuliang"},//图标
+          { num:obj.soil_humidity||'0', name: "土壤湿度", icon: "iconturangshidu"},
+           { num:obj.soil_ph||'0', name: "土壤PH值", icon: "iconsuanjiandu"},
+           { num:obj.soil_temperature||'0', name: "土壤温度", icon: "iconturangwendu"},
+            { num:obj.wind_direction||'0', name: "风向", icon: "iconfengxiang"},
+            { num:obj.wind_speed||'0', name: "风速", icon: "iconfengsu2"}
+          ]
+          datas[i].warpperData=arr
+        }
+         this.warpperList=datas
+      })
+     
+    },
+    changeMapData1(){//切换基地模式
+      this.removepoint()
+      this.markers=[]
+       getBaseMapInfo({ organId: 1 }).then(res => {
+        this.mapRemarks = res.data;
+        let that=this
+         for (let i = 0; i < that.mapRemarks.length; i++) {
+            let remark = that.mapRemarks[i].mapAddr;
+            let remarkJson2 = eval("(" + remark + ")");
+
+            let lng = remarkJson2.path[0].lng;
+            let lat = remarkJson2.path[0].lat;
+            let marker = new AMap.Marker({
+              position: new AMap.LngLat(lng, lat),
+              offset: new AMap.Pixel(-10, -10),
+              icon: that.mapIcon
             });
-            marker.on("mouseout", function(e) {
-              marker.setRadius(5);
-              marker.setOptions({ fillOpacity: 1 });
-              that.tip = "";
+             that.markers.push(marker);
+            that.map.add(marker);
+            marker.on("click", function(e) {
+            that.$router.push({
+              name: "base",
+              query: { baseId: Number(that.mapRemarks[i].id) }
             });
+          });
+          }
+      });
+    },
+     changeMapData2(){//切换基地模式
+       this.removepoint()
+        this.markers=[]
+       getFarmerMapInfo({ organId: 1 }).then(res => {
+        this.mapRemarks = res.data;
+        let that=this
+         for (let i = 0; i < that.mapRemarks.length; i++) {
+            let remark = that.mapRemarks[i].mapAddr;
+            let remarkJson2 = eval("(" + remark + ")");
+
+            let lng = remarkJson2.path[0].lng;
+            let lat = remarkJson2.path[0].lat;
+            let marker = new AMap.Marker({
+              position: new AMap.LngLat(lng, lat),
+              offset: new AMap.Pixel(-10, -10),
+              icon: that.mapIcon
+            });
+             that.markers.push(marker);
+            that.map.add(marker);
+            that.$router.push({
+              name: "base",
+              query: { baseId: Number(that.mapRemarks[i].id) }
+            });
+          }
+      });
+    },
+    getMap() {
+      getBaseMapInfo({ organId: 1 }).then(res => {
+        this.mapRemarks = res.data;
+      });
+    },
+    getSubjectInfo() {
+      //获取主体信息
+      getSubjectInfo({ organId: 1 }).then(res => {
+        this.subjectInfo = res.data;
+      });
+    },
+    getAnnualFertilizer() {
+      //获取年度有机肥
+      getAnnualFertilizer({ organId: 1 }).then(res => {
+        let arr = res.data;
+        let Xdata = arr.map(item => {
+          return item.year;
+        });
+        let data1 = arr.map(item => {
+          //有机
+          return item["organicFertilizer"];
+        });
+        let data2 = arr.map(item => {
+          //无机
+          return item["inorganicFertilizer"];
+        });
+
+        let _this = this;
+        setTimeout(function() {
+          let polygonalChart = _this.$echarts.init(_this.$refs.polygonal);
+          _this._drawPolygonal(polygonalChart, Xdata, data1, data2);
+        }, 1000);
+      });
+    },
+    getWorkOrderByRealTime(){//获取工单
+      getWorkOrderByRealTime({ organId: 1 }).then(res=>{
+          this.orderData=res.data
+      })
+    },
+    _drawPolygonal(polygonalChart, tdataAxis, datas, datas2) {
+      var option = chartsType.charts(
+        tdataAxis,
+        datas,
+        "用量（亩/kg）",
+        "bar",
+        "有机肥",
+        "#14E6C4",
+        "x"
+      );
+      option.legend = {
+        left: "right",
+        textStyle: {
+          color: "#fff"
+        }
+      };
+      option.series.push({
+        name: "普通肥",
+        barWidth: 20,
+        data: datas2,
+        type: "bar",
+        itemStyle: {
+          emphasis: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: "#F39474"
+          },
+          normal: {
+            color: "#F39474"
           }
         }
       });
-
-    });
-    this._dramLoansChart()
-    this.getSubjectInfo()
-    this.getAnnualFertilizer()
-  },
-  methods: {
-    getSubjectInfo(){//获取主体信息
-      getSubjectInfo({organId:1}).then(res=>{
-        this.subjectInfo=res.data
-      })
-    },
-    getAnnualFertilizer(){//获取年度有机肥
-      getAnnualFertilizer({organId:1}).then(res=>{  
-        let arr=res.data
-         let Xdata=arr.map(item=>{
-          
-           return item.year
-         })    
-         let data1=arr.map(item=>{//有机
-           return item['organicFertilizer']
-         })
-          let data2=arr.map(item=>{//无机
-           return item['inorganicFertilizer']
-         })
-         
-         let _this=this
-          setTimeout(function(){
-            let polygonalChart = _this.$echarts.init(_this.$refs.polygonal);
-            _this._drawPolygonal(polygonalChart,Xdata,data1,data2)
-          },1000)
-      })
-    },
-    _drawPolygonal(polygonalChart,tdataAxis,datas,datas2) {
-            var option = chartsType.charts(tdataAxis,datas,'用量（亩/kg）','bar','有机肥','#14E6C4','x');
-            option.legend = {
-                left: 'right',
-                textStyle: {
-                    color: '#fff'
-                }
-            }
-            option.series.push({
-                name: '普通肥',
-                barWidth:20,
-                data:datas2,
-                type: 'bar',
-                itemStyle: {
-                    emphasis: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: '#F39474'
-                    },
-                    normal:{
-                            color: '#F39474'
-                    }
-                },
-            })
-            polygonalChart.setOption(option);   
+      polygonalChart.setOption(option);
     },
     removepoint() {
       this.map.remove(this.markers);
-      this.map.remove(this.hezuoshe);
-      this.map.remove(this.jiatingnongchang);
-      this.map.remove(this.jinmihezuo);
-    },
-    all() {
-      if (this.infoWindow != null) {
-        this.infoWindow.close();
-      }
-      this.removepoint();
-      let that = this;
-      that.markers = [];
-      that.hezuoshe = [];
-      that.jiatingnongchang = [];
-      that.jinmihezuo = [];
-      for (let i = 0; i < that.baseinfo.length; i++) {
-        let lng = that.baseinfo[i].lng;
-        let lat = that.baseinfo[i].lat;
-        let marker = new AMap.CircleMarker({
-          radius: 5,
-          topWhenClick: true,
-          zIndex: 999,
-          fillColor: "#fe5858",
-          strokeColor: "#fe5858",
-          center: new AMap.LngLat(lng, lat)
-        });
-        that.markers.push(marker);
-        that.map.add(marker);
-        marker.on("click", function(e) {
-          that.$router.push({
-            name: "company",
-            query: { baseId: Number(that.baseinfo[i].baseId) }
-          });
-        });
-        marker.on("mousemove", function(e) {
-          marker.setRadius(18);
-          marker.setOptions({ fillOpacity: 0.5 });
-          that.tip = that.baseinfo[i].name;
-        });
-        marker.on("mouseout", function(e) {
-          marker.setRadius(5);
-          marker.setOptions({ fillOpacity: 1 });
-          that.tip = "";
-        });
-      }
-      for (let i = 0; i < that.hezuoshe2.length; i++) {
-        let lng = that.hezuoshe2[i].lng;
-        let lat = that.hezuoshe2[i].lat;
-        let marker = new AMap.CircleMarker({
-          radius: 5,
-          topWhenClick: true,
-          zIndex: 999,
-          fillColor: "#dc9748",
-          strokeColor: "#dc9748",
-          center: new AMap.LngLat(lng, lat)
-        });
-        that.hezuoshe.push(marker);
-        that.map.add(marker);
-        marker.on("click", function(e) {
-          that.$router.push({
-            name: "base",
-            query: { baseId: Number(that.hezuoshe2[i].baseId) }
-          });
-        });
-        marker.on("mousemove", function(e) {
-          marker.setRadius(18);
-          marker.setOptions({ fillOpacity: 0.5 });
-          that.tip = that.hezuoshe2[i].name;
-        });
-        marker.on("mouseout", function(e) {
-          marker.setRadius(5);
-          marker.setOptions({ fillOpacity: 1 });
-          that.tip = "";
-        });
-      }
-      for (let i = 0; i < that.jiatingnongchang2.length; i++) {
-        let lng = that.jiatingnongchang2[i].lng;
-        let lat = that.jiatingnongchang2[i].lat;
-        let marker = new AMap.CircleMarker({
-          radius: 5,
-          topWhenClick: true,
-          zIndex: 999,
-          fillColor: "#289CF4",
-          strokeColor: "#289CF4",
-          center: new AMap.LngLat(lng, lat)
-        });
-        that.jiatingnongchang.push(marker);
-        that.map.add(marker);
-        marker.on("click", function(e) {
-          that.$router.push({
-            name: "base",
-            query: { baseId: Number(that.jiatingnongchang2[i].baseId) }
-          });
-        });
-        marker.on("mousemove", function(e) {
-          marker.setRadius(18);
-          marker.setOptions({ fillOpacity: 0.5 });
-          that.tip = that.jiatingnongchang2[i].name;
-        });
-        marker.on("mouseout", function(e) {
-          marker.setRadius(5);
-          marker.setOptions({ fillOpacity: 1 });
-          that.tip = "";
-        });
-      }
-      for (let i = 0; i < that.jinmihezuo2.length; i++) {
-        let lng = that.jinmihezuo2[i].lng;
-        let lat = that.jinmihezuo2[i].lat;
-        let marker = new AMap.CircleMarker({
-          radius: 5,
-          topWhenClick: true,
-          zIndex: 999,
-          fillColor: "#fe58fe",
-          strokeColor: "#fe58fe",
-          center: new AMap.LngLat(lng, lat)
-        });
-        that.jinmihezuo.push(marker);
-        that.map.add(marker);
-        marker.on("click", function(e) {
-          that.$router.push({
-            name: "base",
-            query: { baseId: Number(that.jinmihezuo2[i].baseId) }
-          });
-        });
-        marker.on("mousemove", function(e) {
-          marker.setRadius(18);
-          marker.setOptions({ fillOpacity: 0.5 });
-          that.tip = that.jinmihezuo2[i].name;
-        });
-        marker.on("mouseout", function(e) {
-          marker.setRadius(5);
-          marker.setOptions({ fillOpacity: 1 });
-          that.tip = "";
-        });
-      }
-    },
-    hezuo1() {
-      if (this.infoWindow != null) {
-        this.infoWindow.close();
-      }
-      this.removepoint();
-      let that = this;
-      that.markers = [];
-      for (let i = 0; i < that.baseinfo.length; i++) {
-        let lng = that.baseinfo[i].lng;
-        let lat = that.baseinfo[i].lat;
-        let marker = new AMap.CircleMarker({
-          radius: 5,
-          topWhenClick: true,
-          zIndex: 999,
-          fillColor: "#fe5858",
-          strokeColor: "#fe5858",
-          center: new AMap.LngLat(lng, lat)
-        });
-        that.markers.push(marker);
-        that.map.add(marker);
-        marker.on("click", function(e) {
-          that.$router.push({
-            name: "base",
-            query: { baseId: Number(that.baseinfo[i].baseId) }
-          });
-        });
-        marker.on("mousemove", function(e) {
-          marker.setRadius(18);
-          marker.setOptions({ fillOpacity: 0.5 });
-          that.tip = that.baseinfo[i].name;
-        });
-        marker.on("mouseout", function(e) {
-          marker.setRadius(5);
-          marker.setOptions({ fillOpacity: 1 });
-          that.tip = "";
-        });
-      }
-    },
-    hezuoshe1() {
-      if (this.infoWindow != null) {
-        this.infoWindow.close();
-      }
-      this.removepoint();
-      //  this.map.add(this.hezuoshe);
-      let that = this;
-      that.hezuoshe = [];
-      for (let i = 0; i < that.hezuoshe2.length; i++) {
-        let lng = that.hezuoshe2[i].lng;
-        let lat = that.hezuoshe2[i].lat;
-        let marker = new AMap.CircleMarker({
-          radius: 5,
-          topWhenClick: true,
-          zIndex: 999,
-          fillColor: "#dc9748",
-          strokeColor: "#dc9748",
-          center: new AMap.LngLat(lng, lat)
-        });
-        that.hezuoshe.push(marker);
-        that.map.add(marker);
-        marker.on("click", function(e) {
-          that.$router.push({
-            name: "company",
-            query: { baseId: Number(that.hezuoshe2[i].baseId) }
-          });
-        });
-        marker.on("mousemove", function(e) {
-          marker.setRadius(18);
-          marker.setOptions({ fillOpacity: 0.5 });
-          that.tip = that.hezuoshe2[i].name;
-        });
-        marker.on("mouseout", function(e) {
-          marker.setRadius(5);
-          marker.setOptions({ fillOpacity: 1 });
-          that.tip = "";
-        });
-      }
-    },
-    jiatin1() {
-      if (this.infoWindow != null) {
-        this.infoWindow.close();
-      }
-      this.removepoint();
-      //  this.map.add(this.jiatingnongchang);
-      let that = this;
-      that.jiatingnongchang = [];
-      for (let i = 0; i < that.jiatingnongchang2.length; i++) {
-        let lng = that.jiatingnongchang2[i].lng;
-        let lat = that.jiatingnongchang2[i].lat;
-        let marker = new AMap.CircleMarker({
-          radius: 5,
-          topWhenClick: true,
-          zIndex: 999,
-          fillColor: "#289CF4",
-          strokeColor: "#289CF4",
-          center: new AMap.LngLat(lng, lat)
-        });
-        that.jiatingnongchang.push(marker);
-        that.map.add(marker);
-        marker.on("click", function(e) {
-          that.$router.push({
-            name: "base",
-            query: { baseId: Number(that.jiatingnongchang2[i].baseId) }
-          });
-        });
-        marker.on("mousemove", function(e) {
-          marker.setRadius(18);
-          marker.setOptions({ fillOpacity: 0.5 });
-          that.tip = that.jiatingnongchang2[i].name;
-        });
-        marker.on("mouseout", function(e) {
-          marker.setRadius(5);
-          marker.setOptions({ fillOpacity: 1 });
-          that.tip = "";
-        });
-      }
-    },
-    jinmi1() {
-      if (this.infoWindow != null) {
-        this.infoWindow.close();
-      }
-      this.removepoint();
-      //  this.map.add(this.jinmihezuo);
-      let that = this;
-      that.jinmihezuo = [];
-      for (let i = 0; i < that.jinmihezuo2.length; i++) {
-        let lng = that.jinmihezuo2[i].lng;
-        let lat = that.jinmihezuo2[i].lat;
-        let marker = new AMap.CircleMarker({
-          radius: 5,
-          topWhenClick: true,
-          zIndex: 999,
-          fillColor: "#fe58fe",
-          strokeColor: "#fe58fe",
-          center: new AMap.LngLat(lng, lat)
-        });
-        that.jinmihezuo.push(marker);
-        that.map.add(marker);
-        marker.on("click", function(e) {
-          that.$router.push({
-            name: "base",
-            query: { baseId: Number(that.jinmihezuo2[i].baseId) }
-          });
-        });
-        marker.on("mousemove", function(e) {
-          marker.setRadius(18);
-          marker.setOptions({ fillOpacity: 0.5 });
-          that.tip = that.jinmihezuo2[i].name;
-        });
-        marker.on("mouseout", function(e) {
-          marker.setRadius(5);
-          marker.setOptions({ fillOpacity: 1 });
-          that.tip = "";
-        });
-      }
     },
     changemap() {
       if (this.weixin) {
@@ -1063,19 +890,54 @@ let that = this;
           });
         });
     },
-    _dramLoansChart(){
-       //左侧折线图
+    _dramLoansChart(pieData) {
+      //左侧折线图
       let rainChart = this.$echarts.init(this.$refs.loansChart);
-      var option = chartsType.charts(
-        ["镍", "锌", "铜", "总铬", "铅", "镉", "总砷", "总汞"],
-        this.metalDatas,
-        "万元/吨",
-        "pie",
-        "",
-        "#0AFBE2",
-        ""
-      );
-      console.info('info',option)
+   
+      	var option = {
+				tooltip: {
+					trigger: 'item',
+					formatter: '{a} <br/>{b}: {c} ({d}%)'
+				},
+				legend: {
+					orient: 'vertical',
+					left: 10,
+					data: ['订单贷', '农资贷', '劳务贷'],
+					textStyle:{
+						color: '#ffffff'//字体颜色
+					},
+					show:false
+				},
+				series: [
+					{
+						name: '访问来源',
+						type: 'pie',
+						radius: ['40%','60%'],
+						avoidLabelOverlap: false,
+						label: {
+							show: true,
+							position: 'left'
+						},
+						tooltip : {
+							trigger: 'item',
+						  show:false,
+							formatter: "{a} <br/>{b} : {c} ({d}%)"
+						},
+						emphasis: {
+							label: {
+								show: false,
+								fontSize: '30',
+								fontWeight: 'bold'
+							}
+						},				
+						data: [
+							{value: pieData[2].count, name: '订单贷：'+pieData[2].count+'笔'+pieData[2].dk_amount+'万',itemStyle:{color: '#7C89EB'}},
+							{value: pieData[0].count, name: '农资：'+pieData[0].count+'笔'+pieData[0].dk_amount+'万',itemStyle:{color: '#5DC1FA'}},
+							{value: pieData[1].count, name: '劳务贷：'+pieData[1].count+'笔'+pieData[1].dk_amount+'万',itemStyle:{color: '#14E6C4'}}
+						]
+					}
+				]
+			};
       rainChart.setOption(option);
     },
     _drawLine() {
@@ -1627,13 +1489,16 @@ let that = this;
   width: 100%;
   background: url('../assets/new/bg1.png') no-repeat;
 }
-.home-height{
+
+.home-height {
   height: calc(100vh - 80px);
 }
+
 .base-wrapper {
   margin: 20px 0 0 0;
   display: flex;
-  padding:0 20px;
+  padding: 0 20px;
+
   .desc {
     height: 45px;
     color: #ffffff;
@@ -1725,10 +1590,10 @@ let that = this;
   }
 
   .map-message {
-    
     flex: 2.6;
     margin-left: 30px;
     min-width: 400px;
+
     .map-wrapper {
       width: 100%;
       border-radius: 6px;
@@ -1823,13 +1688,12 @@ let that = this;
 
     .base-message {
       margin-top: 20px;
-      height:100%;
+      height: 100%;
 
       .base {
-       height:100%;
+        height: 100%;
 
         .base-map {
-          
           width: 40%;
           display: inline-block;
         }
@@ -1849,7 +1713,8 @@ let that = this;
           display: inline-block;
           overflow: hidden;
           text-align: center;
-          line-height:32px;
+          line-height: 32px;
+
           .base-item {
             height: 32px;
             padding: 3px 0;
@@ -1878,6 +1743,7 @@ let that = this;
     padding-bottom: 20px;
     min-width: 400px;
     height: calc(100vh - 80px);
+
     .airs {
       position: relative;
       flex: 1;
@@ -1960,6 +1826,7 @@ let that = this;
           }
         }
       }
+
       .rain {
         margin-top: 46px;
       }
@@ -1990,9 +1857,11 @@ let that = this;
 .left-height {
   height: 30%;
 }
-.left-height-right{
-  height:22%;
+
+.left-height-right {
+  height: 22%;
 }
+
 .base-container {
   height: 100%;
   overflow: hidden;
@@ -2064,88 +1933,104 @@ let that = this;
 
 .wrapper-box {
   background: url('../assets/new/bg1.png') no-repeat;
-   padding:0 15px;
+  padding: 0 15px;
 }
-.ivu-carousel-dots-inside{
- top:-10px !important;
+
+.ivu-carousel-dots-inside {
+  top: -10px !important;
 }
-.wrpper-title{
-  position:absolute;
-  top:-6px;
-  left:0px;
-  color:#b1fef6;
-  font-size:16px;
-  z-index:111;
+
+.wrpper-title {
+  position: absolute;
+  top: -6px;
+  left: 0px;
+  color: #b1fef6;
+  font-size: 16px;
+  z-index: 111;
 }
-.right-bx-bg{
-   background: url('../assets/new/pic5.png') no-repeat;
-   background-size:100% 100%;
-   text-align:center;
-   line-height:100px;
-   width:100px;
-   height:100px;
+
+.right-bx-bg {
+  background: url('../assets/new/pic5.png') no-repeat;
+  background-size: 100% 100%;
+  text-align: center;
+  line-height: 100px;
+  width: 100px;
+  height: 100px;
 }
-.right-box-padding{
-  padding-left:15px;
+
+.right-box-padding {
+  padding-left: 15px;
 }
-.last-title{
-  font-size:16px;
-  color:#b1fef6;
-  padding-left:15px;
+
+.last-title {
+  font-size: 16px;
+  color: #b1fef6;
+  padding-left: 15px;
 }
-.pie-bg{
-  position:absolute;
+
+.pie-bg {
+  position: absolute;
   left: 139px;
   top: 22px;
   width: 156px;
-  height:auto;
+  height: auto;
 }
-.air-temperature{
-  height:100%;
+
+.air-temperature {
+  height: 100%;
 }
-.map-message{
+
+.map-message {
   height: calc(100vh - 80px) !important;
 }
-.pie-color-box{
-  position:absolute;
-  bottom:20px;
-  right:20px;
-  line-height:35px;
-  color:#fff;
-  .pie-color-1{
-    background:#5DC1FA;
-    width:20px;
-    height:10px;
-    margin-right:5px;
-    border-radius:2px;
+
+.pie-color-box {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  line-height: 35px;
+  color: #fff;
+
+  .pie-color-1 {
+    background: #5DC1FA;
+    width: 20px;
+    height: 10px;
+    margin-right: 5px;
+    border-radius: 2px;
   }
-  .pie-color-2{
-    background:#7C89EB;
-    width:20px;
-    margin-right:5px;
-    height:10px;
-    border-radius:2px;
+
+  .pie-color-2 {
+    background: #7C89EB;
+    width: 20px;
+    margin-right: 5px;
+    height: 10px;
+    border-radius: 2px;
   }
-  .pie-color-3{
-    background:#14E6C4;
-    width:18px;
-    margin-right:5px;
-    height:8px;
-    border-radius:2px;
+
+  .pie-color-3 {
+    background: #14E6C4;
+    width: 18px;
+    margin-right: 5px;
+    height: 8px;
+    border-radius: 2px;
   }
 }
-.wrapper-img{
-  width:60px;
-  height:45px;
+
+.wrapper-img {
+  width: 60px;
+  height: 45px;
 }
-.polygonal{
-    height:100%;
+
+.polygonal {
+  height: 100%;
 }
-.temperature-map{
-    height:100% !important;
-    div{
-        height:100% !important;
-    }
+
+.temperature-map {
+  height: 100% !important;
+
+  div {
+    height: 100% !important;
+  }
 }
 </style>
 

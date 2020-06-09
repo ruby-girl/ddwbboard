@@ -15,8 +15,140 @@ const getSubjectInfo = (params)=>getAction("/api/billboardIndexs/getSubjectInfo"
 const getAnnualFertilizer = (params)=>getAction("/api/billboardIndexs/getAnnualFertilizer",params);
 // 获取实时工单信息
 const getWorkOrderByRealTime = (params)=>getAction("/api/billboardIndexs/getWorkOrderByRealTime",params);
+
+// 获取地图信息（基地模式）
+const getBaseMapInfo = (params)=>getAction("/api/billboardIndexs/getBaseMapInfo",params);
+// 获取地图信息（农户模式）
+const getFarmerMapInfo = (params)=>getAction("/api/billboardIndexs/getFarmerMapInfo",params);
+
+// 获取基地信息
+const getBaseInfo = (params)=>getAction("/api/billboardBaseInfos/getBaseInfo",params);
+// 获取农户信息
+const getOrganUsers = (params)=>getAction("/api/billboardOrganUsers/getSubjectInfo",params);
+
+
+// 看板第一页核心企业下的气象监测
+const getOrgMonitorTj = (params)=>getAction("/api/billboard/getOrgMonitorTj",params);
+// 看板第一页核心企业下采购订单
+const getOrgOrderTj = (params)=>getAction("/api/billboard/getOrgOrderTj",params);
+
+// 看板第一页核心企业下的保险服务
+const getOrgInsuranceTj = (params)=>getAction("/api/billboard/getOrgInsuranceTj",params);
+// 看板第一页核心企业下的贷款服务
+const getOrgLoanTj = (params)=>getAction("/api/billboard/getOrgLoanTj",params);
+
+// 看板第二页基地下的空气环境-CO2浓度24小时内数据
+const co2value = (params)=>getAction("/api/billboard/base/air/co2value",params);
+// 看板第二页基地下的空气环境-湿度24小时内数据
+const humidity = (params)=>getAction("/api/billboard/base/air/humidity",params);
+
+// 看板第二页基地下的空气环境-光照强度24小时内数据
+const illIntensity = (params)=>getAction("/api/billboard/base/air/illIntensity",params);
+
+// 看板第二页基地下的空气环境-PM2.5浓度24小时内数据
+const pm25value = (params)=>getAction("/api/billboard/base/air/pm25value",params);
+// 看板第二页基地下的空气环境-压力24小时内数据
+
+const pressure = (params)=>getAction("/api/billboard/base/air/pressure",params);
+
+// 看板第二页基地下的空气环境-降水量24小时内数据
+const rainfall = (params)=>getAction("/api/billboard/base/air/rainfall",params);
+// 看板第二页基地下的空气环境-温度24小时内数据
+const temperature = (params)=>getAction("/api/billboard/base/air/temperature",params);
+
+
+
+// 看板第三页基地下的空气环境-CO2浓度24小时内数据
+const userco2value = (params)=>getAction("/api/billboard/user/air/co2value",params);
+// 看板第三页基地下的空气环境-湿度24小时内数据
+const userhumidity = (params)=>getAction("/api/billboard/user/air/humidity",params);
+
+// 看板第三页基地下的空气环境-光照强度24小时内数据
+const userillIntensity = (params)=>getAction("/api/billboard/user/air/illIntensity",params);
+
+// 看板第三页基地下的空气环境-PM2.5浓度24小时内数据
+const userpm25value = (params)=>getAction("/api/billboard/user/air/pm25value",params);
+// 看板第三页基地下的空气环境-压力24小时内数据
+
+const userpressure = (params)=>getAction("/api/billboard/user/air/pressure",params);
+
+// 看板第三页基地下的空气环境-降水量24小时内数据
+const userrainfall = (params)=>getAction("/api/billboard/user/air/rainfall",params);
+// 看板第三页基地下的空气环境-温度24小时内数据
+const usertemperature = (params)=>getAction("/api/billboard/user/air/temperature",params);
+
+
+// 看板第二页基地下的土壤环境-电导率24小时内数据
+const soilEc = (params)=>getAction("/api/billboard/base/soil/ec",params);
+// 看板第二页基地下的土壤环境-湿度24小时内数据
+const soilHumidity = (params)=>getAction("/api/billboard/base/soil/humidity",params);
+//看板第二页基地下的土壤环境-PH24小时内数据
+const soilPH = (params)=>getAction("/api/billboard/base/soil/ph",params);
+//看板第二页基地下的土壤环境-温度24小时内数据
+const soilTemperature = (params)=>getAction("/api/billboard/base/soil/temperature",params);
+
+
+
+// 看板第三页基地下的土壤环境-电导率24小时内数据
+const usersoilEc = (params)=>getAction("/api/billboard/user/soil/ec",params);
+// 看板第三页基地下的土壤环境-湿度24小时内数据
+const usersoilHumidity = (params)=>getAction("/api/billboard/user/soil/humidity",params);
+//看板第三页基地下的土壤环境-PH24小时内数据
+const usersoilPH = (params)=>getAction("/api/billboard/user/soil/ph",params);
+//看板第三页基地下的土壤环境-温度24小时内数据
+const usersoilTemperature = (params)=>getAction("/api/billboard/user/soil/temperature",params);
+
+
+// /api/billboard/base/getBaseInsuranceTj看板第二页基地的保险
+const getBaseInsuranceTj = (params)=>getAction("/api/billboard/base/getBaseInsuranceTj",params);
+// /api/billboard/base/getBaseLoanTj看板第二页基地的贷款
+const getBaseLoanTj = (params)=>getAction("/api/billboard/base/getBaseLoanTj",params);
+// /api/billboard/base/getBaseOrderTj看板第二页基地的订单合同
+const getBaseOrderTj = (params)=>getAction("/api/billboard/base/getBaseOrderTj",params);
+
+// /api/billboard/base/getBaseMonitorTj看板第二页基地最新气象数据
+const getBaseMonitorTj = (params)=>getAction("/api/billboard/base/getBaseMonitorTj",params);
+// 获取基地面积/作物产量/作物产值
+const totalTj = (params)=>getAction("/api/billboardBaseInfos/totalTj",params);
 export {
     getSubjectInfo,
     getAnnualFertilizer,
-    getWorkOrderByRealTime
+    getWorkOrderByRealTime,
+    getBaseMapInfo,
+    getFarmerMapInfo,
+    getBaseInfo,
+    getOrganUsers,
+    getOrgMonitorTj,
+    getOrgOrderTj,
+    getOrgInsuranceTj,
+    getOrgLoanTj,
+    co2value,
+    humidity,
+    illIntensity,
+    pressure,
+    pm25value,
+    rainfall,
+    temperature,
+
+    userco2value,
+    userhumidity,
+    userillIntensity,
+    userpressure,
+    userpm25value,
+    userrainfall,
+    usertemperature,
+
+    soilEc,
+    soilHumidity,
+    soilPH,
+    soilTemperature,
+    usersoilEc,
+    usersoilHumidity,
+    usersoilPH,
+    usersoilTemperature,
+    getBaseInsuranceTj,
+    getBaseLoanTj,
+    getBaseOrderTj,
+    getBaseMonitorTj,
+    totalTj
 }
