@@ -10,19 +10,17 @@ import axios from "axios";
 export default {
   data() {
     return {
-      datas: [200, 500, 1000, 1000],
-      tdataAxis: [2015, 2016, 2017, 2018]
     };
   },
   mounted() {
-    this._drawPolygonal();
+    // this._drawPolygonal();
   },
   methods: {
-    _drawPolygonal() {
+    _drawPolygonal(datas) {
       let polygonalChart = this.$echarts.init(this.$refs.polygonals);
       let option = {
         grid: {
-          left: "3%",
+          left: "3",
           right: "4%",
           bottom: "3%",
           top:0,
@@ -36,7 +34,7 @@ export default {
         yAxis: {
           type: "category",
           show: false,
-          data: ["巴西", "印尼", "美国"],
+          data: ["订单金额","贷款金额","投保金额"],
           axisTick: {
             //y轴刻度线
             show: false
@@ -50,25 +48,21 @@ export default {
           {
             name: "2011年",
             type: "bar",
-            data: [18203, 23489, 25034],
+            data: datas,
             barGap: "60%",
             barCategoryGap: "60%",
             itemStyle: {
               normal: {
                 color: function(params) {
                   // build a color map as your need.
-
-                  var colorList = ["#0AFBE2", "#0A81FB", "#7380DC"];
-
+                  var colorList = ["#7380DC", "#0A81FB","#0AFBE2"];
                   return colorList[params.dataIndex];
                 },
                 label: {
                   show: true,
-
-                  position: "right",
-
+                  color:'#fff',
+                  position: "left",
                   //                             formatter: '{c}'
-
                   formatter: "{b}\n{c}"
                 }
               }

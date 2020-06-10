@@ -1,6 +1,7 @@
 <template>
   <div class="base base-container">
     <headers></headers>
+    <div class="black-btn" @click="toBlack">返回</div>
     <div class="base-wrapper">
       <div class="company-info">
         <div class="bg-item-box left-height" style="padding-bottom:10px">
@@ -28,8 +29,8 @@
         </div>
         <div class="item-bg-y bg-item-box left-height" style="padding:15px 0;margin-top:20px;">
           <div class="last-title">金融占比</div>
-          <div class="base-progress-box">
-            <polygonal-reversal />
+          <div class="base-progress-box" style="position:relative;top:20px;">
+            <polygonal-reversal ref="polyHtml"/>
           </div>
         </div>
         <!-- 左侧饼图 -->
@@ -56,21 +57,21 @@
                 <div style="height:180px" ref="loansChart2"></div>
               </div>
               <!-- 饼图说明 -->
-           <div class="pie-color-box">
-           <span style="margin-right:15px">
-              <span class="pie-color-2"></span>
-              <span>有机肥</span>
-           </span>
-           <span class="">
-              <span class="pie-color-3"></span>
-              <span>复合肥</span>
-           </span>
-           </div>
-           <!-- 显示计划使用 实际使用 -->
-           <span style="display: inline-block;width:100%;position:absolute;bottom:30px;">
-             <span class="pie-title">计划使用</span>
-             <span class="pie-title">实际使用</span>
-           </span>
+              <div class="pie-color-box">
+                <span style="margin-right:15px">
+                  <span class="pie-color-2"></span>
+                  <span>有机肥</span>
+                </span>
+                <span class>
+                  <span class="pie-color-3"></span>
+                  <span>复合肥</span>
+                </span>
+              </div>
+              <!-- 显示计划使用 实际使用 -->
+              <span style="display: inline-block;width:100%;position:absolute;bottom:30px;">
+                <span class="pie-title">计划使用</span>
+                <span class="pie-title">实际使用</span>
+              </span>
             </div>
           </div>
         </div>
@@ -151,7 +152,7 @@
                       :class="{'base-tab-small':true,'base-tab-action-small':airTab==2?true:false}"
                     >温度</div>
                     <div
-                      style="width:49px"
+                      style="width:55px"
                       @click="userco2value(3)"
                       :class="{'base-tab-small':true,'base-tab-action-small':airTab==3?true:false}"
                     >CO2浓度</div>
@@ -180,31 +181,35 @@
         </div>
       </div>
       <!-- 右侧 -->
-      <div class="company-info" style="margin-left:30px">    
-        <div class="bg-item-box left-height  scroll-box" style="padding-bottom:10px" ref="rightTopHeight">
-          <div
-          class="last-title display-flex justify-content-flex-justify"
-          style="margin-bottom: 10px;"
+      <div class="company-info" style="margin-left:30px">
+        <div
+          class="bg-item-box left-height scroll-box"
+          style="padding-bottom:10px"
+          ref="rightTopHeight"
         >
-          <div>金融数据</div>
-          <div>
-            <div class="display-flex">
-              <div
-                @click="tabFunc(1)"
-                :class="{'base-tab-small':true,'base-tab-action-small':tab==1?true:false}"
-              >订单</div>
-              <div
-                @click="tabFunc(2)"
-                :class="{'base-tab-small':true,'base-tab-action-small':tab==2?true:false}"
-              >贷款</div>
-              <div
-                style="width:49px"
-                @click="tabFunc(3)"
-                :class="{'base-tab-small':true,'base-tab-action-small':tab==3?true:false}"
-              >保险</div>
+          <div
+            class="last-title display-flex justify-content-flex-justify"
+            style="margin-bottom: 10px;"
+          >
+            <div>金融数据</div>
+            <div>
+              <div class="display-flex">
+                <div
+                  @click="financeOrder(1)"
+                  :class="{'base-tab-small':true,'base-tab-action-small':financeTab==1?true:false}"
+                >订单</div>
+                <div
+                  @click="financeDk(2)"
+                  :class="{'base-tab-small':true,'base-tab-action-small':financeTab==2?true:false}"
+                >贷款</div>
+                <div
+                  style="width:49px"
+                  @click="financeBx(3)"
+                  :class="{'base-tab-small':true,'base-tab-action-small':financeTab==3?true:false}"
+                >保险</div>
+              </div>
             </div>
           </div>
-        </div>
           <ul
             style="position:relative;list-style:none;background:rgba(255,255,255,0.2);font-size:13px;line-height:30px;"
           >
@@ -218,38 +223,41 @@
             </li>
           </ul>
           <div class="base-info" id="base-info">
-            <ul id="base-ul1" style="position:relative; top:30px">
-              <li class="base-item" v-for="(item,index) in this.baseDatas" :key="index">
-                <span style="text-align: left;display:inline-block; width: 80px;color: #0AFBE2">张三</span>
+            <ul id="base-ul1" style="position:relative; top:0px">
+              <li class="base-item" v-for="(item,index) in this.financeList" :key="index">
                 <span
-                  style="text-align: left;display:inline-block; width: 130px;color: #fff"
-                >2012-12-12 11:11:11</span>
+                  style="text-align: left;display:inline-block; width: 80px;color: #0AFBE2"
+                >{{item.jiaName}}</span>
                 <span
-                  style="color: #0AFBE2;display:inline-block; width: 100px;text-align: center;"
-                >农事操作</span>
+                  style="text-align: left;display:inline-block; width: 100px;color: #fff"
+                >{{item.yiName}}</span>
+                <span
+                  style="color: #0AFBE2;display:inline-block; width: 130px;text-align: center;"
+                >{{item.time}}</span>
                 <span
                   style="color: #fff;display:inline-block; width: 100px;text-align: center;"
-                >农事投入</span>
+                >{{item.forests}}</span>
               </li>
             </ul>
           </div>
         </div>
-        <div class="item-bg-y bg-item-box left-height left-height-bottom" :style="{'height':lastBoxHeight}">
+        <div
+          class="item-bg-y bg-item-box left-height left-height-bottom"
+          :style="{'height':lastBoxHeight}"
+        >
           <div class="last-title">地块工单</div>
-         <ul
+          <ul
             style="position:relative;list-style:none;background:rgba(255,255,255,0.2);font-size:13px;line-height:30px;"
           >
             <li class="base-item display-flex justify-content-flex-center">
               <span style="text-align: left;display:inline-block; width: 80px;color: #fff;">操作时间</span>
               <span style="text-align: center;display:inline-block; width: 130px;color: #fff;">农事操作</span>
               <span style="color: #fff;display:inline-block; width: 100px;text-align: center;">投入品</span>
-              <span
-                style="color: #fff;display:inline-block; width: 100px;text-align: center;"
-              >操作照片</span>
+              <span style="color: #fff;display:inline-block; width: 100px;text-align: center;">操作照片</span>
             </li>
           </ul>
           <div class="base-info" id="base-info" style="height:85%">
-            <ul id="base-ul2" style="position:relative; top:30px">
+            <ul id="base-ul2" style="position:relative; top:0px">
               <li class="base-item" v-for="(item,index) in this.baseDatas" :key="index">
                 <span style="text-align: left;display:inline-block; width: 80px;color: #0AFBE2">张三</span>
                 <span
@@ -283,18 +291,22 @@ import chartsType from "../assets/js/chartsType.js";
 import roll from "../assets/js/roll.js";
 import axios from "axios";
 import {
- getBaseInfo,
+  getBaseInfo,
   userco2value,
-    userhumidity,
-    userillIntensity,
-    userpressure,
-    useruserpm25value,
-    rainfall,
-    usertemperature,
-    usersoilEc,
-    usersoilHumidity,
-    usersoilPH,
-    usersoilTemperature
+  userhumidity,
+  userillIntensity,
+  userpressure,
+  useruserpm25value,
+  rainfall,
+  usertemperature,
+  usersoilEc,
+  usersoilHumidity,
+  usersoilPH,
+  usersoilTemperature,
+  financeBx,
+  financeDk,
+  financeOrder,
+  financeProportion
 } from "../api/apiYZX";
 const dataAxis = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
@@ -310,15 +322,16 @@ export default {
     circleProgress
   },
   data() {
-    return { 
+    return {
       baseMessageHeight: 0,
       pieTopRight: 0,
       pieLeftRight: 0,
       pieTopLeft: 0,
       pieLeftLeft: 0,
       tab: 1,
-      airTab:1,
-      soliTab:1,
+      financeTab: 1,
+      airTab: 1,
+      soliTab: 1,
       messages: [],
       mapDatas: [],
       weixin: false,
@@ -468,12 +481,14 @@ export default {
         { num: "33", name: "空气湿度", icon: "iconkongqishidu" }
       ],
       mapIcon: require("../assets/new/icon_positioning.png"),
-      lastBoxHeight:100,
-      baseId:''
+      lastBoxHeight: 100,
+      userOrganId: "",
+      financeList: [], //金融滚动数据
+      financeScroll: {}
     };
   },
   created() {
-    this.baseId= this.$route.query.baseId
+    this.userOrganId = this.$route.query.userOrganId;
     let params =
       "appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53";
     axios
@@ -517,14 +532,14 @@ export default {
     this.pieTopRight = (pieBox - 100) / 2 + "px";
     this.pieLeftRight = (pieBoxW - 100) / 2 + "px";
     // 最后一个方块高度
-    
+
     let height = document.body.clientHeight;
-    let heightThree=height*0.75
+    let heightThree = height * 0.75;
     this.$refs.rightTopHeight.style.height = height - heightThree + "px";
     let rightTopHeight = this.$refs.rightTopHeight.offsetHeight;
     let ms = height * 0.15;
     this.lastBoxHeight = height - parseFloat(rightTopHeight) - ms + "px";
-   
+
     // 地图下折线图高度
     this.$refs.mapChart.style.height = height - 400 + "px";
     let mapHeight = this.$refs.mapChart.offsetHeight;
@@ -533,7 +548,7 @@ export default {
     let that = this;
     // setTimeout(function() {
     //   that._drawLine(); //左侧折线图
-     
+
     // }, 1000);
     // this._getJson()
 
@@ -552,12 +567,12 @@ export default {
             clearInterval(that.baseScroll.timer);
           }
           //滚动距离可以用一条的高度*条数~~~~~~~~~~~~~
-          that.baseScroll = new roll.Roll(
-            "base-info",
-            "base-ul1",
-            "base-ul2",
-            -660
-          );
+          // that.baseScroll = new roll.Roll(
+          //   "base-info",
+          //   "base-ul1",
+          //   "base-ul2",
+          //   -160
+          // );
         });
       }
       window.addEventListener("done1", function() {
@@ -578,142 +593,231 @@ export default {
       });
     });
     this._dramLoansChart();
-    this.getBaeseInfo()//获取基地详情
-    this.humidity(1)
-    this.soilHumidity(1)
+    // this.getBaeseInfo()//获取基地详情
+    this.userhumidity(1);
+    this.usersoilHumidity(1);
+    this.financeOrder(1);
+    this.financeProportion()
   },
   methods: {
-    userhumidity(n){
-      this.airTab=n
-      userhumidity({baseId:this.baseId}).then(res=>{
-        let Xdata=[]
-        let xTitle=[]
-        for(var i=0;i<res.data.length;i++){
-          xTitle.push(res.data[i].monitor_time)
-          Xdata.push(res.data[i].air_humidity)
-        }
-        this._drawLine2(Xdata,xTitle)
+    toBlack(){
+      this.$router.back(-1)
+    },
+    financeProportion(){//金融占比
+      financeProportion({ userOrganId: this.userOrganId }).then(res=>{
+        let arr=[res.data.order_price_tatol,res.data.dk_amount_tatol,res.data.bx_amount_tatol]
+        this.$refs.polyHtml._drawPolygonal(arr)
       })
     },
-    usertemperature(n){
-       this.airTab=n
-       usertemperature({baseId:this.baseId}).then(res=>{
-        let Xdata=[]
-        let xTitle=[]
-        for(var i=0;i<res.data.length;i++){
-          xTitle.push(res.data[i].monitor_time)
-          Xdata.push(res.data[i].air_temperature)
+    financeBx(n) {
+      this.financeTab = n;
+      let _this = this;
+      financeBx({ userOrganId: this.userOrganId }).then(res => {
+        this.financeList = [];
+        if (_this.financeScroll) {
+          clearInterval(_this.financeScroll.timer);
         }
-        this._drawLine2(Xdata,xTitle)
-      })
+        res.data.forEach((item, i) => {
+          let obj = {
+            jiaName: res.data[i].insurance_company,
+            yiName: res.data[i].name,
+            time: res.data[i].order_date,
+            forests: res.data[i].bx_forests
+          };
+          this.financeList.push(obj);
+        });
+        let num = this.financeList.length * 30;
+        this.financeScroll = new roll.Roll(
+          "base-info",
+          "base-ul1",
+          "base-ul2",
+          -num
+        );
+      });
     },
-    userco2value(n){
-      this.airTab=n
-      userco2value({baseId:this.baseId}).then(res=>{
-        let Xdata=[]
-        let xTitle=[]
-        for(var i=0;i<res.data.length;i++){
-          xTitle.push(res.data[i].monitor_time)
-          Xdata.push(res.data[i].co2value)
+    financeDk(n) {
+      this.financeTab = n;
+      let _this = this;
+      financeDk({ userOrganId: this.userOrganId }).then(res => {
+        this.financeList = [];
+        if (_this.financeScroll) {
+          clearInterval(_this.financeScroll.timer);
         }
-        this._drawLine2(Xdata,xTitle)
-      })
+        res.data.forEach((item, i) => {
+          let obj = {
+            jiaName: res.data[i].lend_company,
+            yiName: res.data[i].name,
+            time: res.data[i].order_date,
+            forests: res.data[i].dk_amount
+          };
+          this.financeList.push(obj);
+        });
+        let num = this.financeList.length * 30;
+        this.financeScroll = new roll.Roll(
+          "base-info",
+          "base-ul1",
+          "base-ul2",
+          -num
+        );
+      });
     },
-    userpressure(n){
-     this.airTab=n
-      userpressure({baseId:this.baseId}).then(res=>{
-        let Xdata=[]
-        let xTitle=[]
-        for(var i=0;i<res.data.length;i++){
-          xTitle.push(res.data[i].monitor_time)
-          Xdata.push(res.data[i].air_pressure)
+    financeOrder(n) {
+      let _this = this;
+      this.financeTab = n;
+      financeOrder({ userOrganId: this.userOrganId }).then(res => {
+        this.financeList = [];
+        if (_this.financeScroll) {
+          clearInterval(_this.financeScroll.timer);
         }
-        this._drawLine2(Xdata,xTitle)
-      })
+        res.data.forEach((item, i) => {
+          let obj = {
+            jiaName: res.data[i].partya,
+            yiName: res.data[i].name,
+            time: res.data[i].order_date,
+            forests: res.data[i].order_forests
+          };
+          this.financeList.push(obj);
+        });
+        let num = this.financeList.length * 30;
+        this.financeScroll = new roll.Roll(
+          "base-info",
+          "base-ul1",
+          "base-ul2",
+          -num
+        );
+      });
     },
-    userpm25value(n){
-     this.airTab=n
-      userpm25value({baseId:this.baseId}).then(res=>{
-        let Xdata=[]
-        let xTitle=[]
-        for(var i=0;i<res.data.length;i++){
-          xTitle.push(res.data[i].monitor_time)
-          Xdata.push(res.data[i].pm25value)
+    userhumidity(n) {
+      this.airTab = n;
+      userhumidity({ userOrganId: this.userOrganId }).then(res => {
+        let Xdata = [];
+        let xTitle = [];
+        for (var i = 0; i < res.data.length; i++) {
+          xTitle.push(res.data[i].monitor_time);
+          Xdata.push(res.data[i].air_humidity);
         }
-        this._drawLine2(Xdata,xTitle)
-      })
+        this._drawLine2(Xdata, xTitle);
+      });
     },
-    userillIntensity(n){
-     this.airTab=n
-      userillIntensity({baseId:this.baseId}).then(res=>{
-        let Xdata=[]
-        let xTitle=[]
-        for(var i=0;i<res.data.length;i++){
-          xTitle.push(res.data[i].monitor_time)
-          Xdata.push(res.data[i].ill_intensity)
+    usertemperature(n) {
+      this.airTab = n;
+      usertemperature({ userOrganId: this.userOrganId }).then(res => {
+        let Xdata = [];
+        let xTitle = [];
+        for (var i = 0; i < res.data.length; i++) {
+          xTitle.push(res.data[i].monitor_time);
+          Xdata.push(res.data[i].air_temperature);
         }
-        this._drawLine2(Xdata,xTitle)
-      })
+        this._drawLine2(Xdata, xTitle);
+      });
     },
-    userrainfall(n){
-     this.airTab=n
-      userrainfall({baseId:this.baseId}).then(res=>{
-        let Xdata=[]
-        let xTitle=[]
-        for(var i=0;i<res.data.length;i++){
-          xTitle.push(res.data[i].monitor_time)
-          Xdata.push(res.data[i].rainfall)
+    userco2value(n) {
+      this.airTab = n;
+      userco2value({ userOrganId: this.userOrganId }).then(res => {
+        let Xdata = [];
+        let xTitle = [];
+        for (var i = 0; i < res.data.length; i++) {
+          xTitle.push(res.data[i].monitor_time);
+          Xdata.push(res.data[i].co2value);
         }
-        this._drawLine2(Xdata,xTitle)
-      })
+        this._drawLine2(Xdata, xTitle);
+      });
+    },
+    userpressure(n) {
+      this.airTab = n;
+      userpressure({ userOrganId: this.userOrganId }).then(res => {
+        let Xdata = [];
+        let xTitle = [];
+        for (var i = 0; i < res.data.length; i++) {
+          xTitle.push(res.data[i].monitor_time);
+          Xdata.push(res.data[i].air_pressure);
+        }
+        this._drawLine2(Xdata, xTitle);
+      });
+    },
+    userpm25value(n) {
+      this.airTab = n;
+      userpm25value({ userOrganId: this.userOrganId }).then(res => {
+        let Xdata = [];
+        let xTitle = [];
+        for (var i = 0; i < res.data.length; i++) {
+          xTitle.push(res.data[i].monitor_time);
+          Xdata.push(res.data[i].pm25value);
+        }
+        this._drawLine2(Xdata, xTitle);
+      });
+    },
+    userillIntensity(n) {
+      this.airTab = n;
+      userillIntensity({ userOrganId: this.userOrganId }).then(res => {
+        let Xdata = [];
+        let xTitle = [];
+        for (var i = 0; i < res.data.length; i++) {
+          xTitle.push(res.data[i].monitor_time);
+          Xdata.push(res.data[i].ill_intensity);
+        }
+        this._drawLine2(Xdata, xTitle);
+      });
+    },
+    userrainfall(n) {
+      this.airTab = n;
+      userrainfall({ userOrganId: this.userOrganId }).then(res => {
+        let Xdata = [];
+        let xTitle = [];
+        for (var i = 0; i < res.data.length; i++) {
+          xTitle.push(res.data[i].monitor_time);
+          Xdata.push(res.data[i].rainfall);
+        }
+        this._drawLine2(Xdata, xTitle);
+      });
     },
     usersoilHumidity(n) {
       this.soliTab = n;
-       usersoilHumidity({baseId:this.baseId}).then(res=>{
-        let Xdata=[]
-        let xTitle=[]
-        for(var i=0;i<res.data.length;i++){
-          xTitle.push(res.data[i].monitor_time)
-          Xdata.push(res.data[i].soil_humidity)
+      usersoilHumidity({ userOrganId: this.userOrganId }).then(res => {
+        let Xdata = [];
+        let xTitle = [];
+        for (var i = 0; i < res.data.length; i++) {
+          xTitle.push(res.data[i].monitor_time);
+          Xdata.push(res.data[i].soil_humidity);
         }
-        this._drawLine(Xdata,xTitle)
-      })
+        this._drawLine(Xdata, xTitle);
+      });
     },
     usersoilTemperature(n) {
       this.soliTab = n;
-       usersoilTemperature({baseId:this.baseId}).then(res=>{
-        let Xdata=[]
-        let xTitle=[]
-        for(var i=0;i<res.data.length;i++){
-          xTitle.push(res.data[i].monitor_time)
-          Xdata.push(res.data[i].soil_temperature)
+      usersoilTemperature({ userOrganId: this.userOrganId }).then(res => {
+        let Xdata = [];
+        let xTitle = [];
+        for (var i = 0; i < res.data.length; i++) {
+          xTitle.push(res.data[i].monitor_time);
+          Xdata.push(res.data[i].soil_temperature);
         }
-        this._drawLine(Xdata,xTitle)
-      })
+        this._drawLine(Xdata, xTitle);
+      });
     },
     usersoilEc(n) {
       this.soliTab = n;
-       usersoilEc({baseId:this.baseId}).then(res=>{
-        let Xdata=[]
-        let xTitle=[]
-        for(var i=0;i<res.data.length;i++){
-          xTitle.push(res.data[i].monitor_time)
-          Xdata.push(res.data[i].soil_ec)
+      usersoilEc({ userOrganId: this.userOrganId }).then(res => {
+        let Xdata = [];
+        let xTitle = [];
+        for (var i = 0; i < res.data.length; i++) {
+          xTitle.push(res.data[i].monitor_time);
+          Xdata.push(res.data[i].soil_ec);
         }
-        this._drawLine(Xdata,xTitle)
-      })
+        this._drawLine(Xdata, xTitle);
+      });
     },
     usersoilPH(n) {
       this.soliTab = n;
-       usersoilPH({baseId:this.baseId}).then(res=>{
-        let Xdata=[]
-        let xTitle=[]
-        for(var i=0;i<res.data.length;i++){
-          xTitle.push(res.data[i].monitor_time)
-          Xdata.push(res.data[i].soil_ph)
+      usersoilPH({ userOrganId: this.userOrganId }).then(res => {
+        let Xdata = [];
+        let xTitle = [];
+        for (var i = 0; i < res.data.length; i++) {
+          xTitle.push(res.data[i].monitor_time);
+          Xdata.push(res.data[i].soil_ph);
         }
-        this._drawLine(Xdata,xTitle)
-      })
+        this._drawLine(Xdata, xTitle);
+      });
     },
     addBlockOnMap() {
       //这里删除了地块length~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -732,6 +836,7 @@ export default {
           }
           remarkJson2.path = newPath;
           let polygon2 = new AMap.Polygon(remarkJson2);
+           console.info('地图。。。。。。。。。。。。。。。',polygon2)
           this.polygonss = [];
           this.polygonss.push(polygon2);
           this.map.add(polygon2);
@@ -883,7 +988,8 @@ export default {
       rainChart.setOption(option);
       rainChart2.setOption(option);
     },
-    _drawLine2(xData,xTitle) {//底部右侧折线图
+    _drawLine2(xData, xTitle) {
+      //底部右侧折线图
       let rainChart = this.$echarts.init(this.$refs.bottomLine2);
       var option = chartsType.charts(
         xTitle,
@@ -902,7 +1008,8 @@ export default {
       };
       rainChart.setOption(option);
     },
-    _drawLine(xData,xTitle) {//底部左侧折线图
+    _drawLine(xData, xTitle) {
+      //底部左侧折线图
       //左侧折线图
       let rainChart = this.$echarts.init(this.$refs.bottomLine1);
       var option = chartsType.charts(
@@ -1025,7 +1132,7 @@ export default {
         content: this.info.join("")
       });
       this.infoWindow.open(this.map, a);
-    }, 
+    },
     getinfo(b) {
       this.info = [];
       this.info.push(
@@ -1092,20 +1199,6 @@ export default {
   .company-desc {
     line-height: 28px !important;
   }
-
-  .base-item {
-    line-height: 20px !important;
-
-    span:nth-of-type(1) {
-      width: 535px !important;
-      white-space: nowrap;
-    }
-
-    span:nth-of-type(2) {
-      width: 100px !important;
-    }
-  }
-
   .monitor-message {
     width: 200px !important;
   }
@@ -1504,15 +1597,19 @@ export default {
 .left-height {
   height: 22%;
 }
-.left-height-top{
+
+.left-height-top {
   height: 35%;
 }
-.left-height-bottom{
-  padding:15px 0;margin-top:20px;
- background: url('../assets/new/bg1.png') repeat;
+
+.left-height-bottom {
+  padding: 15px 0;
+  margin-top: 20px;
+  background: url('../assets/new/bg1.png') repeat;
 }
+
 .base-container {
- height: 100%;
+  height: 100%;
   overflow: hidden;
   background: url('../assets/new/bg.jpg') no-repeat;
   background-size: 100% 100%;
@@ -1609,7 +1706,7 @@ export default {
 
 .base-progress-box {
   height: calc(100% - 30px);
-  overflow-y: hidden;
+
 }
 
 .base-progress-item {
@@ -1645,7 +1742,7 @@ export default {
 }
 
 .base-tab-small {
-  width: 40px;
+  width: 44  px;
   text-align: center;
   font-size: 12px;
   color: rgba(255, 255, 255, 1);
@@ -1691,35 +1788,54 @@ export default {
   margin-top: 10px;
   line-height: 32px;
 }
-.pie-color-box{
-  position:absolute;
-  top:-15px;
-  right:20px;
-  font-size:14px;
-  line-height:35px;
-  color:#fff;
-  .pie-color-2{
-    background:#7C89EB;
-    display: inline-block
-    width:20px;
-    margin-right:5px;
-    height:10px;
-    border-radius:2px;
+
+.pie-color-box {
+  position: absolute;
+  top: -15px;
+  right: 20px;
+  font-size: 14px;
+  line-height: 35px;
+  color: #fff;
+
+  .pie-color-2 {
+    background: #7C89EB;
+    display: inline-block;
+    width: 20px;
+    margin-right: 5px;
+    height: 10px;
+    border-radius: 2px;
   }
-  .pie-color-3{
-    display: inline-block
-    background:#14E6C4;
-    width:18px;
-    margin-right:5px;
-    height:8px;
-    border-radius:2px;
+
+  .pie-color-3 {
+    display: inline-block;
+    background: #14E6C4;
+    width: 18px;
+    margin-right: 5px;
+    height: 8px;
+    border-radius: 2px;
   }
 }
-.pie-title{
-  display: inline-block;width:50%;
-  text-align:center;
-  font-size:14px;
-  color:#fff;
+
+.pie-title {
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+}
+.black-btn{
+  width:60px;
+height:30px;
+line-height:30px;
+text-align:center;
+border:1px solid rgba(177, 254, 246, 1);
+opacity:0.5;
+border-radius:4px;
+color:#fff;
+position:absolute;
+top:30px;
+left:50px;
+cursor:pointer 
 }
 </style>
 

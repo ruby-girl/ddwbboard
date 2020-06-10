@@ -16,7 +16,7 @@
         :stroke-width="radius"
         :stroke-linecap="isRound ? 'round' : 'square'"
         :stroke-dasharray="(width-radius)*3.14"
-        :stroke-dashoffset="isAnimation ? (width-radius) * 3.14 : (width - radius) * 3.14 * (100 - progress) / 100"
+        :stroke-dashoffset="isAnimation ? (width-radius) * 3.14 : (width - radius) * 3.14 * (100 - 10) / 100"
         fill="none"
       />
     </svg>

@@ -68,25 +68,25 @@
             <div>
               <div class="map-item-box" style="top:120px">
                 <img src="../assets/new/icon_positioning.png" alt />
-                <span>全部农户：123213</span>
+                <span>全部农户：1213</span>
               </div>
               <div class="map-item-box" style="top:190px">
                 <img src="../assets/new/icon_positioning-dai.png" alt />
-                <span>全部农户：123213</span>
+                <span>有贷款农户：613</span>
               </div>
               <div class="map-item-box" style="top:260px">
                 <img src="../assets/new/icon_positioning-ding.png" alt />
-                <span>全部农户：123213</span>
+                <span>有订单合同农户：113</span>
               </div>
               <div class="map-item-box" style="top:330px">
                 <img src="../assets/new/icon_positioning-bao.png" alt />
-                <span>全部农户：123213</span>
+                <span>有保险农户：13</span>
               </div>
             </div>
             <div class="map-footer-box display-flex align-items-center justify-content-flex-center">
-              <div @click="changeMapData2">农户</div>
+              <div :class="{'active':btnActive==1}" @click="changeMapData2">农户</div>
               <span class="btn-margin"></span>
-              <div @click="changeMapData1">基地</div>
+              <div :class="{'active':btnActive==2}" @click="changeMapData1">基地</div>
             </div>
           </div>
         </div>
@@ -101,7 +101,7 @@
                 <li class="base-item display-flex justify-content-flex-center">
                   <span style="text-align: left;display:inline-block; width: 80px;color: #fff;">姓名</span>
                   <span
-                    style="text-align: center;display:inline-block; width: 130px;color: #fff;"
+                    style="text-align: center;display:inline-block; width: 150px;color: #fff;"
                   >时间</span>
                   <span
                     style="color: #fff;display:inline-block; width: 100px;text-align: center;"
@@ -112,13 +112,13 @@
                 </li>
               </ul>
               <div class="base-info" id="base-info">
-                <ul id="base-ul1" style="position:relative; top:30px" v-if="orderData.length>0">
-                  <li class="base-item" v-for="(item,index) in orderData" :key="index">
+                <ul id="base-ul1" style="position:relative; top:0px">
+                  <li class="base-item" v-for="(item,index) in orderData" :key="index" v-if="orderData.length>0">
                     <span
                       style="text-align: left;display:inline-block; width: 80px;color: #0AFBE2"
                     >张三</span>
                     <span
-                      style="text-align: left;display:inline-block; width: 130px;color: #fff"
+                      style="text-align: left;display:inline-block; width: 150px;color: #fff"
                     >2012-12-12 11:11:11</span>
                     <span
                       style="color: #0AFBE2;display:inline-block; width: 100px;text-align: center;"
@@ -127,10 +127,8 @@
                       style="color: #fff;display:inline-block; width: 100px;text-align: center;"
                     >农事投入</span>
                   </li>
+                  <div v-else>暂无数据</div>
                 </ul>
-                <div v-else>
-                  暂无数据
-                </div>
               </div>
             </div>
             <!-- 地图下柱形图 -->
@@ -254,7 +252,7 @@
           class="item-bg-y bg-item-box left-height-right"
           style="padding:15px 0;margin-top:20px;"
         >
-          <div class="last-title">监测服务</div>
+          <div class="last-title">检测服务</div>
           <div style="height:85%">
             <div class="airs air-temperature" style="height:100%">
               <echartslLine></echartslLine>
@@ -286,7 +284,9 @@ import {
   getOrgMonitorTj,
   getOrgOrderTj,
   getOrgInsuranceTj,
-  getOrgLoanTj
+  getOrgLoanTj,
+  getAllMonitors,
+  getMonitorVideosByBaseId
 } from "../api/apiYZX";
 const dataAxis = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
@@ -303,11 +303,12 @@ export default {
       messages: [],
       mapDatas: [],
       mapRemarks: [],
-      orderData:[],
+      orderData: [],
       pieTop: 0,
       pieLeft: 0,
       weixin: false,
       show: false,
+      btnActive:2,
       showColorDatas: [
         {
           name: "石安镇",
@@ -440,18 +441,21 @@ export default {
       allbasearea: 0,
       warpperList: [],
       rightList: [
-        { num: "", name: "订单合同数量"},
-        { num: "", name: "订单合同面积"},
-        { num: "", name: "订单合同预估量"}
+        { num: "", name: "订单合同数量" },
+        { num: "", name: "订单合同面积" },
+        { num: "", name: "订单合同预估量" }
       ],
-      InsuranceList:[
-        { num: "", name: "保险被保面积"},
-        { num: "", name: "保单保费总额"},
-        { num: "", name: "保险参保人"}
-      ],//保险服务
+      InsuranceList: [
+        { num: "", name: "保险被保面积" },
+        { num: "", name: "保单保费总额" },
+        { num: "", name: "保险参保人" }
+      ], //保险服务
       mapIcon: require("../assets/new/icon_positioning.png"),
       subjectInfo: {}, //主体信息
-      annualFertilizer: {} //年度有机肥用量
+      annualFertilizer: {}, //年度有机肥用量
+      baseList: [],
+      allVideoList:[],
+      organId:99,
     };
   },
   created() {
@@ -468,25 +472,6 @@ export default {
           this.weather2 = res.data.showapi_res_body.now.sd.slice(0, 2);
         }
       });
-    let params =
-      "appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53";
-    axios
-      .post("https://open.ys7.com/api/lapp/token/get", params, {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      })
-      .then(res => {
-        if (res.data.code == 200) {
-          let token =
-            "accessToken=" +
-            res.data.data.accessToken +
-            "&pageStart=0&pageSize=50";
-          window.localStorage.setItem("token", token);
-        }
-      });
-    // }
-    this._getAddress();
     if (this.$route.query.time) {
       let that = this;
       window.addEventListener("done1", function() {
@@ -495,10 +480,6 @@ export default {
     }
   },
   mounted() {
-    if (this.baseScroll) {
-      clearInterval(this.baseScroll.timer);
-    }
-
     // 设置饼图背景图
     let pieBox = this.$refs.pieBox.offsetHeight;
     let pieBoxW = this.$refs.pieBox.offsetWidth;
@@ -523,26 +504,27 @@ export default {
     // this._getJson()
     this._drawCityMap();
     that.allbasearea = 0;
+    
     axios.get("json/base_info.json").then(res => {
       for (let i = 0; i < res.data.result.length; i++) {
         that.allbasearea += res.data.result[i].area;
         that.baseDatas[i].name = res.data.result[i].name;
         that.baseDatas[i].value = res.data.result[i].area;
-        if (that.baseScroll) {
-          console.log(that.baseScroll);
-          clearInterval(that.baseScroll.timer);
-        }
-        that.$nextTick(() => {
-          if (that.baseScroll) {
-            clearInterval(that.baseScroll.timer);
-          }
-          // that.baseScroll = new roll.Roll(
-          //   "base-info",
-          //   "base-ul1",
-          //   "base-ul2",
-          //   -1060
-          // );
-        });
+        // if (that.baseScroll) {
+        //   console.log(that.baseScroll);
+        //   clearInterval(that.baseScroll.timer);
+        // }
+        // that.$nextTick(() => {
+        //   if (that.baseScroll) {
+        //     clearInterval(that.baseScroll.timer);
+        //   }
+        //   // that.baseScroll = new roll.Roll(
+        //   //   "base-info",
+        //   //   "base-ul1",
+        //   //   "base-ul2",
+        //   //   -1060
+        //   // );
+        // });
       }
       window.addEventListener("done1", function() {
         let googleLayer = new AMap.TileLayer({
@@ -576,10 +558,10 @@ export default {
             });
             that.markers.push(marker);
             that.map.add(marker);
-             marker.on("click", function(e) {
+            marker.on("click", function(e) {
               that.$router.push({
                 name: "base",
-                query: { baseId:that.mapRemarks[i].id}
+                query: { baseId: that.mapRemarks[i].id }
               });
             });
           }
@@ -588,124 +570,185 @@ export default {
     });
     this.getSubjectInfo();
     this.getAnnualFertilizer();
-    this.getWorkOrderByRealTime()
-    this.getOrgMonitorTj()
-    this.getOrgOrderTj()
-    this.getOrgInsuranceTj()
-    this.getOrgLoanTj()
+    this.getWorkOrderByRealTime();
+    this.getOrgMonitorTj();
+    this.getOrgOrderTj();
+    this.getOrgInsuranceTj();
+    this.getOrgLoanTj();
+    this.baseScroll = new roll.Roll("base-info", "base-ul1", "base-ul2", -660);
   },
   methods: {
-    getOrgLoanTj(){
-      getOrgLoanTj({orgId:1}).then(res=>{
-          this._dramLoansChart(res.data)
-      })
+    getAllMonitors() {
+      getAllMonitors().then(res => {
+        this.allVideoList=res.data
+        this.getAddr()
+      });
     },
-    getOrgInsuranceTj(){
-      getOrgInsuranceTj({orgId:1}).then(res=>{
-          this.InsuranceList[0].num=res.data.bx_amount+'亩'
-           this.InsuranceList[1].num=res.data.bx_forests+'万'
-           this.InsuranceList[2].num=res.data.count+'人'
-      })
+    getOrgLoanTj() {
+      getOrgLoanTj({ orgId: this.organId }).then(res => {
+        this._dramLoansChart(res.data);
+      });
     },
-    getOrgOrderTj(){//采购订单数据
-        getOrgOrderTj({orgId:1}).then(res=>{
-            this.rightList[0].num=res.data.count+'份'
-             this.rightList[1].num=res.data.order_forests+"亩"
-             this.rightList[2].num=res.data.order_pre_amount+'吨'
-        })
+    getOrgInsuranceTj() {
+      getOrgInsuranceTj({ orgId: this.organId }).then(res => {
+        this.InsuranceList[0].num = res.data.bx_amount + "亩";
+        this.InsuranceList[1].num = res.data.bx_forests + "万";
+        this.InsuranceList[2].num = res.data.count + "人";
+      });
     },
-    getOrgMonitorTj(){//获取气象数据
-      getOrgMonitorTj({orgId:1}).then(res=>{
-        let datas=res.data
-        for(var i=0;i<datas.length;i++){
-          let obj=datas[i]
-          let arr=[{ num:obj.air_humidity||'0', name: "空气湿度", icon: "iconkongqishidu"},
-          { num:obj.air_pressure||'0', name: "空气压力", icon: "icondaqiyali"},
-          { num:obj.air_temperature||'0', name: "空气温度", icon: "iconshangpinwenduji"},
-          { num:obj.co2value||'0', name: "CO2浓度", icon: "iconeryanghuatan"},
-          { num:obj.ill_intensity||'0', name: "光照强度", icon: "icontaiyangfushe"},
-          { num:obj.rainfall||'0', name: "降雨量", icon: "iconjiangyuliang"},
-          { num:obj.soil_ec||'0', name: "土壤EC值", icon: "iconjiangyuliang"},//图标
-          { num:obj.soil_humidity||'0', name: "土壤湿度", icon: "iconturangshidu"},
-           { num:obj.soil_ph||'0', name: "土壤PH值", icon: "iconsuanjiandu"},
-           { num:obj.soil_temperature||'0', name: "土壤温度", icon: "iconturangwendu"},
-            { num:obj.wind_direction||'0', name: "风向", icon: "iconfengxiang"},
-            { num:obj.wind_speed||'0', name: "风速", icon: "iconfengsu2"}
-          ]
-          datas[i].warpperData=arr
+    getOrgOrderTj() {
+      //采购订单数据
+      getOrgOrderTj({ orgId: this.organId }).then(res => {
+        this.rightList[0].num = res.data.count + "份";
+        this.rightList[1].num = res.data.order_forests + "亩";
+        this.rightList[2].num = res.data.order_pre_amount + "吨";
+      });
+    },
+    getOrgMonitorTj() {
+      //获取气象数据
+      getOrgMonitorTj({ orgId: this.organId }).then(res => {
+        let datas = res.data;
+        for (var i = 0; i < datas.length; i++) {
+          let obj = datas[i];
+          let arr = [
+            {
+              num: obj.air_humidity || "0",
+              name: "空气湿度",
+              icon: "iconkongqishidu"
+            },
+            {
+              num: obj.air_pressure || "0",
+              name: "空气压力",
+              icon: "icondaqiyali"
+            },
+            {
+              num: obj.air_temperature || "0",
+              name: "空气温度",
+              icon: "iconshangpinwenduji"
+            },
+            {
+              num: obj.co2value || "0",
+              name: "CO2浓度",
+              icon: "iconeryanghuatan"
+            },
+            {
+              num: obj.ill_intensity || "0",
+              name: "光照强度",
+              icon: "icontaiyangfushe"
+            },
+            {
+              num: obj.rainfall || "0",
+              name: "降雨量",
+              icon: "iconjiangyuliang"
+            },
+            {
+              num: obj.soil_ec || "0",
+              name: "土壤EC值",
+              icon: "iconjiangyuliang"
+            }, //图标
+            {
+              num: obj.soil_humidity || "0",
+              name: "土壤湿度",
+              icon: "iconturangshidu"
+            },
+            {
+              num: obj.soil_ph || "0",
+              name: "土壤PH值",
+              icon: "iconsuanjiandu"
+            },
+            {
+              num: obj.soil_temperature || "0",
+              name: "土壤温度",
+              icon: "iconturangwendu"
+            },
+            {
+              num: obj.wind_direction || "0",
+              name: "风向",
+              icon: "iconfengxiang"
+            },
+            { num: obj.wind_speed || "0", name: "风速", icon: "iconfengsu2" }
+          ];
+          datas[i].warpperData = arr;
         }
-         this.warpperList=datas
-      })
-     
+        this.warpperList = datas;
+      });
     },
-    changeMapData1(){//切换基地模式
-      this.removepoint()
-      this.markers=[]
-       getBaseMapInfo({ organId: 1 }).then(res => {
+    changeMapData1() {
+      //切换基地模式
+      this.removepoint();
+      this.btnActive=2
+      this.markers = [];
+      getBaseMapInfo({ organId: this.organId }).then(res => {
         this.mapRemarks = res.data;
-        let that=this
-         for (let i = 0; i < that.mapRemarks.length; i++) {
-            let remark = that.mapRemarks[i].mapAddr;
-            let remarkJson2 = eval("(" + remark + ")");
+        let that = this;
+        for (let i = 0; i < that.mapRemarks.length; i++) {
+          let remark = that.mapRemarks[i].mapAddr;
+          let remarkJson2 = eval("(" + remark + ")");
 
-            let lng = remarkJson2.path[0].lng;
-            let lat = remarkJson2.path[0].lat;
-            let marker = new AMap.Marker({
-              position: new AMap.LngLat(lng, lat),
-              offset: new AMap.Pixel(-10, -10),
-              icon: that.mapIcon
-            });
-             that.markers.push(marker);
-            that.map.add(marker);
-            marker.on("click", function(e) {
+          let lng = remarkJson2.path[0].lng;
+          let lat = remarkJson2.path[0].lat;
+          let marker = new AMap.Marker({
+            position: new AMap.LngLat(lng, lat),
+            offset: new AMap.Pixel(-10, -10),
+            icon: that.mapIcon
+          });
+          that.markers.push(marker);
+          that.map.add(marker);
+          marker.on("click", function(e) {
             that.$router.push({
               name: "base",
               query: { baseId: Number(that.mapRemarks[i].id) }
             });
           });
-          }
+        }
       });
     },
-     changeMapData2(){//切换基地模式
-       this.removepoint()
-        this.markers=[]
-       getFarmerMapInfo({ organId: 1 }).then(res => {
+    changeMapData2() {
+      //切换农户模式
+       this.btnActive=1
+      this.removepoint();
+      this.markers = [];
+      getFarmerMapInfo({ organId: this.organId }).then(res => {
         this.mapRemarks = res.data;
-        let that=this
-         for (let i = 0; i < that.mapRemarks.length; i++) {
-            let remark = that.mapRemarks[i].mapAddr;
-            let remarkJson2 = eval("(" + remark + ")");
+        let that = this;
+        for (let i = 0; i < that.mapRemarks.length; i++) {
+          let remark = that.mapRemarks[i].mapAddr;
+          let remarkJson2 = eval("(" + remark + ")");
 
-            let lng = remarkJson2.path[0].lng;
-            let lat = remarkJson2.path[0].lat;
-            let marker = new AMap.Marker({
-              position: new AMap.LngLat(lng, lat),
-              offset: new AMap.Pixel(-10, -10),
-              icon: that.mapIcon
-            });
-             that.markers.push(marker);
-            that.map.add(marker);
+          let lng = remarkJson2.path[0].lng;
+          let lat = remarkJson2.path[0].lat;
+          let marker = new AMap.Marker({
+            position: new AMap.LngLat(lng, lat),
+            offset: new AMap.Pixel(-10, -10),
+            icon: that.mapIcon
+          });
+          that.markers.push(marker);
+          that.map.add(marker);
+          marker.on("click", function(e) {
             that.$router.push({
-              name: "base",
-              query: { baseId: Number(that.mapRemarks[i].id) }
+              name: "company",
+              query: { userOrganId: Number(that.mapRemarks[i].id) }
             });
-          }
+          });
+        }
       });
     },
     getMap() {
-      getBaseMapInfo({ organId: 1 }).then(res => {
+      getBaseMapInfo({ organId: this.organId }).then(res => {
         this.mapRemarks = res.data;
+        this.baseList = res.data; //这里处理监控基地列表
+        this.getAllMonitors(); //获取所有监控视频
       });
     },
     getSubjectInfo() {
       //获取主体信息
-      getSubjectInfo({ organId: 1 }).then(res => {
+      getSubjectInfo({ organId: this.organId}).then(res => {
         this.subjectInfo = res.data;
       });
     },
     getAnnualFertilizer() {
       //获取年度有机肥
-      getAnnualFertilizer({ organId: 1 }).then(res => {
+      getAnnualFertilizer({ organId: this.organId }).then(res => {
         let arr = res.data;
         let Xdata = arr.map(item => {
           return item.year;
@@ -726,10 +769,12 @@ export default {
         }, 1000);
       });
     },
-    getWorkOrderByRealTime(){//获取工单
-      getWorkOrderByRealTime({ organId: 1 }).then(res=>{
-          this.orderData=res.data
-      })
+    getWorkOrderByRealTime() {
+      //获取工单
+      getWorkOrderByRealTime({ organId: this.organId }).then(res => {
+        this.orderData = res.data;
+         this.baseScroll = new roll.Roll("base-info", "base-ul1", "base-ul2", -60);
+      });
     },
     _drawPolygonal(polygonalChart, tdataAxis, datas, datas2) {
       var option = chartsType.charts(
@@ -792,152 +837,113 @@ export default {
         this.weixin = true;
       }
     },
-    _getAddress(token) {
-      var date = new Date().toString().split(" ");
-      var month = new Date().getMonth() + 1;
-      var str = "";
-      this.date = str + date[3] + "-" + month + "-" + date[2];
-      this.hours = date[4];
-      let params =
-        "appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53";
-      let curToken = token ? token : window.localStorage.token;
-      axios
-        .post("https://open.ys7.com/api/lapp/live/video/list", curToken, {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
+    getAddr() {
+      //根据基地获取监控列表，处理children      
+      this.baseList.forEach((item,i)=>{
+        let obj = {
+        label:item.name,
+        value: item.id,
+        children: []
+      };
+        this.addresss[i]=obj
+        this.getMonitorVideosByBaseId(item.id,i)
+      })
+    },
+    getMonitorVideosByBaseId(id,i) {
+      getMonitorVideosByBaseId({ baseId: id }).then(res => {
+        this.allVideoList.forEach((item,n)=>{
+            res.data.forEach((li,n)=>{
+              if(item.channelNo==li.channelNo&&item.deviceSerial==li.monitorVideoCode){
+                let obj={
+              label: "通道" +li.channelName,
+              value:item.liveAddress,
+              name: li.monitorVideoCode
           }
-        })
-        .then(res => {
-          console.log(res);
-          if (res.data.code == 200) {
-            if (res.data.data && res.data.data.length) {
-              console.log(res.data.data);
-              this.addresss.push({
-                label: res.data.data[3].deviceName,
-                value: res.data.data[3].deviceSerial,
-                children: []
-              });
-              for (let i = 3; i < res.data.data.length; i++) {
-                for (let j = 0; j < this.addresss.length; j++) {
-                  if (this.addresss[j].label === res.data.data[i].deviceName) {
-                    this.curLock = true;
-                    this.addresss[j].children.push({
-                      label: "通道" + res.data.data[i].channelNo,
-                      value: res.data.data[i].liveAddress,
-                      name: res.data.data[i].deviceName
-                    });
-                  }
-                }
-                if (!this.curLock) {
-                  this.addresss.push({
-                    label: res.data.data[i].deviceName,
-                    value: res.data.data[i].deviceSerial,
-                    name: res.data.data[i].deviceName,
-                    children: [
-                      {
-                        label: "通道" + res.data.data[i].channelNo,
-                        value: res.data.data[i].liveAddress,
-                        name: res.data.data[i].deviceName
-                      }
-                    ]
-                  });
-                }
-                this.curLock = false;
+        
+         this.addresss[i].children.push(obj)
               }
-            }
-            console.log(this.addresss);
-          } else if (res.data.code == 10002) {
-            axios
-              .post("https://open.ys7.com/api/lapp/token/get", params, {
-                headers: {
-                  "Content-Type": "application/x-www-form-urlencoded"
-                }
-              })
-              .then(res => {
-                if (res.data.code == 200) {
-                  console.log(res);
-                  token =
-                    "accessToken=" +
-                    res.data.data.accessToken +
-                    "&pageStart=0&pageSize=50";
-                  window.localStorage.setItem("token", token);
-                  this._getAddress(token);
-                }
-              });
-          } else if (res.data.code == 10001) {
-            axios
-              .post("https://open.ys7.com/api/lapp/token/get", params, {
-                headers: {
-                  "Content-Type": "application/x-www-form-urlencoded"
-                }
-              })
-              .then(res => {
-                if (res.data.code == 200) {
-                  console.log(res);
-                  token =
-                    "accessToken=" +
-                    res.data.data.accessToken +
-                    "&pageStart=0&pageSize=50";
-                  window.localStorage.setItem("token", token);
-                  this._getAddress(token);
-                }
-              });
-          }
-          this.$nextTick(() => {
-            myVideo.addEventListener("play", () => {
-              this.player.on();
-            });
-          });
-        });
+          
+        })
+        })
+        
+       
+      });
     },
     _dramLoansChart(pieData) {
       //左侧折线图
       let rainChart = this.$echarts.init(this.$refs.loansChart);
-   
-      	var option = {
-				tooltip: {
-					trigger: 'item',
-					formatter: '{a} <br/>{b}: {c} ({d}%)'
-				},
-				legend: {
-					orient: 'vertical',
-					left: 10,
-					data: ['订单贷', '农资贷', '劳务贷'],
-					textStyle:{
-						color: '#ffffff'//字体颜色
-					},
-					show:false
-				},
-				series: [
-					{
-						name: '访问来源',
-						type: 'pie',
-						radius: ['40%','60%'],
-						avoidLabelOverlap: false,
-						label: {
-							show: true,
-							position: 'left'
-						},
-						tooltip : {
-							trigger: 'item',
-						  show:false,
-							formatter: "{a} <br/>{b} : {c} ({d}%)"
-						},
-						emphasis: {
-							label: {
-								show: false,
-								fontSize: '30',
-								fontWeight: 'bold'
-							}
-						},				
-						data: [
-							{value: pieData[2].count, name: '订单贷：'+pieData[2].count+'笔'+pieData[2].dk_amount+'万',itemStyle:{color: '#7C89EB'}},
-							{value: pieData[0].count, name: '农资：'+pieData[0].count+'笔'+pieData[0].dk_amount+'万',itemStyle:{color: '#5DC1FA'}},
-							{value: pieData[1].count, name: '劳务贷：'+pieData[1].count+'笔'+pieData[1].dk_amount+'万',itemStyle:{color: '#14E6C4'}}
-						]
-					}
-				]
-			};
+
+      var option = {
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        legend: {
+          orient: "vertical",
+          left: 10,
+          data: ["订单贷", "农资贷", "劳务贷"],
+          textStyle: {
+            color: "#ffffff" //字体颜色
+          },
+          show: false
+        },
+        series: [
+          {
+            name: "访问来源",
+            type: "pie",
+            radius: ["40%", "60%"],
+            avoidLabelOverlap: false,
+            label: {
+              show: true,
+              position: "left"
+            },
+            tooltip: {
+              trigger: "item",
+              show: false,
+              formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            emphasis: {
+              label: {
+                show: false,
+                fontSize: "30",
+                fontWeight: "bold"
+              }
+            },
+            data: [
+              {
+                value: pieData[2].count,
+                name:
+                  "订单贷：" +
+                  pieData[2].count +
+                  "笔" +
+                  pieData[2].dk_amount +
+                  "万",
+                itemStyle: { color: "#7C89EB" }
+              },
+              {
+                value: pieData[0].count,
+                name:
+                  "农资：" +
+                  pieData[0].count +
+                  "笔" +
+                  pieData[0].dk_amount +
+                  "万",
+                itemStyle: { color: "#5DC1FA" }
+              },
+              {
+                value: pieData[1].count,
+                name:
+                  "劳务贷：" +
+                  pieData[1].count +
+                  "笔" +
+                  pieData[1].dk_amount +
+                  "万",
+                itemStyle: { color: "#14E6C4" }
+              }
+            ]
+          }
+        ]
+      };
       rainChart.setOption(option);
     },
     _drawLine() {
@@ -1362,32 +1368,12 @@ export default {
       );
     },
     selectAddress(datas, selectedData) {
-      this.all();
-      if (selectedData[0].label.indexOf("老马") != -1) {
-        this.infowindow(this.markers[7].getCenter(), 7);
-        //this.map.setFitView([ this.markers[7] ]);
-      }
-      if (selectedData[0].label.indexOf("老马") == -1) {
-        this.infowindow(this.markers[8].getCenter(), 8);
-        //this.map.setFitView([ this.markers[8] ]);
-      }
       if (datas.length != 0) {
         this.address = datas[1];
         this.$nextTick(() => {
           this.player = new EZUIPlayer("myVideo");
         });
       }
-      // else {
-      //   monitor.removeChild(monitor.firstElementChild)
-      //   let dom = document.createElement('video')
-      //   dom.id = 'myVideo'
-      //   dom.style.width = '100%'
-      //   dom.style.height = '100%'
-      //   dom.src = this.address
-      //   dom.controls = true
-      //   console.dir(dom)
-      //   monitor.appendChild(dom)
-      // }
     }
   }
 };
@@ -1448,18 +1434,7 @@ export default {
     line-height: 28px !important;
   }
 
-  .base-item {
-    line-height: 20px !important;
-
-    span:nth-of-type(1) {
-      width: 535px !important;
-      white-space: nowrap;
-    }
-
-    span:nth-of-type(2) {
-      width: 100px !important;
-    }
-  }
+  
 
   .monitor-message {
     width: 200px !important;
@@ -1872,6 +1847,7 @@ export default {
 .map-item-box {
   position: absolute;
   left: 15px;
+  min-width:180px;
   background: url('../assets/new/pic2.png') no-repeat;
   background-size: 100% 100%;
   z-index: 111;
@@ -1921,10 +1897,16 @@ export default {
     width: 120px;
     padding: 10px 0;
     text-align: center;
-    background: url('../assets/new/button_set.png') no-repeat;
+    background: url('../assets/new/button.png') no-repeat;
     background-size: 100% 100%;
   }
-
+  .active{
+    width: 120px;
+    padding: 10px 0;
+    text-align: center;
+    background: url('../assets/new/button_set.png') no-repeat;
+     background-size: 100% 100%;
+  }
   .btn-margin {
     width: 20px;
     display: inline-block;
@@ -1932,7 +1914,7 @@ export default {
 }
 
 .wrapper-box {
-  background: url('../assets/new/bg1.png') no-repeat;
+  background: url('../assets/new/bg1.png') repeat;
   padding: 0 15px;
 }
 

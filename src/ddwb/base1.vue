@@ -1,6 +1,7 @@
 <template>
   <div class="base base-container">
     <headers></headers>
+    <div class="black-btn" @click="toBlack">返回</div>
     <div class="base-wrapper">
       <div class="company-info">
         <div class="bg-item-box left-height" style="padding-bottom:10px">
@@ -10,15 +11,17 @@
           <div class="company">
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">基地名称</span>
-              <span class="color-fff">羊子兮基地</span>
+              <span class="color-fff">{{baseinfoRes.name}}</span>
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">基地负责人</span>
-              <span class="color-fff">四川省绵阳市三台县</span>
+              <span class="color-fff">羊子兮</span>
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">基地地址</span>
-              <span class="color-fff">绵阳市</span>
+              <span
+                class="color-fff"
+              >{{baseinfoRes.provinceName}}{{baseinfoRes.cityName}}{{baseinfoRes.areaName}}</span>
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">基地类型</span>
@@ -26,11 +29,11 @@
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">农户数量</span>
-              <span class="color-fff">24户</span>
+              <span class="color-fff">3户</span>
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">地块数量</span>
-              <span class="color-fff">24块</span>
+              <span class="color-fff">5块</span>
             </div>
           </div>
         </div>
@@ -88,15 +91,15 @@
           <div class="map" ref="mapChart">
             <div class="map-title-box display-flex align-items-center justify-content-flex-center">
               <div class="map-title-item">
-                <div class="map-title-item-num">123123</div>
+                <div class="map-title-item-num">{{totalAcreage}}</div>
                 <div>基地面积（亩）</div>
               </div>
               <div class="map-title-item" style="margin:0 20px">
-                <div class="map-title-item-num">1223</div>
+                <div class="map-title-item-num">{{totalProduction}}</div>
                 <div>麦冬年产量（吨）</div>
               </div>
               <div class="map-title-item">
-                <div class="map-title-item-num">3123</div>
+                <div class="map-title-item-num">{{totalYield}}</div>
                 <div>麦冬年产值（万元）</div>
               </div>
             </div>
@@ -150,7 +153,7 @@
                       :class="{'base-tab-small':true,'base-tab-action-small':airTab==2?true:false}"
                     >温度</div>
                     <div
-                      style="width:49px"
+                      style="width:55px"
                       @click="co2value(3)"
                       :class="{'base-tab-small':true,'base-tab-action-small':airTab==3?true:false}"
                     >CO2浓度</div>
@@ -191,7 +194,8 @@
               :style="{'top':pieTop,'left':pieLeft}"
               ref="pieImg"
             />
-            <div class="pie-text" :style="{'top':pieTxtTop,'left':pieTxtLeft}">{{totalAcreage}}亩</div>
+            <div class="pie-text" :style="{'top':pieTxtTop,'left':pieTxtLeft}">{{totalAcreage}}</div>
+            <!-- <div class="pie-text" :style="{'top':pieTxtTop,'left':pieTxtLeft}">亩</div> -->
             <div style="height:180px" ref="loansChart"></div>
             <!-- 饼图说明 -->
             <div class="pie-color-box">
@@ -213,10 +217,10 @@
               style="padding:60px 20px 0 40px;"
               class="base-info display-flex justify-content-flex-justify"
               id="base-info"
+              v-if="bx_forests"
             >
               <circle-progress
-                ref="$circle"
-                key="animation-model"
+               :id="111"
                 :isAnimation="true"
                 :isRound="true"
                 :width="130"
@@ -229,9 +233,8 @@
                 :timeFunction="'cubic-bezier(0.99, 0.01, 0.22, 0.94)'"
                 :backgroundColor="'#4452B9'"
               />
-              <circle-progress
-                ref="$circles"
-                key="animation-model"
+              <circle-progress             
+               :id="222"
                 :isAnimation="true"
                 :isRound="true"
                 :width="130"
@@ -254,7 +257,7 @@
           </div>
           <div style="height:90%">
             <div class="airs air-temperature" style="height:100%">
-              <polygonal-two ref="polygonalTwo"/>
+              <polygonal-two ref="polygonalTwo" />
             </div>
           </div>
         </div>
@@ -462,13 +465,16 @@ export default {
         { num: "33", name: "空气湿度", icon: "iconkongqishidu" }
       ],
       mapIcon: require("../assets/new/icon_positioning.png"),
-      pieTxtLeft:0,
-      pieTxtTop:0,
+      pieTxtLeft: 0,
+      pieTxtTop: 0,
       totalAcreage: 0, //地图面积
-      bx_forests:0,//原形进度条面积
-      bx_count:0,//原形进图条人数
-      dataRight:[],
-      dataLeft:[]
+      bx_forests: 0, //原形进度条面积
+      bx_count: 0, //原形进图条人数
+      dataRight: [],
+      dataLeft: [],
+      baseinfoRes: {},
+      totalProduction: 0,
+      totalYield: 0
     };
   },
   created() {
@@ -514,17 +520,17 @@ export default {
     }
   },
   mounted() {
-    if (this.baseScroll) {
-      clearInterval(this.baseScroll.timer);
-    }
+    // if (this.baseScroll) {
+    //   clearInterval(this.baseScroll.timer);
+    // }
     this._drawCityMap();
     // this._drawRainMap();
     // 设置饼图背景图
     let pieBox = this.$refs.pieBox.offsetHeight;
     let pieBoxW = this.$refs.pieBox.offsetWidth;
     this.pieTop = (pieBox - 156) / 2 + "px";
-    this.pieTxtTop=(pieBox - 26) / 2 + "px";
-     this.pieTxtLeft=(pieBoxW - 36) / 2 + "px";
+    this.pieTxtTop = (pieBox - 26) / 2 + "px";
+    this.pieTxtLeft = (pieBoxW - 36) / 2 + "px";
     this.pieLeft = (pieBoxW - 156) / 2 + "px";
     // 地图下折线图高度
     let height = document.body.clientHeight;
@@ -533,92 +539,71 @@ export default {
     let m = height * 0.15;
     this.baseMessageHeight = height - parseFloat(mapHeight) - m + "px";
     let that = this;
-    // setTimeout(function() {
-    //   that._drawLine(); //左侧折线图
-    //   that._drawLine2(); //左侧折线图
-    // }, 1000);
-    // this._getJson()
 
     that.allbasearea = 0;
-    axios.get("json/base_info.json").then(res => {
-      for (let i = 0; i < res.data.result.length; i++) {
-        that.allbasearea += res.data.result[i].area;
-        that.baseDatas[i].name = res.data.result[i].name;
-        that.baseDatas[i].value = res.data.result[i].area;
-        if (that.baseScroll) {
-          console.log(that.baseScroll);
-          clearInterval(that.baseScroll.timer);
-        }
-        that.$nextTick(() => {
-          if (that.baseScroll) {
-            clearInterval(that.baseScroll.timer);
-          }
-          //滚动距离可以用一条的高度*条数~~~~~~~~~~~~~
-          that.baseScroll = new roll.Roll(
-            "base-info",
-            "base-ul1",
-            "base-ul2",
-            -660
-          );
-        });
-      }
-      window.addEventListener("done1", function() {
-        let googleLayer = new AMap.TileLayer({
-          getTileUrl:
-            "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
-        }); //定义谷歌卫星切片图层
+    window.addEventListener("done1", function() {
+      let googleLayer = new AMap.TileLayer({
+        getTileUrl:
+          "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
+      }); //定义谷歌卫星切片图层
 
-        let roadNetLayer = new AMap.TileLayer.RoadNet({
-          opacity: 0
-        }); //定义一个路网图层
-        // var layer = new AMap.TileLayer();
-        that.map.setLayers([googleLayer, roadNetLayer]);
-        axios.get("json/blockinfo.json").then(res => {
-          that.blockinfo = res.data.result;
-          that.addBlockOnMap();
-        });
+      let roadNetLayer = new AMap.TileLayer.RoadNet({
+        opacity: 0
+      }); //定义一个路网图层
+      // var layer = new AMap.TileLayer();
+      that.map.setLayers([googleLayer, roadNetLayer]);
+      axios.get("json/blockinfo.json").then(res => {
+        that.blockinfo = res.data.result;
+        // that.addBlockOnMap();
+        that.getBaseInfo();
       });
     });
-    this.getBaseInfo();
+
     this.humidity(1); //底部折线图
     this.soilHumidity(1);
 
     this.getBaseInsuranceTj();
     this.getBaseLoanTj();
     this.totalTj();
+    this.baseScroll = new roll.Roll("base-info", "base-ul1", "base-ul2", -660);
   },
   methods: {
-    getBaseInfo(){//获取基地详情
-      getBaseInfo({ baseId: this.baseId }).then(res=>{
-      
-      })
+    toBlack() {
+      this.$router.back(-1);
+    },
+    getBaseInfo() {
+      //获取基地详情
+      getBaseInfo({ baseId: this.baseId }).then(res => {
+        this.baseinfoRes = res.data;
+        this.addBlockOnMap(this.baseinfoRes.mapAddr);
+      });
     },
     totalTj() {
       totalTj({ baseId: this.baseId }).then(res => {
         //获取基地总面积- 有订单的面积=无订单面积
         this.totalAcreage = res.data.totalAcreage;
+        this.totalProduction = res.data.totalProduction; //地图上显示的产量
+        this.totalYield = res.data.totalYield; //地图上显示年产值
         this.getBaseOrderTj();
       });
     },
     getBaseLoanTj() {
       //贷款柱形图
       getBaseLoanTj({ baseId: this.baseId }).then(res => {
-          // dataRight dataLeft
-          this.dataLeft=res.data.map(item=>{
-            return item.dk_amount
-          })
-          this.dataRight=res.data.map(item=>{
-            return item.count
-          })
-         this.$refs.polygonalTwo._drawPolygonal(this.dataLeft,this.dataRight)
-         
+        // dataRight dataLeft
+        this.dataLeft = res.data.map(item => {
+          return item.dk_amount;
+        });
+        this.dataRight = res.data.map(item => {
+          return item.count;
+        });
+        this.$refs.polygonalTwo._drawPolygonal(this.dataLeft, this.dataRight);
       });
     },
     getBaseOrderTj() {
       //获取右侧订单饼图
       getBaseOrderTj({ baseId: this.baseId }).then(res => {
-        let num =
-          parseFloat(this.totalAcreage) - parseFloat(res.data.order_forests);
+        let num = (parseFloat(this.totalAcreage) - parseFloat(res.data.order_forests)).toFixed(3);
         let arr = [
           {
             name: `${res.data.count}笔${res.data.order_forests}亩`,
@@ -633,15 +618,17 @@ export default {
             itemStyle: { color: "#13E5C3" }
           }
         ];
-    
+
         this._dramLoansChart(arr);
       });
     },
     getBaseInsuranceTj() {
       //保险饼图
       getBaseInsuranceTj({ baseId: this.baseId }).then(res => {
-        this.bx_forests=res.data.bx_forests
-        this.bx_count=res.data.count
+        this.bx_forests = res.data.bx_forests;
+        this.bx_count = res.data.count;
+        // this.$refs.circle.showCorcle()
+        // this.$refs.circles2.showCorcle()
       });
     },
     humidity(n) {
@@ -780,28 +767,18 @@ export default {
       console.log(n);
       this.tab = n;
     },
-    addBlockOnMap() {
-      //这里删除了地块length~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      for (let i = 0; i < this.blockinfo.length - 3; i++) {
-        let item = this.blockinfo[i];
-        if (
-          item.remark != undefined &&
-          item.remark != null &&
-          item.remark.trim() != ""
-        ) {
-          let remarkJson2 = eval("(" + item.remark + ")");
-          let newPath = [];
-          for (let i = 0; i < remarkJson2.path.length; i++) {
-            let point = remarkJson2.path[i];
-            newPath.push(new AMap.LngLat(point.lng, point.lat));
-          }
-          remarkJson2.path = newPath;
-          let polygon2 = new AMap.Polygon(remarkJson2);
-          this.polygonss = [];
-          this.polygonss.push(polygon2);
-          this.map.add(polygon2);
-        }
+    addBlockOnMap(mapAddr) {
+      let remarkJson2 = eval("(" + mapAddr + ")");
+      let newPath = [];
+      for (let i = 0; i < remarkJson2.path.length; i++) {
+        let point = remarkJson2.path[i];
+        newPath.push(new AMap.LngLat(point.lng, point.lat));
       }
+      remarkJson2.path = newPath;
+      let polygon2 = new AMap.Polygon(remarkJson2);
+      this.polygonss = [];
+      this.polygonss.push(polygon2);
+      this.map.add(polygon2);
     },
     removepoint() {
       this.map.remove(this.markers);
@@ -903,7 +880,6 @@ export default {
                     "&pageStart=0&pageSize=50";
                   window.localStorage.setItem("token", token);
                   this._getAddress(token);
-
                 }
               });
           } else if (res.data.code == 10001) {
@@ -1050,7 +1026,9 @@ export default {
       MapLoader().then(AMap => {
         that.map = new AMap.Map(this.$refs.mapChart, {
           center: [105.013664, 31.206397],
-          zooms: [10, 10]
+          zoom: 16
+          // layers:[googleLayer,roadNetLayer,layer], //设置图层
+          // viewMode:'3D',
         });
 
         AMap.plugin("AMap.DistrictSearch", function() {
@@ -1058,44 +1036,44 @@ export default {
             extensions: "all",
             subdistrict: 0
           });
-          district.search("三台县", function(status, result) {
-            // 外多边形坐标数组和内多边形坐标数组
-            var bounds = result.districtList[0].boundaries;
-            var outer = [
-              new AMap.LngLat(-360, 90, true),
-              new AMap.LngLat(-360, -90, true),
-              new AMap.LngLat(360, -90, true),
-              new AMap.LngLat(360, 90, true)
-            ];
-            var pathArray = [outer];
-            pathArray.push.apply(pathArray, bounds);
-            var polygon = new AMap.Polygon({
-              path: pathArray,
-              strokeColor: "#0AFBE2",
-              strokeWeight: 1,
-              fillColor: "#26374C",
-              fillOpacity: 0.5
-            });
-            polygon.setPath(pathArray);
-            that.map.add(polygon);
-            var polygons = [];
-            if (bounds) {
-              for (var i = 0, l = bounds.length; i < l; i++) {
-                //生成行政区划polygon
-                var polygon1 = new AMap.Polygon({
-                  map: that.map,
-                  strokeWeight: 1,
-                  path: bounds[i],
-                  fillOpacity: 0,
-                  fillColor: "#CCF3FF",
-                  strokeColor: "#CC66CC"
-                });
-                polygons.push(polygon1);
-              }
-              // 地图自适应
-              that.map.setFitView(polygons);
-            }
-          });
+          // district.search("三台县", function(status, result) {
+          //   // 外多边形坐标数组和内多边形坐标数组
+          //   var bounds = result.districtList[0].boundaries;
+          //   var outer = [
+          //     new AMap.LngLat(-360, 90, true),
+          //     new AMap.LngLat(-360, -90, true),
+          //     new AMap.LngLat(360, -90, true),
+          //     new AMap.LngLat(360, 90, true)
+          //   ];
+          //   var pathArray = [outer];
+          //   pathArray.push.apply(pathArray, bounds);
+          //   var polygon = new AMap.Polygon({
+          //     path: pathArray,
+          //     strokeColor: "#0AFBE2",
+          //     strokeWeight: 1,
+          //     fillColor: "#26374C",
+          //     fillOpacity: 1
+          //   });
+          //   polygon.setPath(pathArray);
+          //   that.map.add(polygon);
+          //   var polygons = [];
+          //   if (bounds) {
+          //     for (var i = 0, l = bounds.length; i < l; i++) {
+          //       //生成行政区划polygon
+          //       var polygon1 = new AMap.Polygon({
+          //         map: that.map,
+          //         strokeWeight: 1,
+          //         path: bounds[i],
+          //         fillOpacity: 0,
+          //         fillColor: "#CCF3FF",
+          //         strokeColor: "#CC66CC"
+          //       });
+          //       polygons.push(polygon1);
+          //     }
+          //     // 地图自适应
+          //     that.map.setFitView(polygons);
+          //   }
+          // });
           // var bounds = that.map.getBounds();
           // that.map.setLimitBounds(bounds);
           that.map.on("complete", function() {
@@ -1109,279 +1087,6 @@ export default {
           });
         });
       });
-    },
-    _setOption() {
-      this.option = {
-        tooltip: {
-          trigger: "item",
-          formatter: function() {
-            return "";
-          }
-        },
-        legend: {
-          bottom: 20,
-          left: 20,
-          orient: "vertical",
-          textStyle: {
-            color: "#fff"
-          },
-          selectedMode: true
-        },
-        visualMap: {
-          show: false,
-          min: 0,
-          max: 2,
-          left: "left",
-          top: "top",
-          text: ["高", "低"], // 文本，默认为数值文本
-          textStyle: {
-            color: "#fff"
-          },
-          calculable: true,
-          seriesIndex: [1],
-          inRange: {
-            // color: ['#3B5077', '#031525'] // 蓝黑
-            // color: ['#ffc0cb', '#800080'] // 红紫
-            // color: ['#3C3B3F', '#605C3C'] // 黑绿
-            // color: ['#0f0c29', '#302b63', '#24243e'] // 黑紫黑
-            // color: ['#23074d', '#cc5333'] // 紫红
-            //99CC99
-            color: ["#00b583", "#009a6a"] // 蓝绿
-            // color: ['#1488CC', '#2B32B2'] // 浅蓝
-            // color: ['#00467F', '#A5CC82'] // 蓝绿
-            // color: ['#00467F', '#A5CC82'] // 蓝绿
-            // color: ['#00467F', '#A5CC82'] // 蓝绿
-            // color: ['#00467F', '#A5CC82'] // 蓝绿
-          }
-        },
-        //地图坐标系组建
-        geo: {
-          show: true,
-          map: "santai",
-          aspectScale: 1,
-          label: {
-            normal: {
-              show: false,
-              textStyle: {
-                color: "#fff",
-                fontSize: 16
-              }
-            },
-            emphasis: {
-              show: true,
-              textStyle: {
-                color: "#000",
-                fontSize: 12
-              }
-            }
-          },
-          //地图颜色配置
-          itemStyle: {
-            normal: {
-              //区域和区域线条颜色（无数据时候）
-              areaColor: "#baaea0",
-              borderColor: "#eee"
-            },
-            emphasis: {
-              areaColor: "#fff",
-              textStyle: {
-                color: "#000"
-              }
-            }
-          },
-          zoom: 1.3
-        },
-        //数据展示
-        series: [
-          //合作社坐标点，黄点
-          {
-            name: "基地",
-            type: "effectScatter",
-            coordinateSystem: "geo",
-            data: this.mapDatas,
-            symbolSize: function(val) {
-              return 12;
-            },
-            showEffectOn: "render",
-            rippleEffect: {
-              brushType: "stroke"
-            },
-            hoverAnimation: true,
-            label: {
-              normal: {
-                formatter: "{b}",
-                position: "top",
-                show: false
-              },
-              emphasis: {
-                show: true,
-                textStyle: {
-                  color: "white",
-                  fontSize: 16,
-                  fontWeight: 700
-                }
-              }
-            },
-            itemStyle: {
-              normal: {
-                color: "#fe5858"
-              }
-            }
-            // zlevel: 1
-          },
-          {
-            type: "map",
-            map: "santai",
-            geoIndex: 0,
-            label: {
-              normal: {
-                show: false
-              },
-              emphasis: {
-                show: true,
-                textStyle: {
-                  color: "#fff"
-                }
-              }
-            },
-            roam: false,
-            itemStyle: {
-              normal: {
-                areaColor: "#031525",
-                borderColor: "#000"
-              },
-              emphasis: {
-                areaColor: "#2B91B7"
-              }
-            },
-            animation: false,
-            data: this.showColorDatas
-          },
-          {
-            name: "合作社",
-            type: "effectScatter",
-            coordinateSystem: "geo",
-            symbolSize: function(val) {
-              return 12;
-            },
-            data: [
-              {
-                name: "合作社",
-                value: [104.90298, 31.2453],
-                id: 1
-              }
-            ],
-            showEffectOn: "render",
-            rippleEffect: {
-              brushType: "stroke"
-            },
-            hoverAnimation: true,
-            label: {
-              normal: {
-                formatter: "{b}",
-                position: "top",
-                show: false
-              },
-              emphasis: {
-                show: true,
-                textStyle: {
-                  color: "white",
-                  fontSize: 16,
-                  fontWeight: 700
-                }
-              }
-            },
-            itemStyle: {
-              normal: {
-                color: "#dc9748"
-              }
-            }
-            // zlevel: 0
-          },
-          {
-            name: "家庭农场",
-            type: "effectScatter",
-            coordinateSystem: "geo",
-            symbolSize: function(val) {
-              return 12;
-            },
-            data: [
-              {
-                name: "家庭农场",
-                value: [104.98298, 31.1653],
-                id: 1
-              }
-            ],
-            showEffectOn: "render",
-            rippleEffect: {
-              brushType: "stroke"
-            },
-            hoverAnimation: true,
-            label: {
-              normal: {
-                formatter: "{b}",
-                position: "top",
-                show: false
-              },
-              emphasis: {
-                show: true,
-                textStyle: {
-                  color: "white",
-                  fontSize: 16,
-                  fontWeight: 700
-                }
-              }
-            },
-            itemStyle: {
-              normal: {
-                color: "#289CF4"
-              }
-            }
-            // zlevel: 0
-          },
-          {
-            name: "农户",
-            type: "effectScatter",
-            coordinateSystem: "geo",
-            symbolSize: function(val) {
-              return 12;
-            },
-            data: [
-              {
-                name: "农户",
-                value: [104.93298, 31.2053],
-                id: 1
-              }
-            ],
-            showEffectOn: "render",
-            rippleEffect: {
-              brushType: "stroke"
-            },
-            hoverAnimation: true,
-            label: {
-              normal: {
-                formatter: "{b}",
-                position: "top",
-                show: false
-              },
-              emphasis: {
-                show: true,
-                textStyle: {
-                  color: "white",
-                  fontSize: 16,
-                  fontWeight: 700
-                }
-              }
-            },
-            itemStyle: {
-              normal: {
-                color: "#fe58fe"
-              }
-            }
-            // zlevel: 0
-          }
-        ]
-      };
     },
     infowindow(a, b) {
       this.getinfo(b);
@@ -2027,7 +1732,7 @@ export default {
 }
 
 .base-tab-small {
-  width: 40px;
+  width: 44px;
   text-align: center;
   font-size: 12px;
   color: rgba(255, 255, 255, 1);
@@ -2081,11 +1786,27 @@ export default {
     border-radius: 2px;
   }
 }
-.pie-text{
-  position:absolute;
-  font-size:16px;
-  font-weight:bold;
-  color:#B1FDF5;
+
+.pie-text {
+  position: absolute;
+  font-size: 16px;
+  font-weight: bold;
+  color: #B1FDF5;
+}
+
+.black-btn {
+  width: 60px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border: 1px solid rgba(177, 254, 246, 1);
+  opacity: 0.5;
+  border-radius: 4px;
+  color: #fff;
+  position: absolute;
+  top: 30px;
+  left: 50px;
+  cursor: pointer;
 }
 </style>
 

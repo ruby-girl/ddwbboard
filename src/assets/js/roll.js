@@ -21,8 +21,8 @@ var roll = {
 			// }
 			var num = parseInt(this.list1.style.top)
 			if (num >= height) {
-				this.list1.style.top = (num-= 3) + 'px'
-				this.list2.style.top = (num-= 3) + 'px'
+				this.list1.style.top = (num-= 1) + 'px'
+				this.list2.style.top = (num-= 1) + 'px'
 			} else {
 				this.list1.style.top = '0px'
 				this.list2.style.top = '0px'

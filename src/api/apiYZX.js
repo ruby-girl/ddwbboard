@@ -110,6 +110,25 @@ const getBaseOrderTj = (params)=>getAction("/api/billboard/base/getBaseOrderTj",
 const getBaseMonitorTj = (params)=>getAction("/api/billboard/base/getBaseMonitorTj",params);
 // 获取基地面积/作物产量/作物产值
 const totalTj = (params)=>getAction("/api/billboardBaseInfos/totalTj",params);
+
+
+// /api/billboard/user/finance/bx 看板第三页右上角金融数据-保险
+const financeBx = (params)=>getAction("/api/billboard/user/finance/bx",params);
+// /api/billboard/user/finance/dk 看板第三页右上角金融数据-贷款
+const financeDk = (params)=>getAction("/api/billboard/user/finance/dk",params);
+// /api/billboard/user/finance/orders 看板第三页右上角金融数据-订单
+const financeOrder = (params)=>getAction("/api/billboard/user/finance/orders",params);
+
+// 看板第三页金融占比
+const financeProportion = (params)=>getAction("/api/billboard/user/financeProportion",params);
+
+// 农事执行进度
+const getFarmWorkProgress = (params)=>getAction("/api/billboardBaseInfos/getFarmWorkProgress",params);
+
+// 获取荧石云的摄像头列表
+const getAllMonitors = (params)=>getAction("/api/billboardIndexs/getAllMonitors",params);
+// 获取通道/api/billboardIndexs/getMonitorVideosByBaseId 获取基地的摄像头列表
+const getMonitorVideosByBaseId = (params)=>getAction("/api/billboardIndexs/getMonitorVideosByBaseId",params);
 export {
     getSubjectInfo,
     getAnnualFertilizer,
@@ -150,5 +169,12 @@ export {
     getBaseLoanTj,
     getBaseOrderTj,
     getBaseMonitorTj,
-    totalTj
+    totalTj,
+    financeBx,
+    financeDk,
+    financeOrder,
+    financeProportion,
+    getFarmWorkProgress,
+    getAllMonitors,
+    getMonitorVideosByBaseId
 }
