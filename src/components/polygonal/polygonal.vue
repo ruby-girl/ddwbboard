@@ -10,7 +10,7 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            datas: [200, 500, 1000 , 1000],
+            datas: [270, 290, 320 , 350],
             tdataAxis: [2015, 2016, 2017,2018]
         }
     },
@@ -19,7 +19,7 @@ export default {
     },
     methods: {
         _drawPolygonal () {
-            let polygonalChart = this.$echarts.init(this.$refs.polygonal);
+            let polygonalChart = this.$echarts.init(this.$refs.polygonal,null,{devicePixelRatio: 2.5});
             var option = chartsType.charts(this.tdataAxis,this.datas,'用量（亩/kg）','bar','有机肥','#14E6C4','x');
             option.legend = {
                 left: 'right',

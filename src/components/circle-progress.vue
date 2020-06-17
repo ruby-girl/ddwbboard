@@ -1,5 +1,5 @@
 <template>
-  <div style="position:relative;height:100%;">
+  <div style="position:relative;height:100%;" class="circle-bg">
     <svg style="transform: rotate(-90deg)" :width="width" :height="width" xmlns="http://www.w3.org/2000/svg">
       <circle :r="(width-radius)/2"
         :cy="width/2"
@@ -22,7 +22,7 @@
     </svg>
     <div class="circle-absolute">
         <div>{{title}}</div>
-        <div>{{progress}}%</div>
+        <div style="font-size:19px;">{{progress}}%</div>
     </div>
   </div>
 </template>
@@ -98,8 +98,11 @@ export default {
 .circle-absolute{
     position: absolute;
     top:38%;
-    left:35%;
+    left:33%;
     text-align: center;
     color:#B1FEF6;
+}
+.circle-bg{
+  /* background: url('../assets/new/bg1.png') no-repeat; */
 }
 </style>

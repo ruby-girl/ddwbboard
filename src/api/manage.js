@@ -1,5 +1,5 @@
 import axios from '@/utils/request'
-const BASE_PRE = '/api'
+const BASE_PRE = '/byapi'
 //post
 export function postAction(url,parameter) {
   return axios({

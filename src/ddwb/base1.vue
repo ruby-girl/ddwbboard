@@ -4,7 +4,7 @@
     <div class="black-btn" @click="toBlack">返回</div>
     <div class="base-wrapper">
       <div class="company-info">
-        <div class="bg-item-box left-height" style="padding-bottom:10px">
+        <div class="bg-item-box left-height-base-info" style="padding-bottom:10px">
           <div class="desc">
             <div class="title">平台简介</div>
           </div>
@@ -15,7 +15,7 @@
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">基地负责人</span>
-              <span class="color-fff">羊子兮</span>
+              <span class="color-fff">{{baseinfoRes.leaderName}}</span>
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">基地地址</span>
@@ -25,33 +25,41 @@
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">基地类型</span>
-              <span class="color-fff">合作基地</span>
+              <span class="color-fff">{{baseinfoRes.typeName}}</span>
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">农户数量</span>
-              <span class="color-fff">3户</span>
+              <span class="color-fff">{{baseinfoRes.batchCount}}户</span>
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">地块数量</span>
-              <span class="color-fff">5块</span>
+              <span class="color-fff">{{baseinfoRes.landParcelCount}}块</span>
+            </div>
+            <!-- 基地图片 -->
+            <div class="display-flex">
+              <div class="base-info-img" style=";marginRight:1%">
+
+              </div>
+              <div class="base-info-img">
+
+              </div>
             </div>
           </div>
         </div>
-        <div class="item-bg-y bg-item-box left-height" style="padding:15px 0;margin-top:20px;">
-          <div class="last-title">农事执行进度</div>
+        <div class="item-bg-y bg-item-box" style="padding:15px 0;margin-top:20px;
+        ">
+          <div class="last-title">工单执行进度</div>
           <div class="base-progress-box">
-            <div class="base-info" id="base-info">
-              <ul id="base-ul1" style="position:relative; top:30px">
-                <li v-for="i in 5" :key="i" class="base-progress-item">
-                  <div>2020年麦冬规范化种植计划（种植批次数量：8个）</div>
+            <div class="base-info" style="margin-top:6px;">
+              <ul style="position:relative;list-style-type: none;">
+                <li class="base-progress-item">
+                  <div>2020年麦冬规范化种植计划（种植批次数量：{{progress.totalCount}}个）</div>
                   <div class="display-flex">
-                    <div>除草</div>
-                    <div style="margin-left:15px">5.24-5.28</div>
                     <div class="progress">
-                      <span class="progressing" v-bind:style="'width:' + (10/17)*100 +'%' "></span>
+                      <span class="progressing" v-bind:style="'width:' + (progress.executeCount/progress.totalCount)*100 +'%' "></span>
                     </div>
-                    <div>75%</div>
-                    <div style="margin-left:15px">7/17</div>
+                    <!-- <div>75%</div> -->
+                    <div style="margin-left:15px">{{progress.executeCount}}/{{progress.totalCount}}</div>
                   </div>
                 </li>
               </ul>
@@ -59,7 +67,7 @@
           </div>
         </div>
         <!-- 左侧下柱形图 -->
-        <div class="item-bg-y bg-item-box left-height" style="padding:15px 0;margin-top:20px;">
+        <div class="item-bg-y bg-item-box left-height-last" style="padding:15px 0;margin-top:20px;">
           <div class="last-title display-flex justify-content-flex-justify">
             <div>土壤检测平均值</div>
             <div>
@@ -79,29 +87,41 @@
               </div>
             </div>
           </div>
-          <div style="height:80%">
+          <div style="height:90%">
             <div class="airs air-temperature" style="height:100%">
-              <echartslLine></echartslLine>
+              <echartslLine ref="detection"></echartslLine>
             </div>
           </div>
         </div>
       </div>
       <div class="map-message">
         <div class="map-wrapper">
-          <div class="map" ref="mapChart">
+          <div class="map" ref="mapChart" id="mapChart">
             <div class="map-title-box display-flex align-items-center justify-content-flex-center">
               <div class="map-title-item">
-                <div class="map-title-item-num">{{totalAcreage}}</div>
+                <div class="map-title-item-num">{{mapInfo.totalAcreage||''}}</div>
                 <div>基地面积（亩）</div>
               </div>
               <div class="map-title-item" style="margin:0 20px">
-                <div class="map-title-item-num">{{totalProduction}}</div>
-                <div>麦冬年产量（吨）</div>
+                <div class="map-title-item-num">{{mapInfo.totalYield*0.0001||''}}</div>
+                <div>预估麦冬年产量（吨）</div>
               </div>
               <div class="map-title-item">
-                <div class="map-title-item-num">{{totalYield}}</div>
-                <div>麦冬年产值（万元）</div>
+                <div class="map-title-item-num">{{(mapInfo.totalProduction*0.00001).toFixed(2)||''}}</div>
+                <div>预估麦冬年产值（万元）</div>
               </div>
+            </div>
+            <!-- 基地环境数据 -->
+            <div class="mould-box">
+                <div class="display-flex justify-content-flex-justify"><span>大气温度</span><span class="color-yellow">30℃</span></div>
+                 <div class="display-flex justify-content-flex-justify"><span>大气湿度</span><span class="color-yellow">46%</span></div>
+                 <div class="display-flex justify-content-flex-justify"><span>CO2浓度</span><span class="color-yellow">503ppm</span></div>
+                  <div class="display-flex justify-content-flex-justify"><span>大气压强</span><span class="color-yellow">101kPa</span></div>
+                  <div class="display-flex justify-content-flex-justify"><span>光照强度</span><span class="color-yellow">1147Lux</span></div>
+                  <div class="display-flex justify-content-flex-justify"><span>风速</span><span class="color-yellow">30m/s</span></div>
+                  <div class="display-flex justify-content-flex-justify"><span>风向</span><span class="color-yellow">25°</span></div>
+                  <div class="mould-small-txt">信息来源：智能环境检测基站</div>
+                  <div class="mould-small-txt">更新时间：2020-06-15 16:35:00</div>
             </div>
           </div>
         </div>
@@ -194,7 +214,12 @@
               :style="{'top':pieTop,'left':pieLeft}"
               ref="pieImg"
             />
-            <div class="pie-text" :style="{'top':pieTxtTop,'left':pieTxtLeft}">{{totalAcreage}}</div>
+            <div class="pie-text flex-direction-column">
+              <div>
+                {{totalAcreage}}
+              </div>
+              <div style="text-align:center">亩</div>
+            </div>
             <!-- <div class="pie-text" :style="{'top':pieTxtTop,'left':pieTxtLeft}">亩</div> -->
             <div style="height:180px" ref="loansChart"></div>
             <!-- 饼图说明 -->
@@ -223,7 +248,7 @@
                :id="111"
                 :isAnimation="true"
                 :isRound="true"
-                :width="130"
+                :width="twoCircleWidth"
                 title="投保面积"
                 :radius="20"
                 :progress="bx_forests?bx_forests:0"
@@ -237,7 +262,7 @@
                :id="222"
                 :isAnimation="true"
                 :isRound="true"
-                :width="130"
+                :width="twoCircleWidth"
                 :radius="20"
                 title="投保农户"
                 :progress="bx_count?bx_count:0"
@@ -294,7 +319,9 @@ import {
   getBaseLoanTj,
   getBaseOrderTj,
   getBaseMonitorTj,
-  totalTj
+  totalTj,
+  getFarmWorkProgress,
+  getBaseMapInfoTotalTj
 } from "../api/apiYZX";
 const dataAxis = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
@@ -431,6 +458,7 @@ export default {
         { itemStyle: { color: "#E5AF5F" } }
       ],
       tip: "",
+      twoCircleWidth:130,
       markers: [],
       hezuoshe: [],
       jiatingnongchang: [],
@@ -474,11 +502,18 @@ export default {
       dataLeft: [],
       baseinfoRes: {},
       totalProduction: 0,
-      totalYield: 0
+      totalYield: 0,
+      pics:[],
+      progress:{},
+      mapInfo:{},
+      baseIdSet:''
     };
   },
   created() {
-    this.baseId = this.$route.query.baseId;
+    this.baseId =12
+  
+    
+     this.baseIdSet = this.$route.query.baseId;
     axios
       .get("/tq", {
         params: { from: "5", lat: 31.1, lng: 105.06, needMoreDay: 1 },
@@ -492,7 +527,6 @@ export default {
         }
       });
     // if (!window.localStorage.token) {
-    console.log(111);
     let params =
       "appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53";
     axios
@@ -524,20 +558,24 @@ export default {
     //   clearInterval(this.baseScroll.timer);
     // }
     this._drawCityMap();
+     this.getBaseInsuranceTj();
     // this._drawRainMap();
     // 设置饼图背景图
     let pieBox = this.$refs.pieBox.offsetHeight;
     let pieBoxW = this.$refs.pieBox.offsetWidth;
     this.pieTop = (pieBox - 156) / 2 + "px";
-    this.pieTxtTop = (pieBox - 26) / 2 + "px";
+    this.pieTxtTop = (pieBox - 22) / 2 + "px";
     this.pieTxtLeft = (pieBoxW - 36) / 2 + "px";
     this.pieLeft = (pieBoxW - 156) / 2 + "px";
+    // 计算保险概率
+     this.twoCircleWidth=pieBox-20
     // 地图下折线图高度
     let height = document.body.clientHeight;
     this.$refs.mapChart.style.height = height - 400 + "px";
     let mapHeight = this.$refs.mapChart.offsetHeight;
-    let m = height * 0.15;
-    this.baseMessageHeight = height - parseFloat(mapHeight) - m + "px";
+    let m = height-mapHeight-160;
+   
+    this.baseMessageHeight =m + "px";
     let that = this;
 
     that.allbasearea = 0;
@@ -546,7 +584,7 @@ export default {
         getTileUrl:
           "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
       }); //定义谷歌卫星切片图层
-
+     
       let roadNetLayer = new AMap.TileLayer.RoadNet({
         opacity: 0
       }); //定义一个路网图层
@@ -555,35 +593,84 @@ export default {
       axios.get("json/blockinfo.json").then(res => {
         that.blockinfo = res.data.result;
         // that.addBlockOnMap();
-        that.getBaseInfo();
+        
       });
     });
 
     this.humidity(1); //底部折线图
     this.soilHumidity(1);
-
-    this.getBaseInsuranceTj();
+    this.getBaseInfo();
+   this.getFarmWorkProgress()
     this.getBaseLoanTj();
-    this.totalTj();
-    this.baseScroll = new roll.Roll("base-info", "base-ul1", "base-ul2", -660);
+    this.detection(1)
+    this.getBaseMapInfoTotalTj()
+    setTimeout(function(){
+       that.totalTj();
+    },1000)
+       if (that.baseScroll) {
+          clearInterval(that.baseScroll.timer)
+        }
+        that.$nextTick(() => {
+          if (that.baseScroll) {
+            clearInterval(that.baseScroll.timer)
+          }
+          let height=document.getElementById('base-ul1').offsetHeight;
+          that.baseScroll = new roll.Roll('base-info', 'base-ul1', 'base-ul2', -height)
+        })
   },
   methods: {
+    getBaseMapInfoTotalTj(){
+      getBaseMapInfoTotalTj({ baseId: this.baseId }).then(res=>{
+        this.totalAcreage = res.data.totalAcreage;
+        this.totalProduction = res.data.totalProduction; //地图上显示的产量
+        this.totalYield = res.data.totalYield; //地图上显示年产值  
+        this.mapInfo=res.data
+      })
+    },
+    getFarmWorkProgress(){//执行进度
+     getFarmWorkProgress({ baseId: this.baseIdSet }).then(res=>{
+        this.progress=res.data
+      })
+    },
+    detection(n){//检测柱形图
+      let title,arr;
+      if(n==1){
+        title='土壤检测';
+        arr=['100','200','300','900']
+         this.$refs.detection._drawPolygonal(title,arr)
+      }else if(n==2){
+        title='空气检测'
+        arr=['50','120','270','860']
+         this.$refs.detection._drawPolygonal(title,arr)
+      }else{
+         title='土源检测'
+         arr=['120','270','450','960']
+          this.$refs.detection._drawPolygonal(title,arr)
+      }
+     
+    },
     toBlack() {
       this.$router.back(-1);
     },
     getBaseInfo() {
       //获取基地详情
-      getBaseInfo({ baseId: this.baseId }).then(res => {
+      getBaseInfo({ baseId: this.baseIdSet }).then(res => {
         this.baseinfoRes = res.data;
-        this.addBlockOnMap(this.baseinfoRes.mapAddr);
+        this.pics=this.baseinfoRes.basePics
+       console.info('11111111111111111111111111',this.pics)
+       
       });
     },
     totalTj() {
-      totalTj({ baseId: this.baseId }).then(res => {
+      totalTj({ baseId: this.baseIdSet }).then(res => {
         //获取基地总面积- 有订单的面积=无订单面积
-        this.totalAcreage = res.data.totalAcreage;
-        this.totalProduction = res.data.totalProduction; //地图上显示的产量
-        this.totalYield = res.data.totalYield; //地图上显示年产值
+      
+        console.info('地图地图',this.map)
+        let that=this
+       setTimeout(function(){
+          that.addBlockOnMap(res.data.landParcels);       
+       },1000)
+         
         this.getBaseOrderTj();
       });
     },
@@ -591,19 +678,21 @@ export default {
       //贷款柱形图
       getBaseLoanTj({ baseId: this.baseId }).then(res => {
         // dataRight dataLeft
-        this.dataLeft = res.data.map(item => {
-          return item.dk_amount;
-        });
-        this.dataRight = res.data.map(item => {
-          return item.count;
-        });
+        // this.dataLeft = res.data.map(item => {
+        //   return item.dk_amount;
+        // });
+        // this.dataRight = res.data.map(item => {
+        //   return item.count;
+        // });
+        this.dataLeft=[95,95,19,76]
+        this.dataRight=[2,1,2,2]
         this.$refs.polygonalTwo._drawPolygonal(this.dataLeft, this.dataRight);
       });
     },
     getBaseOrderTj() {
       //获取右侧订单饼图
       getBaseOrderTj({ baseId: this.baseId }).then(res => {
-        let num = (parseFloat(this.totalAcreage) - parseFloat(res.data.order_forests)).toFixed(3);
+        let num = (parseFloat(this.totalAcreage) - parseFloat(res.data.order_forests)).toFixed(2);
         let arr = [
           {
             name: `${res.data.count}笔${res.data.order_forests}亩`,
@@ -625,8 +714,8 @@ export default {
     getBaseInsuranceTj() {
       //保险饼图
       getBaseInsuranceTj({ baseId: this.baseId }).then(res => {
-        this.bx_forests = res.data.bx_forests;
-        this.bx_count = res.data.count;
+        this.bx_forests = 80;
+        this.bx_count = 91;
         // this.$refs.circle.showCorcle()
         // this.$refs.circles2.showCorcle()
       });
@@ -764,21 +853,35 @@ export default {
       });
     },
     tabFunc(n) {
-      console.log(n);
       this.tab = n;
+      this.detection(n)
     },
-    addBlockOnMap(mapAddr) {
-      let remarkJson2 = eval("(" + mapAddr + ")");
-      let newPath = [];
-      for (let i = 0; i < remarkJson2.path.length; i++) {
-        let point = remarkJson2.path[i];
-        newPath.push(new AMap.LngLat(point.lng, point.lat));
+    addBlockOnMap(remarks) {
+      //地块的第一个点增加Masker
+       this.saveListMarker=[]
+      this.polygons = [];
+      for (let i = 0; i < remarks.length; i++) {
+        let remark = remarks[i].mapAddr;
+        if (remark != undefined && remark != null && remark.trim() != "") {
+          let remarkJson2 = eval("(" + remark + ")");
+          let newPath = [];
+          for (let i = 0; i < remarkJson2.path.length; i++) {
+            let point = remarkJson2.path[i];
+            newPath.push(new AMap.LngLat(point.lng, point.lat));
+          }
+          remarkJson2.path = newPath;
+          let polygon2 = new AMap.Polygon(remarkJson2);
+          this.polygons.push(polygon2);    
+          this.map.add(polygon2);
+          this.map.setFitView();    
+        }
       }
-      remarkJson2.path = newPath;
-      let polygon2 = new AMap.Polygon(remarkJson2);
-      this.polygonss = [];
-      this.polygonss.push(polygon2);
-      this.map.add(polygon2);
+      let that = this;
+      for (let i = 0; i < that.polygons.length; i++) {
+        that.polygons[i].on("click", function(e) {
+          that.infowindow(e, i);
+        });
+      }
     },
     removepoint() {
       this.map.remove(this.markers);
@@ -905,7 +1008,7 @@ export default {
     },
     _dramLoansChart(datas) {
       //右侧饼图
-      let rainChart = this.$echarts.init(this.$refs.loansChart);
+      let rainChart = this.$echarts.init(this.$refs.loansChart,null,{devicePixelRatio: 2.5});
       var option = {
         tooltip: {
           trigger: "item",
@@ -950,11 +1053,11 @@ export default {
     },
     _drawLine2(xData, xTitle) {
       //底部右侧折线图
-      let rainChart = this.$echarts.init(this.$refs.bottomLine2);
+      let rainChart = this.$echarts.init(this.$refs.bottomLine2,null,{devicePixelRatio: 2.5});
       var option = chartsType.charts(
         xTitle,
         xData,
-        "万元/吨",
+        "℃",
         "line",
         "",
         "#0AFBE2",
@@ -971,11 +1074,11 @@ export default {
     _drawLine(xData, xTitle) {
       //底部左侧折线图
       //左侧折线图
-      let rainChart = this.$echarts.init(this.$refs.bottomLine1);
+      let rainChart = this.$echarts.init(this.$refs.bottomLine1,null,{devicePixelRatio: 2.5});
       var option = chartsType.charts(
         xTitle,
         xData,
-        "万元/吨",
+        "℃",
         "line",
         "",
         "#0AFBE2",
@@ -990,7 +1093,7 @@ export default {
       rainChart.setOption(option);
     },
     _drawRainMap() {
-      let rainChart = this.$echarts.init(this.$refs.rainMap);
+      let rainChart = this.$echarts.init(this.$refs.rainMap,null,{devicePixelRatio: 2.5});
       var option = chartsType.charts(
         ["镍", "锌", "铜", "总铬", "铅", "镉", "总砷", "总汞"],
         this.metalDatas,
@@ -1022,68 +1125,85 @@ export default {
       rainChart.setOption(option);
     },
     _drawCityMap() {
-      let that = this;
-      MapLoader().then(AMap => {
-        that.map = new AMap.Map(this.$refs.mapChart, {
-          center: [105.013664, 31.206397],
-          zoom: 16
-          // layers:[googleLayer,roadNetLayer,layer], //设置图层
-          // viewMode:'3D',
-        });
+      // let that = this;
+      // MapLoader().then(AMap => {
+      //   that.map = new AMap.Map(this.$refs.mapChart, {
+      //     center: [105.013664, 31.206397],
+      //     zoom: 16
+      //     // layers:[googleLayer,roadNetLayer,layer], //设置图层
+      //     // viewMode:'3D',
+      //   });
 
-        AMap.plugin("AMap.DistrictSearch", function() {
-          var district = new AMap.DistrictSearch({
-            extensions: "all",
-            subdistrict: 0
+      //   AMap.plugin("AMap.DistrictSearch", function() {
+      //     var district = new AMap.DistrictSearch({
+      //       extensions: "all",
+      //       subdistrict: 0
+      //     });
+      //     that.map.on("complete", function() {
+      //       console.log("地图加载完成！");
+      //       var myEvent = new CustomEvent("done1", {});
+      //       if (window.dispatchEvent) {
+      //         window.dispatchEvent(myEvent);
+      //       } else {
+      //         window.fireEvent(myEvent);
+      //       }
+      //     });
+      //   });
+      // });
+      let that = this;
+      that.spinning = true;
+      MapLoader().then(AMap => {
+        let googleLayer = new AMap.TileLayer({
+          getTileUrl:
+            "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
+        });
+        let roadNetLayer = new AMap.TileLayer.RoadNet({
+          opacity: 0
+        });
+        that.map = new AMap.Map("mapChart", {
+          zoom: 15,
+          layers: [googleLayer, roadNetLayer]
+        });
+        that.map.on("complete", function() {
+          that.mapok = true;
+          that.spinning = false;
+         
+          var myEvent = new CustomEvent("mapload_done", {});
+          if (window.dispatchEvent) {
+            window.dispatchEvent(myEvent);
+          } else {
+            window.fireEvent(myEvent);
+          }
+        });
+        AMap.plugin(["AMap.Autocomplete", "AMap.PlaceSearch"], function() {
+          var autoOptions = {
+            // 城市，默认全国
+            city: that.areacord,
+            // 使用联想输入的input的id
+            input: "input3",
+            citylimit: true
+          };
+          var autocomplete = new AMap.Autocomplete(autoOptions);
+          var placeSearch = new AMap.PlaceSearch({
+            city: that.areacord,
+            map: that.map
           });
-          // district.search("三台县", function(status, result) {
-          //   // 外多边形坐标数组和内多边形坐标数组
-          //   var bounds = result.districtList[0].boundaries;
-          //   var outer = [
-          //     new AMap.LngLat(-360, 90, true),
-          //     new AMap.LngLat(-360, -90, true),
-          //     new AMap.LngLat(360, -90, true),
-          //     new AMap.LngLat(360, 90, true)
-          //   ];
-          //   var pathArray = [outer];
-          //   pathArray.push.apply(pathArray, bounds);
-          //   var polygon = new AMap.Polygon({
-          //     path: pathArray,
-          //     strokeColor: "#0AFBE2",
-          //     strokeWeight: 1,
-          //     fillColor: "#26374C",
-          //     fillOpacity: 1
-          //   });
-          //   polygon.setPath(pathArray);
-          //   that.map.add(polygon);
-          //   var polygons = [];
-          //   if (bounds) {
-          //     for (var i = 0, l = bounds.length; i < l; i++) {
-          //       //生成行政区划polygon
-          //       var polygon1 = new AMap.Polygon({
-          //         map: that.map,
-          //         strokeWeight: 1,
-          //         path: bounds[i],
-          //         fillOpacity: 0,
-          //         fillColor: "#CCF3FF",
-          //         strokeColor: "#CC66CC"
-          //       });
-          //       polygons.push(polygon1);
-          //     }
-          //     // 地图自适应
-          //     that.map.setFitView(polygons);
-          //   }
-          // });
-          // var bounds = that.map.getBounds();
-          // that.map.setLimitBounds(bounds);
-          that.map.on("complete", function() {
-            console.log("地图加载完成！");
-            var myEvent = new CustomEvent("done1", {});
-            if (window.dispatchEvent) {
-              window.dispatchEvent(myEvent);
-            } else {
-              window.fireEvent(myEvent);
-            }
+          AMap.event.addListener(autocomplete, "select", function(e) {
+            //TODO 针对选中的poi实现自己的功能
+            // if (e.poi.address.length > 0) {
+              placeSearch.setCity(e.poi.adcode)
+            placeSearch.search(e.poi.name);
+            // } else {
+            //   if(!e.poi.location){
+            //     that.$message.warning("无法定位，我们将进行模糊定位！");
+            //     placeSearch.search(e.poi.district);
+            //   }else{
+            //     let aa = [];
+            //   aa.push(e.poi.location.lng);
+            //   aa.push(e.poi.location.lat);
+            //   that.map.setCenter(aa);
+            //   }
+            // }
           });
         });
       });
@@ -1213,11 +1333,6 @@ export default {
       transform: scale(0.9);
     }
   }
-
-  .base-message {
-    margin-top: 10px !important;
-  }
-
   .map-footer {
     height: 38px !important;
     line-height: 1.5 !important;
@@ -1597,7 +1712,9 @@ export default {
 .left-height {
   height: 30%;
 }
-
+.left-height-last{
+  height:calc(100vh - 720px);
+}
 .base-container {
   height: 100%;
   overflow: hidden;
@@ -1695,8 +1812,8 @@ export default {
 }
 
 .base-progress-box {
-  height: calc(100% - 30px);
-  overflow-y: hidden;
+  height: 80px;
+  
 }
 
 .base-progress-item {
@@ -1704,7 +1821,6 @@ export default {
   padding: 15px;
   color: #fff;
   line-height: 26px;
-  margin-bottom: 20px;
 }
 
 .base-tab {
@@ -1792,6 +1908,11 @@ export default {
   font-size: 16px;
   font-weight: bold;
   color: #B1FDF5;
+  width:100%;
+  top:40%;
+  height:100%;
+   align-content:center;
+   text-align:center;
 }
 
 .black-btn {
@@ -1807,6 +1928,36 @@ export default {
   top: 30px;
   left: 50px;
   cursor: pointer;
+}
+.left-height-base-info{
+  height:400px;
+}
+.base-info-img{
+  width:49%;
+  height:150px;
+  background: url('../assets/new/base1.jpg') no-repeat;
+  background-size: 100%;
+}
+.mould-box{
+  position:absolute;
+  z-index:1111;
+  bottom:15px;
+  right:50px;
+  width:270px;
+height:316px;
+line-height:30px;
+font-size:16px;
+border-radius:4px;
+color:#fff;
+background:rgba(1,51,57,0.8);
+padding:15px;
+}
+.color-yellow{
+  color:#EBD804;
+}
+.mould-small-txt{
+  font-size:13px;
+  text-align:right;
 }
 </style>
 

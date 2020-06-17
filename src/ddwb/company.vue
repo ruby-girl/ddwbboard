@@ -11,26 +11,27 @@
           <div class="company">
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">农户名称</span>
-              <span class="color-main">羊子兮基地</span>
+              <span class="color-main">{{userInfo.name}}</span>
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">农户年龄</span>
-              <span class="color-main">11岁</span>
+              <span class="color-main">{{userInfo.age}}岁</span>
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">地块数量</span>
-              <span class="color-main">6块</span>
+              <span class="color-main">{{userInfo.landParcelCount}}块</span>
             </div>
             <div class="title-item-y display-flex">
-              <span class="color-fff">拥有种植猫冬撒大大阿斯达撒大声地阿斯达手打阿斯达阿斯达阿斯达阿斯达</span>
+              <span class="color-fff">{{userInfo.intro}}</span>
             </div>
-            <img class="head-img" src="../assets/new/pic6.png" alt />
+            <!-- <img class="head-img" src="../assets/new/pic6.png" alt /> -->
           </div>
         </div>
         <div class="item-bg-y bg-item-box left-height" style="padding:15px 0;margin-top:20px;">
-          <div class="last-title">金融占比</div>
-          <div class="base-progress-box" style="position:relative;top:20px;">
-            <polygonal-reversal ref="polyHtml"/>
+          <div class="last-title">综合收益曲线</div>
+          <div class="base-progress-box" style="position:relative;">
+            <!-- <polygonal-reversal ref="polyHtml"/> -->
+            <div ref="leftLine" style="height:100%"></div>
           </div>
         </div>
         <!-- 左侧饼图 -->
@@ -87,19 +88,19 @@
       <!-- 地图 -->
       <div class="map-message">
         <div class="map-wrapper">
-          <div class="map" ref="mapChart">
+          <div class="map" ref="mapChart" id="mapChart">
             <div class="map-title-box display-flex align-items-center justify-content-flex-center">
               <div class="map-title-item">
-                <div class="map-title-item-num">123123</div>
-                <div>已服务面积（亩）</div>
+                <div class="map-title-item-num">{{mapInfo.totalAcreage||''}}</div>
+                <div>地块总面积（亩）</div>
               </div>
               <div class="map-title-item" style="margin:0 20px">
-                <div class="map-title-item-num">1223</div>
-                <div>麦冬年产量（吨）</div>
+                <div class="map-title-item-num">{{mapInfo.totalYield||''}}</div>
+                <div>预估麦冬年产量（kg）</div>
               </div>
               <div class="map-title-item">
-                <div class="map-title-item-num">3123</div>
-                <div>麦冬年产值（万元）</div>
+                <div class="map-title-item-num">{{mapInfo.totalProduction||''}}</div>
+                <div>预估麦冬年产值（元）</div>
               </div>
             </div>
           </div>
@@ -191,7 +192,7 @@
             class="last-title display-flex justify-content-flex-justify"
             style="margin-bottom: 10px;"
           >
-            <div>金融数据</div>
+            <div>金融保险数据</div>
             <div>
               <div class="display-flex">
                 <div
@@ -215,21 +216,21 @@
           >
             <li class="base-item display-flex justify-content-flex-center">
               <span style="text-align: left;display:inline-block; width: 80px;color: #fff;">甲方</span>
-              <span style="text-align: center;display:inline-block; width: 130px;color: #fff;">乙方</span>
-              <span style="color: #fff;display:inline-block; width: 100px;text-align: center;">订单时间</span>
+              <span style="text-align: center;display:inline-block; width: 100px;color: #fff;">乙方</span>
+              <span style="color: #fff;display:inline-block; width: 130px;text-align: center;">订单时间</span>
               <span
                 style="color: #fff;display:inline-block; width: 100px;text-align: center;"
               >交付面积（亩）</span>
             </li>
           </ul>
           <div class="base-info" id="base-info">
-            <ul id="base-ul1" style="position:relative; top:0px">
-              <li class="base-item" v-for="(item,index) in this.financeList" :key="index">
+            <ul id="base-ul1" style="position:relative; top:0px" v-if="financeList.length>0">
+              <li class="base-item" v-for="(item,index) in financeList" :key="index">
                 <span
                   style="text-align: left;display:inline-block; width: 80px;color: #0AFBE2"
                 >{{item.jiaName}}</span>
                 <span
-                  style="text-align: left;display:inline-block; width: 100px;color: #fff"
+                  style="text-align:center;display:inline-block; width: 100px;color: #fff"
                 >{{item.yiName}}</span>
                 <span
                   style="color: #0AFBE2;display:inline-block; width: 130px;text-align: center;"
@@ -237,6 +238,11 @@
                 <span
                   style="color: #fff;display:inline-block; width: 100px;text-align: center;"
                 >{{item.forests}}</span>
+              </li>
+            </ul>
+            <ul v-else>
+              <li class="base-item" style="text-align:center;color:#fff;">
+                暂无数据
               </li>
             </ul>
           </div>
@@ -257,8 +263,8 @@
             </li>
           </ul>
           <div class="base-info" id="base-info" style="height:85%">
-            <ul id="base-ul2" style="position:relative; top:0px">
-              <li class="base-item" v-for="(item,index) in this.baseDatas" :key="index">
+            <ul id="base-ul2" style="position:relative; top:0px" v-if="orderList.length>0">
+              <li class="base-item" v-for="(item,index) in orderList" :key="index">
                 <span style="text-align: left;display:inline-block; width: 80px;color: #0AFBE2">张三</span>
                 <span
                   style="text-align: left;display:inline-block; width: 130px;color: #fff"
@@ -269,6 +275,11 @@
                 <span
                   style="color: #fff;display:inline-block; width: 100px;text-align: center;"
                 >农事投入</span>
+              </li>
+            </ul>
+            <ul v-else>
+              <li class="base-item" style="text-align:center;color:#fff;">
+                暂无数据
               </li>
             </ul>
           </div>
@@ -282,7 +293,6 @@
 import headers from "@/components/header/header";
 import baseMap from "@/components/baseMap/baseMap";
 import MapLoader from "@/utils/loadMap.js";
-import polygonalReversal from "@/components/polygonal/polygonalReversal";
 import polygonal from "@/components/polygonal/polygonal";
 import echartslLine from "@/components/echartslLine/echartslLine";
 import circleProgress from "@/components/circle-progress";
@@ -306,7 +316,10 @@ import {
   financeBx,
   financeDk,
   financeOrder,
-  financeProportion
+  financeProportion,
+  getOrganUserInfo,
+  getOrganUserFarmWorkRecordInfo,
+  getOrganuserMapInfo
 } from "../api/apiYZX";
 const dataAxis = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
@@ -315,7 +328,6 @@ export default {
   components: {
     headers,
     baseMap,
-    polygonalReversal,
     polygonal,
     echartslLine,
     Foot,
@@ -334,6 +346,7 @@ export default {
       soliTab: 1,
       messages: [],
       mapDatas: [],
+      orderList:[],
       weixin: false,
       showColorDatas: [
         {
@@ -484,11 +497,15 @@ export default {
       lastBoxHeight: 100,
       userOrganId: "",
       financeList: [], //金融滚动数据
-      financeScroll: {}
+      financeScroll: {},
+      userInfo:{},
+      mapInfo:{},
+      userOrganIdSet:''
     };
   },
   created() {
-    this.userOrganId = this.$route.query.userOrganId;
+    this.userOrganId =55
+     this.userOrganIdSet = this.$route.query.userOrganId;
     let params =
       "appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53";
     axios
@@ -532,7 +549,7 @@ export default {
     this.pieTopRight = (pieBox - 100) / 2 + "px";
     this.pieLeftRight = (pieBoxW - 100) / 2 + "px";
     // 最后一个方块高度
-
+    this.getOrganuserMapInfo()
     let height = document.body.clientHeight;
     let heightThree = height * 0.75;
     this.$refs.rightTopHeight.style.height = height - heightThree + "px";
@@ -543,15 +560,15 @@ export default {
     // 地图下折线图高度
     this.$refs.mapChart.style.height = height - 400 + "px";
     let mapHeight = this.$refs.mapChart.offsetHeight;
-    let m = height * 0.15;
-    this.baseMessageHeight = height - parseFloat(mapHeight) - m + "px";
-    let that = this;
+    let m = height-mapHeight-160;
+   
+    this.baseMessageHeight =m + "px";
     // setTimeout(function() {
     //   that._drawLine(); //左侧折线图
 
     // }, 1000);
     // this._getJson()
-
+    let that=this
     that.allbasearea = 0;
     axios.get("json/base_info.json").then(res => {
       for (let i = 0; i < res.data.result.length; i++) {
@@ -588,7 +605,7 @@ export default {
         that.map.setLayers([googleLayer, roadNetLayer]);
         axios.get("json/blockinfo.json").then(res => {
           that.blockinfo = res.data.result;
-          that.addBlockOnMap();
+          // that.addBlockOnMap();
         });
       });
     });
@@ -598,16 +615,59 @@ export default {
     this.usersoilHumidity(1);
     this.financeOrder(1);
     this.financeProportion()
+    this.getOrganUserInfo()
+    this.getOrganUserFarmWorkRecordInfo()
+    
   },
   methods: {
+    getOrganuserMapInfo(){
+      getOrganuserMapInfo({ organUserId:this.userOrganIdSet }).then(res=>{
+        this.mapInfo=res.data
+        let that=this
+        setTimeout(function(){
+          that.addBlockOnMap(res.data.landParcels);       
+       },1000)
+      })
+    },
+    getOrganUserFarmWorkRecordInfo(){
+      getOrganUserFarmWorkRecordInfo({ organUserId: this.userOrganId }).then(res=>{
+        this.orderList=res.data
+      })
+    },
+    getOrganUserInfo(){
+      getOrganUserInfo({ organUserId: this.userOrganIdSet }).then(res=>{
+        this.userInfo=res.data
+      })
+    },
     toBlack(){
       this.$router.back(-1)
     },
-    financeProportion(){//金融占比
-      financeProportion({ userOrganId: this.userOrganId }).then(res=>{
-        let arr=[res.data.order_price_tatol,res.data.dk_amount_tatol,res.data.bx_amount_tatol]
-        this.$refs.polyHtml._drawPolygonal(arr)
-      })
+    financeProportion(){//金融占比 || 综合收益曲线
+      let rainChart = this.$echarts.init(this.$refs.leftLine, null, {
+        devicePixelRatio: 2.5
+      });
+      var option = chartsType.charts(
+        ["2016", "2017", "2018", "2019", "2020"],
+        [12000, 13000, 14500, 14800, 16000],
+        "",
+        "line",
+        "",
+        "#0AFBE2",
+        "x"
+      );
+      option.legend = {
+        left: "right",
+        textStyle: {
+          color: "#fff"
+        }
+      };
+      rainChart.setOption(option);
+
+      // financeProportion({ userOrganId: this.userOrganId }).then(res=>{
+      //   // let arr=[res.data.order_price_tatol,res.data.dk_amount_tatol,res.data.bx_amount_tatol]
+      //   let arr=[35,36,32]
+      //   this.$refs.polyHtml._drawPolygonal(arr)
+      // })
     },
     financeBx(n) {
       this.financeTab = n;
@@ -819,16 +879,14 @@ export default {
         this._drawLine(Xdata, xTitle);
       });
     },
-    addBlockOnMap() {
-      //这里删除了地块length~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      for (let i = 0; i < this.blockinfo.length - 3; i++) {
-        let item = this.blockinfo[i];
-        if (
-          item.remark != undefined &&
-          item.remark != null &&
-          item.remark.trim() != ""
-        ) {
-          let remarkJson2 = eval("(" + item.remark + ")");
+     addBlockOnMap(remarks) {
+      //地块的第一个点增加Masker
+       this.saveListMarker=[]
+      this.polygons = [];
+      for (let i = 0; i < remarks.length; i++) {
+        let remark = remarks[i].mapAddr;
+        if (remark != undefined && remark != null && remark.trim() != "") {
+          let remarkJson2 = eval("(" + remark + ")");
           let newPath = [];
           for (let i = 0; i < remarkJson2.path.length; i++) {
             let point = remarkJson2.path[i];
@@ -836,11 +894,16 @@ export default {
           }
           remarkJson2.path = newPath;
           let polygon2 = new AMap.Polygon(remarkJson2);
-           console.info('地图。。。。。。。。。。。。。。。',polygon2)
-          this.polygonss = [];
-          this.polygonss.push(polygon2);
+          this.polygons.push(polygon2);    
           this.map.add(polygon2);
+          this.map.setFitView();    
         }
+      }
+      let that = this;
+      for (let i = 0; i < that.polygons.length; i++) {
+        that.polygons[i].on("click", function(e) {
+          that.infowindow(e, i);
+        });
       }
     },
     removepoint() {
@@ -968,8 +1031,8 @@ export default {
     },
     _dramLoansChart() {
       //左侧饼图
-      let rainChart = this.$echarts.init(this.$refs.loansChart1);
-      let rainChart2 = this.$echarts.init(this.$refs.loansChart2);
+      let rainChart = this.$echarts.init(this.$refs.loansChart1,null,{devicePixelRatio: 2.5});
+      let rainChart2 = this.$echarts.init(this.$refs.loansChart2,null,{devicePixelRatio: 2.5});
       var option = chartsType.charts(
         ["镍", "锌", "铜", "总铬", "铅", "镉", "总砷", "总汞"],
         this.metalDatas,
@@ -981,20 +1044,20 @@ export default {
         "1"
       );
       option.series[0].data = [
-        { value: 105, name: "有机肥", itemStyle: { color: "#7C89EB" } },
-        { value: 310, name: "复合肥", itemStyle: { color: "#14E6C4" } }
+        { value: 310, name: "105kg", itemStyle: { color: "#7C89EB" } },
+        { value: 105, name: "310kg", itemStyle: { color: "#14E6C4" } }
       ];
-      option.legend.show = false;
+      option.legend.show = true;
       rainChart.setOption(option);
       rainChart2.setOption(option);
     },
     _drawLine2(xData, xTitle) {
       //底部右侧折线图
-      let rainChart = this.$echarts.init(this.$refs.bottomLine2);
+      let rainChart = this.$echarts.init(this.$refs.bottomLine2,null,{devicePixelRatio: 2.5});
       var option = chartsType.charts(
         xTitle,
         xData,
-        "万元/吨",
+        "℃",
         "line",
         "",
         "#0AFBE2",
@@ -1011,11 +1074,11 @@ export default {
     _drawLine(xData, xTitle) {
       //底部左侧折线图
       //左侧折线图
-      let rainChart = this.$echarts.init(this.$refs.bottomLine1);
+      let rainChart = this.$echarts.init(this.$refs.bottomLine1,null,{devicePixelRatio: 2.5});
       var option = chartsType.charts(
         xTitle,
         xData,
-        "万元/吨",
+        "℃",
         "line",
         "",
         "#0AFBE2",
@@ -1030,7 +1093,7 @@ export default {
       rainChart.setOption(option);
     },
     _drawRainMap() {
-      let rainChart = this.$echarts.init(this.$refs.rainMap);
+      let rainChart = this.$echarts.init(this.$refs.rainMap,null,{devicePixelRatio: 2.5});
       var option = chartsType.charts(
         ["镍", "锌", "铜", "总铬", "铅", "镉", "总砷", "总汞"],
         this.metalDatas,
@@ -1062,66 +1125,121 @@ export default {
       rainChart.setOption(option);
     },
     _drawCityMap() {
-      let that = this;
-      MapLoader().then(AMap => {
-        that.map = new AMap.Map(this.$refs.mapChart, {
-          center: [105.013664, 31.206397],
-          zooms: [10, 10]
-        });
+      // let that = this;
+      // MapLoader().then(AMap => {
+      //   that.map = new AMap.Map(this.$refs.mapChart, {
+      //     center: [105.013664, 31.206397],
+      //     zooms: [10, 10]
+      //   });
 
-        AMap.plugin("AMap.DistrictSearch", function() {
-          var district = new AMap.DistrictSearch({
-            extensions: "all",
-            subdistrict: 0
+      //   AMap.plugin("AMap.DistrictSearch", function() {
+      //     var district = new AMap.DistrictSearch({
+      //       extensions: "all",
+      //       subdistrict: 0
+      //     });
+      //     district.search("三台县", function(status, result) {
+      //       // 外多边形坐标数组和内多边形坐标数组
+      //       var bounds = result.districtList[0].boundaries;
+      //       var outer = [
+      //         new AMap.LngLat(-360, 90, true),
+      //         new AMap.LngLat(-360, -90, true),
+      //         new AMap.LngLat(360, -90, true),
+      //         new AMap.LngLat(360, 90, true)
+      //       ];
+      //       var pathArray = [outer];
+      //       pathArray.push.apply(pathArray, bounds);
+      //       var polygon = new AMap.Polygon({
+      //         path: pathArray,
+      //         strokeColor: "#0AFBE2",
+      //         strokeWeight: 1,
+      //         fillColor: "#26374C",
+      //         fillOpacity: 0.5
+      //       });
+      //       polygon.setPath(pathArray);
+      //       that.map.add(polygon);
+      //       var polygons = [];
+      //       if (bounds) {
+      //         for (var i = 0, l = bounds.length; i < l; i++) {
+      //           //生成行政区划polygon
+      //           var polygon1 = new AMap.Polygon({
+      //             map: that.map,
+      //             strokeWeight: 1,
+      //             path: bounds[i],
+      //             fillOpacity: 0,
+      //             fillColor: "#CCF3FF",
+      //             strokeColor: "#CC66CC"
+      //           });
+      //           polygons.push(polygon1);
+      //         }
+      //         // 地图自适应
+      //         that.map.setFitView(polygons);
+      //       }
+      //     });
+      //     that.map.on("complete", function() {
+      //       console.log("地图加载完成！");
+      //       var myEvent = new CustomEvent("done1", {});
+      //       if (window.dispatchEvent) {
+      //         window.dispatchEvent(myEvent);
+      //       } else {
+      //         window.fireEvent(myEvent);
+      //       }
+      //     });
+      //   });
+      // });
+      let that = this;
+      that.spinning = true;
+      MapLoader().then(AMap => {
+        let googleLayer = new AMap.TileLayer({
+          getTileUrl:
+            "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
+        });
+        let roadNetLayer = new AMap.TileLayer.RoadNet({
+          opacity: 0
+        });
+        that.map = new AMap.Map("mapChart", {
+          zoom: 15,
+          layers: [googleLayer, roadNetLayer]
+        });
+        that.map.on("complete", function() {
+          that.mapok = true;
+          that.spinning = false;
+         
+          var myEvent = new CustomEvent("mapload_done", {});
+          if (window.dispatchEvent) {
+            window.dispatchEvent(myEvent);
+          } else {
+            window.fireEvent(myEvent);
+          }
+        });
+        AMap.plugin(["AMap.Autocomplete", "AMap.PlaceSearch"], function() {
+          var autoOptions = {
+            // 城市，默认全国
+            city: that.areacord,
+            // 使用联想输入的input的id
+            input: "input3",
+            citylimit: true
+          };
+          var autocomplete = new AMap.Autocomplete(autoOptions);
+          var placeSearch = new AMap.PlaceSearch({
+            city: that.areacord,
+            map: that.map
           });
-          district.search("三台县", function(status, result) {
-            // 外多边形坐标数组和内多边形坐标数组
-            var bounds = result.districtList[0].boundaries;
-            var outer = [
-              new AMap.LngLat(-360, 90, true),
-              new AMap.LngLat(-360, -90, true),
-              new AMap.LngLat(360, -90, true),
-              new AMap.LngLat(360, 90, true)
-            ];
-            var pathArray = [outer];
-            pathArray.push.apply(pathArray, bounds);
-            var polygon = new AMap.Polygon({
-              path: pathArray,
-              strokeColor: "#0AFBE2",
-              strokeWeight: 1,
-              fillColor: "#26374C",
-              fillOpacity: 0.5
-            });
-            polygon.setPath(pathArray);
-            that.map.add(polygon);
-            var polygons = [];
-            if (bounds) {
-              for (var i = 0, l = bounds.length; i < l; i++) {
-                //生成行政区划polygon
-                var polygon1 = new AMap.Polygon({
-                  map: that.map,
-                  strokeWeight: 1,
-                  path: bounds[i],
-                  fillOpacity: 0,
-                  fillColor: "#CCF3FF",
-                  strokeColor: "#CC66CC"
-                });
-                polygons.push(polygon1);
-              }
-              // 地图自适应
-              that.map.setFitView(polygons);
-            }
-          });
-          // var bounds = that.map.getBounds();
-          // that.map.setLimitBounds(bounds);
-          that.map.on("complete", function() {
-            console.log("地图加载完成！");
-            var myEvent = new CustomEvent("done1", {});
-            if (window.dispatchEvent) {
-              window.dispatchEvent(myEvent);
-            } else {
-              window.fireEvent(myEvent);
-            }
+          AMap.event.addListener(autocomplete, "select", function(e) {
+            //TODO 针对选中的poi实现自己的功能
+            // if (e.poi.address.length > 0) {
+              placeSearch.setCity(e.poi.adcode)
+            placeSearch.search(e.poi.name);
+            // } else {
+            //   if(!e.poi.location){
+            //     that.$message.warning("无法定位，我们将进行模糊定位！");
+            //     placeSearch.search(e.poi.district);
+            //   }else{
+            //     let aa = [];
+            //   aa.push(e.poi.location.lng);
+            //   aa.push(e.poi.location.lat);
+            //   that.map.setCenter(aa);
+            //   }
+            // }
           });
         });
       });
@@ -1211,10 +1329,6 @@ export default {
     span {
       transform: scale(0.9);
     }
-  }
-
-  .base-message {
-    margin-top: 10px !important;
   }
 
   .map-footer {

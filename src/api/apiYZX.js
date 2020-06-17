@@ -129,6 +129,29 @@ const getFarmWorkProgress = (params)=>getAction("/api/billboardBaseInfos/getFarm
 const getAllMonitors = (params)=>getAction("/api/billboardIndexs/getAllMonitors",params);
 // 获取通道/api/billboardIndexs/getMonitorVideosByBaseId 获取基地的摄像头列表
 const getMonitorVideosByBaseId = (params)=>getAction("/api/billboardIndexs/getMonitorVideosByBaseId",params);
+// 获取首页工单条数
+const getWorkOrderByRealTimeCount = (params)=>getAction("/api/billboardIndexs/getWorkOrderByRealTimeCount",params);
+
+// 获取农户信息
+const getOrganUserInfo = (params)=>getAction("/api/billboardOrganUsers/getOrganUserInfo",params);
+// 获取麦冬价格
+const getSite = (params)=>getAction("/api/billboard/getSite",params);
+// 根据地区查价格走势
+const getPriceBySite = (params)=>getAction("/api/billboard/getPriceBySite",params);
+
+
+// 获取农户农事操作信息
+const getOrganUserFarmWorkRecordInfo = (params)=>getAction("/api/billboardOrganUsers/getOrganUserFarmWorkRecordInfo",params);
+
+// 获取农户地图信息（面积/作物产量/作物产值）
+const getOrganuserMapInfo = (params)=>getAction("/api/billboardOrganUsers/getOrganuserMapInfo",params);
+
+// 获取基地面积/作物产量/作物产值
+const getBaseMapInfoTotalTj = (params)=>getAction("/api/billboardBaseInfos/totalTj",params);
+
+
+// 获取看板首页总数据
+const getBillboardIndexTotal = (params)=>getAction("/api/billboardIndexs/getBillboardIndexTotal",params);
 export {
     getSubjectInfo,
     getAnnualFertilizer,
@@ -176,5 +199,13 @@ export {
     financeProportion,
     getFarmWorkProgress,
     getAllMonitors,
-    getMonitorVideosByBaseId
+    getMonitorVideosByBaseId,
+    getWorkOrderByRealTimeCount,
+    getOrganUserInfo,
+    getSite,
+    getPriceBySite,
+    getOrganUserFarmWorkRecordInfo,
+    getOrganuserMapInfo,
+    getBaseMapInfoTotalTj,
+    getBillboardIndexTotal
 }

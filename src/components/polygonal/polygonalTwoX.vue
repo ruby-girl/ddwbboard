@@ -15,7 +15,7 @@ export default {
     _drawPolygonal(dataLeft,dataRight) {
       console.log()
       let _this = this;
-      let polygonalChart = this.$echarts.init(this.$refs.polygonal);
+      let polygonalChart = this.$echarts.init(this.$refs.polygonal,null,{devicePixelRatio: 2.5});
       var colors = ["#0089FF", "#B865DF"];
       // 指定图表的配置项和数据
       var option = {
@@ -39,7 +39,7 @@ export default {
         xAxis: [
           {
             type: "category",
-            data: ["订单贷", "劳务贷", "农资贷"],
+            data: ["订单贷", "劳务贷", "农资贷",'保险贷'],
             axisPointer: {
               type: "shadow"
             },
@@ -66,7 +66,7 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "",
+            name: "万元",
             position: "left",
             splitLine: { show: false },
             axisLine: {
@@ -85,13 +85,12 @@ export default {
           },
           {
             type: "value",
-            name: "",
+            name: "人",
             position: "right",
 
             splitLine: { show: false },
             axisLine: {
               show: true,
-
               lineStyle: {
                 color: "#fff"
               }
@@ -106,14 +105,14 @@ export default {
         ],
         series: [
           {
-            name: "组数",
+            name: "贷款金额",
             type: "bar",
             barWidth: 20,
             data:dataLeft,
             yAxisIndex: 0
           },
           {
-            name: "CMI",
+            name: "贷款人数",
             type: "bar",
             barWidth: 20,
             data:dataRight,

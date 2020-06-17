@@ -17,7 +17,8 @@ export default {
   },
   methods: {
     _drawPolygonal(datas) {
-      let polygonalChart = this.$echarts.init(this.$refs.polygonals);
+      console.info('方法内。。',datas)
+      let polygonalChart = this.$echarts.init(this.$refs.polygonals,null,{devicePixelRatio: 2.5});
       let option = {
         grid: {
           left: "3",
@@ -61,7 +62,7 @@ export default {
                 label: {
                   show: true,
                   color:'#fff',
-                  position: "left",
+                  position: "right",
                   //                             formatter: '{c}'
                   formatter: "{b}\n{c}"
                 }

@@ -10,17 +10,17 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            datas: [200, 500, 1000 , 1000],
-            tdataAxis: [2015, 2016, 2017,2018]
+            datas: [200, 500, 100 , 1000],
+            tdataAxis: [2017, 2018, 2019,2020]
         }
     },
     mounted () {
-        this._drawPolygonal()
+        // this._drawPolygonal()
     },
     methods: {
-        _drawPolygonal () {
-            let polygonalChart = this.$echarts.init(this.$refs.polygonal);
-            var option = chartsType.charts(this.tdataAxis,this.datas,'','bar','有机肥','#3C5DFA','x');
+        _drawPolygonal (title,datas) {
+            let polygonalChart = this.$echarts.init(this.$refs.polygonal,null,{devicePixelRatio: 2.5});
+            var option = chartsType.charts(this.tdataAxis,datas,'份','bar',title,'#3C5DFA','x');
             option.legend = {
                 left: 'right',
                 textStyle: {
@@ -28,22 +28,6 @@ export default {
                 },
                 show:false
             }
-            // option.series.push({
-            //     name: '普通肥',
-            //     barWidth:20,
-            //     data:[140, 200 ,90,90],
-            //     type: 'bar',
-            //     itemStyle: {
-            //         emphasis: {
-            //                 shadowBlur: 10,
-            //                 shadowOffsetX: 0,
-            //                 shadowColor: '#F39474'
-            //         },
-            //         normal:{
-            //                 color: '#F39474'
-            //         }
-            //     },
-            // })
             polygonalChart.setOption(option);
         }
     }

@@ -1,5 +1,20 @@
 var chartsType = {
 	charts(dataAxis, data, units, type, name, color, direction,pieWiath,pieHeight) {
+		if(units!=='用量（亩/kg）'){
+			var marker={
+				data: [
+					{type: 'max', name: '最大值'},
+					{type: 'min', name: '最小值'}
+				],
+				itemStyle:{
+					color: '#5DC1FA',
+					borderColor: '#000',
+					borderWidth: 0,
+					borderType: 'solid',
+					
+				}
+			}
+		}
 		if(type=='bar'){
 			if(direction=='x'){
     			var option = {
@@ -59,8 +74,9 @@ var chartsType = {
 				    }],
 				    series: [{
 				    	name:name,
-				    	barWidth:20,
-				        data:data,
+				    	barWidth:15,
+						data:data,
+						markPoint: marker,
 				        type: 'bar',
 				        itemStyle: {
 							emphasis: {
@@ -263,7 +279,7 @@ var chartsType = {
 								 color:color
 					    	}
 			            },
-			            data: data
+						data: data					
 			        }
 			    ]
 			};
@@ -287,7 +303,7 @@ var chartsType = {
 					textStyle:{
 						color: '#ffffff'//字体颜色
 					},
-					show:false
+					show:true
 				},
 				series: [
 					{

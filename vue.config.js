@@ -8,16 +8,16 @@ module.exports = {
     port: 8090,
     // 设置代理
     proxy: {
-      '/api': {
+      '/byapi': {
         // 目标 API 地址
-        target: 'http://192.168.101.52:8088',
-        //target: 'http://192.168.1.107:8081',
+        //target: 'http://192.168.101.52:8088',
+        target: 'https://bysk.scddwb.com/',
         // 如果要代理 websockets
         ws: false,
         // 将主机标头的原点更改为目标URL
         changeOrigin: true,
         pathRewrite: {
-          '/api': ''  //默认所有请求都加了api前缀，需要去掉
+          //'/api': ''  //默认所有请求都加了api前缀，需要去掉
         }
       },
       '/lunar/now': {

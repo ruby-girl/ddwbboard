@@ -7,7 +7,7 @@
           <div class="desc">
             <div class="title">平台简介</div>
           </div>
-          <div class="company">
+          <div class="company" style="height:100%">
             <div class="title-item-y display-flex justify-content-flex-justify">
               <span class="color-fff">企业名称</span>
               <span class="color-main">{{subjectInfo.name}}</span>
@@ -30,8 +30,8 @@
           <div class="desc">
             <div class="title">麦冬历史价格走势</div>
           </div>
-          <div class="company">
-            <div class="rain-map" ref="leftLine" style="height:200px"></div>
+          <div class="company" style="height:90%">
+            <div class="rain-map" ref="leftLine" style="height:100%"></div>
           </div>
         </div>
         <div class="bg-item-box left-height" style="padding-top:10px;">
@@ -53,19 +53,19 @@
           <div class="map" ref="mapChart">
             <div class="map-title-box display-flex align-items-center justify-content-flex-center">
               <div class="map-title-item">
-                <div class="map-title-item-num">123123</div>
+                <div class="map-title-item-num">{{mapInfo.totalAcreage}}</div>
                 <div>已服务面积（亩）</div>
               </div>
               <div class="map-title-item" style="margin:0 20px">
-                <div class="map-title-item-num">1223</div>
-                <div>麦冬年产量（吨）</div>
+                <div class="map-title-item-num">{{(mapInfo.totalYield*0.0001).toFixed(2)||''}}</div>
+                <div>预估麦冬年产量（吨）</div>
               </div>
               <div class="map-title-item">
-                <div class="map-title-item-num">3123</div>
-                <div>麦冬年产值（万元）</div>
+                <div class="map-title-item-num">{{(mapInfo.totalProduction*0.00001).toFixed(2)||''}}</div>
+                <div>预估麦冬年产值（万元）</div>
               </div>
             </div>
-            <div>
+            <!-- <div>
               <div class="map-item-box" style="top:120px">
                 <img src="../assets/new/icon_positioning.png" alt />
                 <span>全部农户：1213</span>
@@ -82,58 +82,82 @@
                 <img src="../assets/new/icon_positioning-bao.png" alt />
                 <span>有保险农户：13</span>
               </div>
-            </div>
+            </div>-->
             <div class="map-footer-box display-flex align-items-center justify-content-flex-center">
               <div :class="{'active':btnActive==1}" @click="changeMapData2">农户</div>
               <span class="btn-margin"></span>
               <div :class="{'active':btnActive==2}" @click="changeMapData1">基地</div>
+            </div>
+            <div class="map-order-box">
+              <div
+                style="font-size:36px;font-weight:bold;
+color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
+              >{{orderDataCount}}</div>
+              <div style="font-size:18px;">实时操作工单(条)</div>
             </div>
           </div>
         </div>
         <div class="base-message" :style="{'height':baseMessageHeight}">
           <div class="base display-flex justify-content-flex-justify">
             <!-- <baseMap></baseMap> -->
-            <div class="item-bg-y">
-              <div class="title">操作工单</div>
+            <div class="item-bg-y" style="padding:0">
+              <div class="title" style="padding-left:10px">仓储信息</div>
               <ul
                 style="position:relative;list-style:none;background:rgba(255,255,255,0.2);font-size:13px;"
               >
                 <li class="base-item display-flex justify-content-flex-center">
-                  <span style="text-align: left;display:inline-block; width: 80px;color: #fff;">姓名</span>
+                  <span style="text-align: left;display:inline-block; width: 9%;color: #fff;">仓库名称</span>
                   <span
-                    style="text-align: center;display:inline-block; width: 150px;color: #fff;"
-                  >时间</span>
+                    style="text-align: center;display:inline-block; width: 11%;color: #fff;"
+                  >仓库类型</span>
+                  <span style="color: #fff;display:inline-block; width:10%;text-align: center;">总库容</span>
+                  <span style="color: #fff;display:inline-block; width: 10%;text-align: center;">总库存</span>
+                  <span style="text-align: center;display:inline-block; width: 10%;color: #fff;">特级</span>
+                  <span style="color: #fff;display:inline-block; width: 10%;text-align: center;">一级</span>
+                  <span style="color: #fff;display:inline-block; width: 10%;text-align: center;">二级</span>
+                  <span style="color: #fff;display:inline-block; width: 10%;text-align: center;">三级</span>
                   <span
-                    style="color: #fff;display:inline-block; width: 100px;text-align: center;"
-                  >农事操作</span>
-                  <span
-                    style="color: #fff;display:inline-block; width: 100px;text-align: center;"
-                  >农事投入</span>
+                    style="color: #fff;display:inline-block; width: 10%;text-align: center;"
+                  >统货(吨)</span>
                 </li>
               </ul>
               <div class="base-info" id="base-info">
                 <ul id="base-ul1" style="position:relative; top:0px">
-                  <li class="base-item" v-for="(item,index) in orderData" :key="index" v-if="orderData.length>0">
+                  <li class="base-item" v-for="item in entrepotArr" :key="item">
                     <span
-                      style="text-align: left;display:inline-block; width: 80px;color: #0AFBE2"
-                    >张三</span>
+                      style="text-align: left;display:inline-block; width: 10%;color: #0AFBE2"
+                    >{{item[0]}}</span>
                     <span
-                      style="text-align: left;display:inline-block; width: 150px;color: #fff"
-                    >2012-12-12 11:11:11</span>
+                      style="text-align: left;display:inline-block; width: 10%;color: #fff"
+                    >{{item[1]}}</span>
                     <span
-                      style="color: #0AFBE2;display:inline-block; width: 100px;text-align: center;"
-                    >农事操作</span>
+                      style="color: #0AFBE2;display:inline-block; width: 10%;text-align: center;"
+                    >{{item[2]}}</span>
                     <span
-                      style="color: #fff;display:inline-block; width: 100px;text-align: center;"
-                    >农事投入</span>
+                      style="color: #fff;display:inline-block; width: 10%;text-align: center;"
+                    >{{item[3]}}</span>
+                    <span
+                      style="color: #fff;display:inline-block; width: 10%;text-align: center;"
+                    >{{item[4]}}</span>
+                    <span
+                      style="color: #fff;display:inline-block; width: 10%;text-align: center;"
+                    >{{item[5]}}</span>
+                    <span
+                      style="color: #fff;display:inline-block; width: 10%;text-align: center;"
+                    >{{item[6]}}</span>
+                    <span
+                      style="color: #fff;display:inline-block; width: 10%;text-align: center;"
+                    >{{item[7]}}</span>
+                    <span
+                      style="color: #fff;display:inline-block; width: 10%;text-align: center;"
+                    >{{item[8]}}</span>
                   </li>
-                  <div v-else>暂无数据</div>
                 </ul>
               </div>
             </div>
             <!-- 地图下柱形图 -->
             <div class="item-bg-y">
-              <div class="title">年度有机肥用量</div>
+              <div class="title">投入品用量</div>
               <div style="height:100%" class="temperature-rain">
                 <div class="airs air-temperature" style="height:100%" v-if="show">
                   <div class="polygonal">
@@ -149,7 +173,7 @@
           <div class="temperature-rain" style="margin-top:15px;">
             <div class="monitor-data" style="position:relative">
               <div class="wrpper-title">气象监测</div>
-              <Carousel class="lunbo-wrapper" radius-dot>
+              <Carousel class="lunbo-wrapper" :autoplay="true" :autoplay-speed="5000">
                 <CarouselItem v-for="(item,i) in warpperList" :key="i">
                   <div class="display-flex justify-content-flex-justify">
                     <div></div>
@@ -189,7 +213,7 @@
               <div v-for="(item,n) in rightList" :key="n" style="text-align:center">
                 <div class="color-main" style="font-weight:bold;font-size:18px">{{item.num}}</div>
                 <img style="margin-bottom:5px" src="../assets/new/pic3.png" alt />
-                <div style="color:#fff;">{{item.name}}</div>
+                <div style="color:#fff;margin-top:10px;">{{item.name}}</div>
               </div>
             </div>
           </div>
@@ -209,7 +233,7 @@
                   style="font-weight:bold;font-size:18px"
                 >{{item.num}}</div>
 
-                <div style="color:#fff;">{{item.name}}</div>
+                <div style="color:#fff;margin-top:10px;">{{item.name}}</div>
               </div>
             </div>
           </div>
@@ -233,6 +257,10 @@
             <!-- 饼图说明 -->
             <div class="pie-color-box">
               <div class="display-flex align-items-center">
+                <div class="pie-color-0"></div>
+                <span>保险贷</span>
+              </div>
+              <div class="display-flex align-items-center">
                 <div class="pie-color-1"></div>
                 <span>农资贷</span>
               </div>
@@ -247,7 +275,77 @@
             </div>
           </div>
         </div>
-        <!-- 地图下柱形图 -->
+        <!-- 新增最新物流 -->
+        <div class="display-flex left-height-right" style="margin-top:20px;">
+          <div class="item-bg-y bg-item-box" style="padding:15px 0;width:28%;margin-right:15px;">
+            <div>
+              <div class="last-title">年度销量</div>
+              <div style="height:85%">
+                <div class="airs air-temperature" style="height:100%">
+                  <div style="text-align:center">
+                    <div class="color-main" style="font-weight:bold;font-size:18px">11800</div>
+                    <img style="margin-bottom:5px" src="../assets/new/pic3.png" alt />
+                    <div style="color:#fff;margin-top:10px;">2020年度销量额(万元)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="item-bg-y bg-item-box" style="padding:15px 0;height:100%;overflow:hidden">
+              <!-- 右边滚动 -->
+              <div>
+                <div class="last-title">最新订单物流信息</div>
+                <div style="height:85%">
+                  <div class="airs air-temperature" style="height:100%">
+                    <div class="right-scroll-title">三台县健源麦冬种植专业合作社</div>
+                    <div class="right-scroll-title">
+                      统货
+                      <span>&nbsp;&nbsp;</span>50吨
+                    </div>
+                    <div class="base-info" id="base-info2">
+                      <ul id="base-ul2" style="position:relative; top:0px;list-style: none;">
+                        <li class="base-item">
+                          <span
+                            style="text-align: left;display:inline-block; width: 100px;color: #0AFBE2"
+                          >2020/6/13</span>
+                          <span
+                            style="color: #0AFBE2;display:inline-block; width: 150px;text-align: center;"
+                          >绵阳市三台县芦溪镇</span>
+                        </li>
+                        <li class="base-item">
+                          <span
+                            style="text-align: left;display:inline-block; width: 100px;color: #0AFBE2"
+                          >2020/6/12</span>
+                          <span
+                            style="color: #0AFBE2;display:inline-block; width: 150px;text-align: center;"
+                          >绵阳市三台县胜峰村</span>
+                        </li>
+                        <li class="base-item">
+                          <span
+                            style="text-align: left;display:inline-block; width: 100px;color: #0AFBE2"
+                          >2020/6/11</span>
+                          <span
+                            style="color: #0AFBE2;display:inline-block; width: 150px;text-align: center;"
+                          >绵阳市三台县中新镇</span>
+                        </li>
+                        <li class="base-item">
+                          <span
+                            style="text-align: left;display:inline-block; width: 100px;color: #0AFBE2"
+                          >2020/6/10</span>
+                          <span
+                            style="color: #0AFBE2;display:inline-block; width: 150px;text-align: center;"
+                          >绵阳市三台县岳家湾</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 最后一个模块 -->
         <div
           class="item-bg-y bg-item-box left-height-right"
           style="padding:15px 0;margin-top:20px;"
@@ -255,7 +353,14 @@
           <div class="last-title">检测服务</div>
           <div style="height:85%">
             <div class="airs air-temperature" style="height:100%">
-              <echartslLine></echartslLine>
+              <div style="height:100%" class="display-flex">
+                <div ref="pieNew" style="width:50%;height:100%"></div>
+                <div ref="pieNew2" style="width:50%;height:100%"></div>
+              </div>
+              <div class="display-flex">
+                <div class="last-title-item">基地环境抽样数量</div>
+                <div class="last-title-item">产品检测覆盖率</div>
+              </div>
             </div>
           </div>
         </div>
@@ -279,14 +384,17 @@ import {
   getSubjectInfo,
   getAnnualFertilizer,
   getBaseMapInfo,
-  getWorkOrderByRealTime,
   getFarmerMapInfo,
   getOrgMonitorTj,
   getOrgOrderTj,
   getOrgInsuranceTj,
   getOrgLoanTj,
   getAllMonitors,
-  getMonitorVideosByBaseId
+  getMonitorVideosByBaseId,
+  getWorkOrderByRealTimeCount,
+  getSite,
+  getPriceBySite,
+  getBillboardIndexTotal
 } from "../api/apiYZX";
 const dataAxis = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
@@ -303,12 +411,15 @@ export default {
       messages: [],
       mapDatas: [],
       mapRemarks: [],
-      orderData: [],
+      orderDataCount: 0,
+      entrepotArr: [
+        ["涪城麦冬", "常温", "5000", "3300", "300", "350", "250", "100", "2300"]
+      ],
       pieTop: 0,
       pieLeft: 0,
       weixin: false,
       show: false,
-      btnActive:2,
+      btnActive: 2,
       showColorDatas: [
         {
           name: "石安镇",
@@ -454,8 +565,14 @@ export default {
       subjectInfo: {}, //主体信息
       annualFertilizer: {}, //年度有机肥用量
       baseList: [],
-      allVideoList:[],
-      organId:99,
+      allVideoList: [],
+      organId: 99,
+      baseScroll2: null,
+      SiteArr: [],
+      SiteArrX: [],
+      siteRainChart:null,
+      sietObj:[],
+      mapInfo:{}
     };
   },
   created() {
@@ -492,39 +609,25 @@ export default {
     let mapHeight = this.$refs.mapChart.offsetHeight;
     let m = height * 0.15;
     this.baseMessageHeight =
-      (height - parseFloat(mapHeight) - m - 30) / 2 + "px";
+      (height - parseFloat(mapHeight) - m - 20) / 2 + "px";
     let that = this;
     setTimeout(function() {
       that.show = true;
+      
       // 这里要重绘柱形图--------------------柱形图组件传参或者用方法
     }, 1000);
     // this._drawRainMap();
 
-    this._drawLine(); //左侧折线图
+   
     // this._getJson()
     this._drawCityMap();
     that.allbasearea = 0;
-    
+
     axios.get("json/base_info.json").then(res => {
       for (let i = 0; i < res.data.result.length; i++) {
         that.allbasearea += res.data.result[i].area;
         that.baseDatas[i].name = res.data.result[i].name;
         that.baseDatas[i].value = res.data.result[i].area;
-        // if (that.baseScroll) {
-        //   console.log(that.baseScroll);
-        //   clearInterval(that.baseScroll.timer);
-        // }
-        // that.$nextTick(() => {
-        //   if (that.baseScroll) {
-        //     clearInterval(that.baseScroll.timer);
-        //   }
-        //   // that.baseScroll = new roll.Roll(
-        //   //   "base-info",
-        //   //   "base-ul1",
-        //   //   "base-ul2",
-        //   //   -1060
-        //   // );
-        // });
       }
       window.addEventListener("done1", function() {
         let googleLayer = new AMap.TileLayer({
@@ -575,13 +678,150 @@ export default {
     this.getOrgOrderTj();
     this.getOrgInsuranceTj();
     this.getOrgLoanTj();
-    this.baseScroll = new roll.Roll("base-info", "base-ul1", "base-ul2", -660);
+    let top = this.entrepotArr.length * 30;
+    // this.baseScroll = new roll.Roll("base-info", "base-ul1", "", -top);
+    this.baseScroll2 = new roll.Roll("base-info2", "base-ul2", "", -120);
+    this.getPieNew();
+    this.getPieNew2();
+    this.getSite();
+    setTimeout(function() {
+     
+       that._drawLine(); //左侧折线图
+      // 这里要重绘柱形图--------------------柱形图组件传参或者用方法
+    }, 5000);
+    this.getBillboardIndexTotal()
   },
   methods: {
+    getBillboardIndexTotal(){
+      getBillboardIndexTotal({organId:this.organId}).then(res=>{
+          this.mapInfo=res.data
+      })
+    },
+    getSite() {
+      //麦冬地区
+      getSite().then(res => {
+        this.site = res.data;
+        this.site.forEach(item => {
+          this.getPriceBySite(item.id, item.site_name);
+        });
+      });
+    },
+
+    getPieNew() {
+      let polygonalChart = this.$echarts.init(this.$refs.pieNew, null, {
+        devicePixelRatio: 2.5
+      });
+      var option = {
+        title: {
+          text: "",
+          subtext: "",
+          left: "center",
+          show: false
+        },
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+          orient: "vertical",
+          left: "left",
+          data: [""],
+          show: false
+        },
+        series: [
+          {
+            name: "",
+            type: "pie",
+            radius: "55%",
+            center: ["50%", "60%"],
+            data: [
+              { value: 120, name: "92.31%" },
+              { value: 10, name: "基地环境未检测" }
+            ],
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(93,181,249,1)"
+              }
+            },
+            itemStyle: {
+              emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(0, 0, 0, 0.5)"
+              },
+              normal: {
+                color: function(params) {
+                  //自定义颜色
+                  var colorList = ["#5DB5F9", "#002451"];
+                  return colorList[params.dataIndex];
+                }
+              }
+            }
+          }
+        ]
+      };
+      polygonalChart.setOption(option);
+    },
+    getPieNew2() {
+      let polygonalChart = this.$echarts.init(this.$refs.pieNew2, null, {
+        devicePixelRatio: 2.5
+      });
+      var option = {
+        title: {
+          text: "",
+          subtext: "",
+          left: "center",
+          show: false
+        },
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+          orient: "vertical",
+          left: "left",
+          data: [""],
+          show: false
+        },
+        series: [
+          {
+            name: "",
+            type: "pie",
+            radius: "55%",
+            center: ["50%", "60%"],
+            data: [{ value: 100, name: "100%" }],
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(93,181,249,1)"
+              }
+            },
+            itemStyle: {
+              emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(0, 0, 0, 0.5)"
+              },
+              normal: {
+                color: function(params) {
+                  //自定义颜色
+                  var colorList = ["#F9A35D"];
+                  return colorList[params.dataIndex];
+                }
+              }
+            }
+          }
+        ]
+      };
+      polygonalChart.setOption(option);
+    },
     getAllMonitors() {
       getAllMonitors().then(res => {
-        this.allVideoList=res.data
-        this.getAddr()
+        this.allVideoList = res.data;
+        this.getAddr();
       });
     },
     getOrgLoanTj() {
@@ -591,17 +831,17 @@ export default {
     },
     getOrgInsuranceTj() {
       getOrgInsuranceTj({ orgId: this.organId }).then(res => {
-        this.InsuranceList[0].num = res.data.bx_amount + "亩";
-        this.InsuranceList[1].num = res.data.bx_forests + "万";
-        this.InsuranceList[2].num = res.data.count + "人";
+        this.InsuranceList[0].num = 10000 + "亩";
+        this.InsuranceList[1].num = 280 + "万";
+        this.InsuranceList[2].num = 8000 + "人";
       });
     },
     getOrgOrderTj() {
       //采购订单数据
       getOrgOrderTj({ orgId: this.organId }).then(res => {
-        this.rightList[0].num = res.data.count + "份";
-        this.rightList[1].num = res.data.order_forests + "亩";
-        this.rightList[2].num = res.data.order_pre_amount + "吨";
+        this.rightList[0].num = 30 + "份";
+        this.rightList[1].num = 17500 + "亩";
+        this.rightList[2].num = 4600 + "吨";
       });
     },
     getOrgMonitorTj() {
@@ -676,7 +916,7 @@ export default {
     changeMapData1() {
       //切换基地模式
       this.removepoint();
-      this.btnActive=2
+      this.btnActive = 2;
       this.markers = [];
       getBaseMapInfo({ organId: this.organId }).then(res => {
         this.mapRemarks = res.data;
@@ -705,14 +945,15 @@ export default {
     },
     changeMapData2() {
       //切换农户模式
-       this.btnActive=1
+      this.btnActive = 1;
       this.removepoint();
       this.markers = [];
       getFarmerMapInfo({ organId: this.organId }).then(res => {
         this.mapRemarks = res.data;
         let that = this;
         for (let i = 0; i < that.mapRemarks.length; i++) {
-          let remark = that.mapRemarks[i].mapAddr;
+          if(that.mapRemarks[i].mapAddr){
+            let remark = that.mapRemarks[i].mapAddr;
           let remarkJson2 = eval("(" + remark + ")");
 
           let lng = remarkJson2.path[0].lng;
@@ -725,11 +966,13 @@ export default {
           that.markers.push(marker);
           that.map.add(marker);
           marker.on("click", function(e) {
+            console.log('点击了农户~~~~~~~~~~~~~~~~~~~~~')
             that.$router.push({
               name: "company",
               query: { userOrganId: Number(that.mapRemarks[i].id) }
             });
           });
+          }
         }
       });
     },
@@ -742,44 +985,43 @@ export default {
     },
     getSubjectInfo() {
       //获取主体信息
-      getSubjectInfo({ organId: this.organId}).then(res => {
+      getSubjectInfo({ organId: this.organId }).then(res => {
         this.subjectInfo = res.data;
       });
     },
     getAnnualFertilizer() {
       //获取年度有机肥
       getAnnualFertilizer({ organId: this.organId }).then(res => {
-        let arr = res.data;
-        let Xdata = arr.map(item => {
-          return item.year;
-        });
-        let data1 = arr.map(item => {
-          //有机
-          return item["organicFertilizer"];
-        });
-        let data2 = arr.map(item => {
-          //无机
-          return item["inorganicFertilizer"];
-        });
-
+        let Xdata = [2017, 2018, 2019, 2020];
+        // let data1 = arr.map(item => {
+        //   //有机
+        //   return item["organicFertilizer"];
+        // });
+        // let data2 = arr.map(item => {
+        //   //无机
+        //   return item["inorganicFertilizer"];
+        // });
         let _this = this;
         setTimeout(function() {
-          let polygonalChart = _this.$echarts.init(_this.$refs.polygonal);
-          _this._drawPolygonal(polygonalChart, Xdata, data1, data2);
+          let polygonalChart = _this.$echarts.init(
+            _this.$refs.polygonal,
+            null,
+            { devicePixelRatio: 2.5 }
+          );
+          _this._drawPolygonal(polygonalChart, Xdata);
         }, 1000);
       });
     },
     getWorkOrderByRealTime() {
-      //获取工单
-      getWorkOrderByRealTime({ organId: this.organId }).then(res => {
-        this.orderData = res.data;
-         this.baseScroll = new roll.Roll("base-info", "base-ul1", "base-ul2", -60);
+      //获取工单条数
+      getWorkOrderByRealTimeCount({ organId: this.organId }).then(res => {
+        this.orderDataCount = res.data;
       });
     },
-    _drawPolygonal(polygonalChart, tdataAxis, datas, datas2) {
+    _drawPolygonal(polygonalChart, tdataAxis) {
       var option = chartsType.charts(
         tdataAxis,
-        datas,
+        [8500, 8400, 8300, 8200],
         "用量（亩/kg）",
         "bar",
         "有机肥",
@@ -792,10 +1034,11 @@ export default {
           color: "#fff"
         }
       };
+
       option.series.push({
-        name: "普通肥",
+        name: "复合肥",
         barWidth: 20,
-        data: datas2,
+        data: [3900, 3800, 3600, 3500],
         type: "bar",
         itemStyle: {
           emphasis: {
@@ -808,6 +1051,23 @@ export default {
           }
         }
       });
+      option.series.push({
+        name: "叶面肥",
+        barWidth: 20,
+        data: [10, 10, 10, 10],
+        type: "bar",
+        itemStyle: {
+          emphasis: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: "#0D63C5"
+          },
+          normal: {
+            color: "#0D63C5"
+          }
+        }
+      });
+
       polygonalChart.setOption(option);
     },
     removepoint() {
@@ -838,41 +1098,42 @@ export default {
       }
     },
     getAddr() {
-      //根据基地获取监控列表，处理children      
-      this.baseList.forEach((item,i)=>{
+      //根据基地获取监控列表，处理children
+      this.baseList.forEach((item, i) => {
         let obj = {
-        label:item.name,
-        value: item.id,
-        children: []
-      };
-        this.addresss[i]=obj
-        this.getMonitorVideosByBaseId(item.id,i)
-      })
+          label: item.name,
+          value: item.id,
+          children: []
+        };
+        this.addresss[i] = obj;
+        this.getMonitorVideosByBaseId(item.id, i);
+      });
     },
-    getMonitorVideosByBaseId(id,i) {
+    getMonitorVideosByBaseId(id, i) {
       getMonitorVideosByBaseId({ baseId: id }).then(res => {
-        this.allVideoList.forEach((item,n)=>{
-            res.data.forEach((li,n)=>{
-              if(item.channelNo==li.channelNo&&item.deviceSerial==li.monitorVideoCode){
-                let obj={
-              label: "通道" +li.channelName,
-              value:item.liveAddress,
-              name: li.monitorVideoCode
-          }
-        
-         this.addresss[i].children.push(obj)
-              }
-          
-        })
-        })
-        
-       
+        this.allVideoList.forEach((item, n) => {
+          res.data.forEach((li, n) => {
+            if (
+              item.channelNo == li.channelNo &&
+              item.deviceSerial == li.monitorVideoCode
+            ) {
+              let obj = {
+                label: "通道" + li.channelName,
+                value: item.liveAddress,
+                name: li.monitorVideoCode
+              };
+
+              this.addresss[i].children.push(obj);
+            }
+          });
+        });
       });
     },
     _dramLoansChart(pieData) {
       //左侧折线图
-      let rainChart = this.$echarts.init(this.$refs.loansChart);
-
+      let rainChart = this.$echarts.init(this.$refs.loansChart, null, {
+        devicePixelRatio: 2.5
+      });
       var option = {
         tooltip: {
           trigger: "item",
@@ -881,7 +1142,7 @@ export default {
         legend: {
           orient: "vertical",
           left: 10,
-          data: ["订单贷", "农资贷", "劳务贷"],
+          data: ["保险贷", "订单贷", "农资贷", "劳务贷"],
           textStyle: {
             color: "#ffffff" //字体颜色
           },
@@ -911,33 +1172,23 @@ export default {
             },
             data: [
               {
-                value: pieData[2].count,
-                name:
-                  "订单贷：" +
-                  pieData[2].count +
-                  "笔" +
-                  pieData[2].dk_amount +
-                  "万",
+                value: 180,
+                name: "保险贷：" + 56 + "笔" + 180 + "万",
+                itemStyle: { color: "#F9A35D" }
+              },
+              {
+                value: 720,
+                name: "订单贷：" + 260 + "笔" + 720 + "万",
                 itemStyle: { color: "#7C89EB" }
               },
               {
-                value: pieData[0].count,
-                name:
-                  "农资：" +
-                  pieData[0].count +
-                  "笔" +
-                  pieData[0].dk_amount +
-                  "万",
+                value: 900,
+                name: "农资贷：" + 67 + "笔" + 900 + "万",
                 itemStyle: { color: "#5DC1FA" }
               },
               {
-                value: pieData[1].count,
-                name:
-                  "劳务贷：" +
-                  pieData[1].count +
-                  "笔" +
-                  pieData[1].dk_amount +
-                  "万",
+                value: 720,
+                name: "劳务贷：" + 77 + "笔" + 720 + "万",
                 itemStyle: { color: "#14E6C4" }
               }
             ]
@@ -946,41 +1197,131 @@ export default {
       };
       rainChart.setOption(option);
     },
+    getPriceBySite(id, name) {
+      getPriceBySite({ siteId: id }).then(res => {
+        let arr=[]; 
+        this.SiteArrX=[]
+        res.data.forEach(item => {
+          arr.push(item.mm_price)     
+          this.SiteArrX.push(item.price_date);
+        });
+        let obj = {
+            name: name,
+            type: "line",
+            smooth: "true",
+            showSymbol: false,
+            areaStyle: {
+              color: {
+                type: "linear",
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: "rgba(1,84,200,0.6)" // 0% 处的颜色
+                  },
+                  {
+                    offset: 1,
+                    color: "rgba(255,255,255,0)" // 100% 处的颜色
+                  }
+                ],
+                global: false // 缺省为 false
+              }
+            },
+            itemStyle: {
+              emphasis: {
+                symbol: "circle",
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(0, 0, 0, 0.5)"
+              }
+            },
+            data:arr
+          };
+          this.sietObj.push(obj)
+      });
+    },
     _drawLine() {
       //左侧折线图
-      let rainChart = this.$echarts.init(this.$refs.leftLine);
-      var option = chartsType.charts(
-        ["镍", "锌", "铜", "总铬", "铅", "镉", "总砷", "总汞"],
-        this.metalDatas,
-        "万元/吨",
-        "line",
-        "",
-        "#0AFBE2",
-        "x"
-      );
+    let siteRainChart = this.$echarts.init(this.$refs.leftLine, null, {
+        devicePixelRatio: 2.5
+      });
+      let _this=this
+      var option = {
+				title: {
+	            	text: '元',
+	            	textStyle: {
+		                color: '#fff',
+		                fontSize:14
+		            },
+		            x:10,
+					y:5,
+	            },
+				tooltip: {
+					trigger: 'axis',
+			        axisPointer : {
+			            type : 'line'
+			        }
+				},
+				grid:{
+					top:40,
+					left:40,
+					bottom:20,
+					containLabel:true
+				},
+			    xAxis: {
+			        type: 'category',
+			        data: _this.SiteArrX,
+			        axisLabel: {
+			            textStyle: {
+			                color: '#fff'
+			            }
+			        },
+			        axisLine: {
+	                    lineStyle: {
+	                        type: 'solid',
+	                        color: '#fff'
+	                    }
+	                }
+			    },
+
+			    yAxis: {
+					minInterval:1,
+					type: 'value',
+					axisLabel: {
+						textStyle: {
+							color: '#fff'
+						}
+					},
+					splitLine: {
+						show: false
+					},
+					axisLine: {
+						lineStyle: {
+							type: 'solid',
+							color: '#fff'
+						}
+					}
+				},
+			    series:_this.sietObj
+			};
+ 
       option.legend = {
         left: "right",
         textStyle: {
           color: "#fff"
         }
       };
-      // option.series.push({
-      //   name: "国家标准允许最大值",
-      //   barWidth: 20,
-      //   barGap: document.body.clientWidth > 2000 ? "80%" : "30%",
-      //   type: "bar",
-      //   data: [50, 250, 100, 200, 300, 0.3, 30, 0.5],
-      //   itemStyle: {
-      //     normal: {
-      //       color: "#4ECB73",
-      //       "margin-left": 20
-      //     }
-      //   }
-      // });
-      rainChart.setOption(option);
+      // 麦冬价格中新增地区
+      // option.series.push(_this.sietObj);
+     siteRainChart.setOption(option);
     },
     _drawRainMap() {
-      let rainChart = this.$echarts.init(this.$refs.rainMap);
+      let rainChart = this.$echarts.init(this.$refs.rainMap, null, {
+        devicePixelRatio: 2.5
+      });
       var option = chartsType.charts(
         ["镍", "锌", "铜", "总铬", "铅", "镉", "总砷", "总汞"],
         this.metalDatas,
@@ -1043,7 +1384,7 @@ export default {
               strokeColor: "#0AFBE2",
               strokeWeight: 1,
               fillColor: "#26374C",
-              fillOpacity: 1
+              fillOpacity: 0.3
             });
             polygon.setPath(pathArray);
             that.map.add(polygon);
@@ -1434,8 +1775,6 @@ export default {
     line-height: 28px !important;
   }
 
-  
-
   .monitor-message {
     width: 200px !important;
   }
@@ -1448,10 +1787,6 @@ export default {
     span {
       transform: scale(0.9);
     }
-  }
-
-  .base-message {
-    margin-top: 10px !important;
   }
 
   .map-footer {
@@ -1531,11 +1866,12 @@ export default {
       }
 
       .company-desc {
-        margin-top: 15px;
         font-size: 14px;
         color: #EEEEEE;
         padding-bottom: 10px;
         line-height: 22px;
+        height: calc(100% - 135px);
+        overflow: hidden;
       }
     }
 
@@ -1834,7 +2170,7 @@ export default {
 }
 
 .left-height-right {
-  height: 22%;
+  height: 17.6%;
 }
 
 .base-container {
@@ -1847,7 +2183,7 @@ export default {
 .map-item-box {
   position: absolute;
   left: 15px;
-  min-width:180px;
+  min-width: 180px;
   background: url('../assets/new/pic2.png') no-repeat;
   background-size: 100% 100%;
   z-index: 111;
@@ -1894,19 +2230,21 @@ export default {
   color: #fff;
 
   >div {
-    width: 120px;
-    padding: 10px 0;
+    width: 150px;
+    padding: 15px 0;
     text-align: center;
     background: url('../assets/new/button.png') no-repeat;
     background-size: 100% 100%;
   }
-  .active{
-    width: 120px;
-    padding: 10px 0;
+
+  .active {
+    width: 150px;
+    padding: 15px 0;
     text-align: center;
     background: url('../assets/new/button_set.png') no-repeat;
-     background-size: 100% 100%;
+    background-size: 100% 100%;
   }
+
   .btn-margin {
     width: 20px;
     display: inline-block;
@@ -1960,6 +2298,33 @@ export default {
 
 .air-temperature {
   height: 100%;
+
+  .base-info {
+    width: 100%;
+    height: 60%;
+    padding-left: 15px;
+    display: inline-block;
+    overflow: hidden;
+    text-align: center;
+    line-height: 32px;
+
+    .base-item {
+      height: 32px;
+      padding: 3px 0;
+      box-sizing: border-box;
+      font-size: 12px;
+      letter-spacing: 1px;
+
+      .icon {
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+    }
+  }
 }
 
 .map-message {
@@ -1996,6 +2361,14 @@ export default {
     height: 8px;
     border-radius: 2px;
   }
+
+  .pie-color-0 {
+    background: #F9A35D;
+    width: 18px;
+    margin-right: 5px;
+    height: 8px;
+    border-radius: 2px;
+  }
 }
 
 .wrapper-img {
@@ -2013,6 +2386,34 @@ export default {
   div {
     height: 100% !important;
   }
+}
+
+.right-scroll-title {
+  color: #fff;
+  font-weight: bold;
+  font-size: 15px;
+  padding-left: 15px;
+}
+
+.map-order-box {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 190px;
+  z-index: 1111;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  text-align: center;
+}
+
+.last-title-item {
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  color: #fff;
+  position: relative;
+  top: -10px;
 }
 </style>
 
