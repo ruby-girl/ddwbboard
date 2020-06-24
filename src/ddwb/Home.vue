@@ -46,10 +46,6 @@
       </div>
       <div class="map-message">
         <div class="map-wrapper">
-          <!-- <div class="desc">
-            <div class="title">数据地图</div>
-            <div class="descs">The data map</div>
-          </div>-->
           <div class="map" ref="mapChart">
             <div class="map-title-box display-flex align-items-center justify-content-flex-center">
               <div class="map-title-item">
@@ -57,11 +53,11 @@
                 <div>已服务面积（亩）</div>
               </div>
               <div class="map-title-item" style="margin:0 20px">
-                <div class="map-title-item-num">{{(mapInfo.totalYield*0.0001).toFixed(2)||''}}</div>
+                <div class="map-title-item-num">{{(mapInfo.totalYield*0.001).toFixed(2)||''}}</div>
                 <div>预估麦冬年产量（吨）</div>
               </div>
               <div class="map-title-item">
-                <div class="map-title-item-num">{{(mapInfo.totalProduction*0.00001).toFixed(2)||''}}</div>
+                <div class="map-title-item-num">{{(mapInfo.totalProduction*0.0001).toFixed(2)||''}}</div>
                 <div>预估麦冬年产值（万元）</div>
               </div>
             </div>
@@ -88,12 +84,43 @@
               <span class="btn-margin"></span>
               <div :class="{'active':btnActive==2}" @click="changeMapData1">基地</div>
             </div>
-            <div class="map-order-box">
-              <div
+            <div class="map-order-box" style="overflow:hidden">
+              <!-- <div
                 style="font-size:36px;font-weight:bold;
 color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
               >{{orderDataCount}}</div>
-              <div style="font-size:18px;">实时操作工单(条)</div>
+              <div style="font-size:18px;">实时操作工单(条)</div> -->
+              <ul
+                style="position:relative;list-style:none;background:rgba(0,0,0,0.5);font-size:13px;padding:5px"
+              >
+                <li class="base-item display-flex justify-content-flex-center">
+                  <span style="text-align: left;display:inline-block; width: 30%;color: #fff;">操作时间</span>           
+                  <span style="color: #fff;display:inline-block; width:20%;text-align: center;">操作人</span>
+                 <span
+                    style="text-align: center;display:inline-block; width: 20%;color: #fff;"
+                  >农事操作</span>
+                   <span style="color: #fff;display:inline-block; width: 30%;text-align: center;">所属基地</span>
+                </li>
+              </ul>
+              <div class="base-info" id="base-info3" style="overflow:hidden">
+                <ul id="base-ul3" style="position:relative; top:0px;list-style:none;">
+                  <li class="base-item" v-for="item in orderList" :key="item">
+                    <span
+                      style="text-align: left;display:inline-block; width: 30% !important;color: #0AFBE2;padding-left:5px"
+                    >{{item.executiontime}}</span>
+                    <span
+                      style="text-align: center;display:inline-block; width: 20%;color: #fff"
+                    >{{item.executionUserName}}</span>
+                    <span
+                      style="color: #fff;display:inline-block; width: 20%;text-align: center;"
+                    >{{item.farmWorkItemName}}</span>
+                    <span
+                      style="color: #fff;display:inline-block; width: 30%;text-align: center;"
+                    >{{item.baseName}}</span>
+                     
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -108,8 +135,8 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                 <li class="base-item display-flex justify-content-flex-center">
                   <span style="text-align: left;display:inline-block; width: 9%;color: #fff;">仓库名称</span>
                   <span
-                    style="text-align: center;display:inline-block; width: 11%;color: #fff;"
-                  >仓库类型</span>
+                    style="text-align: left;display:inline-block; width: 11%;color: #fff;"
+                  >类型</span>
                   <span style="color: #fff;display:inline-block; width:10%;text-align: center;">总库容</span>
                   <span style="color: #fff;display:inline-block; width: 10%;text-align: center;">总库存</span>
                   <span style="text-align: center;display:inline-block; width: 10%;color: #fff;">特级</span>
@@ -117,7 +144,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                   <span style="color: #fff;display:inline-block; width: 10%;text-align: center;">二级</span>
                   <span style="color: #fff;display:inline-block; width: 10%;text-align: center;">三级</span>
                   <span
-                    style="color: #fff;display:inline-block; width: 10%;text-align: center;"
+                    style="color: #fff;display:inline-block; width: 11%;text-align: center;"
                   >统货(吨)</span>
                 </li>
               </ul>
@@ -125,7 +152,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                 <ul id="base-ul1" style="position:relative; top:0px">
                   <li class="base-item" v-for="item in entrepotArr" :key="item">
                     <span
-                      style="text-align: left;display:inline-block; width: 10%;color: #0AFBE2"
+                      style="text-align: left;display:inline-block; width: 17% !important;color: #0AFBE2"
                     >{{item[0]}}</span>
                     <span
                       style="text-align: left;display:inline-block; width: 10%;color: #fff"
@@ -149,7 +176,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                       style="color: #fff;display:inline-block; width: 10%;text-align: center;"
                     >{{item[7]}}</span>
                     <span
-                      style="color: #fff;display:inline-block; width: 10%;text-align: center;"
+                      style="color: #fff;display:inline-block; width: 11%;text-align: center;"
                     >{{item[8]}}</span>
                   </li>
                 </ul>
@@ -203,9 +230,9 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
       <div class="temperature-rain" style="margin-left:30px;">
         <div
           class="bg-item-box left-height left-height-right"
-          style="max-height:250px !important;padding:15px 0;"
+          style="max-height:250px !important;padding:5px 0;"
         >
-          <div class="desc">
+          <div class="desc" style="height:25px">
             <div class="title">采购订单</div>
           </div>
           <div>
@@ -220,9 +247,9 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
         </div>
         <div
           class="bg-item-box left-height left-height-right"
-          style="max-height:250px !important;padding:15px 0;margin-top:20px;"
+          style="max-height:250px !important;padding:5px 0;margin-top:20px;"
         >
-          <div class="desc">
+          <div class="desc" style="height:25px">
             <div class="title">保险服务</div>
           </div>
           <div>
@@ -246,16 +273,16 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
           <div class="desc">
             <div class="title">贷款服务</div>
           </div>
-          <div style="position:relative;top:-40px" ref="pieBox">
-            <img
+          <div style="position:relative;top:-60px" ref="pieBox">
+            <!-- <img
               src="../assets/new/pic6.png"
               :style="{'top':pieTop,'left':pieLeft}"
               ref="pieImg"
               class="pie-bg"
-            />
+            /> -->
             <div style="height:180px" ref="loansChart"></div>
             <!-- 饼图说明 -->
-            <div class="pie-color-box">
+            <!-- <div class="pie-color-box">
               <div class="display-flex align-items-center">
                 <div class="pie-color-0"></div>
                 <span>保险贷</span>
@@ -272,7 +299,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                 <div class="pie-color-3"></div>
                 <span>劳务贷</span>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <!-- 新增最新物流 -->
@@ -391,7 +418,7 @@ import {
   getOrgLoanTj,
   getAllMonitors,
   getMonitorVideosByBaseId,
-  getWorkOrderByRealTimeCount,
+  getWorkOrderByRealTime,
   getSite,
   getPriceBySite,
   getBillboardIndexTotal
@@ -486,6 +513,7 @@ export default {
       address: "",
       curLock: false,
       serviceData: [],
+      baseScroll3:'',
       date: "",
       hours: "",
       metalDatas: [40, 200, 90, 140, 130, 0.2, 20, 0.4],
@@ -572,7 +600,8 @@ export default {
       SiteArrX: [],
       siteRainChart:null,
       sietObj:[],
-      mapInfo:{}
+      mapInfo:{},
+      orderList:[]
     };
   },
   created() {
@@ -673,7 +702,7 @@ export default {
     });
     this.getSubjectInfo();
     this.getAnnualFertilizer();
-    this.getWorkOrderByRealTime();
+    // this.getWorkOrderByRealTime();
     this.getOrgMonitorTj();
     this.getOrgOrderTj();
     this.getOrgInsuranceTj();
@@ -681,6 +710,7 @@ export default {
     let top = this.entrepotArr.length * 30;
     // this.baseScroll = new roll.Roll("base-info", "base-ul1", "", -top);
     this.baseScroll2 = new roll.Roll("base-info2", "base-ul2", "", -120);
+    
     this.getPieNew();
     this.getPieNew2();
     this.getSite();
@@ -690,8 +720,15 @@ export default {
       // 这里要重绘柱形图--------------------柱形图组件传参或者用方法
     }, 5000);
     this.getBillboardIndexTotal()
+    this.getWorkOrderByRealTimeList()
   },
   methods: {
+    getWorkOrderByRealTimeList(){
+      getWorkOrderByRealTime({organId:this.organId}).then(res=>{
+        this.orderList=res.data
+        this.baseScroll3 = new roll.Roll("base-info3", "base-ul3", "", -(this.orderList.length)*18);
+      })
+    },
     getBillboardIndexTotal(){
       getBillboardIndexTotal({organId:this.organId}).then(res=>{
           this.mapInfo=res.data
@@ -1012,12 +1049,6 @@ export default {
         }, 1000);
       });
     },
-    getWorkOrderByRealTime() {
-      //获取工单条数
-      getWorkOrderByRealTimeCount({ organId: this.organId }).then(res => {
-        this.orderDataCount = res.data;
-      });
-    },
     _drawPolygonal(polygonalChart, tdataAxis) {
       var option = chartsType.charts(
         tdataAxis,
@@ -1152,7 +1183,7 @@ export default {
           {
             name: "访问来源",
             type: "pie",
-            radius: ["40%", "60%"],
+            radius: ["30%", "50%"],
             avoidLabelOverlap: false,
             label: {
               show: true,
@@ -1209,27 +1240,7 @@ export default {
             name: name,
             type: "line",
             smooth: "true",
-            showSymbol: false,
-            areaStyle: {
-              color: {
-                type: "linear",
-                x: 0,
-                y: 0,
-                x2: 0,
-                y2: 1,
-                colorStops: [
-                  {
-                    offset: 0,
-                    color: "rgba(1,84,200,0.6)" // 0% 处的颜色
-                  },
-                  {
-                    offset: 1,
-                    color: "rgba(255,255,255,0)" // 100% 处的颜色
-                  }
-                ],
-                global: false // 缺省为 false
-              }
-            },
+            showSymbol: false,      
             itemStyle: {
               emphasis: {
                 symbol: "circle",
@@ -1734,12 +1745,7 @@ export default {
 </style>
 <style lang="stylus" scoped>
 @media screen and (min-width: 1550px) {
-  .base-item {
-    span:nth-of-type(1) {
-      width: 80px !important;
-      white-space: nowrap;
-    }
-  }
+
 
   .monitor-message {
     width: 97px !important;
@@ -1751,11 +1757,6 @@ export default {
 }
 
 @media screen and (max-width: 1550px) {
-  .base-item {
-    span:nth-of-type(1) {
-      width: 80px !important;
-    }
-  }
 
   .monitor-message {
     width: 97px !important;
@@ -2399,7 +2400,7 @@ export default {
   position: absolute;
   bottom: 15px;
   right: 15px;
-  width: 190px;
+  width: 30%;
   z-index: 1111;
   height: 100px;
   background: rgba(255, 255, 255, 0.2);

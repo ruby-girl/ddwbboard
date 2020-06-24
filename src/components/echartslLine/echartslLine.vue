@@ -18,9 +18,12 @@ export default {
         // this._drawPolygonal()
     },
     methods: {
-        _drawPolygonal (title,datas) {
+        _drawPolygonal (title,datas,leftTitle) {
+            if(!leftTitle){
+                leftTitle='份'
+            }
             let polygonalChart = this.$echarts.init(this.$refs.polygonal,null,{devicePixelRatio: 2.5});
-            var option = chartsType.charts(this.tdataAxis,datas,'份','bar',title,'#3C5DFA','x');
+            var option = chartsType.charts(this.tdataAxis,datas,leftTitle,'bar',title,'#3C5DFA','x');
             option.legend = {
                 left: 'right',
                 textStyle: {

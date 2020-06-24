@@ -20,8 +20,10 @@
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">基地地址</span>
               <span
+              v-if="baseinfoRes.provinceName||baseinfoRes.cityName||baseinfoRes.areaName"
                 class="color-fff"
               >{{baseinfoRes.provinceName}}{{baseinfoRes.cityName}}{{baseinfoRes.areaName}}</span>
+              <span class="color-fff" v-else>用户暂未添加</span>
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">基地类型</span>
@@ -102,18 +104,18 @@
                 <div class="map-title-item-num">{{mapInfo.totalAcreage||''}}</div>
                 <div>基地面积（亩）</div>
               </div>
-              <div class="map-title-item" style="margin:0 20px">
-                <div class="map-title-item-num">{{mapInfo.totalYield*0.0001||''}}</div>
+               <div class="map-title-item" style="margin:0 20px">
+                <div class="map-title-item-num">{{(mapInfo.totalYield*0.001).toFixed(2)||''}}</div>
                 <div>预估麦冬年产量（吨）</div>
               </div>
               <div class="map-title-item">
-                <div class="map-title-item-num">{{(mapInfo.totalProduction*0.00001).toFixed(2)||''}}</div>
+                <div class="map-title-item-num">{{(mapInfo.totalProduction*0.0001).toFixed(2)||''}}</div>
                 <div>预估麦冬年产值（万元）</div>
               </div>
             </div>
             <!-- 基地环境数据 -->
             <div class="mould-box">
-                <div class="display-flex justify-content-flex-justify"><span>大气温度</span><span class="color-yellow">30℃</span></div>
+                <div class="display-flex justify-content-flex-justify"><span>大气温度</span><span class="color-yellow">26℃</span></div>
                  <div class="display-flex justify-content-flex-justify"><span>大气湿度</span><span class="color-yellow">46%</span></div>
                  <div class="display-flex justify-content-flex-justify"><span>CO2浓度</span><span class="color-yellow">503ppm</span></div>
                   <div class="display-flex justify-content-flex-justify"><span>大气压强</span><span class="color-yellow">101kPa</span></div>
@@ -121,7 +123,7 @@
                   <div class="display-flex justify-content-flex-justify"><span>风速</span><span class="color-yellow">30m/s</span></div>
                   <div class="display-flex justify-content-flex-justify"><span>风向</span><span class="color-yellow">25°</span></div>
                   <div class="mould-small-txt">信息来源：智能环境检测基站</div>
-                  <div class="mould-small-txt">更新时间：2020-06-15 16:35:00</div>
+                  <div class="mould-small-txt">更新时间：{{nowDate}}</div>
             </div>
           </div>
         </div>
@@ -239,7 +241,7 @@
           <div class="last-title">基地保险概况</div>
           <div class="base-progress-box">
             <div
-              style="padding:60px 20px 0 40px;"
+              style="padding:20px;"
               class="base-info display-flex justify-content-flex-justify"
               id="base-info"
               v-if="bx_forests"
@@ -345,6 +347,7 @@ export default {
       soliTab: 1,
       messages: [],
       mapDatas: [],
+      nowDate:'',
       weixin: false,
       showColorDatas: [
         {
@@ -511,7 +514,10 @@ export default {
   },
   created() {
     this.baseId =12
-  
+     var date = new Date().toString().split(" ");
+      var month = new Date().getMonth() + 1;
+      var str = "";
+      this.nowDate = str + date[3] + "/" + month + "/" + date[2] + " " + date[4];
     
      this.baseIdSet = this.$route.query.baseId;
     axios
@@ -637,15 +643,15 @@ export default {
       if(n==1){
         title='土壤检测';
         arr=['100','200','300','900']
-         this.$refs.detection._drawPolygonal(title,arr)
+         this.$refs.detection._drawPolygonal(title,arr,'检测量(mg/kg)')
       }else if(n==2){
         title='空气检测'
         arr=['50','120','270','860']
-         this.$refs.detection._drawPolygonal(title,arr)
+         this.$refs.detection._drawPolygonal(title,arr,'检测量(mg/kg)')
       }else{
          title='土源检测'
          arr=['120','270','450','960']
-          this.$refs.detection._drawPolygonal(title,arr)
+          this.$refs.detection._drawPolygonal(title,arr,'检测量(mg/kg)')
       }
      
     },
@@ -729,7 +735,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].air_humidity);
         }
-        this._drawLine2(Xdata, xTitle);
+        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
       });
     },
     temperature(n) {
@@ -741,7 +747,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].air_temperature);
         }
-        this._drawLine2(Xdata, xTitle);
+        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
       });
     },
     co2value(n) {
@@ -753,7 +759,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].co2value);
         }
-        this._drawLine2(Xdata, xTitle);
+        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
       });
     },
     pressure(n) {
@@ -765,7 +771,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].air_pressure);
         }
-        this._drawLine2(Xdata, xTitle);
+        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
       });
     },
     pm25value(n) {
@@ -777,7 +783,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].pm25value);
         }
-        this._drawLine2(Xdata, xTitle);
+        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
       });
     },
     illIntensity(n) {
@@ -789,7 +795,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].ill_intensity);
         }
-        this._drawLine2(Xdata, xTitle);
+        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
       });
     },
     rainfall(n) {
@@ -801,8 +807,40 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].rainfall);
         }
-        this._drawLine2(Xdata, xTitle);
+        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
       });
+    },
+    setUnit(n){
+      let unit;
+       if(n==1){
+        unit='%'
+      }else if(n==2){
+        unit='℃'
+      }else if(n==3){
+        unit='S/m'
+      }else{
+        unit=''
+      }
+      return unit
+    },
+    setUnit2(n){
+      let unit;
+       if(n==1){
+        unit='%'
+      }else if(n==2){
+        unit='℃'
+      }else if(n==3){//二氧化碳单位
+        unit='ppm'
+      }else if(n==4){
+        unit='Pa'
+      }else if(n==5){//pm2.5
+        unit='μg/m3'
+      }else if(n==6){//光照强度
+        unit='Lux'
+      }else if(n==7){//降水量
+        unit='mm'
+      }
+      return unit
     },
     soilHumidity(n) {
       this.soliTab = n;
@@ -813,7 +851,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].soil_humidity);
         }
-        this._drawLine(Xdata, xTitle);
+        this._drawLine(Xdata, xTitle,this.setUnit(n));
       });
     },
     soilTemperature(n) {
@@ -825,7 +863,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].soil_temperature);
         }
-        this._drawLine(Xdata, xTitle);
+        this._drawLine(Xdata, xTitle,this.setUnit(n));
       });
     },
     soilEc(n) {
@@ -837,7 +875,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].soil_ec);
         }
-        this._drawLine(Xdata, xTitle);
+        this._drawLine(Xdata, xTitle,this.setUnit(n));
       });
     },
     soilPH(n) {
@@ -849,7 +887,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].soil_ph);
         }
-        this._drawLine(Xdata, xTitle);
+        this._drawLine(Xdata, xTitle,this.setUnit(n));
       });
     },
     tabFunc(n) {
@@ -1051,13 +1089,13 @@ export default {
       };
       rainChart.setOption(option);
     },
-    _drawLine2(xData, xTitle) {
+    _drawLine2(xData, xTitle,unit) {
       //底部右侧折线图
       let rainChart = this.$echarts.init(this.$refs.bottomLine2,null,{devicePixelRatio: 2.5});
       var option = chartsType.charts(
         xTitle,
         xData,
-        "℃",
+        unit,
         "line",
         "",
         "#0AFBE2",
@@ -1071,14 +1109,14 @@ export default {
       };
       rainChart.setOption(option);
     },
-    _drawLine(xData, xTitle) {
+    _drawLine(xData, xTitle,unit) {
       //底部左侧折线图
       //左侧折线图
       let rainChart = this.$echarts.init(this.$refs.bottomLine1,null,{devicePixelRatio: 2.5});
       var option = chartsType.charts(
         xTitle,
         xData,
-        "℃",
+        unit,
         "line",
         "",
         "#0AFBE2",

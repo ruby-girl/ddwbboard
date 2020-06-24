@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="title-box">
-      <h1 class="title">川产道地(麦冬)数字化管理平台</h1>
+      <h1 class="title">道地药材(涪城麦冬)数字化管理平台</h1>
     </div>
     <div class="wrapper display-flex align-items-center" style="width:350px">
       <div>

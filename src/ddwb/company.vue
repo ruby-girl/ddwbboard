@@ -15,7 +15,7 @@
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">农户年龄</span>
-              <span class="color-main">{{userInfo.age}}岁</span>
+              <span class="color-main">{{userInfo.age==0?'-':userInfo.age}}岁</span>
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">地块数量</span>
@@ -747,6 +747,38 @@ export default {
         );
       });
     },
+    setUnit(n){
+      let unit;
+       if(n==1){
+        unit='%'
+      }else if(n==2){
+        unit='℃'
+      }else if(n==3){
+        unit='S/m'
+      }else{
+        unit=''
+      }
+      return unit
+    },
+    setUnit2(n){
+      let unit;
+       if(n==1){
+        unit='%'
+      }else if(n==2){
+        unit='℃'
+      }else if(n==3){//二氧化碳单位
+        unit='ppm'
+      }else if(n==4){
+        unit='Pa'
+      }else if(n==5){//pm2.5
+        unit='μg/m3'
+      }else if(n==6){//光照强度
+        unit='Lux'
+      }else if(n==7){//降水量
+        unit='mm'
+      }
+      return unit
+    },
     userhumidity(n) {
       this.airTab = n;
       userhumidity({ userOrganId: this.userOrganId }).then(res => {
@@ -756,7 +788,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].air_humidity);
         }
-        this._drawLine2(Xdata, xTitle);
+        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
       });
     },
     usertemperature(n) {
@@ -768,7 +800,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].air_temperature);
         }
-        this._drawLine2(Xdata, xTitle);
+        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
       });
     },
     userco2value(n) {
@@ -780,7 +812,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].co2value);
         }
-        this._drawLine2(Xdata, xTitle);
+        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
       });
     },
     userpressure(n) {
@@ -792,7 +824,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].air_pressure);
         }
-        this._drawLine2(Xdata, xTitle);
+        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
       });
     },
     userpm25value(n) {
@@ -804,7 +836,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].pm25value);
         }
-        this._drawLine2(Xdata, xTitle);
+        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
       });
     },
     userillIntensity(n) {
@@ -816,7 +848,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].ill_intensity);
         }
-        this._drawLine2(Xdata, xTitle);
+        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
       });
     },
     userrainfall(n) {
@@ -828,7 +860,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].rainfall);
         }
-        this._drawLine2(Xdata, xTitle);
+        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
       });
     },
     usersoilHumidity(n) {
@@ -840,7 +872,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].soil_humidity);
         }
-        this._drawLine(Xdata, xTitle);
+        this._drawLine(Xdata, xTitle,this.setUnit(n));
       });
     },
     usersoilTemperature(n) {
@@ -852,7 +884,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].soil_temperature);
         }
-        this._drawLine(Xdata, xTitle);
+       this._drawLine(Xdata, xTitle,this.setUnit(n));
       });
     },
     usersoilEc(n) {
@@ -864,7 +896,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].soil_ec);
         }
-        this._drawLine(Xdata, xTitle);
+        this._drawLine(Xdata, xTitle,this.setUnit(n));
       });
     },
     usersoilPH(n) {
@@ -876,7 +908,7 @@ export default {
           xTitle.push(res.data[i].monitor_time);
           Xdata.push(res.data[i].soil_ph);
         }
-        this._drawLine(Xdata, xTitle);
+        this._drawLine(Xdata, xTitle,this.setUnit(n));
       });
     },
      addBlockOnMap(remarks) {
@@ -1051,13 +1083,13 @@ export default {
       rainChart.setOption(option);
       rainChart2.setOption(option);
     },
-    _drawLine2(xData, xTitle) {
+    _drawLine2(xData, xTitle,unit) {
       //底部右侧折线图
       let rainChart = this.$echarts.init(this.$refs.bottomLine2,null,{devicePixelRatio: 2.5});
       var option = chartsType.charts(
         xTitle,
         xData,
-        "℃",
+        unit,
         "line",
         "",
         "#0AFBE2",
@@ -1071,14 +1103,14 @@ export default {
       };
       rainChart.setOption(option);
     },
-    _drawLine(xData, xTitle) {
+    _drawLine(xData, xTitle,unit) {
       //底部左侧折线图
       //左侧折线图
       let rainChart = this.$echarts.init(this.$refs.bottomLine1,null,{devicePixelRatio: 2.5});
       var option = chartsType.charts(
         xTitle,
         xData,
-        "℃",
+        unit,
         "line",
         "",
         "#0AFBE2",
