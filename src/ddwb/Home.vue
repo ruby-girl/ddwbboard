@@ -20,7 +20,7 @@
             </div>
             <div class="title-item-y display-flex justify-content-flex-justify">
               <span class="color-fff">主要品种</span>
-              <span class="color-main">{{subjectInfo.breedName}}</span>
+              <span class="color-main">麦冬</span>
             </div>
             <p class="company-desc">{{subjectInfo.intro}}</p>
           </div>
@@ -133,7 +133,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                 style="position:relative;list-style:none;background:rgba(255,255,255,0.2);font-size:13px;"
               >
                 <li class="base-item display-flex justify-content-flex-center">
-                  <span style="text-align: left;display:inline-block; width: 9%;color: #fff;">仓库名称</span>
+                  <span style="text-align:left;display:inline-block; width: 17%;color: #fff;">名称</span>
                   <span
                     style="text-align: left;display:inline-block; width: 11%;color: #fff;"
                   >类型</span>
@@ -208,7 +208,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                   </div>
                   <div class="display-flex justify-content-flex-justify">
                     <div v-for="(li,n) in item.warpperData" :key="n" style="text-align:center">
-                      <div class="color-main" style="font-weight:bold;font-size:18px">{{li.num}}</div>
+                      <div class="color-main" style="font-weight:bold;font-size:18px">{{li.num}}<span style="font-size:12px">{{li.unit}}</span></div>
                       <img
                         style="margin-bottom:5px"
                         class="wrapper-img"
@@ -891,59 +891,70 @@ export default {
             {
               num: obj.air_humidity || "0",
               name: "空气湿度",
+              unit:'%',
               icon: "iconkongqishidu"
             },
             {
               num: obj.air_pressure || "0",
               name: "空气压力",
+              unit:'kpa',
               icon: "icondaqiyali"
             },
             {
               num: obj.air_temperature || "0",
               name: "空气温度",
+              unit:'℃',
               icon: "iconshangpinwenduji"
             },
             {
               num: obj.co2value || "0",
               name: "CO2浓度",
+              unit:'ppm',
               icon: "iconeryanghuatan"
             },
             {
               num: obj.ill_intensity || "0",
               name: "光照强度",
+              unit:'Lux',
               icon: "icontaiyangfushe"
             },
             {
               num: obj.rainfall || "0",
               name: "降雨量",
+              unit:'mm',
               icon: "iconjiangyuliang"
             },
             {
               num: obj.soil_ec || "0",
               name: "土壤EC值",
+              unit:'uS/cm',
               icon: "iconjiangyuliang"
             }, //图标
             {
               num: obj.soil_humidity || "0",
               name: "土壤湿度",
+              unit:'%',
               icon: "iconturangshidu"
             },
             {
               num: obj.soil_ph || "0",
               name: "土壤PH值",
+              unit:'',
               icon: "iconsuanjiandu"
             },
             {
               num: obj.soil_temperature || "0",
               name: "土壤温度",
+              unit:'℃',
               icon: "iconturangwendu"
             },
             {
               num: obj.wind_direction || "0",
               name: "风向",
+              unit:'o',
               icon: "iconfengxiang"
             },
-            { num: obj.wind_speed || "0", name: "风速", icon: "iconfengsu2" }
+            { num: obj.wind_speed || "0", name: "风速", unit:'m/s',icon: "iconfengsu2" }
           ];
           datas[i].warpperData = arr;
         }

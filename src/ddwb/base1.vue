@@ -101,15 +101,15 @@
           <div class="map" ref="mapChart" id="mapChart">
             <div class="map-title-box display-flex align-items-center justify-content-flex-center">
               <div class="map-title-item">
-                <div class="map-title-item-num">{{mapInfo.totalAcreage||''}}</div>
+                <div class="map-title-item-num">{{totalAcreage||''}}</div>
                 <div>基地面积（亩）</div>
               </div>
                <div class="map-title-item" style="margin:0 20px">
-                <div class="map-title-item-num">{{(mapInfo.totalYield*0.001).toFixed(2)||''}}</div>
+                <div class="map-title-item-num">{{(totalYield*0.001).toFixed(2)||''}}</div>
                 <div>预估麦冬年产量（吨）</div>
               </div>
               <div class="map-title-item">
-                <div class="map-title-item-num">{{(mapInfo.totalProduction*0.0001).toFixed(2)||''}}</div>
+                <div class="map-title-item-num">{{(totalProduction*0.0001).toFixed(2)||''}}</div>
                 <div>预估麦冬年产值（万元）</div>
               </div>
             </div>
@@ -509,7 +509,8 @@ export default {
       pics:[],
       progress:{},
       mapInfo:{},
-      baseIdSet:''
+      baseIdSet:'',
+      landList:[]
     };
   },
   created() {
@@ -627,10 +628,10 @@ export default {
   methods: {
     getBaseMapInfoTotalTj(){
       getBaseMapInfoTotalTj({ baseId: this.baseId }).then(res=>{
-        this.totalAcreage = res.data.totalAcreage;
-        this.totalProduction = res.data.totalProduction; //地图上显示的产量
-        this.totalYield = res.data.totalYield; //地图上显示年产值  
+        // this.totalAcreage = res.data.totalAcreage;
+       
         this.mapInfo=res.data
+       
       })
     },
     getFarmWorkProgress(){//执行进度
@@ -639,19 +640,22 @@ export default {
       })
     },
     detection(n){//检测柱形图
-      let title,arr;
+      let title,arr,x;
       if(n==1){
         title='土壤检测';
-        arr=['100','200','300','900']
-         this.$refs.detection._drawPolygonal(title,arr,'检测量(mg/kg)')
+        arr=['0','0','0.241','1.46','0.23','9.4','59','66','88','22']
+        x=['DDT','六六六','总汞','总砷','镉','铅','总铬','铜','锌','镍']
+         this.$refs.detection._drawPolygonal(title,arr,'检测量(mg/kg)',x)
       }else if(n==2){
         title='空气检测'
-        arr=['50','120','270','860']
-         this.$refs.detection._drawPolygonal(title,arr,'检测量(mg/kg)')
+        arr=['0.13','0.022','0.105']
+        x=['二氧化硫','二氧化氮','总悬浮颗粒数']
+         this.$refs.detection._drawPolygonal(title,arr,'检测量(mg/m³)',x)
       }else{
-         title='土源检测'
-         arr=['120','270','450','960']
-          this.$refs.detection._drawPolygonal(title,arr,'检测量(mg/kg)')
+         title='水源检测'
+         arr=['23','14','0','0','0.0002','0.0012','0','0']
+         x=['化学需氧量','氯化物','硫化物','铬（六价）','汞','砷','镉','铅']
+          this.$refs.detection._drawPolygonal(title,arr,'检测量(mg/L)',x)
       }
      
     },
@@ -663,16 +667,17 @@ export default {
       getBaseInfo({ baseId: this.baseIdSet }).then(res => {
         this.baseinfoRes = res.data;
         this.pics=this.baseinfoRes.basePics
-       console.info('11111111111111111111111111',this.pics)
-       
       });
     },
     totalTj() {
       totalTj({ baseId: this.baseIdSet }).then(res => {
         //获取基地总面积- 有订单的面积=无订单面积
-      
+      this.totalAcreage = res.data.totalAcreage;
+       this.totalProduction = res.data.totalProduction; //地图上显示的产量
+        this.totalYield = res.data.totalYield; //地图上显示年产值  
         console.info('地图地图',this.map)
         let that=this
+        this.landList=res.data.landParcels
        setTimeout(function(){
           that.addBlockOnMap(res.data.landParcels);       
        },1000)
@@ -917,9 +922,21 @@ export default {
       let that = this;
       for (let i = 0; i < that.polygons.length; i++) {
         that.polygons[i].on("click", function(e) {
-          that.infowindow(e, i);
+        that.rutePush(i)
+        
+          // that.infowindow(e, i);
         });
       }
+    },
+    
+    rutePush(i){
+      let obj=this.landList.filter((item,n)=>{
+          return n==i
+      })
+       this.$router.push({
+              name: "company",
+              query: { userOrganId: Number(obj[0].id) }
+            });
     },
     removepoint() {
       this.map.remove(this.markers);

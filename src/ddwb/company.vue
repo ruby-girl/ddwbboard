@@ -623,6 +623,7 @@ export default {
     getOrganuserMapInfo(){
       getOrganuserMapInfo({ organUserId:this.userOrganIdSet }).then(res=>{
         this.mapInfo=res.data
+        
         let that=this
         setTimeout(function(){
           that.addBlockOnMap(res.data.landParcels);       

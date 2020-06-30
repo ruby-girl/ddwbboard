@@ -10,8 +10,8 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            datas: [270, 290, 320 , 350],
-            tdataAxis: [2015, 2016, 2017,2018]
+            datas: [5600, 5100, 2500 , 3400],
+            tdataAxis: ['人工费', '设备费', '农资费用','检测费']
         }
     },
     mounted () {
@@ -20,7 +20,7 @@ export default {
     methods: {
         _drawPolygonal () {
             let polygonalChart = this.$echarts.init(this.$refs.polygonal,null,{devicePixelRatio: 2.5});
-            var option = chartsType.charts(this.tdataAxis,this.datas,'用量（亩/kg）','bar','有机肥','#14E6C4','x');
+            var option = chartsType.charts(this.tdataAxis,this.datas,'元','bar','计划费用','#14E6C4','x');
             option.legend = {
                 left: 'right',
                 textStyle: {
@@ -28,9 +28,9 @@ export default {
                 }
             }
             option.series.push({
-                name: '普通肥',
+                name: '实际费用',
                 barWidth:20,
-                data:[140, 200 ,90,90],
+                data:[5100, 5300, 2800 , 3200],
                 type: 'bar',
                 itemStyle: {
                     emphasis: {
