@@ -106,13 +106,13 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                 <ul id="base-ul3" style="position:relative; top:0px;list-style:none;">
                   <li class="base-item" v-for="item in orderList" :key="item">
                     <span
-                      style="text-align: left;display:inline-block; width: 30% !important;color: #0AFBE2;padding-left:5px"
+                      style="text-align: left;display:inline-block; width: 30% !important;color: #fff;padding-left:5px"
                     >{{item.executiontime}}</span>
                     <span
                       style="text-align: center;display:inline-block; width: 20%;color: #fff"
                     >{{item.executionUserName}}</span>
                     <span
-                      style="color: #fff;display:inline-block; width: 20%;text-align: center;"
+                      style="color: #0AFBE2;display:inline-block; width: 20%;text-align: center;"
                     >{{item.farmWorkItemName}}</span>
                     <span
                       style="color: #fff;display:inline-block; width: 30%;text-align: center;"
@@ -271,7 +271,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
           style="max-height:250px !important;padding:15px 0;margin-top:20px;"
         >
           <div class="desc">
-            <div class="title">贷款服务</div>
+            <div class="title">金融服务</div>
           </div>
           <div style="position:relative;top:-60px" ref="pieBox">
             <!-- <img
@@ -306,13 +306,13 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
         <div class="display-flex left-height-right" style="margin-top:20px;">
           <div class="item-bg-y bg-item-box" style="padding:15px 0;width:28%;margin-right:15px;">
             <div>
-              <div class="last-title">年度销量</div>
+              <div class="last-title">年度销售额</div>
               <div style="height:85%">
                 <div class="airs air-temperature" style="height:100%">
                   <div style="text-align:center">
-                    <div class="color-main" style="font-weight:bold;font-size:18px">11800</div>
+                    <div class="color-main" style="font-weight:bold;font-size:18px">11800<span style="font-size:11px">万元</span></div>
                     <img style="margin-bottom:5px" src="../assets/new/pic3.png" alt />
-                    <div style="color:#fff;margin-top:10px;">2020年度销量额(万元)</div>
+                    <div style="color:#fff;margin-top:10px;">2020年度销售额</div>
                   </div>
                 </div>
               </div>
@@ -335,7 +335,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                         <li class="base-item">
                           <span
                             style="text-align: left;display:inline-block; width: 100px;color: #0AFBE2"
-                          >2020/6/13</span>
+                          >2020/6/30</span>
                           <span
                             style="color: #0AFBE2;display:inline-block; width: 150px;text-align: center;"
                           >绵阳市三台县芦溪镇</span>
@@ -343,7 +343,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                         <li class="base-item">
                           <span
                             style="text-align: left;display:inline-block; width: 100px;color: #0AFBE2"
-                          >2020/6/12</span>
+                          >2020/6/29</span>
                           <span
                             style="color: #0AFBE2;display:inline-block; width: 150px;text-align: center;"
                           >绵阳市三台县胜峰村</span>
@@ -351,7 +351,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                         <li class="base-item">
                           <span
                             style="text-align: left;display:inline-block; width: 100px;color: #0AFBE2"
-                          >2020/6/11</span>
+                          >2020/6/28</span>
                           <span
                             style="color: #0AFBE2;display:inline-block; width: 150px;text-align: center;"
                           >绵阳市三台县中新镇</span>
@@ -359,7 +359,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                         <li class="base-item">
                           <span
                             style="text-align: left;display:inline-block; width: 100px;color: #0AFBE2"
-                          >2020/6/10</span>
+                          >2020/6/27</span>
                           <span
                             style="color: #0AFBE2;display:inline-block; width: 150px;text-align: center;"
                           >绵阳市三台县岳家湾</span>
@@ -1278,7 +1278,7 @@ export default {
 		                color: '#fff',
 		                fontSize:14
 		            },
-		            x:10,
+		            x:30,
 					y:5,
 	            },
 				tooltip: {

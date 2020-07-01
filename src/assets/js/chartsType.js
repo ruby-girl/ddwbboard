@@ -196,9 +196,9 @@ var chartsType = {
 	            	text: units,
 	            	textStyle: {
 		                color: '#fff',
-		                fontSize:14
+						fontSize:14
 		            },
-		            x:10,
+		            x:30,
 					y:5,
 	            },
 				tooltip: {

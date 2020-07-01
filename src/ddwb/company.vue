@@ -15,7 +15,8 @@
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">农户年龄</span>
-              <span class="color-main">{{userInfo.age==0?'-':userInfo.age}}岁</span>
+              <span class="color-main" v-if="userInfo.age>0">{{userInfo.age}}岁</span>
+              <span class="color-main" v-else>暂无提供</span>
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">地块数量</span>
@@ -102,6 +103,19 @@
                 <div class="map-title-item-num">{{mapInfo.totalProduction||''}}</div>
                 <div>预估麦冬年产值（元）</div>
               </div>
+            
+            </div>
+               <!-- 基地环境数据 -->
+            <div class="mould-box">
+                <div class="display-flex justify-content-flex-justify"><span>大气温度</span><span class="color-yellow">24℃</span></div>
+                 <div class="display-flex justify-content-flex-justify"><span>大气湿度</span><span class="color-yellow">46%</span></div>
+                 <div class="display-flex justify-content-flex-justify"><span>CO2浓度</span><span class="color-yellow">503ppm</span></div>
+                  <div class="display-flex justify-content-flex-justify"><span>大气压强</span><span class="color-yellow">101kPa</span></div>
+                  <div class="display-flex justify-content-flex-justify"><span>光照强度</span><span class="color-yellow">1147Lux</span></div>
+                  <div class="display-flex justify-content-flex-justify"><span>风速</span><span class="color-yellow">30m/s</span></div>
+                  <div class="display-flex justify-content-flex-justify"><span>风向</span><span class="color-yellow">25°</span></div>
+                  <div class="mould-small-txt">信息来源：智能环境检测基站</div>
+                  <div class="mould-small-txt">更新时间：{{nowDate}}</div>
             </div>
           </div>
         </div>
@@ -140,7 +154,7 @@
             </div>
             <!-- 地图下柱形图 -->
             <div class="item-bg-y">
-              <div class="last-title display-flex justify-content-flex-justify">
+              <div class="last-title display-flex justify-content-flex-justify" style="padding-left:0;">
                 <div>空气环境</div>
                 <div>
                   <div class="display-flex">
@@ -306,12 +320,13 @@ import {
   userhumidity,
   userillIntensity,
   userpressure,
-  useruserpm25value,
+  userpm25value,
   rainfall,
   usertemperature,
   usersoilEc,
   usersoilHumidity,
   usersoilPH,
+  userrainfall,
   usersoilTemperature,
   financeBx,
   financeDk,
@@ -402,6 +417,7 @@ export default {
           value: 2
         }
       ],
+      nowDate:'',
       plotDatas: [],
       mapChart: "",
       baseLength: 0,
@@ -505,6 +521,10 @@ export default {
   },
   created() {
     this.userOrganId =55
+     var date = new Date().toString().split(" ");
+      var month = new Date().getMonth() + 1;
+      var str = "";
+      this.nowDate = str + date[3] + "/" + month + "/" + date[2] + " " + date[4];
      this.userOrganIdSet = this.$route.query.userOrganId;
     let params =
       "appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53";
@@ -650,7 +670,7 @@ export default {
       var option = chartsType.charts(
         ["2016", "2017", "2018", "2019", "2020"],
         [12000, 13000, 14500, 14800, 16000],
-        "",
+        "元",
         "line",
         "",
         "#0AFBE2",
@@ -1983,6 +2003,27 @@ position:absolute;
 top:30px;
 left:50px;
 cursor:pointer 
+}
+.mould-box{
+  position:absolute;
+  z-index:1111;
+  bottom:15px;
+  right:50px;
+  width:270px;
+height:316px;
+line-height:30px;
+font-size:16px;
+border-radius:4px;
+color:#fff;
+background:rgba(1,51,57,0.8);
+padding:15px;
+}
+.color-yellow{
+  color:#EBD804;
+}
+.mould-small-txt{
+  font-size:13px;
+  text-align:right;
 }
 </style>
 

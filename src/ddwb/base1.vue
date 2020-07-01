@@ -31,11 +31,19 @@
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">农户数量</span>
-              <span class="color-fff">{{baseinfoRes.batchCount}}户</span>
+              <span class="color-fff">{{baseinfoRes.organUserConut}}户</span>
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">地块数量</span>
               <span class="color-fff">{{baseinfoRes.landParcelCount}}块</span>
+            </div>
+            <div class="title-item-y display-flex">
+              <span class="color-fff" style="width:100px">批次数量</span>
+              <span class="color-fff">{{baseinfoRes.batchCount}}批次</span>
+            </div>
+            <div class="title-item-y display-flex">
+              <span class="color-fff" style="width:100px">工单数量</span>
+              <span class="color-fff">{{baseinfoRes.orderlCount||'0'}}个</span>
             </div>
             <!-- 基地图片 -->
             <div class="display-flex">
@@ -55,13 +63,13 @@
             <div class="base-info" style="margin-top:6px;">
               <ul style="position:relative;list-style-type: none;">
                 <li class="base-progress-item">
-                  <div>2020年麦冬规范化种植计划（种植批次数量：{{progress.totalCount}}个）</div>
+                  <!-- <div>2020年麦冬规范化种植计划（种植批次数量：{{progress.totalCount}}个）</div> -->
                   <div class="display-flex">
                     <div class="progress">
                       <span class="progressing" v-bind:style="'width:' + (progress.executeCount/progress.totalCount)*100 +'%' "></span>
                     </div>
                     <!-- <div>75%</div> -->
-                    <div style="margin-left:15px">{{progress.executeCount}}/{{progress.totalCount}}</div>
+                    <div style="margin-left:10px"><span style="margin-right:10px" v-if="progress.totalCount>0">{{(((progress.executeCount/progress.totalCount)).toFixed(2))*100}}%</span>{{progress.executeCount}}/{{progress.totalCount}}（个）</div>
                   </div>
                 </li>
               </ul>
@@ -115,7 +123,7 @@
             </div>
             <!-- 基地环境数据 -->
             <div class="mould-box">
-                <div class="display-flex justify-content-flex-justify"><span>大气温度</span><span class="color-yellow">26℃</span></div>
+                <div class="display-flex justify-content-flex-justify"><span>大气温度</span><span class="color-yellow">24℃</span></div>
                  <div class="display-flex justify-content-flex-justify"><span>大气湿度</span><span class="color-yellow">46%</span></div>
                  <div class="display-flex justify-content-flex-justify"><span>CO2浓度</span><span class="color-yellow">503ppm</span></div>
                   <div class="display-flex justify-content-flex-justify"><span>大气压强</span><span class="color-yellow">101kPa</span></div>
@@ -1406,7 +1414,7 @@ export default {
   height: calc(100vh - 80px);
 
   .desc {
-    height: 45px;
+    height: 30px;
     color: #ffffff;
     font-size: 16px;
     padding-left: 10px;
@@ -1768,7 +1776,7 @@ export default {
   height: 30%;
 }
 .left-height-last{
-  height:calc(100vh - 720px);
+  height:calc(100vh - 750px);
 }
 .base-container {
   height: 100%;
@@ -1847,7 +1855,7 @@ export default {
   width: 50%;
   height: 15px;
   background: rgba(255, 255, 255, 0.2);
-  margin: 8px 15px 0 15px;
+  margin: 5px 15px 0 15px;
   border-radius: 10px;
   text-align: center;
   color: #fff;
@@ -1985,7 +1993,7 @@ export default {
   cursor: pointer;
 }
 .left-height-base-info{
-  height:400px;
+  height:430px;
 }
 .base-info-img{
   width:49%;
