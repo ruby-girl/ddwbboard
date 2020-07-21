@@ -862,7 +862,7 @@ export default {
         let xTitle = [];
         for (var i = 0; i < res.data.length; i++) {
           xTitle.push(res.data[i].monitor_time);
-          Xdata.push(res.data[i].soil_humidity);
+          Xdata.push(res.data[i].soil_humidity||0);
         }
         this._drawLine(Xdata, xTitle,this.setUnit(n));
       });
@@ -874,7 +874,7 @@ export default {
         let xTitle = [];
         for (var i = 0; i < res.data.length; i++) {
           xTitle.push(res.data[i].monitor_time);
-          Xdata.push(res.data[i].soil_temperature);
+          Xdata.push(res.data[i].soil_temperature||0);
         }
         this._drawLine(Xdata, xTitle,this.setUnit(n));
       });
@@ -886,7 +886,7 @@ export default {
         let xTitle = [];
         for (var i = 0; i < res.data.length; i++) {
           xTitle.push(res.data[i].monitor_time);
-          Xdata.push(res.data[i].soil_ec);
+          Xdata.push(res.data[i].soil_ec||0);
         }
         this._drawLine(Xdata, xTitle,this.setUnit(n));
       });
@@ -898,7 +898,7 @@ export default {
         let xTitle = [];
         for (var i = 0; i < res.data.length; i++) {
           xTitle.push(res.data[i].monitor_time);
-          Xdata.push(res.data[i].soil_ph);
+          Xdata.push(res.data[i].soil_ph||0);
         }
         this._drawLine(Xdata, xTitle,this.setUnit(n));
       });
@@ -908,6 +908,7 @@ export default {
       this.detection(n)
     },
     addBlockOnMap(remarks) {
+      
       //地块的第一个点增加Masker
        this.saveListMarker=[]
       this.polygons = [];

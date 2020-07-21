@@ -10,7 +10,7 @@ module.exports = {
     proxy: {
       '/byapi': {
         // 目标 API 地址
-        //target: 'http://192.168.101.52:8088',
+        //target: 'http://192.168.101.64:8089',
         target: 'https://bysk.scddwb.com/',
         // 如果要代理 websockets
         ws: false,
