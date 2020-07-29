@@ -89,17 +89,19 @@
                 style="font-size:36px;font-weight:bold;
 color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
               >{{orderDataCount}}</div>
-              <div style="font-size:18px;">实时操作工单(条)</div> -->
+              <div style="font-size:18px;">实时操作工单(条)</div>-->
               <ul
                 style="position:relative;list-style:none;background:rgba(0,0,0,0.5);font-size:13px;padding:5px"
               >
                 <li class="base-item display-flex justify-content-flex-center">
-                  <span style="text-align: left;display:inline-block; width: 30%;color: #fff;">操作时间</span>           
+                  <span style="text-align: left;display:inline-block; width: 30%;color: #fff;">操作时间</span>
                   <span style="color: #fff;display:inline-block; width:20%;text-align: center;">操作人</span>
-                 <span
+                  <span
                     style="text-align: center;display:inline-block; width: 20%;color: #fff;"
                   >农事操作</span>
-                   <span style="color: #fff;display:inline-block; width: 30%;text-align: center;">所属基地</span>
+                  <span
+                    style="color: #fff;display:inline-block; width: 30%;text-align: center;"
+                  >所属基地</span>
                 </li>
               </ul>
               <div class="base-info" id="base-info3" style="overflow:hidden">
@@ -117,7 +119,6 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                     <span
                       style="color: #fff;display:inline-block; width: 30%;text-align: center;"
                     >{{item.baseName}}</span>
-                     
                   </li>
                 </ul>
               </div>
@@ -134,9 +135,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
               >
                 <li class="base-item display-flex justify-content-flex-center">
                   <span style="text-align:left;display:inline-block; width: 17%;color: #fff;">名称</span>
-                  <span
-                    style="text-align: left;display:inline-block; width: 11%;color: #fff;"
-                  >类型</span>
+                  <span style="text-align: left;display:inline-block; width: 11%;color: #fff;">类型</span>
                   <span style="color: #fff;display:inline-block; width:10%;text-align: center;">总库容</span>
                   <span style="color: #fff;display:inline-block; width: 10%;text-align: center;">总库存</span>
                   <span style="text-align: center;display:inline-block; width: 10%;color: #fff;">特级</span>
@@ -208,7 +207,10 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                   </div>
                   <div class="display-flex justify-content-flex-justify">
                     <div v-for="(li,n) in item.warpperData" :key="n" style="text-align:center">
-                      <div class="color-main" style="font-weight:bold;font-size:18px">{{li.num}}<span style="font-size:12px">{{li.unit}}</span></div>
+                      <div class="color-main" style="font-weight:bold;font-size:18px">
+                        {{li.num}}
+                        <span style="font-size:12px">{{li.unit}}</span>
+                      </div>
                       <img
                         style="margin-bottom:5px"
                         class="wrapper-img"
@@ -279,7 +281,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
               :style="{'top':pieTop,'left':pieLeft}"
               ref="pieImg"
               class="pie-bg"
-            /> -->
+            />-->
             <div style="height:180px" ref="loansChart"></div>
             <!-- 饼图说明 -->
             <!-- <div class="pie-color-box">
@@ -299,7 +301,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                 <div class="pie-color-3"></div>
                 <span>劳务贷</span>
               </div>
-            </div> -->
+            </div>-->
           </div>
         </div>
         <!-- 新增最新物流 -->
@@ -310,7 +312,10 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
               <div style="height:85%">
                 <div class="airs air-temperature" style="height:100%">
                   <div style="text-align:center">
-                    <div class="color-main" style="font-weight:bold;font-size:18px">11800<span style="font-size:11px">万元</span></div>
+                    <div class="color-main" style="font-weight:bold;font-size:18px">
+                      11800
+                      <span style="font-size:11px">万元</span>
+                    </div>
                     <img style="margin-bottom:5px" src="../assets/new/pic3.png" alt />
                     <div style="color:#fff;margin-top:10px;">2020年度销售额</div>
                   </div>
@@ -513,7 +518,7 @@ export default {
       address: "",
       curLock: false,
       serviceData: [],
-      baseScroll3:'',
+      baseScroll3: "",
       date: "",
       hours: "",
       metalDatas: [40, 200, 90, 140, 130, 0.2, 20, 0.4],
@@ -598,10 +603,10 @@ export default {
       baseScroll2: null,
       SiteArr: [],
       SiteArrX: [],
-      siteRainChart:null,
-      sietObj:[],
-      mapInfo:{},
-      orderList:[]
+      siteRainChart: null,
+      sietObj: [],
+      mapInfo: {},
+      orderList: []
     };
   },
   created() {
@@ -642,12 +647,11 @@ export default {
     let that = this;
     setTimeout(function() {
       that.show = true;
-      
+
       // 这里要重绘柱形图--------------------柱形图组件传参或者用方法
     }, 1000);
     // this._drawRainMap();
 
-   
     // this._getJson()
     this._drawCityMap();
     that.allbasearea = 0;
@@ -710,29 +714,87 @@ export default {
     let top = this.entrepotArr.length * 30;
     // this.baseScroll = new roll.Roll("base-info", "base-ul1", "", -top);
     this.baseScroll2 = new roll.Roll("base-info2", "base-ul2", "", -120);
-    
+
     this.getPieNew();
     this.getPieNew2();
     this.getSite();
     setTimeout(function() {
-     
-       that._drawLine(); //左侧折线图
+      that._drawLine(); //左侧折线图
       // 这里要重绘柱形图--------------------柱形图组件传参或者用方法
     }, 5000);
-    this.getBillboardIndexTotal()
-    this.getWorkOrderByRealTimeList()
+    this.getBillboardIndexTotal();
+    this.getWorkOrderByRealTimeList();
   },
   methods: {
-    getWorkOrderByRealTimeList(){
-      getWorkOrderByRealTime({organId:this.organId}).then(res=>{
-        this.orderList=res.data
-        this.baseScroll3 = new roll.Roll("base-info3", "base-ul3", "", -(this.orderList.length)*18);
-      })
+    getWorkOrderByRealTimeList() {
+      getWorkOrderByRealTime({ organId: this.organId }).then(res => {
+        this.orderList = res.data;
+        this.orderList.forEach((item, i) => {
+          this.orderList[i].executiontime = this.utc2beijing(
+            item.executiontime
+          );
+        });
+        this.baseScroll3 = new roll.Roll(
+          "base-info3",
+          "base-ul3",
+          "",
+          -this.orderList.length * 18
+        );
+      });
     },
-    getBillboardIndexTotal(){
-      getBillboardIndexTotal({organId:this.organId}).then(res=>{
-          this.mapInfo=res.data
-      })
+    utc2beijing(utc_datetime) {
+      // 转为正常的时间格式 年-月-日 时:分:秒
+      var T_pos = utc_datetime.indexOf("T");
+      var Z_pos = utc_datetime.indexOf("Z");
+      var year_month_day = utc_datetime.substr(0, T_pos);
+      var hour_minute_second = utc_datetime.substr(
+        T_pos + 1,
+        Z_pos - T_pos - 1
+      );
+      var new_datetime = year_month_day + " " + hour_minute_second; // 2017-03-31 08:02:06
+
+      // 处理成为时间戳
+      timestamp = new Date(Date.parse(new_datetime));
+      timestamp = timestamp.getTime();
+      timestamp = timestamp / 1000;
+
+      // 增加8个小时，北京时间比utc时间多八个时区
+      var timestamp = timestamp + 8 * 60 * 60;
+      let time = this.format(timestamp);
+      // 时间戳转为时间
+
+      return time; // 2017-03-31 16:02:06
+    },
+    add0(m) {
+      return m < 10 ? "0" + m : m;
+    },
+    format(shijianchuo) {
+      //shijianchuo是整数，否则要parseInt转换
+      var time = new Date(shijianchuo * 1000);
+      var y = time.getFullYear();
+      var m = time.getMonth() + 1;
+      var d = time.getDate();
+      var h = time.getHours();
+      var mm = time.getMinutes();
+      var s = time.getSeconds();
+      return (
+        y +
+        "-" +
+        this.add0(m) +
+        "-" +
+        this.add0(d) +
+        " " +
+        this.add0(h) +
+        ":" +
+        this.add0(mm) +
+        ":" +
+        this.add0(s)
+      );
+    },
+    getBillboardIndexTotal() {
+      getBillboardIndexTotal({ organId: this.organId }).then(res => {
+        this.mapInfo = res.data;
+      });
     },
     getSite() {
       //麦冬地区
@@ -891,70 +953,75 @@ export default {
             {
               num: obj.air_humidity || "0",
               name: "空气湿度",
-              unit:'%',
+              unit: "%",
               icon: "iconkongqishidu"
             },
             {
               num: obj.air_pressure || "0",
               name: "空气压力",
-              unit:'kpa',
+              unit: "kpa",
               icon: "icondaqiyali"
             },
             {
               num: obj.air_temperature || "0",
               name: "空气温度",
-              unit:'℃',
+              unit: "℃",
               icon: "iconshangpinwenduji"
             },
             {
               num: obj.co2value || "0",
               name: "CO2浓度",
-              unit:'ppm',
+              unit: "ppm",
               icon: "iconeryanghuatan"
             },
             {
               num: obj.ill_intensity || "0",
               name: "光照强度",
-              unit:'Lux',
+              unit: "Lux",
               icon: "icontaiyangfushe"
             },
             {
               num: obj.rainfall || "0",
               name: "降雨量",
-              unit:'mm',
+              unit: "mm",
               icon: "iconjiangyuliang"
             },
             {
               num: obj.soil_ec || "0",
               name: "土壤EC值",
-              unit:'uS/cm',
+              unit: "uS/cm",
               icon: "iconjiangyuliang"
             }, //图标
             {
               num: obj.soil_humidity || "0",
               name: "土壤湿度",
-              unit:'%',
+              unit: "%",
               icon: "iconturangshidu"
             },
             {
               num: obj.soil_ph || "0",
               name: "土壤PH值",
-              unit:'',
+              unit: "",
               icon: "iconsuanjiandu"
             },
             {
               num: obj.soil_temperature || "0",
               name: "土壤温度",
-              unit:'℃',
+              unit: "℃",
               icon: "iconturangwendu"
             },
             {
               num: obj.wind_direction || "0",
               name: "风向",
-              unit:'o',
+              unit: "o",
               icon: "iconfengxiang"
             },
-            { num: obj.wind_speed || "0", name: "风速", unit:'m/s',icon: "iconfengsu2" }
+            {
+              num: obj.wind_speed || "0",
+              name: "风速",
+              unit: "m/s",
+              icon: "iconfengsu2"
+            }
           ];
           datas[i].warpperData = arr;
         }
@@ -1000,26 +1067,26 @@ export default {
         this.mapRemarks = res.data;
         let that = this;
         for (let i = 0; i < that.mapRemarks.length; i++) {
-          if(that.mapRemarks[i].mapAddr){
+          if (that.mapRemarks[i].mapAddr) {
             let remark = that.mapRemarks[i].mapAddr;
-          let remarkJson2 = eval("(" + remark + ")");
+            let remarkJson2 = eval("(" + remark + ")");
 
-          let lng = remarkJson2.path[0].lng;
-          let lat = remarkJson2.path[0].lat;
-          let marker = new AMap.Marker({
-            position: new AMap.LngLat(lng, lat),
-            offset: new AMap.Pixel(-10, -10),
-            icon: that.mapIcon
-          });
-          that.markers.push(marker);
-          that.map.add(marker);
-          marker.on("click", function(e) {
-            console.log('点击了农户~~~~~~~~~~~~~~~~~~~~~')
-            that.$router.push({
-              name: "company",
-              query: { userOrganId: Number(that.mapRemarks[i].id) }
+            let lng = remarkJson2.path[0].lng;
+            let lat = remarkJson2.path[0].lat;
+            let marker = new AMap.Marker({
+              position: new AMap.LngLat(lng, lat),
+              offset: new AMap.Pixel(-10, -10),
+              icon: that.mapIcon
             });
-          });
+            that.markers.push(marker);
+            that.map.add(marker);
+            marker.on("click", function(e) {
+              console.log("点击了农户~~~~~~~~~~~~~~~~~~~~~");
+              that.$router.push({
+                name: "company",
+                query: { userOrganId: Number(that.mapRemarks[i].id) }
+              });
+            });
           }
         }
       });
@@ -1241,95 +1308,95 @@ export default {
     },
     getPriceBySite(id, name) {
       getPriceBySite({ siteId: id }).then(res => {
-        let arr=[]; 
-        this.SiteArrX=[]
+        let arr = [];
+        this.SiteArrX = [];
         res.data.forEach(item => {
-          arr.push(item.mm_price)     
+          arr.push(item.mm_price);
           this.SiteArrX.push(item.price_date);
         });
         let obj = {
-            name: name,
-            type: "line",
-            smooth: "true",
-            showSymbol: false,      
-            itemStyle: {
-              emphasis: {
-                symbol: "circle",
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: "rgba(0, 0, 0, 0.5)"
-              }
-            },
-            data:arr
-          };
-          this.sietObj.push(obj)
+          name: name,
+          type: "line",
+          smooth: "true",
+          showSymbol: false,
+          itemStyle: {
+            emphasis: {
+              symbol: "circle",
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: "rgba(0, 0, 0, 0.5)"
+            }
+          },
+          data: arr
+        };
+        this.sietObj.push(obj);
       });
     },
     _drawLine() {
       //左侧折线图
-    let siteRainChart = this.$echarts.init(this.$refs.leftLine, null, {
+      let siteRainChart = this.$echarts.init(this.$refs.leftLine, null, {
         devicePixelRatio: 2.5
       });
-      let _this=this
+      let _this = this;
       var option = {
-				title: {
-	            	text: '元',
-	            	textStyle: {
-		                color: '#fff',
-		                fontSize:14
-		            },
-		            x:30,
-					y:5,
-	            },
-				tooltip: {
-					trigger: 'axis',
-			        axisPointer : {
-			            type : 'line'
-			        }
-				},
-				grid:{
-					top:40,
-					left:40,
-					bottom:20,
-					containLabel:true
-				},
-			    xAxis: {
-			        type: 'category',
-			        data: _this.SiteArrX,
-			        axisLabel: {
-			            textStyle: {
-			                color: '#fff'
-			            }
-			        },
-			        axisLine: {
-	                    lineStyle: {
-	                        type: 'solid',
-	                        color: '#fff'
-	                    }
-	                }
-			    },
+        title: {
+          text: "元",
+          textStyle: {
+            color: "#fff",
+            fontSize: 14
+          },
+          x: 30,
+          y: 5
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "line"
+          }
+        },
+        grid: {
+          top: 40,
+          left: 40,
+          bottom: 20,
+          containLabel: true
+        },
+        xAxis: {
+          type: "category",
+          data: _this.SiteArrX,
+          axisLabel: {
+            textStyle: {
+              color: "#fff"
+            }
+          },
+          axisLine: {
+            lineStyle: {
+              type: "solid",
+              color: "#fff"
+            }
+          }
+        },
 
-			    yAxis: {
-					minInterval:1,
-					type: 'value',
-					axisLabel: {
-						textStyle: {
-							color: '#fff'
-						}
-					},
-					splitLine: {
-						show: false
-					},
-					axisLine: {
-						lineStyle: {
-							type: 'solid',
-							color: '#fff'
-						}
-					}
-				},
-			    series:_this.sietObj
-			};
- 
+        yAxis: {
+          minInterval: 1,
+          type: "value",
+          axisLabel: {
+            textStyle: {
+              color: "#fff"
+            }
+          },
+          splitLine: {
+            show: false
+          },
+          axisLine: {
+            lineStyle: {
+              type: "solid",
+              color: "#fff"
+            }
+          }
+        },
+        series: _this.sietObj
+      };
+
       option.legend = {
         left: "right",
         textStyle: {
@@ -1338,7 +1405,7 @@ export default {
       };
       // 麦冬价格中新增地区
       // option.series.push(_this.sietObj);
-     siteRainChart.setOption(option);
+      siteRainChart.setOption(option);
     },
     _drawRainMap() {
       let rainChart = this.$echarts.init(this.$refs.rainMap, null, {
@@ -1756,8 +1823,6 @@ export default {
 </style>
 <style lang="stylus" scoped>
 @media screen and (min-width: 1550px) {
-
-
   .monitor-message {
     width: 97px !important;
   }
@@ -1768,7 +1833,6 @@ export default {
 }
 
 @media screen and (max-width: 1550px) {
-
   .monitor-message {
     width: 97px !important;
   }
@@ -2411,7 +2475,7 @@ export default {
   position: absolute;
   bottom: 15px;
   right: 15px;
-  width: 30%;
+  width: 46%;
   z-index: 1111;
   height: 100px;
   background: rgba(255, 255, 255, 0.2);
