@@ -79,7 +79,7 @@
                 <span>有保险农户：13</span>
               </div>
             </div>-->
-            <div class="map-footer-box display-flex align-items-center justify-content-flex-center">
+            <div class="map-footer-box">
               <div :class="{'active':btnActive==1}" @click="changeMapData2">农户</div>
               <span class="btn-margin"></span>
               <div :class="{'active':btnActive==2}" @click="changeMapData1">基地</div>
@@ -94,21 +94,21 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                 style="position:relative;list-style:none;background:rgba(0,0,0,0.5);font-size:13px;padding:5px"
               >
                 <li class="base-item display-flex justify-content-flex-center">
-                  <span style="text-align: left;display:inline-block; width: 30%;color: #fff;">操作时间</span>
+                  <span style="text-align: left;display:inline-block; width: 26%;color: #fff;">操作时间</span>
                   <span style="color: #fff;display:inline-block; width:20%;text-align: center;">操作人</span>
                   <span
                     style="text-align: center;display:inline-block; width: 20%;color: #fff;"
                   >农事操作</span>
                   <span
-                    style="color: #fff;display:inline-block; width: 30%;text-align: center;"
+                    style="color: #fff;display:inline-block; width: 34%;text-align: center;"
                   >所属基地</span>
                 </li>
               </ul>
               <div class="base-info" id="base-info3" style="overflow:hidden">
                 <ul id="base-ul3" style="position:relative; top:0px;list-style:none;">
-                  <li class="base-item" v-for="item in orderList" :key="item">
+                  <li class="base-item" v-for="(item,m) in orderList" :key="m+'c'">
                     <span
-                      style="text-align: left;display:inline-block; width: 30% !important;color: #fff;padding-left:5px"
+                      style="text-align: left;display:inline-block; width: 26% !important;color: #fff;padding-left:5px"
                     >{{item.executiontime}}</span>
                     <span
                       style="text-align: center;display:inline-block; width: 20%;color: #fff"
@@ -117,7 +117,9 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                       style="color: #0AFBE2;display:inline-block; width: 20%;text-align: center;"
                     >{{item.farmWorkItemName}}</span>
                     <span
-                      style="color: #fff;display:inline-block; width: 30%;text-align: center;"
+                      style="color: #fff;display:inline-block; width: 34%;text-align: center;white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;"
                     >{{item.baseName}}</span>
                   </li>
                 </ul>
@@ -149,7 +151,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
               </ul>
               <div class="base-info" id="base-info">
                 <ul id="base-ul1" style="position:relative; top:0px">
-                  <li class="base-item" v-for="item in entrepotArr" :key="item">
+                  <li class="base-item" v-for="(item,v) in entrepotArr" :key="v+'v'">
                     <span
                       style="text-align: left;display:inline-block; width: 17% !important;color: #0AFBE2"
                     >{{item[0]}}</span>
@@ -206,7 +208,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                     <div class="color-fff">{{item.name}}</div>
                   </div>
                   <div class="display-flex justify-content-flex-justify">
-                    <div v-for="(li,n) in item.warpperData" :key="n" style="text-align:center">
+                    <div v-for="(li,n) in item.warpperData" :key="n+'a'" style="text-align:center">
                       <div class="color-main" style="font-weight:bold;font-size:18px">
                         {{li.num}}
                         <span style="font-size:12px">{{li.unit}}</span>
@@ -239,7 +241,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
           </div>
           <div>
             <div class="display-flex justify-content-flex-justify right-box-padding">
-              <div v-for="(item,n) in rightList" :key="n" style="text-align:center">
+              <div v-for="(item,n) in rightList" :key="n+'b'" style="text-align:center">
                 <div class="color-main" style="font-weight:bold;font-size:18px">{{item.num}}</div>
                 <img style="margin-bottom:5px" src="../assets/new/pic3.png" alt />
                 <div style="color:#fff;margin-top:10px;">{{item.name}}</div>
@@ -256,7 +258,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
           </div>
           <div>
             <div class="display-flex justify-content-flex-justify right-box-padding">
-              <div v-for="(item,n) in InsuranceList" :key="n" style="text-align:center">
+              <div v-for="(item,n) in InsuranceList" :key="n+'n'" style="text-align:center">
                 <div
                   class="color-main right-bx-bg"
                   style="font-weight:bold;font-size:18px"
@@ -340,7 +342,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                         <li class="base-item">
                           <span
                             style="text-align: left;display:inline-block; width: 100px;color: #0AFBE2"
-                          >2020/6/30</span>
+                          >2020/7/23</span>
                           <span
                             style="color: #0AFBE2;display:inline-block; width: 150px;text-align: center;"
                           >绵阳市三台县芦溪镇</span>
@@ -348,7 +350,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                         <li class="base-item">
                           <span
                             style="text-align: left;display:inline-block; width: 100px;color: #0AFBE2"
-                          >2020/6/29</span>
+                          >2020/7/24</span>
                           <span
                             style="color: #0AFBE2;display:inline-block; width: 150px;text-align: center;"
                           >绵阳市三台县胜峰村</span>
@@ -356,7 +358,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                         <li class="base-item">
                           <span
                             style="text-align: left;display:inline-block; width: 100px;color: #0AFBE2"
-                          >2020/6/28</span>
+                          >2020/7/25</span>
                           <span
                             style="color: #0AFBE2;display:inline-block; width: 150px;text-align: center;"
                           >绵阳市三台县中新镇</span>
@@ -364,7 +366,7 @@ color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
                         <li class="base-item">
                           <span
                             style="text-align: left;display:inline-block; width: 100px;color: #0AFBE2"
-                          >2020/6/27</span>
+                          >2020/7/26</span>
                           <span
                             style="color: #0AFBE2;display:inline-block; width: 150px;text-align: center;"
                           >绵阳市三台县岳家湾</span>
@@ -606,7 +608,8 @@ export default {
       siteRainChart: null,
       sietObj: [],
       mapInfo: {},
-      orderList: []
+      orderList: [],
+      cluster:null
     };
   },
   created() {
@@ -681,26 +684,32 @@ export default {
         that.baseLength = 0;
 
         setTimeout(function() {
+          console.info('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
           for (let i = 0; i < that.mapRemarks.length; i++) {
             let remark = that.mapRemarks[i].mapAddr;
             let remarkJson2 = eval("(" + remark + ")");
 
             let lng = remarkJson2.path[0].lng;
             let lat = remarkJson2.path[0].lat;
+            console.info('pppppppppppppppp')
             let marker = new AMap.Marker({
               position: new AMap.LngLat(lng, lat),
               offset: new AMap.Pixel(-10, -10),
-              icon: that.mapIcon
+               content: '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>'
             });
             that.markers.push(marker);
             that.map.add(marker);
+            that.addCluster()
             marker.on("click", function(e) {
               that.$router.push({
                 name: "base",
                 query: { baseId: that.mapRemarks[i].id }
               });
             });
+            //  that.addCluster(1)
           }
+          console.info('??????')
+         
         }, 1500);
       });
     });
@@ -724,8 +733,22 @@ export default {
     }, 5000);
     this.getBillboardIndexTotal();
     this.getWorkOrderByRealTimeList();
+    // this.addCluster(1)
   },
   methods: {
+     addCluster() {
+        if (this.cluster) {
+            this.cluster.setMap(null);
+        }
+       
+        let _this=this
+    
+            this.cluster = new AMap.MarkerClusterer(_this.map,_this. markers, {
+                gridSize: 80,
+                renderClusterMarker: _this._renderClusterMarker
+            });
+      
+    },
     getWorkOrderByRealTimeList() {
       getWorkOrderByRealTime({ organId: this.organId }).then(res => {
         this.orderList = res.data;
@@ -1045,10 +1068,11 @@ export default {
           let marker = new AMap.Marker({
             position: new AMap.LngLat(lng, lat),
             offset: new AMap.Pixel(-10, -10),
-            icon: that.mapIcon
+            content: '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>',
           });
           that.markers.push(marker);
           that.map.add(marker);
+          that.addCluster()
           marker.on("click", function(e) {
             that.$router.push({
               name: "base",
@@ -1076,10 +1100,11 @@ export default {
             let marker = new AMap.Marker({
               position: new AMap.LngLat(lng, lat),
               offset: new AMap.Pixel(-10, -10),
-              icon: that.mapIcon
+              content: '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>',
             });
             that.markers.push(marker);
             that.map.add(marker);
+            that.addCluster()
             marker.on("click", function(e) {
               console.log("点击了农户~~~~~~~~~~~~~~~~~~~~~");
               that.$router.push({
@@ -1441,18 +1466,42 @@ export default {
       });
       rainChart.setOption(option);
     },
+     _renderClusterMarker(context) {
+           var count = this.markers.length;
+        var factor = Math.pow(context.count / count, 1 / 18);
+        var div = document.createElement('div');
+        var Hue = 180 - factor * 180;
+        var bgColor = 'hsla(' + Hue + ',100%,50%,0.7)';
+        var fontColor = 'hsla(' + Hue + ',100%,20%,1)';
+        var borderColor = 'hsla(' + Hue + ',100%,40%,1)';
+        var shadowColor = 'hsla(' + Hue + ',100%,50%,1)';
+        div.style.backgroundColor = bgColor;
+        var size = Math.round(30 + Math.pow(context.count / count, 1 / 5) * 20);
+        div.style.width = div.style.height = size + 'px';
+        div.style.border = 'solid 1px ' + borderColor;
+        div.style.borderRadius = size / 2 + 'px';
+        div.style.boxShadow = '0 0 1px ' + shadowColor;
+        div.innerHTML = context.count;
+        div.style.lineHeight = size + 'px';
+        div.style.color = fontColor;
+        div.style.fontSize = '14px';
+        div.style.textAlign = 'center';
+        context.marker.setOffset(new AMap.Pixel(-size / 2, -size / 2));
+        context.marker.setContent(div)
+    },
     _drawCityMap() {
       //  this.$refs.mapChart.style.height = "520px";
       let that = this;
       MapLoader().then(AMap => {
         that.map = new AMap.Map(this.$refs.mapChart, {
+           resizeEnable: true,
           center: [105.013664, 31.206397],
           zooms: [10, 18]
           // layers:[googleLayer,roadNetLayer,layer], //设置图层
           // viewMode:'3D',
         });
 
-        AMap.plugin("AMap.DistrictSearch", function() {
+        AMap.plugin(["AMap.DistrictSearch","AMap.MarkerClusterer"], function() {
           var district = new AMap.DistrictSearch({
             extensions: "all",
             subdistrict: 0
@@ -1495,6 +1544,22 @@ export default {
               that.map.setFitView(polygons);
             }
           });
+          // 聚合点
+          console.info('tag')
+           if (that.cluster) {
+            that.cluster.setMap(null);
+           }else{
+  that.cluster = new AMap.MarkerClusterer(that.map,that.markers, {
+                gridSize: 80,
+                renderClusterMarker: that._renderClusterMarker
+            });
+           }
+        
+    console.info('that.cluster',that.cluster)
+      
+    
+           
+        
           // var bounds = that.map.getBounds();
           // that.map.setLimitBounds(bounds);
           that.map.on("complete", function() {
@@ -2300,8 +2365,8 @@ export default {
 
 .map-footer-box {
   position: absolute;
-  bottom: 30px;
-  width: 100%;
+  top: 30%;
+  left: 5%;
   z-index: 111;
   color: #fff;
 
@@ -2474,8 +2539,8 @@ export default {
 .map-order-box {
   position: absolute;
   bottom: 15px;
-  right: 15px;
-  width: 46%;
+  left: 27%;
+  width: 55%;
   z-index: 1111;
   height: 100px;
   background: rgba(255, 255, 255, 0.2);
