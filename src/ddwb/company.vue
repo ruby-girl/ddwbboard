@@ -114,7 +114,7 @@
                   <div class="display-flex justify-content-flex-justify"><span>光照强度</span><span class="color-yellow">1147Lux</span></div>
                   <div class="display-flex justify-content-flex-justify"><span>风速</span><span class="color-yellow">30m/s</span></div>
                   <div class="display-flex justify-content-flex-justify"><span>风向</span><span class="color-yellow">25°</span></div>
-                  <div class="mould-small-txt">信息来源：智能环境检测基站</div>
+                  <div class="mould-small-txt">信息来源：智能环境监测基站</div>
                   <div class="mould-small-txt">更新时间：{{nowDate}}</div>
             </div>
           </div>
@@ -300,7 +300,7 @@
         </div>
       </div>
     </div>
-    <!-- <Foot style="margin:0px;"/> -->
+    <Footer />
   </div>
 </template>
 <script>
@@ -310,7 +310,7 @@ import MapLoader from "@/utils/loadMap.js";
 import polygonal from "@/components/polygonal/polygonal";
 import echartslLine from "@/components/echartslLine/echartslLine";
 import circleProgress from "@/components/circle-progress";
-import Foot from "@/components/layouts/GlobalFooter.vue";
+import Footer from "@/components/layouts/Footer";
 import chartsType from "../assets/js/chartsType.js";
 import roll from "../assets/js/roll.js";
 import axios from "axios";
@@ -345,7 +345,7 @@ export default {
     baseMap,
     polygonal,
     echartslLine,
-    Foot,
+    Footer,
     circleProgress
   },
   data() {

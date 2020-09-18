@@ -400,7 +400,7 @@ text-overflow:ellipsis;"
         </div>
       </div>
     </div>
-    <!-- <Foot style="margin:0px;"/> -->
+    <Footer/>
   </div>
 </template>
 <script>
@@ -409,8 +409,7 @@ import baseMap from "@/components/baseMap/baseMap";
 import MapLoader from "@/utils/loadMap.js";
 
 import echartslLine from "@/components/echartslLine/echartslLine";
-
-import Foot from "@/components/layouts/GlobalFooter.vue";
+import Footer from "@/components/layouts/Footer";
 import chartsType from "../assets/js/chartsType.js";
 import roll from "../assets/js/roll.js";
 import axios from "axios";
@@ -438,7 +437,7 @@ export default {
     headers,
     baseMap,
     echartslLine,
-    Foot
+    Footer
   },
   data() {
     return {
@@ -683,15 +682,13 @@ export default {
         that.baseinfo = [];
         that.baseLength = 0;
 
-        setTimeout(function() {
-          console.info('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        setTimeout(function() {   
           for (let i = 0; i < that.mapRemarks.length; i++) {
             let remark = that.mapRemarks[i].mapAddr;
             let remarkJson2 = eval("(" + remark + ")");
 
             let lng = remarkJson2.path[0].lng;
             let lat = remarkJson2.path[0].lat;
-            console.info('pppppppppppppppp')
             let marker = new AMap.Marker({
               position: new AMap.LngLat(lng, lat),
               offset: new AMap.Pixel(-10, -10),
@@ -1106,7 +1103,6 @@ export default {
             that.map.add(marker);
             that.addCluster()
             marker.on("click", function(e) {
-              console.log("点击了农户~~~~~~~~~~~~~~~~~~~~~");
               that.$router.push({
                 name: "company",
                 query: { userOrganId: Number(that.mapRemarks[i].id) }
@@ -1468,7 +1464,7 @@ export default {
     },
      _renderClusterMarker(context) {
            var count = this.markers.length;
-        var factor = Math.pow(context.count / count, 1 / 18);
+        var factor = Math.pow(context.count / count, 1 / 10);
         var div = document.createElement('div');
         var Hue = 180 - factor * 180;
         var bgColor = 'hsla(' + Hue + ',100%,50%,0.7)';
