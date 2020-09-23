@@ -682,7 +682,7 @@ export default {
         that.baseinfo = [];
         that.baseLength = 0;
 
-        setTimeout(function() {   
+        setTimeout(function() {
           for (let i = 0; i < that.mapRemarks.length; i++) {
             let remark = that.mapRemarks[i].mapAddr;
             let remarkJson2 = eval("(" + remark + ")");
@@ -706,7 +706,7 @@ export default {
             //  that.addCluster(1)
           }
           console.info('??????')
-         
+
         }, 1500);
       });
     });
@@ -737,14 +737,39 @@ export default {
         if (this.cluster) {
             this.cluster.setMap(null);
         }
-       
+
         let _this=this
-    
+
+       // var sts = [{
+       //   url: "https://a.amap.com/jsapi_demos/static/images/blue.png",
+       //   size: new AMap.Size(32, 32),
+       //   offset: new AMap.Pixel(-16, -16)
+       // }, {
+       //   url: "https://a.amap.com/jsapi_demos/static/images/green.png",
+       //   size: new AMap.Size(32, 32),
+       //   offset: new AMap.Pixel(-16, -16)
+       // }, {
+       //   url: "https://a.amap.com/jsapi_demos/static/images/orange.png",
+       //   size: new AMap.Size(36, 36),
+       //   offset: new AMap.Pixel(-18, -18)
+       // }, {
+       //   url: "https://a.amap.com/jsapi_demos/static/images/red.png",
+       //   size: new AMap.Size(48, 48),
+       //   offset: new AMap.Pixel(-24, -24)
+       // }, {
+       //   url: "https://a.amap.com/jsapi_demos/static/images/darkRed.png",
+       //   size: new AMap.Size(48, 48),
+       //   offset: new AMap.Pixel(-24, -24)
+       // }];
+
+
+
             this.cluster = new AMap.MarkerClusterer(_this.map,_this. markers, {
+              // styles: sts,
                 gridSize: 80,
                 renderClusterMarker: _this._renderClusterMarker
             });
-      
+
     },
     getWorkOrderByRealTimeList() {
       getWorkOrderByRealTime({ organId: this.organId }).then(res => {
@@ -1067,6 +1092,10 @@ export default {
             offset: new AMap.Pixel(-10, -10),
             content: '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>',
           });
+          console.log(lng, lat)
+
+
+
           that.markers.push(marker);
           that.map.add(marker);
           that.addCluster()
@@ -1087,7 +1116,10 @@ export default {
       getFarmerMapInfo({ organId: this.organId }).then(res => {
         this.mapRemarks = res.data;
         let that = this;
+        let points=[];
         for (let i = 0; i < that.mapRemarks.length; i++) {
+
+
           if (that.mapRemarks[i].mapAddr) {
             let remark = that.mapRemarks[i].mapAddr;
             let remarkJson2 = eval("(" + remark + ")");
@@ -1099,6 +1131,14 @@ export default {
               offset: new AMap.Pixel(-10, -10),
               content: '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>',
             });
+
+            // let obj=[lng, lat]
+            // points.push([lng, lat])
+            //
+            // console.log(JSON.stringify(points))
+            //
+
+
             that.markers.push(marker);
             that.map.add(marker);
             that.addCluster()
@@ -1114,6 +1154,7 @@ export default {
     },
     getMap() {
       getBaseMapInfo({ organId: this.organId }).then(res => {
+
         this.mapRemarks = res.data;
         this.baseList = res.data; //这里处理监控基地列表
         this.getAllMonitors(); //获取所有监控视频
@@ -1128,7 +1169,7 @@ export default {
     getAnnualFertilizer() {
       //获取年度有机肥
       getAnnualFertilizer({ organId: this.organId }).then(res => {
-        let Xdata = [2017, 2018, 2019, 2020];
+        let Xdata = [2016,2017, 2018, 2019, 2020];
         // let data1 = arr.map(item => {
         //   //有机
         //   return item["organicFertilizer"];
@@ -1151,9 +1192,9 @@ export default {
     _drawPolygonal(polygonalChart, tdataAxis) {
       var option = chartsType.charts(
         tdataAxis,
-        [8500, 8400, 8300, 8200],
+        [9000,8500, 8900, 8300, 8100],
         "用量（亩/kg）",
-        "bar",
+        "line",
         "有机肥",
         "#14E6C4",
         "x"
@@ -1168,8 +1209,8 @@ export default {
       option.series.push({
         name: "复合肥",
         barWidth: 20,
-        data: [3900, 3800, 3600, 3500],
-        type: "bar",
+        data: [4200,3900, 4000, 3800, 3500],
+        type: "line",
         itemStyle: {
           emphasis: {
             shadowBlur: 10,
@@ -1184,8 +1225,8 @@ export default {
       option.series.push({
         name: "叶面肥",
         barWidth: 20,
-        data: [10, 10, 10, 10],
-        type: "bar",
+        data: [35,31, 22, 20, 18],
+        type: "line",
         itemStyle: {
           emphasis: {
             shadowBlur: 10,
@@ -1254,9 +1295,13 @@ export default {
               };
 
               this.addresss[i].children.push(obj);
+
+
+
             }
           });
         });
+
       });
     },
     _dramLoansChart(pieData) {
@@ -1471,19 +1516,24 @@ export default {
         var fontColor = 'hsla(' + Hue + ',100%,20%,1)';
         var borderColor = 'hsla(' + Hue + ',100%,40%,1)';
         var shadowColor = 'hsla(' + Hue + ',100%,50%,1)';
-        div.style.backgroundColor = bgColor;
+        // div.style.backgroundColor = bgColor;
+       div.style.backgroundColor = '#fce700';
         var size = Math.round(30 + Math.pow(context.count / count, 1 / 5) * 20);
-        div.style.width = div.style.height = size + 'px';
-        div.style.border = 'solid 1px ' + borderColor;
+        // div.style.width = div.style.height = size + 'px';
+       div.style.width = div.style.height = '40px';
+        // div.style.border = 'solid 1px ' + borderColor;
+       div.style.border = 'solid 1px #fce700';
         div.style.borderRadius = size / 2 + 'px';
         div.style.boxShadow = '0 0 1px ' + shadowColor;
         div.innerHTML = context.count;
-        div.style.lineHeight = size + 'px';
+        // div.style.lineHeight = size + 'px';
+       div.style.lineHeight = '40px';
         div.style.color = fontColor;
         div.style.fontSize = '14px';
         div.style.textAlign = 'center';
         context.marker.setOffset(new AMap.Pixel(-size / 2, -size / 2));
         context.marker.setContent(div)
+
     },
     _drawCityMap() {
       //  this.$refs.mapChart.style.height = "520px";
@@ -1541,25 +1591,24 @@ export default {
             }
           });
           // 聚合点
-          console.info('tag')
+
            if (that.cluster) {
-            that.cluster.setMap(null);
+              that.cluster.setMap(null);
            }else{
-  that.cluster = new AMap.MarkerClusterer(that.map,that.markers, {
+
+            that.cluster = new AMap.MarkerClusterer(that.map,that.markers, {
+
                 gridSize: 80,
                 renderClusterMarker: that._renderClusterMarker
             });
            }
-        
-    console.info('that.cluster',that.cluster)
-      
-    
-           
-        
+
+
+
           // var bounds = that.map.getBounds();
           // that.map.setLimitBounds(bounds);
           that.map.on("complete", function() {
-            console.log("地图加载完成！");
+
             var myEvent = new CustomEvent("done1", {});
             if (window.dispatchEvent) {
               window.dispatchEvent(myEvent);
@@ -1858,9 +1907,50 @@ export default {
           "</span></div>"
       );
     },
+    setInfoWindow(baseId){
+      // let baseInfo=this.plantInfo.baseInfo;
+
+      let baseInfo=this.mapRemarks
+
+
+
+      let that=this;
+
+      baseInfo.map(item=>{
+        if(item.id==baseId){
+          let baseName=item.name
+
+
+          let remark = item.mapAddr;
+          let remarkJson2 = eval("(" + remark + ")");
+
+          let lng = remarkJson2.path[0].lng;
+          let lat = remarkJson2.path[0].lat;
+          let infoWindow = new AMap.InfoWindow({
+            position: new AMap.LngLat(lng, lat),
+            offset: new AMap.Pixel(-0, -10),
+            content: '<div style="color:#c3c3c3">'+baseName+'</div>'
+          })
+          infoWindow.open(this.map);
+
+          // let map_addr=JSON.parse(item.mapAddr);
+          // let lnglat=[map_addr.path[0].lng,map_addr.path[0].lat]
+          // var infoWindow = new AMap.InfoWindow({
+          //   position: lnglat,
+          //   offset: new AMap.Pixel(-3, -10),
+          //   content: '<div style="color:#c3c3c3">'+baseName+'</div>'
+          // });
+          // infoWindow.open(this.map);
+        }
+      })
+
+    },
     selectAddress(datas, selectedData) {
+       console.log(datas[0]);
+
       if (datas.length != 0) {
         this.address = datas[1];
+        this.setInfoWindow(datas[0])
         this.$nextTick(() => {
           this.player = new EZUIPlayer("myVideo");
         });

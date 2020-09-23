@@ -1,0 +1,27 @@
+#appLods,#appLods2{
+    position: fixed;
+    top:50%;
+    left:50%;
+    margin-top:-7px;
+    margin-left:-150px;
+}
+.version-warp{
+   position: relative;
+    width:300px;
+    height:15px;
+    border-radius: 15px;
+    border:solid 1px #cccccc;
+    font-size:12px;
+    margin-bottom:20px;
+    line-height: 15px;
+}
+.version{
+    text-align: right;
+    background-color:#0e84c5;
+    position: absolute;
+    left:0;
+    top:0;
+    height:15px;
+    color:#fff;
+    border-radius: 15px;
+}
