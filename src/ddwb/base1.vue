@@ -43,7 +43,7 @@
             </div>
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">工单数量</span>
-              <span class="color-fff">{{baseinfoRes.orderlCount||'0'}}个</span>
+              <span class="color-fff">{{progress.totalCount||'0'}}个</span>
             </div>
             <!-- 基地图片 -->
             <div class="display-flex">
@@ -123,15 +123,15 @@
             </div>
             <!-- 基地环境数据 -->
             <div class="mould-box">
-                <div class="display-flex justify-content-flex-justify"><span>大气温度</span><span class="color-yellow">24℃</span></div>
-                 <div class="display-flex justify-content-flex-justify"><span>大气湿度</span><span class="color-yellow">46%</span></div>
-                 <div class="display-flex justify-content-flex-justify"><span>CO2浓度</span><span class="color-yellow">503ppm</span></div>
-                  <div class="display-flex justify-content-flex-justify"><span>大气压强</span><span class="color-yellow">101kPa</span></div>
-                  <div class="display-flex justify-content-flex-justify"><span>光照强度</span><span class="color-yellow">1147Lux</span></div>
-                  <div class="display-flex justify-content-flex-justify"><span>风速</span><span class="color-yellow">30m/s</span></div>
-                  <div class="display-flex justify-content-flex-justify"><span>风向</span><span class="color-yellow">25°</span></div>
-                  <div class="mould-small-txt">信息来源：智能环境监测基站</div>
-                  <div class="mould-small-txt">更新时间：{{nowDate}}</div>
+                <div class="display-flex justify-content-flex-justify"><span>大气温度</span><span class="color-yellow">{{lastRecord.airTemperature}}</span></div>
+                 <div class="display-flex justify-content-flex-justify"><span>大气湿度</span><span class="color-yellow">{{lastRecord.airHumidity}}</span></div>
+                 <div class="display-flex justify-content-flex-justify"><span>CO2浓度</span><span class="color-yellow">{{lastRecord.co2value}}</span></div>
+                  <div class="display-flex justify-content-flex-justify"><span>大气压强</span><span class="color-yellow">{{lastRecord.airPressure}}</span></div>
+                  <div class="display-flex justify-content-flex-justify"><span>光照强度</span><span class="color-yellow">{{lastRecord.illIntensity}}</span></div>
+                  <div class="display-flex justify-content-flex-justify"><span>风速</span><span class="color-yellow">{{lastRecord.windSpeed}}</span></div>
+                  <div class="display-flex justify-content-flex-justify"><span>风向</span><span class="color-yellow">{{lastRecord.windDirection}}</span></div>
+                 <div class="mould-small-txt">信息来源：{{lastRecord.source}}</div>
+                  <div class="mould-small-txt">更新时间：{{lastRecord.monitorTime}}</div>
             </div>
           </div>
         </div>
@@ -317,6 +317,7 @@ import {
   co2value,
   humidity,
   illIntensity,
+   getLastRecord,
   pressure,
   pm25value,
   rainfall,
@@ -518,7 +519,8 @@ export default {
       progress:{},
       mapInfo:{},
       baseIdSet:'',
-      landList:[]
+      landList:[],
+      lastRecord:{}
     };
   },
   created() {
@@ -619,6 +621,7 @@ export default {
     this.getBaseLoanTj();
     this.detection(1)
     this.getBaseMapInfoTotalTj()
+    this.getLastRecord()
     setTimeout(function(){
        that.totalTj();
     },1000)
@@ -640,6 +643,26 @@ export default {
        
         this.mapInfo=res.data
        
+      })
+    },
+    getLastRecord(){
+      getLastRecord({ baseId: 23 }).then(res=>{
+        
+         if(res.data.source=='公共数据库'){
+           res.data.airTemperature=res.data.airTemperature+'℃'
+            res.data.co2value='无'
+            res.data.airPressure='无'
+            res.data.illIntensity='无'       
+         }else{
+           res.data.airTemperature=res.data.airTemperature+'℃'
+           res.data.airHumidity=res.data.airHumidity+'%'
+            res.data.co2value=res.data.co2value+'ppm'
+            res.data.airPressure=res.data.airPressure+'kPa'
+            res.data.illIntensity=res.data.illIntensity+'Lux'
+            res.data.windSpeed=res.data.windSpeed+'m/s'
+            res.data.windDirection=res.data.windDirection+'°'  
+         }
+          this.lastRecord=res.data
       })
     },
     getFarmWorkProgress(){//执行进度

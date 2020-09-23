@@ -86,9 +86,11 @@ const soilHumidity = (params)=>getAction("/api/billboard/base/soil/humidity",par
 const soilPH = (params)=>getAction("/api/billboard/base/soil/ph",params);
 //看板第二页基地下的土壤环境-温度24小时内数据
 const soilTemperature = (params)=>getAction("/api/billboard/base/soil/temperature",params);
+// 大气温度
+const getLastRecord = (params)=>getAction("/api/kanban/base/getLastRecord",params);
+//
 
-
-
+const getLandLastRecord = (params)=>getAction("/api/kanban/landparcel/getLastRecord",params);
 // 看板第三页基地下的土壤环境-电导率24小时内数据
 const usersoilEc = (params)=>getAction("/api/billboard/user/soil/ec",params);
 // 看板第三页基地下的土壤环境-湿度24小时内数据
@@ -171,7 +173,7 @@ export {
     pm25value,
     rainfall,
     temperature,
-
+    getLastRecord,
     userco2value,
     userhumidity,
     userillIntensity,
@@ -179,7 +181,7 @@ export {
     userpm25value,
     userrainfall,
     usertemperature,
-
+    getLandLastRecord,
     soilEc,
     soilHumidity,
     soilPH,
