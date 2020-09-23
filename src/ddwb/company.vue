@@ -107,15 +107,15 @@
             </div>
                <!-- 基地环境数据 -->
             <div class="mould-box">
-                <div class="display-flex justify-content-flex-justify"><span>大气温度</span><span class="color-yellow">24℃</span></div>
-                 <div class="display-flex justify-content-flex-justify"><span>大气湿度</span><span class="color-yellow">46%</span></div>
-                 <div class="display-flex justify-content-flex-justify"><span>CO2浓度</span><span class="color-yellow">503ppm</span></div>
-                  <div class="display-flex justify-content-flex-justify"><span>大气压强</span><span class="color-yellow">101kPa</span></div>
-                  <div class="display-flex justify-content-flex-justify"><span>光照强度</span><span class="color-yellow">1147Lux</span></div>
-                  <div class="display-flex justify-content-flex-justify"><span>风速</span><span class="color-yellow">30m/s</span></div>
-                  <div class="display-flex justify-content-flex-justify"><span>风向</span><span class="color-yellow">25°</span></div>
-                  <div class="mould-small-txt">信息来源：智能环境监测基站</div>
-                  <div class="mould-small-txt">更新时间：{{nowDate}}</div>
+                <div class="display-flex justify-content-flex-justify"><span>大气温度</span><span class="color-yellow">{{LandLastRecord.airTemperature}}</span></div>
+                 <div class="display-flex justify-content-flex-justify"><span>大气湿度</span><span class="color-yellow">{{LandLastRecord.airHumidity}}</span></div>
+                 <div class="display-flex justify-content-flex-justify"><span>CO2浓度</span><span class="color-yellow">{{LandLastRecord.co2value}}</span></div>
+                  <div class="display-flex justify-content-flex-justify"><span>大气压强</span><span class="color-yellow">{{LandLastRecord.airPressure}}</span></div>
+                  <div class="display-flex justify-content-flex-justify"><span>光照强度</span><span class="color-yellow">{{LandLastRecord.illIntensity}}</span></div>
+                  <div class="display-flex justify-content-flex-justify"><span>风速</span><span class="color-yellow">{{LandLastRecord.windSpeed}}</span></div>
+                  <div class="display-flex justify-content-flex-justify"><span>风向</span><span class="color-yellow">{{LandLastRecord.windDirection}}</span></div>
+                  <div class="mould-small-txt">信息来源：{{LandLastRecord.source}}</div>
+                  <div class="mould-small-txt">更新时间：{{LandLastRecord.monitorTime}}</div>
             </div>
           </div>
         </div>
@@ -320,6 +320,7 @@ import {
   userhumidity,
   userillIntensity,
   userpressure,
+  getLandLastRecord,
   userpm25value,
   rainfall,
   usertemperature,
@@ -516,7 +517,8 @@ export default {
       financeScroll: {},
       userInfo:{},
       mapInfo:{},
-      userOrganIdSet:''
+      userOrganIdSet:'',
+      LandLastRecord:{}
     };
   },
   created() {
@@ -640,6 +642,25 @@ export default {
     
   },
   methods: {
+    getLandLastRecord(id){//气象
+      getLandLastRecord({landparcelId:id}).then(res=>{
+          if(res.data.source=='公共数据库'){
+           res.data.airTemperature=res.data.airTemperature+'℃'
+            res.data.co2value='无'
+            res.data.airPressure='无'
+            res.data.illIntensity='无'       
+         }else{
+           res.data.airTemperature=res.data.airTemperature+'℃'
+           res.data.airHumidity=res.data.airHumidity+'%'
+            res.data.co2value=res.data.co2value+'ppm'
+            res.data.airPressure=res.data.airPressure+'kPa'
+            res.data.illIntensity=res.data.illIntensity+'Lux'
+            res.data.windSpeed=res.data.windSpeed+'m/s'
+            res.data.windDirection=res.data.windDirection+'°'  
+         }
+          this.LandLastRecord=res.data
+      })
+    },
     getOrganuserMapInfo(){
       getOrganuserMapInfo({ organUserId:this.userOrganIdSet }).then(res=>{
         this.mapInfo=res.data
@@ -933,6 +954,7 @@ export default {
       });
     },
      addBlockOnMap(remarks) {
+       this.getLandLastRecord(remarks[0].id)
       //地块的第一个点增加Masker
        this.saveListMarker=[]
       this.polygons = [];
