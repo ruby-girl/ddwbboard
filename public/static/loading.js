@@ -50,7 +50,7 @@ function clear(){
   NProgress.done();
   let doc=document.getElementById("loadingApp");
   doc.parentNode.removeChild(doc);
-  pageLoading()
+  // pageLoading()
 }
 
 let Interval2=null
@@ -68,7 +68,7 @@ function pageLoading(){
       }else{
         loadNumber++
       }
-
+      console.log(loadNumber)
       pageLoading()
     },500)
   }else{
