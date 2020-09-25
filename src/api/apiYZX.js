@@ -99,7 +99,8 @@ const usersoilHumidity = (params)=>getAction("/api/billboard/user/soil/humidity"
 const usersoilPH = (params)=>getAction("/api/billboard/user/soil/ph",params);
 //看板第三页基地下的土壤环境-温度24小时内数据
 const usersoilTemperature = (params)=>getAction("/api/billboard/user/soil/temperature",params);
-
+//农户种植费用
+const plantingCost = (params)=>getAction("/api/billboardOrganUsers/plantingCost",params);
 
 // /api/billboard/base/getBaseInsuranceTj看板第二页基地的保险
 const getBaseInsuranceTj = (params)=>getAction("/api/billboard/base/getBaseInsuranceTj",params);
@@ -178,6 +179,7 @@ export {
     userhumidity,
     userillIntensity,
     userpressure,
+    plantingCost,
     userpm25value,
     userrainfall,
     usertemperature,

@@ -81,7 +81,7 @@
           <div class="last-title">种植费用</div>
           <div style="height:80%">
             <div class="airs air-temperature" style="height:100%">
-              <polygonal></polygonal>
+              <polygonal :userId="userOrganIdSet"></polygonal>
             </div>
           </div>
         </div>
@@ -605,13 +605,6 @@ export default {
           if (that.baseScroll) {
             clearInterval(that.baseScroll.timer);
           }
-          //滚动距离可以用一条的高度*条数~~~~~~~~~~~~~
-          // that.baseScroll = new roll.Roll(
-          //   "base-info",
-          //   "base-ul1",
-          //   "base-ul2",
-          //   -160
-          // );
         });
       }
       window.addEventListener("done1", function() {
