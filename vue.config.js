@@ -11,7 +11,8 @@ module.exports = {
       '/byapi': {
         // 目标 API 地址
         //target: 'http://192.168.101.64:8089',
-        target: 'http://bysk.scbysk.com/',
+        // target: 'http://bysk.scbysk.com/',
+        target:'http://ddwb.scbysk.com/',
         //target: 'https://bysk.scddwb.com/',
         // 如果要代理 websockets
         ws: false,

@@ -11,7 +11,6 @@ export function postAction(url,parameter) {
 
 //get
 export function getAction(url,parameter) {
-  console.log(parameter);
   return axios({
     url: BASE_PRE+url,
     method: 'get',

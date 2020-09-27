@@ -31,10 +31,8 @@ a:hover {
 .copyright {
   color: #ffffff;
   font-size: 12px;
-  position: fixed;
-  bottom: 5px;
   line-height: 13px;
-  width: 40%;
-  left: 30%;
+  text-align: center;
+  padding-top:15px;
 }
 </style>

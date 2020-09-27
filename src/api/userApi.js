@@ -522,7 +522,6 @@ export function getLotByPrimaryId(parameter){
   })
 }
 export function getFarmerInfoByBaseId(parameter){
-  console.log(parameter)
   return axios({
     url:BASE_PRE+'/person/getFarmerInfoByBaseId',
     method:'get',
@@ -530,7 +529,6 @@ export function getFarmerInfoByBaseId(parameter){
   })
 }
 export function getWalkerListByBaseId(parameter){
-  console.log(parameter)
   return axios({
     url:BASE_PRE+'/person/getWalkerListByBaseId',
     method:'get',
@@ -538,7 +536,6 @@ export function getWalkerListByBaseId(parameter){
   })
 }
 export function getManByBaseId(parameter){
-  console.log(parameter)
   return axios({
     url:BASE_PRE+'/person/getManByBaseId',
     method:'get',
@@ -546,7 +543,6 @@ export function getManByBaseId(parameter){
   })
 }
 export function listByPage(parameter){
-  console.log(parameter)
   return axios({
     url:BASE_PRE+'/policyNews/listByPage',
     method:'get',

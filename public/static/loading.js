@@ -23,12 +23,6 @@ bodyy.id="loadingApp"
 bodyy.innerHTML=htmll
 
 htmlDom.appendChild(bodyy);
-
-
-
-
-console.log(NProgress.version);
-
 NProgress.start()
 
 NProgress.configure({parent:"#appLods"})

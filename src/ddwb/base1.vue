@@ -20,7 +20,7 @@
             <div class="title-item-y display-flex">
               <span class="color-fff" style="width:100px">基地地址</span>
               <span
-              v-if="baseinfoRes.provinceName||baseinfoRes.cityName||baseinfoRes.areaName"
+                v-if="baseinfoRes.provinceName||baseinfoRes.cityName||baseinfoRes.areaName"
                 class="color-fff"
               >{{baseinfoRes.provinceName}}{{baseinfoRes.cityName}}{{baseinfoRes.areaName}}</span>
               <span class="color-fff" v-else>用户暂未添加</span>
@@ -46,13 +46,16 @@
               <span class="color-fff">{{progress.totalCount||'0'}}个</span>
             </div>
             <!-- 基地图片 -->
-            <div class="display-flex">
-              <div class="base-info-img" style=";marginRight:1%">
-
-              </div>
-              <div class="base-info-img">
-
-              </div>
+            
+            <div class="display-flex" v-if="pics.length>0">
+              
+              <div class="base-info-img" :style="{backgroundImage:'url('+pics[0].url+')',backgroundRepeat:'no-repeat',backgroundSize:'cover',backgroundPosition:'center'}"></div>
+              <div class="base-info-img" :style="{backgroundImage:'url('+pics[1].url+')',backgroundRepeat:'no-repeat',backgroundSize:'cover',backgroundPosition:'center'}"></div>
+            </div>
+            <div class="display-flex" v-else>
+              <!-- <div class="base-info-img" style=";marginRight:1%"></div> -->
+              <div class="base-info-img" :style="{backgroundImage:'url('+imgUrl+')',backgroundRepeat:'no-repeat',backgroundSize:'cover',backgroundPosition:'center'}"></div>
+            
             </div>
           </div>
         </div>
@@ -66,10 +69,19 @@
                   <!-- <div>2020年麦冬规范化种植计划（种植批次数量：{{progress.totalCount}}个）</div> -->
                   <div class="display-flex">
                     <div class="progress">
-                      <span class="progressing" v-bind:style="'width:' + (progress.executeCount/progress.totalCount)*100 +'%' "></span>
+                      <span
+                        class="progressing"
+                        v-bind:style="'width:' + (progress.executeCount/progress.totalCount)*100 +'%' "
+                      ></span>
                     </div>
                     <!-- <div>75%</div> -->
-                    <div style="margin-left:10px"><span style="margin-right:10px" v-if="progress.totalCount>0">{{(((progress.executeCount/progress.totalCount)).toFixed(2))*100}}%</span>{{progress.executeCount}}/{{progress.totalCount}}（个）</div>
+                    <div style="margin-left:10px">
+                      <span
+                        style="margin-right:10px"
+                        v-if="progress.totalCount>0"
+                      >{{(((progress.executeCount/progress.totalCount)).toFixed(2))*100}}%</span>
+                      {{progress.executeCount}}/{{progress.totalCount}}（个）
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -104,15 +116,15 @@
           </div>
         </div>
       </div>
-      <div class="map-message">
+      <div class="map-message" style="height:100%">
         <div class="map-wrapper">
-          <div class="map" ref="mapChart" id="mapChart">
+          <div class="map" ref="mapChart" id="mapChart" style="height:560px">
             <div class="map-title-box display-flex align-items-center justify-content-flex-center">
               <div class="map-title-item">
                 <div class="map-title-item-num">{{totalAcreage||''}}</div>
                 <div>基地面积（亩）</div>
               </div>
-               <div class="map-title-item" style="margin:0 20px">
+              <div class="map-title-item" style="margin:0 20px">
                 <div class="map-title-item-num">{{(totalYield*0.001).toFixed(2)||''}}</div>
                 <div>预估麦冬年产量（吨）</div>
               </div>
@@ -123,15 +135,36 @@
             </div>
             <!-- 基地环境数据 -->
             <div class="mould-box">
-                <div class="display-flex justify-content-flex-justify"><span>大气温度</span><span class="color-yellow">{{lastRecord.airTemperature}}</span></div>
-                 <div class="display-flex justify-content-flex-justify"><span>大气湿度</span><span class="color-yellow">{{lastRecord.airHumidity}}</span></div>
-                 <div class="display-flex justify-content-flex-justify"><span>CO2浓度</span><span class="color-yellow">{{lastRecord.co2value}}</span></div>
-                  <div class="display-flex justify-content-flex-justify"><span>大气压强</span><span class="color-yellow">{{lastRecord.airPressure}}</span></div>
-                  <div class="display-flex justify-content-flex-justify"><span>光照强度</span><span class="color-yellow">{{lastRecord.illIntensity}}</span></div>
-                  <div class="display-flex justify-content-flex-justify"><span>风速</span><span class="color-yellow">{{lastRecord.windSpeed}}</span></div>
-                  <div class="display-flex justify-content-flex-justify"><span>风向</span><span class="color-yellow">{{lastRecord.windDirection}}</span></div>
-                 <div class="mould-small-txt">信息来源：{{lastRecord.source}}</div>
-                  <div class="mould-small-txt">更新时间：{{lastRecord.monitorTime}}</div>
+              <div class="display-flex justify-content-flex-justify">
+                <span>大气温度</span>
+                <span class="color-yellow">{{lastRecord.airTemperature}}</span>
+              </div>
+              <div class="display-flex justify-content-flex-justify">
+                <span>大气湿度</span>
+                <span class="color-yellow">{{lastRecord.airHumidity}}</span>
+              </div>
+              <div class="display-flex justify-content-flex-justify">
+                <span>CO2浓度</span>
+                <span class="color-yellow">{{lastRecord.co2value}}</span>
+              </div>
+              <div class="display-flex justify-content-flex-justify">
+                <span>大气压强</span>
+                <span class="color-yellow">{{lastRecord.airPressure}}</span>
+              </div>
+              <div class="display-flex justify-content-flex-justify">
+                <span>光照强度</span>
+                <span class="color-yellow">{{lastRecord.illIntensity}}</span>
+              </div>
+              <div class="display-flex justify-content-flex-justify">
+                <span>风速</span>
+                <span class="color-yellow">{{lastRecord.windSpeed}}</span>
+              </div>
+              <div class="display-flex justify-content-flex-justify">
+                <span>风向</span>
+                <span class="color-yellow">{{lastRecord.windDirection}}</span>
+              </div>
+              <div class="mould-small-txt">信息来源：{{lastRecord.source}}</div>
+              <div class="mould-small-txt">更新时间：{{lastRecord.monitorTime}}</div>
             </div>
           </div>
         </div>
@@ -139,77 +172,79 @@
           <div
             class="base display-flex justify-content-flex-justify"
             ref="baseMessage"
-            :style="{'height':baseMessageHeight}"
           >
             <!-- <baseMap></baseMap> -->
-            <div class="item-bg-y">
+            <div class="item-bg-y" style="position:relative;">
               <div class="last-title display-flex justify-content-flex-justify">
                 <div>土壤环境</div>
                 <div>
                   <div class="display-flex">
                     <div
-                      @click="soilHumidity(1)"
+                      @click="getLast24HMonitorRecords(1,'soilHumidity')"
                       :class="{'base-tab-small':true,'base-tab-action-small':soliTab==1?true:false}"
                     >湿度</div>
                     <div
-                      @click="soilTemperature(2)"
+                      @click="getLast24HMonitorRecords(2,'soilTemperature')"
                       :class="{'base-tab-small':true,'base-tab-action-small':soliTab==2?true:false}"
                     >温度</div>
                     <div
-                      @click="soilEc(3)"
+                      @click="getLast24HMonitorRecords(3,'soilEc')"
                       :class="{'base-tab-small':true,'base-tab-action-small':soliTab==3?true:false}"
                     >电导率</div>
                     <div
-                      @click="soilPH(4)"
+                      @click="getLast24HMonitorRecords(4,'soilPH')"
                       :class="{'base-tab-small':true,'base-tab-action-small':soliTab==4?true:false}"
                     >PH值</div>
                   </div>
                 </div>
               </div>
               <div class="rain-map" ref="bottomLine1" style="height:80%"></div>
+              <div v-if="!soliLineShow" class="no-data">暂无数据</div>
             </div>
             <!-- 地图下柱形图 -->
-            <div class="item-bg-y">
+            <div class="item-bg-y" style="position:relative;">
               <div class="last-title display-flex justify-content-flex-justify">
                 <div>空气环境</div>
                 <div>
                   <div class="display-flex">
                     <div
-                      @click="humidity(1)"
+                      @click="getLast24HMonitorRecordsAir(1,'airHumidity')"
                       :class="{'base-tab-small':true,'base-tab-action-small':airTab==1?true:false}"
                     >湿度</div>
                     <div
-                      @click="temperature(2)"
+                      @click="getLast24HMonitorRecordsAir(2,'airTemperature')"
                       :class="{'base-tab-small':true,'base-tab-action-small':airTab==2?true:false}"
                     >温度</div>
                     <div
                       style="width:55px"
-                      @click="co2value(3)"
+                      @click="getLast24HMonitorRecordsAir(3,'co2value')"
                       :class="{'base-tab-small':true,'base-tab-action-small':airTab==3?true:false}"
                     >CO2浓度</div>
                     <div
-                      @click="pressure(4)"
+                      @click="getLast24HMonitorRecordsAir(4,'airPressure')"
                       :class="{'base-tab-small':true,'base-tab-action-small':airTab==4?true:false}"
                     >压强</div>
                     <div
-                      @click="pm25value(5)"
+                      @click="getLast24HMonitorRecordsAir(5,'pm25value')"
                       :class="{'base-tab-small':true,'base-tab-action-small':airTab==5?true:false}"
                     >PM2.5</div>
                     <div
-                      @click="illIntensity(6)"
+                      @click="getLast24HMonitorRecordsAir(6,'illIntensity')"
                       :class="{'base-tab':true,'base-tab-action-small':airTab==6?true:false}"
                     >光照强度</div>
                     <div
-                      @click="rainfall(7)"
+                      @click="getLast24HMonitorRecordsAir(7,'rainfall')"
                       :class="{'base-tab':true,'base-tab-action-small':airTab==7?true:false}"
                     >降水量</div>
                   </div>
                 </div>
               </div>
               <div class="rain-map" ref="bottomLine2" style="height:80%"></div>
-            </div>
+              <div v-if="!airLineShow" class="no-data">暂无数据</div>
+            </div> 
           </div>
         </div>
+        <Footer />
       </div>
       <!-- 右侧 -->
       <div class="company-info" style="margin-left:30px">
@@ -225,9 +260,7 @@
               ref="pieImg"
             />
             <div class="pie-text flex-direction-column">
-              <div>
-                {{totalAcreage}}
-              </div>
+              <div>{{totalAcreage}}</div>
               <div style="text-align:center">亩</div>
             </div>
             <!-- <div class="pie-text" :style="{'top':pieTxtTop,'left':pieTxtLeft}">亩</div> -->
@@ -255,7 +288,7 @@
               v-if="bx_forests"
             >
               <circle-progress
-               :id="111"
+                :id="111"
                 :isAnimation="true"
                 :isRound="true"
                 :width="twoCircleWidth"
@@ -268,8 +301,8 @@
                 :timeFunction="'cubic-bezier(0.99, 0.01, 0.22, 0.94)'"
                 :backgroundColor="'#4452B9'"
               />
-              <circle-progress             
-               :id="222"
+              <circle-progress
+                :id="222"
                 :isAnimation="true"
                 :isRound="true"
                 :width="twoCircleWidth"
@@ -298,7 +331,6 @@
         </div>
       </div>
     </div>
-    <Footer />
   </div>
 </template>
 <script>
@@ -314,25 +346,18 @@ import roll from "../assets/js/roll.js";
 import axios from "axios";
 import {
   getBaseInfo,
-  co2value,
-  humidity,
-  illIntensity,
-   getLastRecord,
-  pressure,
-  pm25value,
-  rainfall,
+  getLastRecord,
   temperature,
-  soilEc,
-  soilHumidity,
-  soilPH,
-  soilTemperature,
   getBaseInsuranceTj,
   getBaseLoanTj,
   getBaseOrderTj,
   getBaseMonitorTj,
   totalTj,
   getFarmWorkProgress,
-  getBaseMapInfoTotalTj
+  getBaseMapInfoTotalTj,
+  getLast24HMonitorRecords,
+  getBaseWithMonitorVideos,
+  capture
 } from "../api/apiYZX";
 const dataAxis = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
@@ -348,7 +373,6 @@ export default {
   },
   data() {
     return {
-      baseMessageHeight: 0,
       pieTop: 0,
       pieLeft: 0,
       tab: 1,
@@ -356,62 +380,8 @@ export default {
       soliTab: 1,
       messages: [],
       mapDatas: [],
-      nowDate:'',
+      nowDate: "",
       weixin: false,
-      showColorDatas: [
-        {
-          name: "石安镇",
-          value: 1
-        },
-        {
-          name: "芦溪镇",
-          value: 1
-        },
-        {
-          name: "刘营镇",
-          value: 1
-        },
-        {
-          name: "永新镇",
-          value: 1
-        },
-        {
-          name: "高堰乡",
-          value: 1
-        },
-        {
-          name: "中太镇",
-          value: 1
-        },
-        {
-          name: "灵兴镇",
-          value: 2
-        },
-        {
-          name: "争胜镇",
-          value: 2
-        },
-        {
-          name: "里程镇",
-          value: 2
-        },
-        {
-          name: "老马镇",
-          value: 2
-        },
-        {
-          name: "光辉镇",
-          value: 2
-        },
-        {
-          name: "花园镇",
-          value: 2
-        },
-        {
-          name: "永明镇",
-          value: 2
-        }
-      ],
       plotDatas: [],
       mapChart: "",
       baseLength: 0,
@@ -470,7 +440,7 @@ export default {
         { itemStyle: { color: "#E5AF5F" } }
       ],
       tip: "",
-      twoCircleWidth:130,
+      twoCircleWidth: 130,
       markers: [],
       hezuoshe: [],
       jiatingnongchang: [],
@@ -515,22 +485,25 @@ export default {
       baseinfoRes: {},
       totalProduction: 0,
       totalYield: 0,
-      pics:[],
-      progress:{},
-      mapInfo:{},
-      baseIdSet:'',
-      landList:[],
-      lastRecord:{}
+      pics: [],
+      progress: {},
+      mapInfo: {},
+      baseIdSet: "",
+      landList: [],
+      lastRecord: {},
+      soliLineShow: true,
+      airLineShow: true,
+      imgUrl:''
     };
   },
   created() {
-    this.baseId =12
-     var date = new Date().toString().split(" ");
-      var month = new Date().getMonth() + 1;
-      var str = "";
-      this.nowDate = str + date[3] + "/" + month + "/" + date[2] + " " + date[4];
-    
-     this.baseIdSet = this.$route.query.baseId;
+    this.baseId = 12;
+    var date = new Date().toString().split(" ");
+    var month = new Date().getMonth() + 1;
+    var str = "";
+    this.nowDate = str + date[3] + "/" + month + "/" + date[2] + " " + date[4];
+
+    this.baseIdSet = this.$route.query.baseId;
     axios
       .get("/tq", {
         params: { from: "5", lat: 31.1, lng: 105.06, needMoreDay: 1 },
@@ -571,11 +544,8 @@ export default {
     }
   },
   mounted() {
-    // if (this.baseScroll) {
-    //   clearInterval(this.baseScroll.timer);
-    // }
     this._drawCityMap();
-     this.getBaseInsuranceTj();
+    this.getBaseInsuranceTj();
     // this._drawRainMap();
     // 设置饼图背景图
     let pieBox = this.$refs.pieBox.offsetHeight;
@@ -585,14 +555,8 @@ export default {
     this.pieTxtLeft = (pieBoxW - 36) / 2 + "px";
     this.pieLeft = (pieBoxW - 156) / 2 + "px";
     // 计算保险概率
-     this.twoCircleWidth=pieBox-20
+    this.twoCircleWidth = pieBox - 20;
     // 地图下折线图高度
-    let height = document.body.clientHeight;
-    this.$refs.mapChart.style.height = height - 400 + "px";
-    let mapHeight = this.$refs.mapChart.offsetHeight;
-    let m = height-mapHeight-160;
-   
-    this.baseMessageHeight =m + "px";
     let that = this;
 
     that.allbasearea = 0;
@@ -601,7 +565,7 @@ export default {
         getTileUrl:
           "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
       }); //定义谷歌卫星切片图层
-     
+
       let roadNetLayer = new AMap.TileLayer.RoadNet({
         opacity: 0
       }); //定义一个路网图层
@@ -610,85 +574,121 @@ export default {
       axios.get("json/blockinfo.json").then(res => {
         that.blockinfo = res.data.result;
         // that.addBlockOnMap();
-        
       });
     });
 
-    this.humidity(1); //底部折线图
-    this.soilHumidity(1);
+    this.getLast24HMonitorRecordsAir(1, "airHumidity"); //底部折线图
+    this.getLast24HMonitorRecords(1, "soilHumidity");
     this.getBaseInfo();
-   this.getFarmWorkProgress()
+    this.getFarmWorkProgress();
     this.getBaseLoanTj();
-    this.detection(1)
-    this.getBaseMapInfoTotalTj()
-    this.getLastRecord()
-    setTimeout(function(){
-       that.totalTj();
-    },1000)
-       if (that.baseScroll) {
-          clearInterval(that.baseScroll.timer)
-        }
-        that.$nextTick(() => {
-          if (that.baseScroll) {
-            clearInterval(that.baseScroll.timer)
-          }
-          let height=document.getElementById('base-ul1').offsetHeight;
-          that.baseScroll = new roll.Roll('base-info', 'base-ul1', 'base-ul2', -height)
-        })
+    this.detection(1);
+    this.getBaseMapInfoTotalTj();
+    this.getLastRecord();
+    setTimeout(function() {
+      that.totalTj();
+    }, 1000);
   },
   methods: {
-    getBaseMapInfoTotalTj(){
-      getBaseMapInfoTotalTj({ baseId: this.baseId }).then(res=>{
+    getBaseWithMonitorVideos(){//获取基地图片
+      getBaseWithMonitorVideos({orgId:99}).then(res=>{
+        let data=res.data.filter(item=>{
+          return item.id==this.baseIdSet
+        })
+        if(data.length>0&&data[0].monitorVideoChannelVOS.length>0){
+          let v=data[0].monitorVideoChannelVOS[0]
+          let obj={
+            channelNo:v.channelNo,
+            deviceSerial:v.monitorVideoCode,
+            orgId:99
+          }
+          capture(obj).then(res=>{
+            this.imgUrl=res.data//基地图片
+          })
+        }
+      })
+    },
+    getBaseMapInfoTotalTj() {
+      getBaseMapInfoTotalTj({ baseId: this.baseId }).then(res => {
         // this.totalAcreage = res.data.totalAcreage;
-       
-        this.mapInfo=res.data
-       
-      })
+        this.mapInfo = res.data;
+      });
     },
-    getLastRecord(){
-      getLastRecord({ baseId: 23 }).then(res=>{
-        
-         if(res.data.source=='公共数据库'){
-           res.data.airTemperature=res.data.airTemperature+'℃'
-            res.data.co2value='无'
-            res.data.airPressure='无'
-            res.data.illIntensity='无'       
-         }else{
-           res.data.airTemperature=res.data.airTemperature+'℃'
-           res.data.airHumidity=res.data.airHumidity+'%'
-            res.data.co2value=res.data.co2value+'ppm'
-            res.data.airPressure=res.data.airPressure+'kPa'
-            res.data.illIntensity=res.data.illIntensity+'Lux'
-            res.data.windSpeed=res.data.windSpeed+'m/s'
-            res.data.windDirection=res.data.windDirection+'°'  
-         }
-          this.lastRecord=res.data
-      })
+    getLastRecord() {
+      getLastRecord({ baseId: 23 }).then(res => {
+        if (res.data.source == "公共数据库") {
+          res.data.airTemperature = res.data.airTemperature + "℃";
+          res.data.co2value = "无";
+          res.data.airPressure = "无";
+          res.data.illIntensity = "无";
+        } else {
+          res.data.airTemperature = res.data.airTemperature + "℃";
+          res.data.airHumidity = res.data.airHumidity + "%";
+          res.data.co2value = res.data.co2value + "ppm";
+          res.data.airPressure = res.data.airPressure + "kPa";
+          res.data.illIntensity = res.data.illIntensity + "Lux";
+          res.data.windSpeed = res.data.windSpeed + "m/s";
+          res.data.windDirection = res.data.windDirection + "°";
+        }
+        this.lastRecord = res.data;
+      });
     },
-    getFarmWorkProgress(){//执行进度
-     getFarmWorkProgress({ baseId: this.baseIdSet }).then(res=>{
-        this.progress=res.data
-      })
+    getFarmWorkProgress() {
+      //执行进度
+      getFarmWorkProgress({ baseId: this.baseIdSet }).then(res => {
+        this.progress = res.data;
+      });
     },
-    detection(n){//检测柱形图
-      let title,arr,x;
-      if(n==1){
-        title='土壤检测';
-        arr=['0','0','0.241','1.46','0.23','9.4','59','66','88','22']
-        x=['DDT','六六六','总汞','总砷','镉','铅','总铬','铜','锌','镍']
-         this.$refs.detection._drawPolygonal(title,arr,'检测量(mg/kg)',x)
-      }else if(n==2){
-        title='空气检测'
-        arr=['0.13','0.022','0.105']
-        x=['二氧化硫','二氧化氮','总悬浮颗粒数']
-         this.$refs.detection._drawPolygonal(title,arr,'检测量(mg/m³)',x)
-      }else{
-         title='水源检测'
-         arr=['23','14','0','0','0.0002','0.0012','0','0']
-         x=['化学需氧量','氯化物','硫化物','铬（六价）','汞','砷','镉','铅']
-          this.$refs.detection._drawPolygonal(title,arr,'检测量(mg/L)',x)
+    detection(n) {
+      //检测柱形图
+      let title, arr, x;
+      if (n == 1) {
+        title = "土壤检测";
+        arr = [
+          "0",
+          "0",
+          "0.241",
+          "1.46",
+          "0.23",
+          "9.4",
+          "59",
+          "66",
+          "88",
+          "22"
+        ];
+        x = [
+          "DDT",
+          "六六六",
+          "总汞",
+          "总砷",
+          "镉",
+          "铅",
+          "总铬",
+          "铜",
+          "锌",
+          "镍"
+        ];
+        this.$refs.detection._drawPolygonal(title, arr, "检测量(mg/kg)", x);
+      } else if (n == 2) {
+        title = "空气检测";
+        arr = ["0.13", "0.022", "0.105"];
+        x = ["二氧化硫", "二氧化氮", "总悬浮颗粒数"];
+        this.$refs.detection._drawPolygonal(title, arr, "检测量(mg/m³)", x);
+      } else {
+        title = "水源检测";
+        arr = ["23", "14", "0", "0", "0.0002", "0.0012", "0", "0"];
+        x = [
+          "化学需氧量",
+          "氯化物",
+          "硫化物",
+          "铬（六价）",
+          "汞",
+          "砷",
+          "镉",
+          "铅"
+        ];
+        this.$refs.detection._drawPolygonal(title, arr, "检测量(mg/L)", x);
       }
-     
     },
     toBlack() {
       this.$router.back(-1);
@@ -697,22 +697,24 @@ export default {
       //获取基地详情
       getBaseInfo({ baseId: this.baseIdSet }).then(res => {
         this.baseinfoRes = res.data;
-        this.pics=this.baseinfoRes.basePics
+        this.pics = this.baseinfoRes.basePics;
+        if(this.pics.length<1){//如果没有基地图片，抓取萤石云
+          this.getBaseWithMonitorVideos()
+        }
       });
     },
     totalTj() {
       totalTj({ baseId: this.baseIdSet }).then(res => {
         //获取基地总面积- 有订单的面积=无订单面积
-      this.totalAcreage = res.data.totalAcreage;
-       this.totalProduction = res.data.totalProduction; //地图上显示的产量
-        this.totalYield = res.data.totalYield; //地图上显示年产值  
-        console.info('地图地图',this.map)
-        let that=this
-        this.landList=res.data.landParcels
-       setTimeout(function(){
-          that.addBlockOnMap(res.data.landParcels);       
-       },1000)
-         
+        this.totalAcreage = res.data.totalAcreage;
+        this.totalProduction = res.data.totalProduction; //地图上显示的产量
+        this.totalYield = res.data.totalYield; //地图上显示年产值
+        let that = this;
+        this.landList = res.data.landParcels;
+        setTimeout(function() {
+          that.addBlockOnMap(res.data.landParcels);
+        }, 1000);
+
         this.getBaseOrderTj();
       });
     },
@@ -726,15 +728,17 @@ export default {
         // this.dataRight = res.data.map(item => {
         //   return item.count;
         // });
-        this.dataLeft=[95,95,19,76]
-        this.dataRight=[2,1,2,2]
+        this.dataLeft = [95, 95, 19, 76];
+        this.dataRight = [2, 1, 2, 2];
         this.$refs.polygonalTwo._drawPolygonal(this.dataLeft, this.dataRight);
       });
     },
     getBaseOrderTj() {
       //获取右侧订单饼图
       getBaseOrderTj({ baseId: this.baseId }).then(res => {
-        let num = (parseFloat(this.totalAcreage) - parseFloat(res.data.order_forests)).toFixed(2);
+        let num = (
+          parseFloat(this.totalAcreage) - parseFloat(res.data.order_forests)
+        ).toFixed(2);
         let arr = [
           {
             name: `${res.data.count}笔${res.data.order_forests}亩`,
@@ -758,217 +762,187 @@ export default {
       getBaseInsuranceTj({ baseId: this.baseId }).then(res => {
         this.bx_forests = 80;
         this.bx_count = 91;
-        // this.$refs.circle.showCorcle()
-        // this.$refs.circles2.showCorcle()
       });
     },
-    humidity(n) {
-      this.airTab = n;
-      humidity({ baseId: this.baseId }).then(res => {
-        let Xdata = [];
-        let xTitle = [];
-        for (var i = 0; i < res.data.length; i++) {
-          xTitle.push(res.data[i].monitor_time);
-          Xdata.push(res.data[i].air_humidity);
-        }
-        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
-      });
-    },
-    temperature(n) {
-      this.airTab = n;
-      temperature({ baseId: this.baseId }).then(res => {
-        let Xdata = [];
-        let xTitle = [];
-        for (var i = 0; i < res.data.length; i++) {
-          xTitle.push(res.data[i].monitor_time);
-          Xdata.push(res.data[i].air_temperature);
-        }
-        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
-      });
-    },
-    co2value(n) {
-      this.airTab = n;
-      co2value({ baseId: this.baseId }).then(res => {
-        let Xdata = [];
-        let xTitle = [];
-        for (var i = 0; i < res.data.length; i++) {
-          xTitle.push(res.data[i].monitor_time);
-          Xdata.push(res.data[i].co2value);
-        }
-        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
-      });
-    },
-    pressure(n) {
-      this.airTab = n;
-      pressure({ baseId: this.baseId }).then(res => {
-        let Xdata = [];
-        let xTitle = [];
-        for (var i = 0; i < res.data.length; i++) {
-          xTitle.push(res.data[i].monitor_time);
-          Xdata.push(res.data[i].air_pressure);
-        }
-        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
-      });
-    },
-    pm25value(n) {
-      this.airTab = n;
-      pm25value({ baseId: this.baseId }).then(res => {
-        let Xdata = [];
-        let xTitle = [];
-        for (var i = 0; i < res.data.length; i++) {
-          xTitle.push(res.data[i].monitor_time);
-          Xdata.push(res.data[i].pm25value);
-        }
-        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
-      });
-    },
-    illIntensity(n) {
-      this.airTab = n;
-      illIntensity({ baseId: this.baseId }).then(res => {
-        let Xdata = [];
-        let xTitle = [];
-        for (var i = 0; i < res.data.length; i++) {
-          xTitle.push(res.data[i].monitor_time);
-          Xdata.push(res.data[i].ill_intensity);
-        }
-        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
-      });
-    },
-    rainfall(n) {
-      this.airTab = n;
-      rainfall({ baseId: this.baseId }).then(res => {
-        let Xdata = [];
-        let xTitle = [];
-        for (var i = 0; i < res.data.length; i++) {
-          xTitle.push(res.data[i].monitor_time);
-          Xdata.push(res.data[i].rainfall);
-        }
-        this._drawLine2(Xdata, xTitle,this.setUnit2(n));
-      });
-    },
-    setUnit(n){
-      let unit;
-       if(n==1){
-        unit='%'
-      }else if(n==2){
-        unit='℃'
-      }else if(n==3){
-        unit='S/m'
-      }else{
-        unit=''
+    setUnit(n) {
+      let labelObj;
+      if (n == 1) {
+        labelObj ={
+          unit:'%',
+          data:'soilHumidity'
+        };
+      } else if (n == 2) {
+        labelObj = "℃";
+         labelObj ={
+          unit:'℃',
+          data:'soilTemperature'
+        };
+      } else if (n == 3) {
+        labelObj ={
+          unit:'S/m',
+          data:'soilTemperature'
+        };
+      } else {
+        labelObj ={
+          unit:'',
+          data:'soilPh'
+        };
       }
-      return unit
+      return labelObj;
     },
-    setUnit2(n){
-      let unit;
-       if(n==1){
-        unit='%'
-      }else if(n==2){
-        unit='℃'
-      }else if(n==3){//二氧化碳单位
-        unit='ppm'
-      }else if(n==4){
-        unit='Pa'
-      }else if(n==5){//pm2.5
-        unit='μg/m3'
-      }else if(n==6){//光照强度
-        unit='Lux'
-      }else if(n==7){//降水量
-        unit='mm'
+    setUnit2(n) {
+      let labelObj;
+      if (n == 1) {
+        labelObj ={
+          unit:'%',
+          data:'airHumidity'
+        };
+      } else if (n == 2) {
+        labelObj ={
+          unit:'℃',
+          data:'airTemperature'
+        };
+      } else if (n == 3) {
+        labelObj ={
+          unit:'ppm',
+          data:'co2value'
+        };
+      } else if (n == 4) {
+        labelObj ={
+          unit:'Pa',
+          data:'airPressure'
+        };
+      } else if (n == 5) {
+        labelObj ={
+          unit:'μg/m3',
+          data:'pm25value'
+        };
+      } else if (n == 6) {
+        //光照强度
+        labelObj ={
+          unit:'Lux',
+          data:'illIntensity'
+        };
+      } else if (n == 7) {
+        //降水量
+        labelObj ={
+          unit:'mm',
+          data:'rainfall'
+        };
       }
-      return unit
+      return labelObj;
     },
-    soilHumidity(n) {
+    getLast24HMonitorRecords(n, label) {
       this.soliTab = n;
-      soilHumidity({ baseId: this.baseId }).then(res => {
-        let Xdata = [];
-        let xTitle = [];
-        for (var i = 0; i < res.data.length; i++) {
-          xTitle.push(res.data[i].monitor_time);
-          Xdata.push(res.data[i].soil_humidity||0);
+      getLast24HMonitorRecords({ baseId: this.baseIdSet, column: label }).then(
+        res => {
+          if (res.code == 200) {
+            this.getLineData(res.data,n)
+          } else {
+            this.soliLineShow = false;
+          }
         }
-        this._drawLine(Xdata, xTitle,this.setUnit(n));
-      });
+      );
     },
-    soilTemperature(n) {
-      this.soliTab = n;
-      soilTemperature({ baseId: this.baseId }).then(res => {
-        let Xdata = [];
-        let xTitle = [];
-        for (var i = 0; i < res.data.length; i++) {
-          xTitle.push(res.data[i].monitor_time);
-          Xdata.push(res.data[i].soil_temperature||0);
-        }
-        this._drawLine(Xdata, xTitle,this.setUnit(n));
-      });
+    getLineData(data,n) {
+      let Xdata = [];
+          let xTitle = [];
+          let label=this.setUnit(n)
+          for (var i = 0; i < data.length; i++) {
+            xTitle.push(data[i].monitorTime);
+            Xdata.push(data[i][label.data]||0);
+          }
+          this._drawLine(Xdata, xTitle,label.unit);
     },
-    soilEc(n) {
-      this.soliTab = n;
-      soilEc({ baseId: this.baseId }).then(res => {
-        let Xdata = [];
-        let xTitle = [];
-        for (var i = 0; i < res.data.length; i++) {
-          xTitle.push(res.data[i].monitor_time);
-          Xdata.push(res.data[i].soil_ec||0);
-        }
-        this._drawLine(Xdata, xTitle,this.setUnit(n));
-      });
+     getLineData2(data,n) {
+      let Xdata = [];
+          let xTitle = [];
+          let label=this.setUnit2(n)
+          for (var i = 0; i < data.length; i++) {
+            xTitle.push(data[i].monitorTime);
+            Xdata.push(data[i][label.data]||0);
+          }
+          this._drawLine2(Xdata, xTitle,label.unit);
     },
-    soilPH(n) {
-      this.soliTab = n;
-      soilPH({ baseId: this.baseId }).then(res => {
-        let Xdata = [];
-        let xTitle = [];
-        for (var i = 0; i < res.data.length; i++) {
-          xTitle.push(res.data[i].monitor_time);
-          Xdata.push(res.data[i].soil_ph||0);
+    getLast24HMonitorRecordsAir(n, label) {
+      this.airTab = n;
+      getLast24HMonitorRecords({ baseId: this.baseIdSet, column: label }).then(
+        res => {
+          if (res.code == 200) {
+            this.getLineData2(res.data,n)
+          } else {
+            this.airLineShow = false;
+          }
         }
-        this._drawLine(Xdata, xTitle,this.setUnit(n));
-      });
+      );
     },
     tabFunc(n) {
       this.tab = n;
-      this.detection(n)
+      this.detection(n);
+    },
+    listAddMarker(position, i) {
+      var markerContent =
+        "" +
+        '<div class="custom-content-marker" style="postion:relative;text-align:center">' +
+        '   <img src="https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png">' +
+        "</div>";
+      let that = this;
+      // let markers = [];
+      var marker = new AMap.Marker({
+        map: that.map,
+        position: position,
+        content: markerContent,
+        offset: new AMap.Pixel(-13, -30)
+      });
+      that.map.setZoomAndCenter(15, position);
+      // markers.push(marker);
+      that.saveListMarker.push(marker);
+      marker.setMap(that.map);
+      AMap.event.addListener(marker, "click", function(e) {
+        that.map.setZoomAndCenter(15, [e.lnglat.lng, e.lnglat.lat]);
+      });
     },
     addBlockOnMap(remarks) {
-      
       //地块的第一个点增加Masker
-       this.saveListMarker=[]
+      this.saveListMarker = [];
       this.polygons = [];
       for (let i = 0; i < remarks.length; i++) {
         let remark = remarks[i].mapAddr;
         if (remark != undefined && remark != null && remark.trim() != "") {
           let remarkJson2 = eval("(" + remark + ")");
           let newPath = [];
+          this.listAddMarker(
+            [remarkJson2.path[0].lng, remarkJson2.path[0].lat],
+            i
+          );
           for (let i = 0; i < remarkJson2.path.length; i++) {
             let point = remarkJson2.path[i];
             newPath.push(new AMap.LngLat(point.lng, point.lat));
           }
           remarkJson2.path = newPath;
           let polygon2 = new AMap.Polygon(remarkJson2);
-          this.polygons.push(polygon2);    
+          this.polygons.push(polygon2);
           this.map.add(polygon2);
-          this.map.setFitView();    
+          this.map.setFitView();
         }
       }
       let that = this;
       for (let i = 0; i < that.polygons.length; i++) {
         that.polygons[i].on("click", function(e) {
-        that.rutePush(i)
-        
+          that.rutePush(i);
+
           // that.infowindow(e, i);
         });
       }
     },
-    
-    rutePush(i){
-      let obj=this.landList.filter((item,n)=>{
-          return n==i
-      })
-       this.$router.push({
-              name: "company",
-              query: { userOrganId: Number(obj[0].id) }
-            });
+    rutePush(i) {
+      let obj = this.landList.filter((item, n) => {
+        return n == i;
+      });
+      this.$router.push({
+        name: "company",
+        query: { userOrganId: Number(obj[0].id) }
+      });
     },
     removepoint() {
       this.map.remove(this.markers);
@@ -1016,10 +990,8 @@ export default {
           }
         })
         .then(res => {
-          console.log(res);
           if (res.data.code == 200) {
             if (res.data.data && res.data.data.length) {
-              console.log(res.data.data);
               this.addresss.push({
                 label: res.data.data[3].deviceName,
                 value: res.data.data[3].deviceSerial,
@@ -1053,7 +1025,6 @@ export default {
                 this.curLock = false;
               }
             }
-            console.log(this.addresss);
           } else if (res.data.code == 10002) {
             axios
               .post("https://open.ys7.com/api/lapp/token/get", params, {
@@ -1063,7 +1034,6 @@ export default {
               })
               .then(res => {
                 if (res.data.code == 200) {
-                  console.log(res);
                   token =
                     "accessToken=" +
                     res.data.data.accessToken +
@@ -1081,7 +1051,6 @@ export default {
               })
               .then(res => {
                 if (res.data.code == 200) {
-                  console.log(res);
                   token =
                     "accessToken=" +
                     res.data.data.accessToken +
@@ -1095,7 +1064,9 @@ export default {
     },
     _dramLoansChart(datas) {
       //右侧饼图
-      let rainChart = this.$echarts.init(this.$refs.loansChart,null,{devicePixelRatio: 2.5});
+      let rainChart = this.$echarts.init(this.$refs.loansChart, null, {
+        devicePixelRatio: 2.5
+      });
       var option = {
         tooltip: {
           trigger: "item",
@@ -1138,9 +1109,11 @@ export default {
       };
       rainChart.setOption(option);
     },
-    _drawLine2(xData, xTitle,unit) {
+    _drawLine2(xData, xTitle, unit) {
       //底部右侧折线图
-      let rainChart = this.$echarts.init(this.$refs.bottomLine2,null,{devicePixelRatio: 2.5});
+      let rainChart = this.$echarts.init(this.$refs.bottomLine2, null, {
+        devicePixelRatio: 2.5
+      });
       var option = chartsType.charts(
         xTitle,
         xData,
@@ -1158,10 +1131,12 @@ export default {
       };
       rainChart.setOption(option);
     },
-    _drawLine(xData, xTitle,unit) {
+    _drawLine(xData, xTitle, unit) {
       //底部左侧折线图
       //左侧折线图
-      let rainChart = this.$echarts.init(this.$refs.bottomLine1,null,{devicePixelRatio: 2.5});
+      let rainChart = this.$echarts.init(this.$refs.bottomLine1, null, {
+        devicePixelRatio: 2.5
+      });
       var option = chartsType.charts(
         xTitle,
         xData,
@@ -1180,7 +1155,9 @@ export default {
       rainChart.setOption(option);
     },
     _drawRainMap() {
-      let rainChart = this.$echarts.init(this.$refs.rainMap,null,{devicePixelRatio: 2.5});
+      let rainChart = this.$echarts.init(this.$refs.rainMap, null, {
+        devicePixelRatio: 2.5
+      });
       var option = chartsType.charts(
         ["镍", "锌", "铜", "总铬", "铅", "镉", "总砷", "总汞"],
         this.metalDatas,
@@ -1212,31 +1189,6 @@ export default {
       rainChart.setOption(option);
     },
     _drawCityMap() {
-      // let that = this;
-      // MapLoader().then(AMap => {
-      //   that.map = new AMap.Map(this.$refs.mapChart, {
-      //     center: [105.013664, 31.206397],
-      //     zoom: 16
-      //     // layers:[googleLayer,roadNetLayer,layer], //设置图层
-      //     // viewMode:'3D',
-      //   });
-
-      //   AMap.plugin("AMap.DistrictSearch", function() {
-      //     var district = new AMap.DistrictSearch({
-      //       extensions: "all",
-      //       subdistrict: 0
-      //     });
-      //     that.map.on("complete", function() {
-      //       console.log("地图加载完成！");
-      //       var myEvent = new CustomEvent("done1", {});
-      //       if (window.dispatchEvent) {
-      //         window.dispatchEvent(myEvent);
-      //       } else {
-      //         window.fireEvent(myEvent);
-      //       }
-      //     });
-      //   });
-      // });
       let that = this;
       that.spinning = true;
       MapLoader().then(AMap => {
@@ -1254,7 +1206,7 @@ export default {
         that.map.on("complete", function() {
           that.mapok = true;
           that.spinning = false;
-         
+
           var myEvent = new CustomEvent("mapload_done", {});
           if (window.dispatchEvent) {
             window.dispatchEvent(myEvent);
@@ -1278,19 +1230,8 @@ export default {
           AMap.event.addListener(autocomplete, "select", function(e) {
             //TODO 针对选中的poi实现自己的功能
             // if (e.poi.address.length > 0) {
-              placeSearch.setCity(e.poi.adcode)
+            placeSearch.setCity(e.poi.adcode);
             placeSearch.search(e.poi.name);
-            // } else {
-            //   if(!e.poi.location){
-            //     that.$message.warning("无法定位，我们将进行模糊定位！");
-            //     placeSearch.search(e.poi.district);
-            //   }else{
-            //     let aa = [];
-            //   aa.push(e.poi.location.lng);
-            //   aa.push(e.poi.location.lat);
-            //   that.map.setCenter(aa);
-            //   }
-            // }
           });
         });
       });
@@ -1323,17 +1264,6 @@ export default {
       if (datas.length != 0) {
         this.address = datas[1];
       }
-      // else {
-      //   monitor.removeChild(monitor.firstElementChild)
-      //   let dom = document.createElement('video')
-      //   dom.id = 'myVideo'
-      //   dom.style.width = '100%'
-      //   dom.style.height = '100%'
-      //   dom.src = this.address
-      //   dom.controls = true
-      //   console.dir(dom)
-      //   monitor.appendChild(dom)
-      // }
     }
   }
 };
@@ -1420,6 +1350,7 @@ export default {
       transform: scale(0.9);
     }
   }
+
   .map-footer {
     height: 38px !important;
     line-height: 1.5 !important;
@@ -1435,7 +1366,7 @@ export default {
   margin: 20px 0 0 0;
   display: flex;
   padding: 0 20px;
-  height: calc(100vh - 80px);
+  height: calc(100% - 80px);
 
   .desc {
     height: 30px;
@@ -1529,7 +1460,7 @@ export default {
 
   .map-message {
     flex: 2.6;
-    height: 160px;
+    height: 100%;
     margin-left: 30px;
     min-width: 400px;
 
@@ -1627,9 +1558,9 @@ export default {
 
     .base-message {
       margin-top: 20px;
-
+      height: calc(100% - 652px);
       .base {
-        height: calc(100vh - 665px);
+        height:100%;
 
         .base-map {
           height: 165px;
@@ -1799,11 +1730,12 @@ export default {
 .left-height {
   height: 30%;
 }
-.left-height-last{
-  height:calc(100vh - 750px);
+
+.left-height-last {
+  height: calc(100% - 680px);
 }
+
 .base-container {
-  height: 100%;
   overflow: hidden;
   background: url('../assets/new/bg.jpg') no-repeat;
   background-size: 100% 100%;
@@ -1900,7 +1832,6 @@ export default {
 
 .base-progress-box {
   height: 80px;
-  
 }
 
 .base-progress-item {
@@ -1995,11 +1926,11 @@ export default {
   font-size: 16px;
   font-weight: bold;
   color: #B1FDF5;
-  width:100%;
-  top:40%;
-  height:100%;
-   align-content:center;
-   text-align:center;
+  width: 100%;
+  top: 40%;
+  height: 100%;
+  align-content: center;
+  text-align: center;
 }
 
 .black-btn {
@@ -2016,35 +1947,56 @@ export default {
   left: 50px;
   cursor: pointer;
 }
-.left-height-base-info{
-  height:430px;
+
+.left-height-base-info {
+  height: 430px;
 }
-.base-info-img{
-  width:49%;
-  height:150px;
-  background: url('../assets/new/base1.jpg') no-repeat;
-  background-size: 100%;
+
+.base-info-img {
+  width: 100%;
+  height: 150px;
+  // background: url('../assets/new/base1.jpg') no-repeat;
+  // background-size: 100%;
 }
-.mould-box{
-  position:absolute;
-  z-index:1111;
-  bottom:15px;
-  right:50px;
-  width:270px;
-height:316px;
-line-height:30px;
-font-size:16px;
-border-radius:4px;
-color:#fff;
-background:rgba(1,51,57,0.8);
-padding:15px;
+
+.mould-box {
+  position: absolute;
+  z-index: 1111;
+  bottom: 15px;
+  right: 50px;
+  width: 270px;
+  height: 316px;
+  line-height: 30px;
+  font-size: 16px;
+  border-radius: 4px;
+  color: #fff;
+  background: rgba(1, 51, 57, 0.8);
+  padding: 15px;
 }
-.color-yellow{
-  color:#EBD804;
+
+.color-yellow {
+  color: #EBD804;
 }
-.mould-small-txt{
-  font-size:13px;
-  text-align:right;
+
+.mould-small-txt {
+  font-size: 13px;
+  text-align: right;
+}
+
+.no-data {
+  color: #fff;
+  position: absolute;
+  top: 40px;
+  left: 45%;
+  font-size: 14px;
+}
+
+.base-container{
+  min-width:1600px;
+  height:1080px;
+}
+.scorll-height{
+  height: calc((100% - 570px)/2) !important;
 }
 </style>
 

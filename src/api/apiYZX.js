@@ -155,9 +155,22 @@ const getBaseMapInfoTotalTj = (params)=>getAction("/api/billboardBaseInfos/total
 
 // 获取看板首页总数据
 const getBillboardIndexTotal = (params)=>getAction("/api/billboardIndexs/getBillboardIndexTotal",params);
+
+//基地获取24小时监测--------------最新接口
+const getLast24HMonitorRecords = (params)=>getAction("/api/kanban/base/getLast24HMonitorRecords",params);
+//农户地块获取24小时监测--------------最新接口
+const landparcelGetLast24HMonitorRecords = (params)=>getAction("/api/kanban/landparcel/getLast24HMonitorRecords",params);
+// 获取基地列表(包含其摄像头信息)
+const getBaseWithMonitorVideos = (params)=>getAction("/api/billboardIndexs/getBaseWithMonitorVideos",params);
+//萤石云图片抓取
+const capture = (params)=>getAction("/api/billboardIndexs/capture",params);
 export {
     getSubjectInfo,
     getAnnualFertilizer,
+    getLast24HMonitorRecords,
+    getBaseWithMonitorVideos,
+    capture,
+    landparcelGetLast24HMonitorRecords,
     getWorkOrderByRealTime,
     getBaseMapInfo,
     getFarmerMapInfo,

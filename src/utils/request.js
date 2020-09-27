@@ -77,7 +77,6 @@ service.interceptors.request.use(config=>{
 )
 service.interceptors.response.use(
   response=>{
-    console.log("interceptors.response:"+response)
     return response.data
   },err)
 

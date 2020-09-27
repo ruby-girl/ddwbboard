@@ -61,37 +61,14 @@
                 <div>预估麦冬年产值（万元）</div>
               </div>
             </div>
-            <!-- <div>
-              <div class="map-item-box" style="top:120px">
-                <img src="../assets/new/icon_positioning.png" alt />
-                <span>全部农户：1213</span>
-              </div>
-              <div class="map-item-box" style="top:190px">
-                <img src="../assets/new/icon_positioning-dai.png" alt />
-                <span>有贷款农户：613</span>
-              </div>
-              <div class="map-item-box" style="top:260px">
-                <img src="../assets/new/icon_positioning-ding.png" alt />
-                <span>有订单合同农户：113</span>
-              </div>
-              <div class="map-item-box" style="top:330px">
-                <img src="../assets/new/icon_positioning-bao.png" alt />
-                <span>有保险农户：13</span>
-              </div>
-            </div>-->
             <div class="map-footer-box">
               <div :class="{'active':btnActive==1}" @click="changeMapData2">农户</div>
               <span class="btn-margin"></span>
               <div :class="{'active':btnActive==2}" @click="changeMapData1">基地</div>
             </div>
             <div class="map-order-box" style="overflow:hidden">
-              <!-- <div
-                style="font-size:36px;font-weight:bold;
-color:rgba(255,179,0,1);line-height:36px;padding:10px 0;"
-              >{{orderDataCount}}</div>
-              <div style="font-size:18px;">实时操作工单(条)</div>-->
               <ul
-                style="position:relative;list-style:none;background:rgba(0,0,0,0.5);font-size:13px;padding:5px"
+                style="position:relative;list-style:none;background:rgba(3,18,39,0.5);font-size:13px;padding:5px"
               >
                 <li class="base-item display-flex justify-content-flex-center">
                   <span style="text-align: left;display:inline-block; width: 26%;color: #fff;">操作时间</span>
@@ -127,7 +104,7 @@ text-overflow:ellipsis;"
             </div>
           </div>
         </div>
-        <div class="base-message" :style="{'height':baseMessageHeight}">
+        <div class="base-message scorll-height">
           <div class="base display-flex justify-content-flex-justify">
             <!-- <baseMap></baseMap> -->
             <div class="item-bg-y" style="padding:0">
@@ -197,7 +174,7 @@ text-overflow:ellipsis;"
           </div>
         </div>
         <!-- 底部轮播 -->
-        <div class="base-wrapper wrapper-box" :style="{'height':baseMessageHeight}">
+        <div class="base-wrapper wrapper-box scorll-height">
           <div class="temperature-rain" style="margin-top:15px;">
             <div class="monitor-data" style="position:relative">
               <div class="wrpper-title">气象监测</div>
@@ -230,6 +207,7 @@ text-overflow:ellipsis;"
             </div>
           </div>
         </div>
+        <Footer />
       </div>
       <div class="temperature-rain" style="margin-left:30px;">
         <div
@@ -286,24 +264,6 @@ text-overflow:ellipsis;"
             />-->
             <div style="height:180px" ref="loansChart"></div>
             <!-- 饼图说明 -->
-            <!-- <div class="pie-color-box">
-              <div class="display-flex align-items-center">
-                <div class="pie-color-0"></div>
-                <span>保险贷</span>
-              </div>
-              <div class="display-flex align-items-center">
-                <div class="pie-color-1"></div>
-                <span>农资贷</span>
-              </div>
-              <div class="display-flex align-items-center">
-                <div class="pie-color-2"></div>
-                <span>订单贷</span>
-              </div>
-              <div class="display-flex align-items-center">
-                <div class="pie-color-3"></div>
-                <span>劳务贷</span>
-              </div>
-            </div>-->
           </div>
         </div>
         <!-- 新增最新物流 -->
@@ -400,7 +360,6 @@ text-overflow:ellipsis;"
         </div>
       </div>
     </div>
-    <Footer/>
   </div>
 </template>
 <script>
@@ -453,63 +412,8 @@ export default {
       weixin: false,
       show: false,
       btnActive: 2,
-      showColorDatas: [
-        {
-          name: "石安镇",
-          value: 1
-        },
-        {
-          name: "芦溪镇",
-          value: 1
-        },
-        {
-          name: "刘营镇",
-          value: 1
-        },
-        {
-          name: "永新镇",
-          value: 1
-        },
-        {
-          name: "高堰乡",
-          value: 1
-        },
-        {
-          name: "中太镇",
-          value: 1
-        },
-        {
-          name: "灵兴镇",
-          value: 2
-        },
-        {
-          name: "争胜镇",
-          value: 2
-        },
-        {
-          name: "里程镇",
-          value: 2
-        },
-        {
-          name: "老马镇",
-          value: 2
-        },
-        {
-          name: "光辉镇",
-          value: 2
-        },
-        {
-          name: "花园镇",
-          value: 2
-        },
-        {
-          name: "永明镇",
-          value: 2
-        }
-      ],
       plotDatas: [],
       mapChart: "",
-      baseMessageHeight: "50px",
       baseLength: 0,
       plotLength: 0,
       totalArea: 0,
@@ -608,7 +512,7 @@ export default {
       sietObj: [],
       mapInfo: {},
       orderList: [],
-      cluster:null
+      cluster: null
     };
   },
   created() {
@@ -638,18 +542,9 @@ export default {
     let pieBoxW = this.$refs.pieBox.offsetWidth;
     this.pieTop = (pieBox - 156) / 2 + "px";
     this.pieLeft = (pieBoxW - 156) / 2 + "px";
-    // 地图下折线图高度
-    let height = document.body.clientHeight;
-    let map = height * 0.55;
-    this.$refs.mapChart.style.height = map + "px";
-    let mapHeight = this.$refs.mapChart.offsetHeight;
-    let m = height * 0.15;
-    this.baseMessageHeight =
-      (height - parseFloat(mapHeight) - m - 20) / 2 + "px";
     let that = this;
     setTimeout(function() {
       that.show = true;
-
       // 这里要重绘柱形图--------------------柱形图组件传参或者用方法
     }, 1000);
     // this._drawRainMap();
@@ -657,7 +552,6 @@ export default {
     // this._getJson()
     this._drawCityMap();
     that.allbasearea = 0;
-
     axios.get("json/base_info.json").then(res => {
       for (let i = 0; i < res.data.result.length; i++) {
         that.allbasearea += res.data.result[i].area;
@@ -692,11 +586,12 @@ export default {
             let marker = new AMap.Marker({
               position: new AMap.LngLat(lng, lat),
               offset: new AMap.Pixel(-10, -10),
-               content: '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>'
+              content:
+                '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>'
             });
             that.markers.push(marker);
             that.map.add(marker);
-            that.addCluster()
+            that.addCluster();
             marker.on("click", function(e) {
               that.$router.push({
                 name: "base",
@@ -705,8 +600,6 @@ export default {
             });
             //  that.addCluster(1)
           }
-          console.info('??????')
-
         }, 1500);
       });
     });
@@ -730,55 +623,23 @@ export default {
     }, 5000);
     this.getBillboardIndexTotal();
     this.getWorkOrderByRealTimeList();
-    // this.addCluster(1)
   },
   methods: {
-     addCluster() {
-        if (this.cluster) {
-            this.cluster.setMap(null);
-        }
-
-        let _this=this
-
-       // var sts = [{
-       //   url: "https://a.amap.com/jsapi_demos/static/images/blue.png",
-       //   size: new AMap.Size(32, 32),
-       //   offset: new AMap.Pixel(-16, -16)
-       // }, {
-       //   url: "https://a.amap.com/jsapi_demos/static/images/green.png",
-       //   size: new AMap.Size(32, 32),
-       //   offset: new AMap.Pixel(-16, -16)
-       // }, {
-       //   url: "https://a.amap.com/jsapi_demos/static/images/orange.png",
-       //   size: new AMap.Size(36, 36),
-       //   offset: new AMap.Pixel(-18, -18)
-       // }, {
-       //   url: "https://a.amap.com/jsapi_demos/static/images/red.png",
-       //   size: new AMap.Size(48, 48),
-       //   offset: new AMap.Pixel(-24, -24)
-       // }, {
-       //   url: "https://a.amap.com/jsapi_demos/static/images/darkRed.png",
-       //   size: new AMap.Size(48, 48),
-       //   offset: new AMap.Pixel(-24, -24)
-       // }];
-
-
-
-            this.cluster = new AMap.MarkerClusterer(_this.map,_this. markers, {
-              // styles: sts,
-                gridSize: 80,
-                renderClusterMarker: _this._renderClusterMarker
-            });
-
+    addCluster() {
+      if (this.cluster) {
+        this.cluster.setMap(null);
+      }
+      let _this = this;
+      this.cluster = new AMap.MarkerClusterer(_this.map, _this.markers, {
+        // styles: sts,
+        gridSize: 100,
+        renderClusterMarker: _this._renderClusterMarker
+      });
+      this.cluster.setMinClusterSize(5);// 代表低于五个点就不聚合 这样能有效防止
     },
     getWorkOrderByRealTimeList() {
       getWorkOrderByRealTime({ organId: this.organId }).then(res => {
         this.orderList = res.data;
-        this.orderList.forEach((item, i) => {
-          this.orderList[i].executiontime = this.utc2beijing(
-            item.executiontime
-          );
-        });
         this.baseScroll3 = new roll.Roll(
           "base-info3",
           "base-ul3",
@@ -797,17 +658,12 @@ export default {
         Z_pos - T_pos - 1
       );
       var new_datetime = year_month_day + " " + hour_minute_second; // 2017-03-31 08:02:06
-
       // 处理成为时间戳
       timestamp = new Date(Date.parse(new_datetime));
       timestamp = timestamp.getTime();
       timestamp = timestamp / 1000;
-
-      // 增加8个小时，北京时间比utc时间多八个时区
       var timestamp = timestamp + 8 * 60 * 60;
       let time = this.format(timestamp);
-      // 时间戳转为时间
-
       return time; // 2017-03-31 16:02:06
     },
     add0(m) {
@@ -1090,15 +946,12 @@ export default {
           let marker = new AMap.Marker({
             position: new AMap.LngLat(lng, lat),
             offset: new AMap.Pixel(-10, -10),
-            content: '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>',
+            content:
+              '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>'
           });
-          console.log(lng, lat)
-
-
-
           that.markers.push(marker);
           that.map.add(marker);
-          that.addCluster()
+          that.addCluster();
           marker.on("click", function(e) {
             that.$router.push({
               name: "base",
@@ -1116,10 +969,8 @@ export default {
       getFarmerMapInfo({ organId: this.organId }).then(res => {
         this.mapRemarks = res.data;
         let that = this;
-        let points=[];
+        let points = [];
         for (let i = 0; i < that.mapRemarks.length; i++) {
-
-
           if (that.mapRemarks[i].mapAddr) {
             let remark = that.mapRemarks[i].mapAddr;
             let remarkJson2 = eval("(" + remark + ")");
@@ -1129,19 +980,12 @@ export default {
             let marker = new AMap.Marker({
               position: new AMap.LngLat(lng, lat),
               offset: new AMap.Pixel(-10, -10),
-              content: '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>',
+              content:
+                '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>'
             });
-
-            // let obj=[lng, lat]
-            // points.push([lng, lat])
-            //
-            // console.log(JSON.stringify(points))
-            //
-
-
             that.markers.push(marker);
             that.map.add(marker);
-            that.addCluster()
+            that.addCluster();
             marker.on("click", function(e) {
               that.$router.push({
                 name: "company",
@@ -1154,7 +998,6 @@ export default {
     },
     getMap() {
       getBaseMapInfo({ organId: this.organId }).then(res => {
-
         this.mapRemarks = res.data;
         this.baseList = res.data; //这里处理监控基地列表
         this.getAllMonitors(); //获取所有监控视频
@@ -1169,15 +1012,7 @@ export default {
     getAnnualFertilizer() {
       //获取年度有机肥
       getAnnualFertilizer({ organId: this.organId }).then(res => {
-        let Xdata = [2016,2017, 2018, 2019, 2020];
-        // let data1 = arr.map(item => {
-        //   //有机
-        //   return item["organicFertilizer"];
-        // });
-        // let data2 = arr.map(item => {
-        //   //无机
-        //   return item["inorganicFertilizer"];
-        // });
+        let Xdata = [2016, 2017, 2018, 2019, 2020];
         let _this = this;
         setTimeout(function() {
           let polygonalChart = _this.$echarts.init(
@@ -1192,7 +1027,7 @@ export default {
     _drawPolygonal(polygonalChart, tdataAxis) {
       var option = chartsType.charts(
         tdataAxis,
-        [9000,8500, 8900, 8300, 8100],
+        [9000, 8500, 8900, 8300, 8100],
         "用量（亩/kg）",
         "line",
         "有机肥",
@@ -1209,7 +1044,7 @@ export default {
       option.series.push({
         name: "复合肥",
         barWidth: 20,
-        data: [4200,3900, 4000, 3800, 3500],
+        data: [4200, 3900, 4000, 3800, 3500],
         type: "line",
         itemStyle: {
           emphasis: {
@@ -1225,7 +1060,7 @@ export default {
       option.series.push({
         name: "叶面肥",
         barWidth: 20,
-        data: [35,31, 22, 20, 18],
+        data: [35, 31, 22, 20, 18],
         type: "line",
         itemStyle: {
           emphasis: {
@@ -1295,13 +1130,9 @@ export default {
               };
 
               this.addresss[i].children.push(obj);
-
-
-
             }
           });
         });
-
       });
     },
     _dramLoansChart(pieData) {
@@ -1507,390 +1338,114 @@ export default {
       });
       rainChart.setOption(option);
     },
-     _renderClusterMarker(context) {
-           var count = this.markers.length;
-        var factor = Math.pow(context.count / count, 1 / 10);
-        var div = document.createElement('div');
-        var Hue = 180 - factor * 180;
-        var bgColor = 'hsla(' + Hue + ',100%,50%,0.7)';
-        var fontColor = 'hsla(' + Hue + ',100%,20%,1)';
-        var borderColor = 'hsla(' + Hue + ',100%,40%,1)';
-        var shadowColor = 'hsla(' + Hue + ',100%,50%,1)';
-        // div.style.backgroundColor = bgColor;
-       div.style.backgroundColor = '#fce700';
-        var size = Math.round(30 + Math.pow(context.count / count, 1 / 5) * 20);
-        // div.style.width = div.style.height = size + 'px';
-       div.style.width = div.style.height = '40px';
-        // div.style.border = 'solid 1px ' + borderColor;
-       div.style.border = 'solid 1px #fce700';
-        div.style.borderRadius = size / 2 + 'px';
-        div.style.boxShadow = '0 0 1px ' + shadowColor;
-        div.innerHTML = context.count;
-        // div.style.lineHeight = size + 'px';
-       div.style.lineHeight = '40px';
-        div.style.color = fontColor;
-        div.style.fontSize = '14px';
-        div.style.textAlign = 'center';
-        context.marker.setOffset(new AMap.Pixel(-size / 2, -size / 2));
-        context.marker.setContent(div)
-
+    _renderClusterMarker(context) {
+      var count = this.markers.length;
+      var factor = Math.pow(context.count / count, 1 / 10);
+      var div = document.createElement("div");
+      var Hue = 180 - factor * 180;
+      var bgColor = "hsla(" + Hue + ",100%,50%,0.7)";
+      var fontColor = "hsla(" + Hue + ",100%,20%,1)";
+      var borderColor = "hsla(" + Hue + ",100%,40%,1)";
+      var shadowColor = "hsla(" + Hue + ",100%,50%,1)";
+      // div.style.backgroundColor = bgColor;
+      div.style.backgroundColor = "#fce700";
+      var size = Math.round(30 + Math.pow(context.count / count, 1 / 5) * 20);
+      // div.style.width = div.style.height = size + 'px';
+      div.style.width = div.style.height = "40px";
+      // div.style.border = 'solid 1px ' + borderColor;
+      div.style.border = "solid 1px #fce700";
+      div.style.borderRadius = size / 2 + "px";
+      div.style.boxShadow = "0 0 1px " + shadowColor;
+      div.innerHTML = context.count;
+      // div.style.lineHeight = size + 'px';
+      div.style.lineHeight = "40px";
+      div.style.color = fontColor;
+      div.style.fontSize = "14px";
+      div.style.textAlign = "center";
+      context.marker.setOffset(new AMap.Pixel(-size / 2, -size / 2));
+      context.marker.setContent(div);
     },
     _drawCityMap() {
       //  this.$refs.mapChart.style.height = "520px";
       let that = this;
       MapLoader().then(AMap => {
         that.map = new AMap.Map(this.$refs.mapChart, {
-           resizeEnable: true,
+          resizeEnable: true,
           center: [105.013664, 31.206397],
           zooms: [10, 18]
           // layers:[googleLayer,roadNetLayer,layer], //设置图层
           // viewMode:'3D',
         });
 
-        AMap.plugin(["AMap.DistrictSearch","AMap.MarkerClusterer"], function() {
-          var district = new AMap.DistrictSearch({
-            extensions: "all",
-            subdistrict: 0
-          });
-          district.search("三台县", function(status, result) {
-            // 外多边形坐标数组和内多边形坐标数组
-            var bounds = result.districtList[0].boundaries;
-            var outer = [
-              new AMap.LngLat(-360, 90, true),
-              new AMap.LngLat(-360, -90, true),
-              new AMap.LngLat(360, -90, true),
-              new AMap.LngLat(360, 90, true)
-            ];
-            var pathArray = [outer];
-            pathArray.push.apply(pathArray, bounds);
-            var polygon = new AMap.Polygon({
-              path: pathArray,
-              strokeColor: "#0AFBE2",
-              strokeWeight: 1,
-              fillColor: "#26374C",
-              fillOpacity: 0.3
+        AMap.plugin(
+          ["AMap.DistrictSearch", "AMap.MarkerClusterer"],
+          function() {
+            var district = new AMap.DistrictSearch({
+              extensions: "all",
+              subdistrict: 0
             });
-            polygon.setPath(pathArray);
-            that.map.add(polygon);
-            var polygons = [];
-            if (bounds) {
-              for (var i = 0, l = bounds.length; i < l; i++) {
-                //生成行政区划polygon
-                var polygon1 = new AMap.Polygon({
-                  map: that.map,
-                  strokeWeight: 1,
-                  path: bounds[i],
-                  fillOpacity: 0,
-                  fillColor: "#CCF3FF",
-                  strokeColor: "#CC66CC"
-                });
-                polygons.push(polygon1);
+            district.search("三台县", function(status, result) {
+              // 外多边形坐标数组和内多边形坐标数组
+              var bounds = result.districtList[0].boundaries;
+              var outer = [
+                new AMap.LngLat(-360, 90, true),
+                new AMap.LngLat(-360, -90, true),
+                new AMap.LngLat(360, -90, true),
+                new AMap.LngLat(360, 90, true)
+              ];
+              var pathArray = [outer];
+              pathArray.push.apply(pathArray, bounds);
+              var polygon = new AMap.Polygon({
+                path: pathArray,
+                strokeColor: "#0AFBE2",
+                strokeWeight: 1,
+                fillColor: "#26374C",
+                fillOpacity: 0.9
+              });
+              polygon.setPath(pathArray);
+              that.map.add(polygon);
+              var polygons = [];
+              if (bounds) {
+                for (var i = 0, l = bounds.length; i < l; i++) {
+                  //生成行政区划polygon
+                  var polygon1 = new AMap.Polygon({
+                    map: that.map,
+                    strokeWeight: 1,
+                    path: bounds[i],
+                    fillOpacity: 0,
+                    fillColor: "#CCF3FF",
+                    strokeColor: "#CC66CC"
+                  });
+                  polygons.push(polygon1);
+                }
+                // 地图自适应
+                that.map.setFitView(polygons);
               }
-              // 地图自适应
-              that.map.setFitView(polygons);
-            }
-          });
-          // 聚合点
+            });
+            // 聚合点
 
-           if (that.cluster) {
+            if (that.cluster) {
               that.cluster.setMap(null);
-           }else{
-
-            that.cluster = new AMap.MarkerClusterer(that.map,that.markers, {
-
-                gridSize: 80,
-                renderClusterMarker: that._renderClusterMarker
-            });
-           }
-
-
-
-          // var bounds = that.map.getBounds();
-          // that.map.setLimitBounds(bounds);
-          that.map.on("complete", function() {
-
-            var myEvent = new CustomEvent("done1", {});
-            if (window.dispatchEvent) {
-              window.dispatchEvent(myEvent);
             } else {
-              window.fireEvent(myEvent);
+              that.cluster = new AMap.MarkerClusterer(that.map, that.markers, {
+                gridSize: 100,
+                renderClusterMarker: that._renderClusterMarker
+              });
             }
-          });
-        });
+
+            // var bounds = that.map.getBounds();
+            // that.map.setLimitBounds(bounds);
+            that.map.on("complete", function() {
+              var myEvent = new CustomEvent("done1", {});
+              if (window.dispatchEvent) {
+                window.dispatchEvent(myEvent);
+              } else {
+                window.fireEvent(myEvent);
+              }
+            });
+          }
+        );
       });
-    },
-    _setOption() {
-      this.option = {
-        tooltip: {
-          trigger: "item",
-          formatter: function() {
-            return "";
-          }
-        },
-        legend: {
-          bottom: 20,
-          left: 20,
-          orient: "vertical",
-          textStyle: {
-            color: "#fff"
-          },
-          selectedMode: true
-        },
-        visualMap: {
-          show: false,
-          min: 0,
-          max: 2,
-          left: "left",
-          top: "top",
-          text: ["高", "低"], // 文本，默认为数值文本
-          textStyle: {
-            color: "#fff"
-          },
-          calculable: true,
-          seriesIndex: [1],
-          inRange: {
-            // color: ['#3B5077', '#031525'] // 蓝黑
-            // color: ['#ffc0cb', '#800080'] // 红紫
-            // color: ['#3C3B3F', '#605C3C'] // 黑绿
-            // color: ['#0f0c29', '#302b63', '#24243e'] // 黑紫黑
-            // color: ['#23074d', '#cc5333'] // 紫红
-            //99CC99
-            color: ["#00b583", "#009a6a"] // 蓝绿
-            // color: ['#1488CC', '#2B32B2'] // 浅蓝
-            // color: ['#00467F', '#A5CC82'] // 蓝绿
-            // color: ['#00467F', '#A5CC82'] // 蓝绿
-            // color: ['#00467F', '#A5CC82'] // 蓝绿
-            // color: ['#00467F', '#A5CC82'] // 蓝绿
-          }
-        },
-        //地图坐标系组建
-        geo: {
-          show: true,
-          map: "santai",
-          aspectScale: 1,
-          label: {
-            normal: {
-              show: false,
-              textStyle: {
-                color: "#fff",
-                fontSize: 16
-              }
-            },
-            emphasis: {
-              show: true,
-              textStyle: {
-                color: "#000",
-                fontSize: 12
-              }
-            }
-          },
-          //地图颜色配置
-          itemStyle: {
-            normal: {
-              //区域和区域线条颜色（无数据时候）
-              areaColor: "#baaea0",
-              borderColor: "#eee"
-            },
-            emphasis: {
-              areaColor: "#fff",
-              textStyle: {
-                color: "#000"
-              }
-            }
-          },
-          zoom: 1.3
-        },
-        //数据展示
-        series: [
-          //合作社坐标点，黄点
-          {
-            name: "基地",
-            type: "effectScatter",
-            coordinateSystem: "geo",
-            data: this.mapDatas,
-            symbolSize: function(val) {
-              return 12;
-            },
-            showEffectOn: "render",
-            rippleEffect: {
-              brushType: "stroke"
-            },
-            hoverAnimation: true,
-            label: {
-              normal: {
-                formatter: "{b}",
-                position: "top",
-                show: false
-              },
-              emphasis: {
-                show: true,
-                textStyle: {
-                  color: "white",
-                  fontSize: 16,
-                  fontWeight: 700
-                }
-              }
-            },
-            itemStyle: {
-              normal: {
-                color: "#fe5858"
-              }
-            }
-            // zlevel: 1
-          },
-          {
-            type: "map",
-            map: "santai",
-            geoIndex: 0,
-            label: {
-              normal: {
-                show: false
-              },
-              emphasis: {
-                show: true,
-                textStyle: {
-                  color: "#fff"
-                }
-              }
-            },
-            roam: false,
-            itemStyle: {
-              normal: {
-                areaColor: "#031525",
-                borderColor: "#000"
-              },
-              emphasis: {
-                areaColor: "#2B91B7"
-              }
-            },
-            animation: false,
-            data: this.showColorDatas
-          },
-          {
-            name: "合作社",
-            type: "effectScatter",
-            coordinateSystem: "geo",
-            symbolSize: function(val) {
-              return 12;
-            },
-            data: [
-              {
-                name: "合作社",
-                value: [104.90298, 31.2453],
-                id: 1
-              }
-            ],
-            showEffectOn: "render",
-            rippleEffect: {
-              brushType: "stroke"
-            },
-            hoverAnimation: true,
-            label: {
-              normal: {
-                formatter: "{b}",
-                position: "top",
-                show: false
-              },
-              emphasis: {
-                show: true,
-                textStyle: {
-                  color: "white",
-                  fontSize: 16,
-                  fontWeight: 700
-                }
-              }
-            },
-            itemStyle: {
-              normal: {
-                color: "#dc9748"
-              }
-            }
-            // zlevel: 0
-          },
-          {
-            name: "家庭农场",
-            type: "effectScatter",
-            coordinateSystem: "geo",
-            symbolSize: function(val) {
-              return 12;
-            },
-            data: [
-              {
-                name: "家庭农场",
-                value: [104.98298, 31.1653],
-                id: 1
-              }
-            ],
-            showEffectOn: "render",
-            rippleEffect: {
-              brushType: "stroke"
-            },
-            hoverAnimation: true,
-            label: {
-              normal: {
-                formatter: "{b}",
-                position: "top",
-                show: false
-              },
-              emphasis: {
-                show: true,
-                textStyle: {
-                  color: "white",
-                  fontSize: 16,
-                  fontWeight: 700
-                }
-              }
-            },
-            itemStyle: {
-              normal: {
-                color: "#289CF4"
-              }
-            }
-            // zlevel: 0
-          },
-          {
-            name: "农户",
-            type: "effectScatter",
-            coordinateSystem: "geo",
-            symbolSize: function(val) {
-              return 12;
-            },
-            data: [
-              {
-                name: "农户",
-                value: [104.93298, 31.2053],
-                id: 1
-              }
-            ],
-            showEffectOn: "render",
-            rippleEffect: {
-              brushType: "stroke"
-            },
-            hoverAnimation: true,
-            label: {
-              normal: {
-                formatter: "{b}",
-                position: "top",
-                show: false
-              },
-              emphasis: {
-                show: true,
-                textStyle: {
-                  color: "white",
-                  fontSize: 16,
-                  fontWeight: 700
-                }
-              }
-            },
-            itemStyle: {
-              normal: {
-                color: "#fe58fe"
-              }
-            }
-            // zlevel: 0
-          }
-        ]
-      };
     },
     infowindow(a, b) {
       this.getinfo(b);
@@ -1907,19 +1462,11 @@ export default {
           "</span></div>"
       );
     },
-    setInfoWindow(baseId){
-      // let baseInfo=this.plantInfo.baseInfo;
-
-      let baseInfo=this.mapRemarks
-
-
-
-      let that=this;
-
-      baseInfo.map(item=>{
-        if(item.id==baseId){
-          let baseName=item.name
-
+    setInfoWindow(baseId) {
+      let baseInfo = this.mapRemarks;
+      baseInfo.map(item => {
+        if (item.id == baseId) {
+          let baseName = item.name;
 
           let remark = item.mapAddr;
           let remarkJson2 = eval("(" + remark + ")");
@@ -1929,28 +1476,16 @@ export default {
           let infoWindow = new AMap.InfoWindow({
             position: new AMap.LngLat(lng, lat),
             offset: new AMap.Pixel(-0, -10),
-            content: '<div style="color:#c3c3c3">'+baseName+'</div>'
-          })
+            content: '<div style="color:#c3c3c3">' + baseName + "</div>"
+          });
           infoWindow.open(this.map);
-
-          // let map_addr=JSON.parse(item.mapAddr);
-          // let lnglat=[map_addr.path[0].lng,map_addr.path[0].lat]
-          // var infoWindow = new AMap.InfoWindow({
-          //   position: lnglat,
-          //   offset: new AMap.Pixel(-3, -10),
-          //   content: '<div style="color:#c3c3c3">'+baseName+'</div>'
-          // });
-          // infoWindow.open(this.map);
         }
-      })
-
+      });
     },
     selectAddress(datas, selectedData) {
-       console.log(datas[0]);
-
       if (datas.length != 0) {
         this.address = datas[1];
-        this.setInfoWindow(datas[0])
+        this.setInfoWindow(datas[0]);
         this.$nextTick(() => {
           this.player = new EZUIPlayer("myVideo");
         });
@@ -2028,7 +1563,7 @@ export default {
 }
 
 .home-height {
-  height: calc(100vh - 80px);
+  height: calc(100% - 80px);
 }
 
 .base-wrapper {
@@ -2280,7 +1815,7 @@ export default {
     flex-direction: column;
     padding-bottom: 20px;
     min-width: 400px;
-    height: calc(100vh - 80px);
+    height: 100%;
 
     .airs {
       position: relative;
@@ -2555,7 +2090,7 @@ export default {
 }
 
 .map-message {
-  height: calc(100vh - 80px) !important;
+  height: 100% !important;
 }
 
 .pie-color-box {
@@ -2629,7 +2164,7 @@ export default {
   width: 55%;
   z-index: 1111;
   height: 100px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.5);
   color: #fff;
   text-align: center;
 }
@@ -2641,6 +2176,15 @@ export default {
   color: #fff;
   position: relative;
   top: -10px;
+}
+
+.base-container {
+  min-width: 1600px;
+  height: 1080px;
+}
+
+.scorll-height {
+  height: calc(((100% - 650px) / 2)) !important;
 }
 </style>
 

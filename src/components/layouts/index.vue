@@ -53,7 +53,6 @@
     computed :{
       menus(){
         const filterMenus = filterNoChild(this.$store.state.user.menus);
-        console.log(filterMenus)
         return this.$store.state.user.menus
       },
 

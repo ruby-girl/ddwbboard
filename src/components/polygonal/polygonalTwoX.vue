@@ -13,7 +13,6 @@ export default {
   },
   methods: {
     _drawPolygonal(dataLeft,dataRight) {
-      console.log()
       let _this = this;
       let polygonalChart = this.$echarts.init(this.$refs.polygonal,null,{devicePixelRatio: 2.5});
       var colors = ["#0089FF", "#B865DF"];

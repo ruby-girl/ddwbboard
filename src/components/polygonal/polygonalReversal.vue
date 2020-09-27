@@ -17,7 +17,6 @@ export default {
   },
   methods: {
     _drawPolygonal(datas) {
-      console.info('方法内。。',datas)
       let polygonalChart = this.$echarts.init(this.$refs.polygonals,null,{devicePixelRatio: 2.5});
       let option = {
         grid: {
