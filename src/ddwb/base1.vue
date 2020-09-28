@@ -53,7 +53,7 @@
               <div class="base-info-img" :style="{backgroundImage:'url('+pics[1].url+')',backgroundRepeat:'no-repeat',backgroundSize:'cover',backgroundPosition:'center'}"></div>
             </div>
             <div class="display-flex" v-else>
-              <!-- <div class="base-info-img" style=";marginRight:1%"></div> -->
+            
               <div class="base-info-img" :style="{backgroundImage:'url('+imgUrl+')',backgroundRepeat:'no-repeat',backgroundSize:'cover',backgroundPosition:'center'}"></div>
             
             </div>
@@ -171,9 +171,7 @@
         <div class="base-message">
           <div
             class="base display-flex justify-content-flex-justify"
-            ref="baseMessage"
-          >
-            <!-- <baseMap></baseMap> -->
+            ref="baseMessage">
             <div class="item-bg-y" style="position:relative;">
               <div class="last-title display-flex justify-content-flex-justify">
                 <div>土壤环境</div>
@@ -265,18 +263,23 @@
             </div>
             <!-- <div class="pie-text" :style="{'top':pieTxtTop,'left':pieTxtLeft}">亩</div> -->
             <div style="height:180px" ref="loansChart"></div>
-            <!-- 饼图说明 -->
-            <div class="pie-color-box">
-              <div class="display-flex align-items-center">
+           
+          </div>
+           <!-- 饼图说明 -->
+            <div class="pie-color-box display-flex justify-content-flex-center">
+             <div style="margin-right:15px">
+                <div class="display-flex align-items-center">
                 <div class="pie-color-2"></div>
                 <span>有订单</span>
               </div>
-              <div class="display-flex align-items-center">
+             </div>
+             <div>
+                <div class="display-flex align-items-center">
                 <div class="pie-color-3"></div>
                 <span>没有订单</span>
               </div>
+             </div>
             </div>
-          </div>
         </div>
         <div class="item-bg-y bg-item-box left-height" style="padding:15px 0;margin-top:20px;">
           <div class="last-title">基地保险概况</div>
@@ -335,7 +338,6 @@
 </template>
 <script>
 import headers from "@/components/header/header";
-import baseMap from "@/components/baseMap/baseMap";
 import MapLoader from "@/utils/loadMap.js";
 import polygonalTwo from "@/components/polygonal/polygonalTwoX";
 import echartslLine from "@/components/echartslLine/echartslLine";
@@ -365,7 +367,6 @@ export default {
   name: "home",
   components: {
     headers,
-    baseMap,
     polygonalTwo,
     echartslLine,
     Footer,
@@ -697,7 +698,7 @@ export default {
       //获取基地详情
       getBaseInfo({ baseId: this.baseIdSet }).then(res => {
         this.baseinfoRes = res.data;
-        this.pics = this.baseinfoRes.basePics;
+        this.pics = this.baseinfoRes.basePics||[];
         if(this.pics.length<1){//如果没有基地图片，抓取萤石云
           this.getBaseWithMonitorVideos()
         }
@@ -1890,9 +1891,7 @@ export default {
 }
 
 .pie-color-box {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
+  
   line-height: 35px;
   color: #fff;
 

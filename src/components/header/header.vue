@@ -3,7 +3,7 @@
     <div class="title-box">
       <h1 class="title">道地药材(涪城麦冬)数字化管理平台</h1>
     </div>
-    <div class="wrapper display-flex align-items-center" style="width:350px">
+    <div class="wrapper display-flex align-items-flex-end" style="width:400px">
       <div>
         <div class="display-flex align-items-center">
           <i class="iconfont icondingwei"></i>
@@ -14,16 +14,10 @@
           <span>{{date}}</span>
         </div>
       </div>
-      <div style="margin:0 20px;">
-        <div class="display-flex align-items-center">
-          <div>
-            <img style="width:50px" :src="now.weather_pic" alt />
-          </div>
-          <div>
-            <!-- <span>{{now.temperature}}℃</span> -->
-            <span class="weather" style="margin-left:5px">{{weather}}</span>
-          </div>
-        </div>
+      
+         <div style="padding-left:10px">
+        <a href="http://cmc.scbysk.com">友情链接：全国中药材资源查询系统</a>
+      
       </div>
     </div>
   </div>

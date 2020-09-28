@@ -3,9 +3,6 @@
     <div class="copyright">
       <div>Copyright All Rights Reserved四川本源数科科技有限公司</div>
       <div>蜀ICP备20024953号-1</div>
-      <div>
-        <a href="http://cmc.scbysk.com">链接：全国中药材资源查询系统</a>
-      </div>
     </div>
   </div>
 </template>

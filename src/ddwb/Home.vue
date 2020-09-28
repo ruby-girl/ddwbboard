@@ -106,7 +106,6 @@ text-overflow:ellipsis;"
         </div>
         <div class="base-message scorll-height">
           <div class="base display-flex justify-content-flex-justify">
-            <!-- <baseMap></baseMap> -->
             <div class="item-bg-y" style="padding:0">
               <div class="title" style="padding-left:10px">仓储信息</div>
               <ul
@@ -364,10 +363,7 @@ text-overflow:ellipsis;"
 </template>
 <script>
 import headers from "@/components/header/header";
-import baseMap from "@/components/baseMap/baseMap";
 import MapLoader from "@/utils/loadMap.js";
-
-import echartslLine from "@/components/echartslLine/echartslLine";
 import Footer from "@/components/layouts/Footer";
 import chartsType from "../assets/js/chartsType.js";
 import roll from "../assets/js/roll.js";
@@ -394,8 +390,6 @@ export default {
   name: "home",
   components: {
     headers,
-    baseMap,
-    echartslLine,
     Footer
   },
   data() {
