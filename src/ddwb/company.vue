@@ -560,13 +560,14 @@ export default {
         });
       });
     });
+        this.getOrganUserInfo();
     this._dramLoansChart();
 
     setTimeout(function() {
       that.financeOrder(1);
     }, 1000);
     this.financeProportion();
-    this.getOrganUserInfo();
+
     this.getOrganUserFarmWorkRecordInfo();
   },
   methods: {
@@ -574,18 +575,19 @@ export default {
       //气象
       getLandLastRecord({ landparcelId: id }).then(res => {
         if (res.data.source == "公共数据库") {
-          res.data.airTemperature = res.data.airTemperature + "℃";
+          res.data.airTemperature = res.data.airTemperature||'-' + "℃";
+          res.data.airHumidity = res.data.airHumidity||'-' + "%";
           res.data.co2value = "无";
           res.data.airPressure = "无";
           res.data.illIntensity = "无";
         } else {
-          res.data.airTemperature = res.data.airTemperature + "℃";
-          res.data.airHumidity = res.data.airHumidity + "%";
-          res.data.co2value = res.data.co2value + "ppm";
-          res.data.airPressure = res.data.airPressure + "kPa";
-          res.data.illIntensity = res.data.illIntensity + "Lux";
-          res.data.windSpeed = res.data.windSpeed + "m/s";
-          res.data.windDirection = res.data.windDirection + "°";
+          res.data.airTemperature = res.data.airTemperature||'-' + "℃";
+          res.data.airHumidity = res.data.airHumidity||'-' + "%";
+          res.data.co2value = res.data.co2value||'-' + "ppm";
+          res.data.airPressure = res.data.airPressure||'-' + "kPa";
+          res.data.illIntensity = res.data.illIntensity||'-' + "Lux";
+          res.data.windSpeed = res.data.windSpeed||'-' + "m/s";
+          res.data.windDirection = res.data.windDirection||'-' + "°";
         }
         this.LandLastRecord = res.data;
       });

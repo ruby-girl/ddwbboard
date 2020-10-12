@@ -511,24 +511,6 @@ export default {
   },
   created() {
     this.getMap();
-    axios
-      .get("/tq", {
-        params: { from: "5", lat: 31.1, lng: 105.06, needMoreDay: 1 },
-        headers: { Authorization: "APPCODE 912f4ba38a394870aed1d60aca9a34fb" }
-      })
-      .then(res => {
-        if (res.status === 200) {
-          this.weather = res.data.showapi_res_body.now.temperature;
-          this.weather1 = res.data.showapi_res_body.now;
-          this.weather2 = res.data.showapi_res_body.now.sd.slice(0, 2);
-        }
-      });
-    if (this.$route.query.time) {
-      let that = this;
-      window.addEventListener("done1", function() {
-        // that.all();
-      });
-    }
   },
   mounted() {
     // 设置饼图背景图
@@ -541,9 +523,6 @@ export default {
       that.show = true;
       // 这里要重绘柱形图--------------------柱形图组件传参或者用方法
     }, 1000);
-    // this._drawRainMap();
-
-    // this._getJson()
     this._drawCityMap();
     that.allbasearea = 0;
     axios.get("json/base_info.json").then(res => {
@@ -569,32 +548,6 @@ export default {
         });
         that.baseinfo = [];
         that.baseLength = 0;
-
-        setTimeout(function() {
-          for (let i = 0; i < that.mapRemarks.length; i++) {
-            let remark = that.mapRemarks[i].mapAddr;
-            let remarkJson2 = eval("(" + remark + ")");
-
-            let lng = remarkJson2.path[0].lng;
-            let lat = remarkJson2.path[0].lat;
-            let marker = new AMap.Marker({
-              position: new AMap.LngLat(lng, lat),
-              offset: new AMap.Pixel(-10, -10),
-              content:
-                '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>'
-            });
-            that.markers.push(marker);
-            that.map.add(marker);
-            that.addCluster();
-            marker.on("click", function(e) {
-              that.$router.push({
-                name: "base",
-                query: { baseId: that.mapRemarks[i].id }
-              });
-            });
-            //  that.addCluster(1)
-          }
-        }, 1500);
       });
     });
     this.getSubjectInfo();
@@ -629,7 +582,7 @@ export default {
         gridSize: 100,
         renderClusterMarker: _this._renderClusterMarker
       });
-      this.cluster.setMinClusterSize(5);// 代表低于五个点就不聚合 这样能有效防止
+      this.cluster.setMinClusterSize(5); // 代表低于五个点就不聚合 这样能有效防止
     },
     getWorkOrderByRealTimeList() {
       getWorkOrderByRealTime({ organId: this.organId }).then(res => {
@@ -931,7 +884,9 @@ export default {
       getBaseMapInfo({ organId: this.organId }).then(res => {
         this.mapRemarks = res.data;
         let that = this;
+
         for (let i = 0; i < that.mapRemarks.length; i++) {
+          console.info("iiiiid===基地", that.mapRemarks[i].id);
           let remark = that.mapRemarks[i].mapAddr;
           let remarkJson2 = eval("(" + remark + ")");
 
@@ -947,6 +902,8 @@ export default {
           that.map.add(marker);
           that.addCluster();
           marker.on("click", function(e) {
+            console.info("点击iiiiid=======", that.mapRemarks[i].id);
+
             that.$router.push({
               name: "base",
               query: { baseId: Number(that.mapRemarks[i].id) }
@@ -964,7 +921,9 @@ export default {
         this.mapRemarks = res.data;
         let that = this;
         let points = [];
+
         for (let i = 0; i < that.mapRemarks.length; i++) {
+          console.info("iiiiid===农户", that.mapRemarks[i].id);
           if (that.mapRemarks[i].mapAddr) {
             let remark = that.mapRemarks[i].mapAddr;
             let remarkJson2 = eval("(" + remark + ")");
@@ -981,6 +940,7 @@ export default {
             that.map.add(marker);
             that.addCluster();
             marker.on("click", function(e) {
+              console.info("农户点击iiiiid=======", that.mapRemarks[i].id);
               that.$router.push({
                 name: "company",
                 query: { userOrganId: Number(that.mapRemarks[i].id) }
@@ -1431,6 +1391,7 @@ export default {
             // that.map.setLimitBounds(bounds);
             that.map.on("complete", function() {
               var myEvent = new CustomEvent("done1", {});
+              that.changeMapData1();
               if (window.dispatchEvent) {
                 window.dispatchEvent(myEvent);
               } else {
