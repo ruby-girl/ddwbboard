@@ -368,82 +368,19 @@ export default {
       mapDatas: [],
       orderList: [],
       weixin: false,
-      nowDate: "",
-      plotDatas: [],
-      mapChart: "",
       baseLength: 0,
       plotLength: 0,
       totalArea: 0,
       option: {},
-      addresss: [],
       baseinfo: [],
-      address: "",
-      curLock: false,
-      serviceData: [],
-      date: "",
-      hours: "",
       metalDatas: [40, 200, 90, 140, 130, 0.2, 20, 0.4],
-      baseDatas: [
-        { itemStyle: { color: "#975FE5" } },
-        { itemStyle: { color: "#FE8463" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#E55F76" } },
-        { itemStyle: { color: "#3AA1FF" } },
-        { itemStyle: { color: "#5FE583" } },
-        { itemStyle: { color: "#5F95E5" } },
-        { itemStyle: { color: "#E5AF5F" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#4ECB73" } },
-        { itemStyle: { color: "#FBD437" } },
-        { itemStyle: { color: "#975FE5" } },
-        { itemStyle: { color: "#FE8463" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#E55F76" } },
-        { itemStyle: { color: "#3AA1FF" } },
-        { itemStyle: { color: "#5FE583" } },
-        { itemStyle: { color: "#5F95E5" } },
-        { itemStyle: { color: "#E5AF5F" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#4ECB73" } },
-        { itemStyle: { color: "#FBD437" } },
-        { itemStyle: { color: "#975FE5" } },
-        { itemStyle: { color: "#FE8463" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#E55F76" } },
-        { itemStyle: { color: "#3AA1FF" } },
-        { itemStyle: { color: "#5FE583" } },
-        { itemStyle: { color: "#5F95E5" } },
-        { itemStyle: { color: "#E5AF5F" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#4ECB73" } },
-        { itemStyle: { color: "#FBD437" } },
-        { itemStyle: { color: "#975FE5" } },
-        { itemStyle: { color: "#FE8463" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#E55F76" } },
-        { itemStyle: { color: "#3AA1FF" } },
-        { itemStyle: { color: "#5FE583" } },
-        { itemStyle: { color: "#5F95E5" } },
-        { itemStyle: { color: "#E5AF5F" } }
-      ],
       tip: "",
       markers: [],
       hezuoshe: [],
       jiatingnongchang: [],
       jinmihezuo: [],
-      hezuosheL: "",
-      jiatingnongchangL: "",
-      jinmihezuoL: "",
-      hezuoshe2: [],
-      jiatingnongchang2: [],
-      jinmihezuo2: [],
-      blockinfo: [],
       polygonss: [],
       infoWindow: null,
-      weather1: {},
-      weather2: "",
-      weather: "",
-      allbasearea: 0,
       mapIcon: require("../assets/new/icon_positioning.png"),
       lastBoxHeight: 100,
       userOrganId: "",
@@ -460,36 +397,7 @@ export default {
   },
   created() {
     this.userOrganId = 55;
-    var date = new Date().toString().split(" ");
-    var month = new Date().getMonth() + 1;
-    var str = "";
-    this.nowDate = str + date[3] + "/" + month + "/" + date[2] + " " + date[4];
     this.userOrganIdSet = this.$route.query.userOrganId;
-    let params =
-      "appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53";
-    axios
-      .post("https://open.ys7.com/api/lapp/token/get", params, {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      })
-      .then(res => {
-        if (res.data.code == 200) {
-          let token =
-            "accessToken=" +
-            res.data.data.accessToken +
-            "&pageStart=0&pageSize=50";
-          window.localStorage.setItem("token", token);
-        }
-      });
-    // }
-    this._getAddress();
-    if (this.$route.query.time) {
-      let that = this;
-      window.addEventListener("done1", function() {
-        that.all();
-      });
-    }
   },
   mounted() {
     if (this.baseScroll) {
@@ -520,49 +428,26 @@ export default {
     this.$refs.mapChart.style.height = height - 400 + "px";
     let mapHeight = this.$refs.mapChart.offsetHeight;
     let m = height - mapHeight - 160;
-
     this.baseMessageHeight = m + "px";
-    // setTimeout(function() {
-    //   that._drawLine(); //左侧折线图
-
-    // }, 1000);
-    // this._getJson()
     let that = this;
-    that.allbasearea = 0;
-    axios.get("json/base_info.json").then(res => {
-      for (let i = 0; i < res.data.result.length; i++) {
-        that.allbasearea += res.data.result[i].area;
-        that.baseDatas[i].name = res.data.result[i].name;
-        that.baseDatas[i].value = res.data.result[i].area;
-        if (that.baseScroll) {
-          clearInterval(that.baseScroll.timer);
-        }
-        that.$nextTick(() => {
-          if (that.baseScroll) {
-            clearInterval(that.baseScroll.timer);
-          }
-        });
-      }
-      window.addEventListener("done1", function() {
-        let googleLayer = new AMap.TileLayer({
-          getTileUrl:
-            "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
-        }); //定义谷歌卫星切片图层
+    window.addEventListener("done1", function() {
+      let googleLayer = new AMap.TileLayer({
+        getTileUrl:
+          "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
+      }); //定义谷歌卫星切片图层
 
-        let roadNetLayer = new AMap.TileLayer.RoadNet({
-          opacity: 0
-        }); //定义一个路网图层
-        // var layer = new AMap.TileLayer();
-        that.map.setLayers([googleLayer, roadNetLayer]);
-        axios.get("json/blockinfo.json").then(res => {
-          that.blockinfo = res.data.result;
-          // that.addBlockOnMap();
-        });
+      let roadNetLayer = new AMap.TileLayer.RoadNet({
+        opacity: 0
+      }); //定义一个路网图层
+      // var layer = new AMap.TileLayer();
+      that.map.setLayers([googleLayer, roadNetLayer]);
+      axios.get("json/blockinfo.json").then(res => {
+        that.blockinfo = res.data.result;
+        // that.addBlockOnMap();
       });
     });
-        this.getOrganUserInfo();
+    this.getOrganUserInfo();
     this._dramLoansChart();
-
     setTimeout(function() {
       that.financeOrder(1);
     }, 1000);
@@ -575,19 +460,19 @@ export default {
       //气象
       getLandLastRecord({ landparcelId: id }).then(res => {
         if (res.data.source == "公共数据库") {
-          res.data.airTemperature = res.data.airTemperature||'-' + "℃";
-          res.data.airHumidity = res.data.airHumidity||'-' + "%";
+          res.data.airTemperature = res.data.airTemperature || "-" + "℃";
+          res.data.airHumidity = res.data.airHumidity || "-" + "%";
           res.data.co2value = "无";
           res.data.airPressure = "无";
           res.data.illIntensity = "无";
         } else {
-          res.data.airTemperature = res.data.airTemperature||'-' + "℃";
-          res.data.airHumidity = res.data.airHumidity||'-' + "%";
-          res.data.co2value = res.data.co2value||'-' + "ppm";
-          res.data.airPressure = res.data.airPressure||'-' + "kPa";
-          res.data.illIntensity = res.data.illIntensity||'-' + "Lux";
-          res.data.windSpeed = res.data.windSpeed||'-' + "m/s";
-          res.data.windDirection = res.data.windDirection||'-' + "°";
+          res.data.airTemperature = res.data.airTemperature || "-" + "℃";
+          res.data.airHumidity = res.data.airHumidity || "-" + "%";
+          res.data.co2value = res.data.co2value || "-" + "ppm";
+          res.data.airPressure = res.data.airPressure || "-" + "kPa";
+          res.data.illIntensity = res.data.illIntensity || "-" + "Lux";
+          res.data.windSpeed = res.data.windSpeed || "-" + "m/s";
+          res.data.windDirection = res.data.windDirection || "-" + "°";
         }
         this.LandLastRecord = res.data;
       });
@@ -718,7 +603,7 @@ export default {
         );
       });
     },
-  listAddMarker(position, i) {
+    listAddMarker(position, i) {
       var markerContent =
         "" +
         '<div class="custom-content-marker" style="postion:relative;text-align:center">' +
@@ -775,12 +660,6 @@ export default {
         });
       }
     },
-    removepoint() {
-      this.map.remove(this.markers);
-      this.map.remove(this.hezuoshe);
-      this.map.remove(this.jiatingnongchang);
-      this.map.remove(this.jinmihezuo);
-    },
     changemap() {
       if (this.weixin) {
         this.map.remove(this.map.getLayers());
@@ -804,94 +683,6 @@ export default {
         this.map.setLayers([roadNetLayer, layer]);
         this.weixin = true;
       }
-    },
-    _getAddress(token) {
-      var date = new Date().toString().split(" ");
-      var month = new Date().getMonth() + 1;
-      var str = "";
-      this.date = str + date[3] + "-" + month + "-" + date[2];
-      this.hours = date[4];
-      let params =
-        "appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53";
-      let curToken = token ? token : window.localStorage.token;
-      axios
-        .post("https://open.ys7.com/api/lapp/live/video/list", curToken, {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
-        })
-        .then(res => {
-          if (res.data.code == 200) {
-            if (res.data.data && res.data.data.length) {
-              this.addresss.push({
-                label: res.data.data[3].deviceName,
-                value: res.data.data[3].deviceSerial,
-                children: []
-              });
-              for (let i = 3; i < res.data.data.length; i++) {
-                for (let j = 0; j < this.addresss.length; j++) {
-                  if (this.addresss[j].label === res.data.data[i].deviceName) {
-                    this.curLock = true;
-                    this.addresss[j].children.push({
-                      label: "通道" + res.data.data[i].channelNo,
-                      value: res.data.data[i].liveAddress,
-                      name: res.data.data[i].deviceName
-                    });
-                  }
-                }
-                if (!this.curLock) {
-                  this.addresss.push({
-                    label: res.data.data[i].deviceName,
-                    value: res.data.data[i].deviceSerial,
-                    name: res.data.data[i].deviceName,
-                    children: [
-                      {
-                        label: "通道" + res.data.data[i].channelNo,
-                        value: res.data.data[i].liveAddress,
-                        name: res.data.data[i].deviceName
-                      }
-                    ]
-                  });
-                }
-                this.curLock = false;
-              }
-            }
-          } else if (res.data.code == 10002) {
-            axios
-              .post("https://open.ys7.com/api/lapp/token/get", params, {
-                headers: {
-                  "Content-Type": "application/x-www-form-urlencoded"
-                }
-              })
-              .then(res => {
-                if (res.data.code == 200) {
-                  token =
-                    "accessToken=" +
-                    res.data.data.accessToken +
-                    "&pageStart=0&pageSize=50";
-                  window.localStorage.setItem("token", token);
-                  this._getAddress(token);
-                }
-              });
-          } else if (res.data.code == 10001) {
-            axios
-              .post("https://open.ys7.com/api/lapp/token/get", params, {
-                headers: {
-                  "Content-Type": "application/x-www-form-urlencoded"
-                }
-              })
-              .then(res => {
-                if (res.data.code == 200) {
-                  token =
-                    "accessToken=" +
-                    res.data.data.accessToken +
-                    "&pageStart=0&pageSize=50";
-                  window.localStorage.setItem("token", token);
-                  this._getAddress(token);
-                }
-              });
-          }
-        });
     },
     setUnit(n) {
       let labelObj;

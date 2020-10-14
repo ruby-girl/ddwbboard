@@ -385,7 +385,6 @@ import {
   getBillboardIndexTotal
 } from "../api/apiYZX";
 const dataAxis = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
 export default {
   name: "home",
   components: {
@@ -421,49 +420,6 @@ export default {
       date: "",
       hours: "",
       metalDatas: [40, 200, 90, 140, 130, 0.2, 20, 0.4],
-      baseDatas: [
-        { itemStyle: { color: "#975FE5" } },
-        { itemStyle: { color: "#FE8463" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#E55F76" } },
-        { itemStyle: { color: "#3AA1FF" } },
-        { itemStyle: { color: "#5FE583" } },
-        { itemStyle: { color: "#5F95E5" } },
-        { itemStyle: { color: "#E5AF5F" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#4ECB73" } },
-        { itemStyle: { color: "#FBD437" } },
-        { itemStyle: { color: "#975FE5" } },
-        { itemStyle: { color: "#FE8463" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#E55F76" } },
-        { itemStyle: { color: "#3AA1FF" } },
-        { itemStyle: { color: "#5FE583" } },
-        { itemStyle: { color: "#5F95E5" } },
-        { itemStyle: { color: "#E5AF5F" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#4ECB73" } },
-        { itemStyle: { color: "#FBD437" } },
-        { itemStyle: { color: "#975FE5" } },
-        { itemStyle: { color: "#FE8463" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#E55F76" } },
-        { itemStyle: { color: "#3AA1FF" } },
-        { itemStyle: { color: "#5FE583" } },
-        { itemStyle: { color: "#5F95E5" } },
-        { itemStyle: { color: "#E5AF5F" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#4ECB73" } },
-        { itemStyle: { color: "#FBD437" } },
-        { itemStyle: { color: "#975FE5" } },
-        { itemStyle: { color: "#FE8463" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#E55F76" } },
-        { itemStyle: { color: "#3AA1FF" } },
-        { itemStyle: { color: "#5FE583" } },
-        { itemStyle: { color: "#5F95E5" } },
-        { itemStyle: { color: "#E5AF5F" } }
-      ],
       tip: "",
       markers: [],
       hezuoshe: [],
@@ -475,7 +431,6 @@ export default {
       hezuoshe2: [],
       jiatingnongchang2: [],
       jinmihezuo2: [],
-      blockinfo: [],
       polygonss: [],
       infoWindow: null,
       weather1: {},
@@ -525,12 +480,6 @@ export default {
     }, 1000);
     this._drawCityMap();
     that.allbasearea = 0;
-    axios.get("json/base_info.json").then(res => {
-      for (let i = 0; i < res.data.result.length; i++) {
-        that.allbasearea += res.data.result[i].area;
-        that.baseDatas[i].name = res.data.result[i].name;
-        that.baseDatas[i].value = res.data.result[i].area;
-      }
       window.addEventListener("done1", function() {
         let googleLayer = new AMap.TileLayer({
           getTileUrl:
@@ -542,14 +491,9 @@ export default {
         }); //定义一个路网图层
         // var layer = new AMap.TileLayer();
         that.map.setLayers([googleLayer, roadNetLayer]);
-        axios.get("json/blockinfo.json").then(res => {
-          that.blockinfo = res.data.result;
-          // that.addBlockOnMap();
-        });
         that.baseinfo = [];
         that.baseLength = 0;
       });
-    });
     this.getSubjectInfo();
     this.getAnnualFertilizer();
     // this.getWorkOrderByRealTime();
@@ -884,9 +828,7 @@ export default {
       getBaseMapInfo({ organId: this.organId }).then(res => {
         this.mapRemarks = res.data;
         let that = this;
-
         for (let i = 0; i < that.mapRemarks.length; i++) {
-          console.info("iiiiid===基地", that.mapRemarks[i].id);
           let remark = that.mapRemarks[i].mapAddr;
           let remarkJson2 = eval("(" + remark + ")");
 
@@ -902,8 +844,6 @@ export default {
           that.map.add(marker);
           that.addCluster();
           marker.on("click", function(e) {
-            console.info("点击iiiiid=======", that.mapRemarks[i].id);
-
             that.$router.push({
               name: "base",
               query: { baseId: Number(that.mapRemarks[i].id) }
@@ -921,9 +861,7 @@ export default {
         this.mapRemarks = res.data;
         let that = this;
         let points = [];
-
         for (let i = 0; i < that.mapRemarks.length; i++) {
-          console.info("iiiiid===农户", that.mapRemarks[i].id);
           if (that.mapRemarks[i].mapAddr) {
             let remark = that.mapRemarks[i].mapAddr;
             let remarkJson2 = eval("(" + remark + ")");
@@ -940,7 +878,6 @@ export default {
             that.map.add(marker);
             that.addCluster();
             marker.on("click", function(e) {
-              console.info("农户点击iiiiid=======", that.mapRemarks[i].id);
               that.$router.push({
                 name: "company",
                 query: { userOrganId: Number(that.mapRemarks[i].id) }
@@ -1463,25 +1400,6 @@ export default {
 }
 </style>
 <style lang="stylus" scoped>
-@media screen and (min-width: 1550px) {
-  .monitor-message {
-    width: 97px !important;
-  }
-
-  .special {
-    width: 93px !important;
-  }
-}
-
-@media screen and (max-width: 1550px) {
-  .monitor-message {
-    width: 97px !important;
-  }
-
-  .special {
-    width: 93px !important;
-  }
-}
 
 @media screen and (min-width: 2000px) {
   .changebut {

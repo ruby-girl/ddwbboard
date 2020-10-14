@@ -379,102 +379,18 @@ export default {
       tab: 1,
       airTab: 1,
       soliTab: 1,
-      messages: [],
-      mapDatas: [],
-      nowDate: "",
       weixin: false,
-      plotDatas: [],
-      mapChart: "",
-      baseLength: 0,
-      plotLength: 0,
-      totalArea: 0,
       option: {},
-      addresss: [],
       baseinfo: [],
       address: "",
       curLock: false,
       serviceData: [],
-      date: "",
-      hours: "",
       metalDatas: [40, 200, 90, 140, 130, 0.2, 20, 0.4],
-      baseDatas: [
-        { itemStyle: { color: "#975FE5" } },
-        { itemStyle: { color: "#FE8463" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#E55F76" } },
-        { itemStyle: { color: "#3AA1FF" } },
-        { itemStyle: { color: "#5FE583" } },
-        { itemStyle: { color: "#5F95E5" } },
-        { itemStyle: { color: "#E5AF5F" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#4ECB73" } },
-        { itemStyle: { color: "#FBD437" } },
-        { itemStyle: { color: "#975FE5" } },
-        { itemStyle: { color: "#FE8463" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#E55F76" } },
-        { itemStyle: { color: "#3AA1FF" } },
-        { itemStyle: { color: "#5FE583" } },
-        { itemStyle: { color: "#5F95E5" } },
-        { itemStyle: { color: "#E5AF5F" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#4ECB73" } },
-        { itemStyle: { color: "#FBD437" } },
-        { itemStyle: { color: "#975FE5" } },
-        { itemStyle: { color: "#FE8463" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#E55F76" } },
-        { itemStyle: { color: "#3AA1FF" } },
-        { itemStyle: { color: "#5FE583" } },
-        { itemStyle: { color: "#5F95E5" } },
-        { itemStyle: { color: "#E5AF5F" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#4ECB73" } },
-        { itemStyle: { color: "#FBD437" } },
-        { itemStyle: { color: "#975FE5" } },
-        { itemStyle: { color: "#FE8463" } },
-        { itemStyle: { color: "#36CBCB" } },
-        { itemStyle: { color: "#E55F76" } },
-        { itemStyle: { color: "#3AA1FF" } },
-        { itemStyle: { color: "#5FE583" } },
-        { itemStyle: { color: "#5F95E5" } },
-        { itemStyle: { color: "#E5AF5F" } }
-      ],
       tip: "",
       twoCircleWidth: 130,
       markers: [],
-      hezuoshe: [],
-      jiatingnongchang: [],
-      jinmihezuo: [],
-      hezuosheL: "",
-      jiatingnongchangL: "",
-      jinmihezuoL: "",
-      hezuoshe2: [],
-      jiatingnongchang2: [],
-      jinmihezuo2: [],
-      blockinfo: [],
-      polygonss: [],
       infoWindow: null,
-      weather1: {},
-      weather2: "",
-      weather: "",
       allbasearea: 0,
-      warpperList: [
-        { num: "22", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" }
-      ],
-      rightList: [
-        { num: "22", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" },
-        { num: "33", name: "空气湿度", icon: "iconkongqishidu" }
-      ],
       mapIcon: require("../assets/new/icon_positioning.png"),
       pieTxtLeft: 0,
       pieTxtTop: 0,
@@ -499,50 +415,10 @@ export default {
   },
   created() {
     this.baseId = 12;
-    var date = new Date().toString().split(" ");
-    var month = new Date().getMonth() + 1;
-    var str = "";
-    this.nowDate = str + date[3] + "/" + month + "/" + date[2] + " " + date[4];
-
     this.baseIdSet = this.$route.query.baseId;
-    axios
-      .get("/tq", {
-        params: { from: "5", lat: 31.1, lng: 105.06, needMoreDay: 1 },
-        headers: { Authorization: "APPCODE 912f4ba38a394870aed1d60aca9a34fb" }
-      })
-      .then(res => {
-        if (res.status === 200) {
-          this.weather = res.data.showapi_res_body.now.temperature;
-          this.weather1 = res.data.showapi_res_body.now;
-          this.weather2 = res.data.showapi_res_body.now.sd.slice(0, 2);
-        }
-      });
-    // if (!window.localStorage.token) {
-    let params =
-      "appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53";
-    axios
-      .post("https://open.ys7.com/api/lapp/token/get", params, {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      })
-      .then(res => {
-        if (res.data.code == 200) {
-          let token =
-            "accessToken=" +
-            res.data.data.accessToken +
-            "&pageStart=0&pageSize=50";
-          window.localStorage.setItem("token", token);
-        }
-      });
     // }
-    this._getAddress();
-    if (this.$route.query.time) {
-      let that = this;
-      window.addEventListener("done1", function() {
-        that.all();
-      });
-    }
+    // this._getAddress();
+  
   },
   mounted() {
     this._drawCityMap();
@@ -572,10 +448,6 @@ export default {
       }); //定义一个路网图层
       // var layer = new AMap.TileLayer();
       that.map.setLayers([googleLayer, roadNetLayer]);
-      axios.get("json/blockinfo.json").then(res => {
-        that.blockinfo = res.data.result;
-        // that.addBlockOnMap();
-      });
     });
 
     this.getLast24HMonitorRecordsAir(1, "airHumidity"); //底部折线图
@@ -946,12 +818,6 @@ export default {
         query: { userOrganId: Number(obj[0].id) }
       });
     },
-    removepoint() {
-      this.map.remove(this.markers);
-      this.map.remove(this.hezuoshe);
-      this.map.remove(this.jiatingnongchang);
-      this.map.remove(this.jinmihezuo);
-    },
     changemap() {
       if (this.weixin) {
         this.map.remove(this.map.getLayers());
@@ -975,94 +841,6 @@ export default {
         this.map.setLayers([roadNetLayer, layer]);
         this.weixin = true;
       }
-    },
-    _getAddress(token) {
-      var date = new Date().toString().split(" ");
-      var month = new Date().getMonth() + 1;
-      var str = "";
-      this.date = str + date[3] + "-" + month + "-" + date[2];
-      this.hours = date[4];
-      let params =
-        "appKey=c949347ff85947d39f0749143b0a76f6&appSecret=83a5afbe9249c08698e53a92e97edc53";
-      let curToken = token ? token : window.localStorage.token;
-      axios
-        .post("https://open.ys7.com/api/lapp/live/video/list", curToken, {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
-        })
-        .then(res => {
-          if (res.data.code == 200) {
-            if (res.data.data && res.data.data.length) {
-              this.addresss.push({
-                label: res.data.data[3].deviceName,
-                value: res.data.data[3].deviceSerial,
-                children: []
-              });
-              for (let i = 3; i < res.data.data.length; i++) {
-                for (let j = 0; j < this.addresss.length; j++) {
-                  if (this.addresss[j].label === res.data.data[i].deviceName) {
-                    this.curLock = true;
-                    this.addresss[j].children.push({
-                      label: "通道" + res.data.data[i].channelNo,
-                      value: res.data.data[i].liveAddress,
-                      name: res.data.data[i].deviceName
-                    });
-                  }
-                }
-                if (!this.curLock) {
-                  this.addresss.push({
-                    label: res.data.data[i].deviceName,
-                    value: res.data.data[i].deviceSerial,
-                    name: res.data.data[i].deviceName,
-                    children: [
-                      {
-                        label: "通道" + res.data.data[i].channelNo,
-                        value: res.data.data[i].liveAddress,
-                        name: res.data.data[i].deviceName
-                      }
-                    ]
-                  });
-                }
-                this.curLock = false;
-              }
-            }
-          } else if (res.data.code == 10002) {
-            axios
-              .post("https://open.ys7.com/api/lapp/token/get", params, {
-                headers: {
-                  "Content-Type": "application/x-www-form-urlencoded"
-                }
-              })
-              .then(res => {
-                if (res.data.code == 200) {
-                  token =
-                    "accessToken=" +
-                    res.data.data.accessToken +
-                    "&pageStart=0&pageSize=50";
-                  window.localStorage.setItem("token", token);
-                  this._getAddress(token);
-                }
-              });
-          } else if (res.data.code == 10001) {
-            axios
-              .post("https://open.ys7.com/api/lapp/token/get", params, {
-                headers: {
-                  "Content-Type": "application/x-www-form-urlencoded"
-                }
-              })
-              .then(res => {
-                if (res.data.code == 200) {
-                  token =
-                    "accessToken=" +
-                    res.data.data.accessToken +
-                    "&pageStart=0&pageSize=50";
-                  window.localStorage.setItem("token", token);
-                  this._getAddress(token);
-                }
-              });
-          }
-        });
     },
     _dramLoansChart(datas) {
       //右侧饼图
