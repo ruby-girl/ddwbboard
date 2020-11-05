@@ -480,20 +480,20 @@ export default {
     }, 1000);
     this._drawCityMap();
     that.allbasearea = 0;
-      window.addEventListener("done1", function() {
-        let googleLayer = new AMap.TileLayer({
-          getTileUrl:
-            "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
-        }); //定义谷歌卫星切片图层
+    window.addEventListener("done1", function() {
+      let googleLayer = new AMap.TileLayer({
+        getTileUrl:
+          "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
+      }); //定义谷歌卫星切片图层
 
-        let roadNetLayer = new AMap.TileLayer.RoadNet({
-          opacity: 0
-        }); //定义一个路网图层
-        // var layer = new AMap.TileLayer();
-        that.map.setLayers([googleLayer, roadNetLayer]);
-        that.baseinfo = [];
-        that.baseLength = 0;
-      });
+      let roadNetLayer = new AMap.TileLayer.RoadNet({
+        opacity: 0
+      }); //定义一个路网图层
+      // var layer = new AMap.TileLayer();
+      that.map.setLayers([googleLayer, roadNetLayer]);
+      that.baseinfo = [];
+      that.baseLength = 0;
+    });
     this.getSubjectInfo();
     this.getAnnualFertilizer();
     // this.getWorkOrderByRealTime();
@@ -832,23 +832,25 @@ export default {
           let remark = that.mapRemarks[i].mapAddr;
           let remarkJson2 = eval("(" + remark + ")");
 
-          let lng = remarkJson2.path[0].lng;
-          let lat = remarkJson2.path[0].lat;
-          let marker = new AMap.Marker({
-            position: new AMap.LngLat(lng, lat),
-            offset: new AMap.Pixel(-10, -10),
-            content:
-              '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>'
-          });
-          that.markers.push(marker);
-          that.map.add(marker);
-          that.addCluster();
-          marker.on("click", function(e) {
-            that.$router.push({
-              name: "base",
-              query: { baseId: Number(that.mapRemarks[i].id) }
+          if (remarkJson2.path) {
+            let lng = remarkJson2.path[0].lng;
+            let lat = remarkJson2.path[0].lat;
+            let marker = new AMap.Marker({
+              position: new AMap.LngLat(lng, lat),
+              offset: new AMap.Pixel(-10, -10),
+              content:
+                '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>'
             });
-          });
+            that.markers.push(marker);
+            that.map.add(marker);
+            that.addCluster();
+            marker.on("click", function(e) {
+              that.$router.push({
+                name: "base",
+                query: { baseId: Number(that.mapRemarks[i].id) }
+              });
+            });
+          }
         }
       });
     },
@@ -1400,7 +1402,6 @@ export default {
 }
 </style>
 <style lang="stylus" scoped>
-
 @media screen and (min-width: 2000px) {
   .changebut {
     width: 180px !important;
