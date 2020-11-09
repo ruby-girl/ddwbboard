@@ -654,7 +654,7 @@ export default {
       } else if (n == 3) {
         labelObj ={
           unit:'S/m',
-          data:'soilTemperature'
+          data:'soilEc'
         };
       } else {
         labelObj ={
@@ -710,7 +710,7 @@ export default {
       this.soliTab = n;
       getLast24HMonitorRecords({ baseId: this.baseIdSet, column: label }).then(
         res => {
-          if (res.code == 200) {
+          if (res.data.length >1) {
             this.getLineData(res.data,n)
           } else {
             this.soliLineShow = false;
@@ -742,7 +742,7 @@ export default {
       this.airTab = n;
       getLast24HMonitorRecords({ baseId: this.baseIdSet, column: label }).then(
         res => {
-          if (res.code == 200) {
+          if (res.data.length>0) {
             this.getLineData2(res.data,n)
           } else {
             this.airLineShow = false;

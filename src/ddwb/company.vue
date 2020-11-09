@@ -700,7 +700,7 @@ export default {
       } else if (n == 3) {
         labelObj = {
           unit: "S/m",
-          data: "soilTemperature"
+          data: "soilEc"
         };
       } else {
         labelObj = {
@@ -758,7 +758,7 @@ export default {
         landparcelId: this.landId,
         column: label
       }).then(res => {
-        if (res.code == 200) {
+        if (res.data.length >1) {
           this.getLineData(res.data, n);
         } else {
           this.soliLineShow = false;
@@ -791,7 +791,7 @@ export default {
         landparcelId: this.landId,
         column: label
       }).then(res => {
-        if (res.code == 200) {
+        if (res.data.length >1) {
           this.getLineData2(res.data, n);
         } else {
           this.airLineShow = false;
