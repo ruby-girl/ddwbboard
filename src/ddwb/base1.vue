@@ -801,6 +801,7 @@ export default {
         }
       }
       let that = this;
+      
       for (let i = 0; i < that.polygons.length; i++) {
         that.polygons[i].on("click", function(e) {
           that.rutePush(i);
@@ -808,6 +809,7 @@ export default {
           // that.infowindow(e, i);
         });
       }
+      console.info('that.polygons.length',this.polygons)
     },
     rutePush(i) {
       let obj = this.landList.filter((item, n) => {
@@ -815,7 +817,7 @@ export default {
       });
       this.$router.push({
         name: "company",
-        query: { userOrganId: Number(obj[0].id) }
+        query: { userOrganId: Number(obj[0].userId) }
       });
     },
     changemap() {
