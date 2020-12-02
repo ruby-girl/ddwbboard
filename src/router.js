@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import home from '@/ddwb/Home.vue'
 import base1 from '@/ddwb/base1.vue'
 import company from '@/ddwb/company.vue'
-
+import order from '@/ddwb/order.vue'
 Vue.use(Router);
 
 export default new Router({
@@ -38,6 +38,12 @@ export default new Router({
         path: '/company',
         name: 'company',
         component: company,
+        hidden: true
+      },
+      {
+        path: '/order',
+        name: 'order',
+        component: order,
         hidden: true
       }
     // {

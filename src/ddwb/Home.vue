@@ -66,7 +66,7 @@
               <span class="btn-margin"></span>
               <div :class="{'active':btnActive==2}" @click="changeMapData1">基地</div>
             </div>
-            <div class="map-order-box" style="overflow:hidden">
+            <div class="map-order-box" style="overflow:hidden" @click="toOrder()">
               <ul
                 style="position:relative;list-style:none;background:rgba(3,18,39,0.5);font-size:13px;padding:5px"
               >
@@ -887,6 +887,11 @@ export default {
             });
           }
         }
+      });
+    },
+    toOrder() {
+      this.$router.push({
+        name: "order"
       });
     },
     getMap() {

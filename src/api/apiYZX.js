@@ -164,7 +164,11 @@ const landparcelGetLast24HMonitorRecords = (params)=>getAction("/api/kanban/land
 const getBaseWithMonitorVideos = (params)=>getAction("/api/billboardIndexs/getBaseWithMonitorVideos",params);
 //萤石云图片抓取
 const capture = (params)=>getAction("/api/billboardIndexs/capture",params);
+
+// 条件查询工单处理数量（按基地分组）
+const doneCount = (params)=>getAction("/api/billboardWorkOrder/doneCount",params);
 export {
+    doneCount,
     getSubjectInfo,
     getAnnualFertilizer,
     getLast24HMonitorRecords,
