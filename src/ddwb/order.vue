@@ -22,7 +22,24 @@
 
         <div class="left-bottom-box">
           <div class="base display-flex justify-content-flex-justify">
-            <div>asd</div>
+            <div class="bg-item-box left-height" style="padding-bottom:10px">
+              <div class="desc">
+                <div class="title">基地订单合同</div>
+              </div>
+              <div style="padding-top:40px">
+                <div style="position:relative" ref="pieBox">
+                  <img
+                    src="../assets/new/pic6.png"
+                    class="pie-bg"
+                    :style="{'top':pieTop,'left':pieLeft}"
+                    ref="pieImg"
+                  />
+
+                  <!-- <div class="pie-text" :style="{'top':pieTxtTop,'left':pieTxtLeft}">亩</div> -->
+                  <div style="height:180px" ref="loansChart"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -35,70 +52,10 @@
             <div class="item-bg-y" style="position:relative;">
               <div class="last-title display-flex justify-content-flex-justify">
                 <div>土壤环境</div>
-                <div>
-                  <div class="display-flex">
-                    <div
-                      @click="getLast24HMonitorRecords(1,'soilHumidity')"
-                      :class="{'base-tab-small':true,'base-tab-action-small':soliTab==1?true:false}"
-                    >湿度</div>
-                    <div
-                      @click="getLast24HMonitorRecords(2,'soilTemperature')"
-                      :class="{'base-tab-small':true,'base-tab-action-small':soliTab==2?true:false}"
-                    >温度</div>
-                    <div
-                      @click="getLast24HMonitorRecords(3,'soilEc')"
-                      :class="{'base-tab-small':true,'base-tab-action-small':soliTab==3?true:false}"
-                    >电导率</div>
-                    <div
-                      @click="getLast24HMonitorRecords(4,'soilPH')"
-                      :class="{'base-tab-small':true,'base-tab-action-small':soliTab==4?true:false}"
-                    >PH值</div>
-                  </div>
-                </div>
+                <div></div>
               </div>
-              <div class="rain-map" ref="bottomLine1" style="height:80%"></div>
+              <div class="rain-map" ref="bottomLine1" style="height:100%"></div>
               <div v-if="!soliLineShow" class="no-data">暂无数据</div>
-            </div>
-            <!-- 地图下柱形图 -->
-            <div class="item-bg-y" style="position:relative;">
-              <div class="last-title display-flex justify-content-flex-justify">
-                <div>空气环境</div>
-                <div>
-                  <div class="display-flex">
-                    <div
-                      @click="getLast24HMonitorRecordsAir(1,'airHumidity')"
-                      :class="{'base-tab-small':true,'base-tab-action-small':airTab==1?true:false}"
-                    >湿度</div>
-                    <div
-                      @click="getLast24HMonitorRecordsAir(2,'airTemperature')"
-                      :class="{'base-tab-small':true,'base-tab-action-small':airTab==2?true:false}"
-                    >温度</div>
-                    <div
-                      style="width:55px"
-                      @click="getLast24HMonitorRecordsAir(3,'co2value')"
-                      :class="{'base-tab-small':true,'base-tab-action-small':airTab==3?true:false}"
-                    >CO2浓度</div>
-                    <div
-                      @click="getLast24HMonitorRecordsAir(4,'airPressure')"
-                      :class="{'base-tab-small':true,'base-tab-action-small':airTab==4?true:false}"
-                    >压强</div>
-                    <div
-                      @click="getLast24HMonitorRecordsAir(5,'pm25value')"
-                      :class="{'base-tab-small':true,'base-tab-action-small':airTab==5?true:false}"
-                    >PM2.5</div>
-                    <div
-                      @click="getLast24HMonitorRecordsAir(6,'illIntensity')"
-                      :class="{'base-tab':true,'base-tab-action-small':airTab==6?true:false}"
-                    >光照强度</div>
-                    <div
-                      @click="getLast24HMonitorRecordsAir(7,'rainfall')"
-                      :class="{'base-tab':true,'base-tab-action-small':airTab==7?true:false}"
-                    >降水量</div>
-                  </div>
-                </div>
-              </div>
-              <div class="rain-map" ref="bottomLine2" style="height:80%"></div>
-              <div v-if="!airLineShow" class="no-data">暂无数据</div>
             </div>
           </div>
         </div>
@@ -110,72 +67,29 @@
           <div class="desc">
             <div class="title">基地订单合同</div>
           </div>
-          <div style="position:relative" ref="pieBox">
-            <img
-              src="../assets/new/pic6.png"
-              class="pie-bg"
-              :style="{'top':pieTop,'left':pieLeft}"
-              ref="pieImg"
-            />
-            <div class="pie-text flex-direction-column">
-              <div style="text-align:center">亩</div>
-            </div>
-            <!-- <div class="pie-text" :style="{'top':pieTxtTop,'left':pieTxtLeft}">亩</div> -->
-            <div style="height:180px" ref="loansChart"></div>
-          </div>
-          <!-- 饼图说明 -->
-          <div class="pie-color-box display-flex justify-content-flex-center">
-            <div style="margin-right:15px">
-              <div class="display-flex align-items-center">
-                <div class="pie-color-2"></div>
-                <span>有订单</span>
-              </div>
-            </div>
-            <div>
-              <div class="display-flex align-items-center">
-                <div class="pie-color-3"></div>
-                <span>没有订单</span>
-              </div>
+          <div style="padding-top:40px">
+            <div style="position:relative;" ref="pieBox2">
+              <img
+                src="../assets/new/pic6.png"
+                class="pie-bg"
+                :style="{'top':pieTop2,'left':pieLeft2}"
+                ref="pieImg"
+              />
+              <div style="height:180px" ref="loansChart2"></div>
             </div>
           </div>
         </div>
         <div class="item-bg-y bg-item-box left-height" style="padding:15px 0;margin-top:20px;">
           <div class="last-title">基地保险概况</div>
-          <div class="base-progress-box">
-            <div
-              style="padding:20px;"
-              class="base-info display-flex justify-content-flex-justify"
-              id="base-info"
-              v-if="bx_forests"
-            >
-              <circle-progress
-                :id="111"
-                :isAnimation="true"
-                :isRound="true"
-                :width="twoCircleWidth"
-                title="投保面积"
-                :radius="20"
-                :progress="bx_forests?bx_forests:0"
-                :barColor="'#7C89EB'"
-                :duration="1000"
-                :delay="20"
-                :timeFunction="'cubic-bezier(0.99, 0.01, 0.22, 0.94)'"
-                :backgroundColor="'#4452B9'"
+          <div style="padding-top:40px">
+            <div style="position:relative" ref="pieBox2">
+              <img
+                src="../assets/new/pic6.png"
+                class="pie-bg"
+                :style="{'top':pieTop2,'left':pieLeft2}"
+                ref="pieImg"
               />
-              <circle-progress
-                :id="222"
-                :isAnimation="true"
-                :isRound="true"
-                :width="twoCircleWidth"
-                :radius="20"
-                title="投保农户"
-                :progress="bx_count?bx_count:0"
-                :barColor="'#75CDFA'"
-                :duration="1000"
-                :delay="20"
-                :timeFunction="'cubic-bezier(0.99, 0.01, 0.22, 0.94)'"
-                :backgroundColor="'#4452B9'"
-              />
+              <div style="height:180px" ref="loansChart3"></div>
             </div>
           </div>
         </div>
@@ -184,9 +98,36 @@
           <div class="last-title display-flex justify-content-flex-justify">
             <div>基地贷款概况</div>
           </div>
-          <div style="height:90%">
-            <div class="airs air-temperature" style="height:100%">
-              <polygonal-two ref="polygonalTwo" />
+          <div class="map-order-box" style="overflow:hidden;height:92%" @click="toOrder()">
+            <ul
+              style="position:relative;list-style:none;background:rgba(255,255,255,0.2);font-size:13px;padding:5px"
+            >
+              <li class="base-item display-flex justify-content-flex-center">
+                <span style="text-align: left;display:inline-block; width: 26%;color: #fff;">操作时间</span>
+                <span style="color: #fff;display:inline-block; width:20%;text-align: center;">操作人</span>
+                <span style="text-align: center;display:inline-block; width: 20%;color: #fff;">农事操作</span>
+                <span style="color: #fff;display:inline-block; width: 34%;text-align: center;">所属基地</span>
+              </li>
+            </ul>
+            <div class="base-info" id="base-info3" style="overflow:hidden">
+              <ul id="base-ul3" style="position:relative; top:0px;list-style:none;">
+                <li class="base-item" v-for="(item,m) in orderList" :key="m+'c'">
+                  <span
+                    style="text-align: left;display:inline-block; width: 26% !important;color: #fff;padding-left:5px"
+                  >{{item.executionTime}}</span>
+                  <span
+                    style="text-align: center;display:inline-block; width: 20%;color: #fff"
+                  >{{item.executionUserName}}</span>
+                  <span
+                    style="color: #0AFBE2;display:inline-block; width: 20%;text-align: center;"
+                  >{{item.farmWordItemName}}</span>
+                  <span
+                    style="color: #fff;display:inline-block; width: 34%;text-align: center;white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;"
+                  >{{item.baseName}}</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -197,29 +138,35 @@
 <script>
 import headers from "@/components/header/header";
 import MapLoader from "@/utils/loadMap.js";
-import polygonalTwo from "@/components/polygonal/polygonalTwoX";
-import echartslLine from "@/components/echartslLine/echartslLine";
-import circleProgress from "@/components/circle-progress";
 import Footer from "@/components/layouts/Footer";
 import chartsType from "../assets/js/chartsType.js";
 import roll from "../assets/js/roll.js";
 import axios from "axios";
-import { doneCount } from "../api/apiYZX";
+import {
+  doneCount,
+  typePercentForOrg,
+  typeCountAndPercent,
+  baseWorkOrderCount,
+  baseFarmerCount,
+  currentWorkOrder
+} from "../api/apiYZX";
 const dataAxis = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 export default {
   name: "home",
   components: {
     headers,
-    polygonalTwo,
-    echartslLine,
-    Footer,
-    circleProgress
+    Footer
   },
   data() {
     return {
       pieTop: 0,
       pieLeft: 0,
+      pieTop2: 0,
+      pieLeft2: 0,
+      orderList: [],
+      mapRemarks: [],
+      markers: [],
       tab: 1,
       airTab: 1,
       soliTab: 1,
@@ -232,8 +179,7 @@ export default {
       metalDatas: [40, 200, 90, 140, 130, 0.2, 20, 0.4],
       tip: "",
       twoCircleWidth: 130,
-      markers: [],
-      infoWindow: null,
+      infoWindowdata: null,
       allbasearea: 0,
       mapIcon: require("../assets/new/icon_positioning.png"),
       pieTxtLeft: 0,
@@ -264,51 +210,92 @@ export default {
     // this._getAddress();
   },
   mounted() {
-    // this._drawCityMap();
-    // this.getBaseInsuranceTj();
-    // // this._drawRainMap();
-    // // 设置饼图背景图
-    // let pieBox = this.$refs.pieBox.offsetHeight;
-    // let pieBoxW = this.$refs.pieBox.offsetWidth;
-    // this.pieTop = (pieBox - 156) / 2 + "px";
-    // this.pieTxtTop = (pieBox - 22) / 2 + "px";
-    // this.pieTxtLeft = (pieBoxW - 36) / 2 + "px";
-    // this.pieLeft = (pieBoxW - 156) / 2 + "px";
-    // // 计算保险概率
-    // this.twoCircleWidth = pieBox - 20;
-    // // 地图下折线图高度
-    // let that = this;
+    this._drawCityMap();
+    let that = this;
+    window.addEventListener("done1", function() {
+      let googleLayer = new AMap.TileLayer({
+        getTileUrl:
+          "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
+      }); //定义谷歌卫星切片图层
 
-    // that.allbasearea = 0;
-    // window.addEventListener("done1", function() {
-    //   let googleLayer = new AMap.TileLayer({
-    //     getTileUrl:
-    //       "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
-    //   }); //定义谷歌卫星切片图层
+      let roadNetLayer = new AMap.TileLayer.RoadNet({
+        opacity: 0
+      }); //定义一个路网图层
+      // var layer = new AMap.TileLayer();
+      that.map.setLayers([googleLayer, roadNetLayer]);
+    });
+    let pieBox = this.$refs.pieBox.offsetHeight;
+    let pieBoxW = this.$refs.pieBox.offsetWidth;
 
-    //   let roadNetLayer = new AMap.TileLayer.RoadNet({
-    //     opacity: 0
-    //   }); //定义一个路网图层
-    //   // var layer = new AMap.TileLayer();
-    //   that.map.setLayers([googleLayer, roadNetLayer]);
-    // });
-
-    // this.getLast24HMonitorRecordsAir(1, "airHumidity"); //底部折线图
-    // this.getLast24HMonitorRecords(1, "soilHumidity");
-    // this.getBaseInfo();
-    // this.getFarmWorkProgress();
-    // this.getBaseLoanTj();
-    // this.detection(1);
-    // this.getBaseMapInfoTotalTj();
-    // this.getLastRecord();
-    // setTimeout(function() {
-    //   that.totalTj();
-    // }, 1000);
-    // 新*****************************
-    let sTime=this.getDay(7)
+    let pieBox2 = this.$refs.pieBox2.offsetHeight;
+    let pieBoxW2 = this.$refs.pieBox2.offsetWidth;
+    this.pieTop = (pieBox - 156) / 2 + "px";
+    this.pieLeft = (pieBoxW - 156) / 2 + "px";
+    this.pieTop2 = (pieBox2 - 156) / 2 + "px";
+    this.pieLeft2 = (pieBoxW2 - 156) / 2 + "px";
+    let sTime = this.getDay(7);
     this.getOrder(sTime);
+    this.typePercentForOrg(); //坐下饼图
+    this.typeCountAndPercent();
+    this.baseFarmerCount();
+    this.baseWorkOrderCount();
+    // this.currentWorkOrder()
   },
   methods: {
+    addCluster() {
+      if (this.cluster) {
+        this.cluster.setMap(null);
+      }
+      let _this = this;
+      this.cluster = new AMap.MarkerClusterer(_this.map, _this.markers, {
+        // styles: sts,
+        gridSize: 50,
+        renderClusterMarker: _this._renderClusterMarker
+      });
+      this.cluster.setMinClusterSize(5); // 代表低于五个点就不聚合 这样能有效防止
+    },
+    currentWorkOrder() {
+      currentWorkOrder({ breedsId: 1, orgId: 99 }).then(res => {
+        this.orderList = res.data;
+        this.baseScroll3 = new roll.Roll(
+          "base-info3",
+          "base-ul3",
+          "",
+          -this.orderList.length * 18
+        );
+
+        //  处理地图数据*****
+        this.removepoint();
+        this.btnActive = 2;
+        this.markers = [];
+        this.mapRemarks = res.data;
+        let that = this;
+        for (let i = 0; i < that.mapRemarks.length; i++) {
+          let remark = that.mapRemarks[i].mapAddr;
+          let remarkJson2 = eval("(" + remark + ")");
+          if (remarkJson2.path) {
+            let lng = remarkJson2.path[0].lng;
+            let lat = remarkJson2.path[0].lat;
+            let marker = new AMap.Marker({
+              position: new AMap.LngLat(lng, lat),
+              offset: new AMap.Pixel(-10, -10),
+              content:
+                '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>'
+            });
+            that.markers.push(marker);
+            that.map.add(marker);
+            that.addCluster();
+            marker.on("click", function(e) {
+              that.infowindow(e, i);
+              // that.$router.push({
+              //   name: "base",
+              //   query: { baseId: Number(that.mapRemarks[i].id) }
+              // });
+            });
+          }
+        }
+      });
+    },
     getDay(day) {
       var today = new Date();
       var targetday_milliseconds = today.getTime() - 1000 * 60 * 60 * 24 * day;
@@ -328,32 +315,32 @@ export default {
       return m;
     },
     getOrder(sTime) {
-        let obj={
-            startTime:sTime,
-            endTime:this.getDay(0),
-            breedsId:1,
-            orgId:99
-        }
+      let obj = {
+        startTime: sTime,
+        endTime: this.getDay(0),
+        breedsId: 1,
+        orgId: 99
+      };
       doneCount(obj).then(res => {
-          let datas=res.data
-          let xData=datas.map(item => {
-              return item.baseName
-          })
-          let yData=datas.map(item=>{
-              return item.workOrderDoneCount+10
-          })
-        this._dramBar(yData,xData);
+        let datas = res.data.slice(0, 7);
+        let xData = datas.map(item => {
+          return item.baseName;
+        });
+        let yData = datas.map(item => {
+          return item.workOrderDoneCount + 10;
+        });
+        this._dramBar(yData, xData);
       });
     },
-    _dramBar(xData,yData) {
+    _dramBar(xData, yData) {
       let _this = this;
-      //右侧饼图
       let rainChart = this.$echarts.init(this.$refs.bar, null, {
         devicePixelRatio: 2.5
       });
       var option = {
         tooltip: {
-          trigger: "axis"
+          trigger: "axis",
+          formatter:'{b}<br/>{a0}:{c0}条'
         },
         grid: {
           top: "20px",
@@ -366,7 +353,7 @@ export default {
           {
             type: "category",
             show: false,
-            data:yData,
+            data: yData,
             inverse: true,
             axisTick: {
               alignWithLabel: true
@@ -414,14 +401,15 @@ export default {
             name: "",
             type: "bar",
             barWidth: 21,
-            data:xData,
+            data: xData,
             label: {
               normal: {
                 show: true,
                 position: "insideRight",
                 textStyle: {
                   color: "#0afbe2" //color of value
-                }
+                },
+                formatter: "{c}条"
               }
             },
             itemStyle: {
@@ -457,16 +445,328 @@ export default {
     toBlack() {
       this.$router.back(-1);
     },
-    getBaseInfo() {
-      //获取基地详情
-      getBaseInfo({ baseId: this.baseIdSet }).then(res => {
-        this.baseinfoRes = res.data;
-        this.pics = this.baseinfoRes.basePics || [];
-        if (this.pics.length < 1) {
-          //如果没有基地图片，抓取萤石云
-          this.getBaseWithMonitorVideos();
-        }
+    typeCountAndPercent() {
+      typeCountAndPercent({ breedsId: 1, orgId: 99 }).then(res => {
+        let batchCountArr = res.data.batchCount.slice(0, 7);
+        let batchCount = batchCountArr.map(item => {
+          return item.workOrderTypeCount;
+        });
+        let farmWorkRecordCountArr = res.data.farmWorkRecordCount.slice(0, 7);
+        let farmWorkRecordCount = farmWorkRecordCountArr.map(item => {
+          return item.workOrderTypeCount;
+        });
+        let feedBackCountArr = res.data.feedBackCount.slice(0, 7);
+        let feedBackCount = feedBackCountArr.map(item => {
+          return item.workOrderTypeCount;
+        });
+        let batchPercentArr = res.data.batchPercent.slice(0, 7);
+        let batchPercent = batchPercentArr.map(item => {
+          return item.workOrderTypePercent;
+        });
+        let farmWorkRecordPercentArr = res.data.farmWorkRecordPercent.slice(
+          0,
+          7
+        );
+        let farmWorkRecordPercent = farmWorkRecordPercentArr.map(item => {
+          return item.workOrderTypePercent;
+        });
+        let feedBackPercentArr = res.data.feedBackPercent.slice(0, 7);
+        let feedBackPercent = feedBackPercentArr.map(item => {
+          return item.workOrderTypePercent;
+        });
+        let xdata = feedBackPercentArr.map(item => {
+          return item.baseName;
+        });
+        this.moreBar(
+          xdata,
+          batchCount,
+          farmWorkRecordCount,
+          feedBackCount,
+          batchPercent,
+          farmWorkRecordPercent,
+          feedBackPercent
+        );
       });
+    },
+    // 中间多则线
+    moreBar(
+      xData,
+      batchCount,
+      farmWorkRecordCount,
+      feedBackCount,
+      batchPercent,
+      farmWorkRecordPercent,
+      feedBackPercent
+    ) {
+      let rainChart = this.$echarts.init(this.$refs.bottomLine1, null, {
+        devicePixelRatio: 2.5
+      });
+      let _this = this;
+      var option = {
+        grid: {
+          top: 100
+        },
+        tooltip: {
+          trigger: "axis",
+          formatter: function(a) {
+            let list = [];
+            let listItem = "";
+            for (var i = 0; i < a.length; i++) {
+              let unit=''
+              if(a[i].seriesName.indexOf("占比") !== -1){
+                unit='%'
+              }else{
+                unit='条'
+              }
+              list.push(
+                '<i style="display: inline-block;width: 10px;height: 10px;background: ' +
+                  a[i].color +
+                  ';margin-right: 5px;border-radius: 50%;}"></i><span style="width:70px; display:inline-block;">' +
+                  a[i].seriesName +
+                  "</span>&nbsp&nbsp：" +
+                  a[i].value +unit
+              );
+            }
+            listItem = list.join("<br>");
+            return '<div class="showBox">' + listItem + "</div>";
+          }
+        },
+        legend: {
+          data: [
+            "批次工单数量",
+            "农事记录数量",
+            "巡查工单数量",
+            "批次工单占比",
+            "农事记录占比",
+            "巡查工单占比"
+          ],
+          textStyle: {
+            color: "#ffffff",
+            fontSize: 11
+          },
+          y: "top",
+          x: "center"
+        },
+        xAxis: [
+          {
+            type: "category",
+            axisLine: {
+              lineStyle: {
+                color: "#1F7EFF",
+                width: 1
+              }
+            },
+            data: xData,
+            axisPointer: {
+              type: "shadow"
+            },
+            axisLabel: {
+              interval: 0, //横轴信息全部显示
+              textStyle: {
+                color: "#fff"
+              },
+              fontSize: 11,
+              // rotate:45,//度角倾斜显示
+              formatter: function(value) {
+                return value.length > 5 ? value.substring(0, 5) + "..." : value;
+              }
+            }
+          }
+        ],
+        yAxis: [
+          //这里配置两条Y轴
+          {
+            type: "value",
+            splitLine: {
+              show: false,
+              lineStyle: {
+                color: "#021439",
+                width: 1
+              }
+            },
+            axisLine: {
+              lineStyle: {
+                color: "#1F7EFF",
+                width: 1
+              }
+            },
+            axisLabel: {
+              show: true,
+              textStyle: {
+                color: "#fff"
+              },
+              fontSize: 11,
+              interval: "auto",
+              formatter: "{value}"
+            },
+            name: "工单数量：条",
+            nameTextStyle: {
+              color: "#fff"
+            }
+          },
+          {
+            type: "value",
+            splitLine: {
+              show: false,
+              lineStyle: {
+                color: "#021439",
+                width: 1
+              }
+            },
+            axisLine: {
+              lineStyle: {
+                color: "#1F7EFF",
+                width: 1
+              }
+            },
+            axisLabel: {
+              show: true,
+              textStyle: {
+                color: "#fff"
+              },
+              fontSize: 11,
+              interval: "auto",
+              formatter: "{value}%"
+            },
+            name: "工单占比：%",
+            nameTextStyle: {
+              color: "#fff",
+              fontSize: 11
+            }
+          }
+        ],
+        series: [
+          {
+            name: "批次工单数量",
+            barWidth: "26%",
+            type: "bar",
+            itemStyle: {
+              normal: {
+                lineStyle: {
+                  color: "#0FEBFF"
+                },
+                color: "#0FEBFF"
+              }
+            },
+            yAxisIndex: 0, //使用的 y 轴的 index，在单个图表实例中存在多个 y轴的时候有用。
+            data: batchCount
+          },
+          {
+            name: "农事记录数量",
+            barWidth: "26%",
+            type: "bar",
+            itemStyle: {
+              normal: {
+                lineStyle: {
+                  color: "#7C89EB"
+                },
+                color: "#7C89EB"
+              }
+            },
+            yAxisIndex: 0,
+            data: farmWorkRecordCount
+          },
+          {
+            name: "巡查工单数量",
+            barWidth: "26%",
+            type: "bar",
+            itemStyle: {
+              normal: {
+                lineStyle: {
+                  color: "#FD6760"
+                },
+                color: "#FD6760"
+              }
+            },
+            yAxisIndex: 0,
+            data: feedBackCount
+          },
+          {
+            name: "批次工单占比",
+            barWidth: "30%",
+            type: "line",
+            itemStyle: {
+              normal: {
+                lineStyle: {
+                  color: "#0FEBFF"
+                },
+                fontSize: 11,
+                color: "#0FEBFF"
+              }
+            },
+            symbol: "circle",
+            symbolSize: 10, //折线点的大小
+            yAxisIndex: 1, ////使用的 y 轴的 index，在单个图表实例中存在多个 y轴的时候有用。
+            data: batchPercent
+          },
+          {
+            name: "农事记录占比",
+            barWidth: "30%",
+            type: "line",
+            itemStyle: {
+              normal: {
+                lineStyle: {
+                  color: "#7C89EB"
+                },
+                fontSize: 11,
+                color: "#7C89EB"
+              }
+            },
+            symbol: "circle",
+            symbolSize: 10, //折线点的大小
+            yAxisIndex: 1,
+            data: farmWorkRecordPercent
+          },
+          {
+            name: "巡查工单占比",
+            barWidth: "30%",
+            type: "line",
+            itemStyle: {
+              normal: {
+                lineStyle: {
+                  color: "#FD6760"
+                },
+                fontSize: 11,
+                color: "#FD6760"
+              }
+            },
+            symbol: "circle",
+            symbolSize: 10, //折线点的大小
+            yAxisIndex: 1,
+            data: feedBackPercent
+          }
+        ]
+      };
+      rainChart.setOption(option);
+    },
+    // 自定义提示框
+    formatterTip(params) {
+      //移除重复的数据
+      for (var i = 0; i < params.length; i++) {
+        for (var j = params.length - 1; j > i; j--) {
+          if (params[j].data == params[i].data) {
+            params.splice(j, 1);
+            break;
+          }
+        }
+      }
+
+      var tip = "";
+      for (var i = 0; i < params.length; i++) {
+        //这里是自己定义样式， params[i].marker 表示是否显示左边的那个小圆圈
+        if (params[i].value != 0) {
+          tip =
+            tip +
+            params[i].marker +
+            params[i].seriesName.substring(0, 4) +
+            "年" +
+            ":" +
+            params[i].value +
+            "<br/>";
+        }
+      }
+
+      return tip;
     },
     totalTj() {
       totalTj({ baseId: this.baseIdSet }).then(res => {
@@ -484,154 +784,36 @@ export default {
       });
     },
 
-    getBaseOrderTj() {
-      //获取右侧订单饼图
-      getBaseOrderTj({ baseId: this.baseId }).then(res => {
-        let num = (
-          parseFloat(this.totalAcreage) - parseFloat(res.data.order_forests)
-        ).toFixed(2);
+    typePercentForOrg() {
+      //获取坐下侧订单饼图
+      typePercentForOrg({ orgId: 99, breedsId: 1 }).then(res => {
         let arr = [
           {
-            name: `${res.data.count}笔${res.data.order_forests}亩`,
-            count: res.data.count,
-            value: res.data.order_forests,
+            name: `农事记录:${res.data.farmWorkRecordPercent}%`,
+            count: 100,
+            value: res.data.farmWorkRecordPercent,
             itemStyle: { color: "#7C89EB" }
           },
           {
-            name: `${num}亩`,
-            count: 0,
-            value: num,
+            name: `批次工单:${res.data.batchOrderPercent}%`,
+            count: 100,
+            value: res.data.batchOrderPercent,
             itemStyle: { color: "#13E5C3" }
+          },
+          {
+            name: `巡查工单:${res.data.feedBackOrderPercent}%`,
+            count: 100,
+            value: res.data.feedBackOrderPercent,
+            itemStyle: { color: "#5DC1FA" }
           }
         ];
 
         this._dramLoansChart(arr);
       });
     },
-    getBaseInsuranceTj() {
-      //保险饼图
-      getBaseInsuranceTj({ baseId: this.baseId }).then(res => {
-        this.bx_forests = 80;
-        this.bx_count = 91;
-      });
-    },
-    getLast24HMonitorRecords(n, label) {
-      this.soliTab = n;
-      getLast24HMonitorRecords({ baseId: this.baseIdSet, column: label }).then(
-        res => {
-          if (res.data.length > 1) {
-            this.getLineData(res.data, n);
-          } else {
-            this.soliLineShow = false;
-          }
-        }
-      );
-    },
-    getLineData(data, n) {
-      let Xdata = [];
-      let xTitle = [];
-      let label = this.setUnit(n);
-      for (var i = 0; i < data.length; i++) {
-        xTitle.push(data[i].monitorTime);
-        Xdata.push(data[i][label.data] || 0);
-      }
-      this._drawLine(Xdata, xTitle, label.unit);
-    },
-    getLineData2(data, n) {
-      let Xdata = [];
-      let xTitle = [];
-      let label = this.setUnit2(n);
-      for (var i = 0; i < data.length; i++) {
-        xTitle.push(data[i].monitorTime);
-        Xdata.push(data[i][label.data] || 0);
-      }
-      this._drawLine2(Xdata, xTitle, label.unit);
-    },
-    getLast24HMonitorRecordsAir(n, label) {
-      this.airTab = n;
-      getLast24HMonitorRecords({ baseId: this.baseIdSet, column: label }).then(
-        res => {
-          if (res.data.length > 0) {
-            this.getLineData2(res.data, n);
-          } else {
-            this.airLineShow = false;
-          }
-        }
-      );
-    },
-    tabFunc(n) {
-      this.tab = n;
-      this.detection(n);
-    },
-    listAddMarker(position, i) {
-      var markerContent =
-        "" +
-        '<div class="custom-content-marker" style="postion:relative;text-align:center">' +
-        '   <img src="https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png">' +
-        "</div>";
-      let that = this;
-      // let markers = [];
-      var marker = new AMap.Marker({
-        map: that.map,
-        position: position,
-        content: markerContent,
-        offset: new AMap.Pixel(-13, -30)
-      });
-      that.map.setZoomAndCenter(15, position);
-      // markers.push(marker);
-      that.saveListMarker.push(marker);
-      marker.setMap(that.map);
-      AMap.event.addListener(marker, "click", function(e) {
-        that.map.setZoomAndCenter(15, [e.lnglat.lng, e.lnglat.lat]);
-      });
-    },
-    addBlockOnMap(remarks) {
-      //地块的第一个点增加Masker
-      this.saveListMarker = [];
-      this.polygons = [];
-      for (let i = 0; i < remarks.length; i++) {
-        let remark = remarks[i].mapAddr;
-        if (remark != undefined && remark != null && remark.trim() != "") {
-          let remarkJson2 = eval("(" + remark + ")");
-          let newPath = [];
-          this.listAddMarker(
-            [remarkJson2.path[0].lng, remarkJson2.path[0].lat],
-            i
-          );
-          for (let i = 0; i < remarkJson2.path.length; i++) {
-            let point = remarkJson2.path[i];
-            newPath.push(new AMap.LngLat(point.lng, point.lat));
-          }
-          remarkJson2.path = newPath;
-          let polygon2 = new AMap.Polygon(remarkJson2);
-          this.polygons.push(polygon2);
-          this.map.add(polygon2);
-          this.map.setFitView();
-        }
-      }
-      let that = this;
-
-      for (let i = 0; i < that.polygons.length; i++) {
-        that.polygons[i].on("click", function(e) {
-          that.rutePush(i);
-
-          // that.infowindow(e, i);
-        });
-      }
-      console.info("that.polygons.length", this.polygons);
-    },
-    rutePush(i) {
-      let obj = this.landList.filter((item, n) => {
-        return n == i;
-      });
-      this.$router.push({
-        name: "company",
-        query: { userOrganId: Number(obj[0].userId) }
-      });
-    },
-    _dramLoansChart(datas) {
-      //右侧饼图
-      let rainChart = this.$echarts.init(this.$refs.loansChart, null, {
+    //右侧饼图
+    _dramLoansChart23(refy, name, datas) {
+      let rainChart = this.$echarts.init(this.$refs[refy], null, {
         devicePixelRatio: 2.5
       });
       var option = {
@@ -642,7 +824,7 @@ export default {
         legend: {
           orient: "vertical",
           left: 10,
-          data: ["有订单", "没有订单"],
+          data: name,
           textStyle: {
             color: "#ffffff" //字体颜色
           },
@@ -676,147 +858,242 @@ export default {
       };
       rainChart.setOption(option);
     },
-    _drawLine2(xData, xTitle, unit) {
-      //底部右侧折线图
-      let rainChart = this.$echarts.init(this.$refs.bottomLine2, null, {
-        devicePixelRatio: 2.5
+    // 右侧农户
+    baseFarmerCount() {
+      baseFarmerCount({ orgId: 99, breedsId: 1 }).then(res => {
+        let arr = [];
+        let name = res.data.map(item => {
+          let obj = {
+            name: `${item.baseName}`,
+            count: 0,
+            value: item.farmerCount,
+            itemStyle: this.getRandomColor()
+          };
+          arr.push(obj);
+          return item.baseName;
+        });
+        this._dramLoansChart23("loansChart3", name, arr);
       });
-      var option = chartsType.charts(
-        xTitle,
-        xData,
-        unit,
-        "line",
-        "",
-        "#0AFBE2",
-        "x"
-      );
-      option.legend = {
-        left: "right",
-        textStyle: {
-          color: "#fff"
-        }
-      };
-      rainChart.setOption(option);
     },
-    _drawLine(xData, xTitle, unit) {
-      //底部左侧折线图
-      //左侧折线图
-      let rainChart = this.$echarts.init(this.$refs.bottomLine1, null, {
-        devicePixelRatio: 2.5
-      });
-      var option = chartsType.charts(
-        xTitle,
-        xData,
-        unit,
-        "line",
-        "",
-        "#0AFBE2",
-        "x"
-      );
-      option.legend = {
-        left: "right",
-        textStyle: {
-          color: "#fff"
-        }
-      };
-      rainChart.setOption(option);
+    removepoint() {
+      this.map.remove(this.markers);
     },
-    _drawRainMap() {
-      let rainChart = this.$echarts.init(this.$refs.rainMap, null, {
+    baseWorkOrderCount() {
+      baseWorkOrderCount({ orgId: 99, breedsId: 1 }).then(res => {
+        let arr = [];
+        let name = res.data.map(item => {
+          let obj = {
+            name: `${item.baseName}`,
+            count: 0,
+            value: item.baseWorkOrderCount,
+            itemStyle: this.getRandomColor()
+          };
+          arr.push(obj);
+          return item.baseName;
+        });
+        this._dramLoansChart23("loansChart2", name, arr);
+      });
+    },
+    getRandomColor() {
+      return "#" + ((Math.random() * 0xffffff) << 0).toString(16);
+    },
+    getBaseInsuranceTj() {
+      //保险饼图
+      getBaseInsuranceTj({ baseId: this.baseId }).then(res => {
+        this.bx_forests = 80;
+        this.bx_count = 91;
+      });
+    },
+    listAddMarker(position, i) {
+      var markerContent =
+        "" +
+        '<div class="custom-content-marker" style="postion:relative;text-align:center">' +
+        '   <img src="https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png">' +
+        "</div>";
+      let that = this;
+      // let markers = [];
+      var marker = new AMap.Marker({
+        map: that.map,
+        position: position,
+        content: markerContent,
+        offset: new AMap.Pixel(-13, -30)
+      });
+      that.map.setZoomAndCenter(15, position);
+      // markers.push(marker);
+      that.saveListMarker.push(marker);
+      marker.setMap(that.map);
+      AMap.event.addListener(marker, "click", function(e) {
+        that.map.setZoomAndCenter(15, [e.lnglat.lng, e.lnglat.lat]);
+      });
+    },
+    _dramLoansChart(datas) {
+      //右侧饼图
+      let rainChart = this.$echarts.init(this.$refs.loansChart, null, {
         devicePixelRatio: 2.5
       });
-      var option = chartsType.charts(
-        ["镍", "锌", "铜", "总铬", "铅", "镉", "总砷", "总汞"],
-        this.metalDatas,
-        "检测量（mg/kg）",
-        "bar",
-        "实际值",
-        "#289CF4",
-        "x"
-      );
-      option.legend = {
-        left: "right",
-        textStyle: {
-          color: "#fff"
-        }
-      };
-      option.series.push({
-        name: "国家标准允许最大值",
-        barWidth: 20,
-        barGap: document.body.clientWidth > 2000 ? "80%" : "30%",
-        type: "bar",
-        data: [50, 250, 100, 200, 300, 0.3, 30, 0.5],
-        itemStyle: {
-          normal: {
-            color: "#4ECB73",
-            "margin-left": 20
+      var option = {
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        legend: {
+          orient: "vertical",
+          left: 10,
+          data: ["农事记录", "批次工单", "巡查工单"],
+          textStyle: {
+            color: "#ffffff" //字体颜色
+          },
+          show: false
+        },
+        series: [
+          {
+            name: "访问来源",
+            type: "pie",
+            radius: ["40%", "60%"],
+            avoidLabelOverlap: false,
+            label: {
+              show: true,
+              position: "left"
+            },
+            tooltip: {
+              trigger: "item",
+              show: false,
+              formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            emphasis: {
+              label: {
+                show: false,
+                fontSize: "30",
+                fontWeight: "bold"
+              }
+            },
+            data: datas
           }
-        }
-      });
+        ]
+      };
       rainChart.setOption(option);
+    },
+    _renderClusterMarker(context) {
+      var count = this.markers.length;
+      var factor = Math.pow(context.count / count, 1 / 10);
+      var div = document.createElement("div");
+      var Hue = 180 - factor * 180;
+      var bgColor = "hsla(" + Hue + ",100%,50%,0.7)";
+      var fontColor = "hsla(" + Hue + ",100%,20%,1)";
+      var borderColor = "hsla(" + Hue + ",100%,40%,1)";
+      var shadowColor = "hsla(" + Hue + ",100%,50%,1)";
+      // div.style.backgroundColor = bgColor;
+      div.style.backgroundColor = "#fce700";
+      var size = Math.round(30 + Math.pow(context.count / count, 1 / 5) * 20);
+      // div.style.width = div.style.height = size + 'px';
+      div.style.width = div.style.height = "40px";
+      // div.style.border = 'solid 1px ' + borderColor;
+      div.style.border = "solid 1px #fce700";
+      div.style.borderRadius = size / 2 + "px";
+      div.style.boxShadow = "0 0 1px " + shadowColor;
+      div.innerHTML = context.count;
+      // div.style.lineHeight = size + 'px';
+      div.style.lineHeight = "40px";
+      div.style.color = fontColor;
+      div.style.fontSize = "14px";
+      div.style.textAlign = "center";
+      context.marker.setOffset(new AMap.Pixel(-size / 2, -size / 2));
+      context.marker.setContent(div);
     },
     _drawCityMap() {
+      //  this.$refs.mapChart.style.height = "520px";
       let that = this;
-      that.spinning = true;
       MapLoader().then(AMap => {
-        let googleLayer = new AMap.TileLayer({
-          getTileUrl:
-            "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
+        that.map = new AMap.Map(this.$refs.mapChart, {
+          resizeEnable: true,
+          center: [105.013664, 31.206397],
+          zooms: [10, 18]
+          //  layers:[googleLayer,roadNetLayer,layer], //设置图层
+          // viewMode:'3D',
         });
-        let roadNetLayer = new AMap.TileLayer.RoadNet({
-          opacity: 0
-        });
-        that.map = new AMap.Map("mapChart", {
-          zoom: 15,
-          layers: [googleLayer, roadNetLayer]
-        });
-        that.map.on("complete", function() {
-          that.mapok = true;
-          that.spinning = false;
 
-          var myEvent = new CustomEvent("mapload_done", {});
-          if (window.dispatchEvent) {
-            window.dispatchEvent(myEvent);
-          } else {
-            window.fireEvent(myEvent);
+        AMap.plugin(
+          ["AMap.DistrictSearch", "AMap.MarkerClusterer"],
+          function() {
+            var district = new AMap.DistrictSearch({
+              extensions: "all",
+              subdistrict: 0
+            });
+            district.search("三台县", function(status, result) {
+              // 外多边形坐标数组和内多边形坐标数组
+              var bounds = result.districtList[0].boundaries;
+              var outer = [
+                new AMap.LngLat(-360, 90, true),
+                new AMap.LngLat(-360, -90, true),
+                new AMap.LngLat(360, -90, true),
+                new AMap.LngLat(360, 90, true)
+              ];
+              var pathArray = [outer];
+              pathArray.push.apply(pathArray, bounds);
+              var polygon = new AMap.Polygon({
+                path: pathArray,
+                strokeColor: "#0AFBE2",
+                strokeWeight: 1,
+                fillColor: "#26374C",
+                fillOpacity: 0.9
+              });
+              polygon.setPath(pathArray);
+              that.map.add(polygon);
+              var polygons = [];
+              if (bounds) {
+                for (var i = 0, l = bounds.length; i < l; i++) {
+                  //生成行政区划polygon
+                  var polygon1 = new AMap.Polygon({
+                    map: that.map,
+                    strokeWeight: 1,
+                    path: bounds[i],
+                    fillOpacity: 0,
+                    fillColor: "#CCF3FF",
+                    strokeColor: "#CC66CC"
+                  });
+                  polygons.push(polygon1);
+                }
+                // 地图自适应
+                that.map.setFitView(polygons);
+              }
+            });
+            // 聚合点
+
+            if (that.cluster) {
+              that.cluster.setMap(null);
+            } else {
+              that.cluster = new AMap.MarkerClusterer(that.map, that.markers, {
+                gridSize: 100,
+                renderClusterMarker: that._renderClusterMarker
+              });
+            }
+
+            // var bounds = that.map.getBounds();
+            // that.map.setLimitBounds(bounds);
+            that.map.on("complete", function() {
+              var myEvent = new CustomEvent("done1", {});
+              that.currentWorkOrder();
+              if (window.dispatchEvent) {
+                window.dispatchEvent(myEvent);
+              } else {
+                window.fireEvent(myEvent);
+              }
+            });
           }
-        });
-        AMap.plugin(["AMap.Autocomplete", "AMap.PlaceSearch"], function() {
-          var autoOptions = {
-            // 城市，默认全国
-            city: that.areacord,
-            // 使用联想输入的input的id
-            input: "input3",
-            citylimit: true
-          };
-          var autocomplete = new AMap.Autocomplete(autoOptions);
-          var placeSearch = new AMap.PlaceSearch({
-            city: that.areacord,
-            map: that.map
-          });
-          AMap.event.addListener(autocomplete, "select", function(e) {
-            //TODO 针对选中的poi实现自己的功能
-            // if (e.poi.address.length > 0) {
-            placeSearch.setCity(e.poi.adcode);
-            placeSearch.search(e.poi.name);
-          });
-        });
+        );
       });
     },
-    infowindow(a, b) {
-      this.getinfo(b);
-      this.infoWindow = new AMap.InfoWindow({
-        content: this.info.join("")
+
+    infowindow(e, b) {
+      this.infoWindowdata = new AMap.InfoWindow({
+        content: `<div style="color:#fff;width:250px;overflow:hidden;text-align:left">
+        <div>基地名称：${this.mapRemarks[b].baseName}</div>
+        <div>农户姓名：${this.mapRemarks[b].executionUserName}</div>
+        <div>农事操作：${this.mapRemarks[b].farmWordItemName}</div>
+        <div>操作时间：${this.mapRemarks[b].executionTime}</div>
+        </div>`
       });
-      this.infoWindow.open(this.map, a);
-    },
-    getinfo(b) {
-      this.info = [];
-      this.info.push(
-        '<div style="color:#fff;width:150px;overflow:hidden;text-align:center"><span>' +
-          this.baseinfo[b].name +
-          "</span></div>"
-      );
+      this.infoWindowdata.open(this.map, [e.lnglat.lng, e.lnglat.lat]);
     }
   }
 };
@@ -1123,8 +1400,8 @@ export default {
         }
 
         .item-bg-y {
-          width: 49%;
-          background: url('../assets/new/bg1.png') no-repeat;
+          width: 100%;
+          background: url('../assets/new/bg1.png');
           color: #b1fef6;
           line-height: 30px;
           font-size: 16px;
@@ -1156,127 +1433,6 @@ export default {
           }
         }
       }
-    }
-  }
-
-  .temperature-rain {
-    flex: 1.2;
-    height: 160px;
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 20px;
-    min-width: 400px;
-
-    .airs {
-      position: relative;
-      flex: 1;
-      margin-top: 10px;
-
-      .monitor-data {
-        background-color: #26374c;
-
-        .lunbo-wrapper {
-          height: 160px;
-          padding-top: 6px;
-          box-sizing: border-box;
-
-          .ivu-carousel-arrow {
-            background-color: rgba(0, 0, 0, 0.2);
-          }
-
-          .ivu-carousel-arrow:hover {
-            background-color: rgba(0, 0, 0, 0.5);
-          }
-        }
-
-        .monitor-base {
-          height: 40px;
-          margin-left: 10px;
-          color: #fff;
-          font-size: 20px;
-          line-height: 20px;
-
-          span {
-            display: inline-block;
-            height: 40px;
-            line-height: 40px;
-            width: 55%;
-            text-align: center;
-          }
-
-          .update-time {
-            width: 45%;
-            float: right;
-            font-size: 16px;
-
-            span {
-              width: 100%;
-              height: 20px;
-              line-height: 20px;
-            }
-          }
-        }
-
-        .monitor-item:nth-of-type(1) {
-          margin-top: 12px;
-        }
-
-        .monitor-item {
-          padding: 0 10px;
-          text-align: left;
-          display: flex;
-          height: 40px;
-          color: #43cfe0;
-
-          .monitor-message {
-            display: inline-block;
-            width: 97px;
-            text-align: right;
-          }
-
-          div {
-            flex: 1;
-            line-height: 40px;
-            height: 40px;
-
-            img {
-              margin-right: 5px;
-            }
-          }
-
-          div:nth-of-type(1) {
-            margin-right: 10px;
-          }
-        }
-      }
-
-      .temperature-map, .rain-map {
-        height: 150px;
-      }
-
-      .rain {
-        margin-top: 46px;
-      }
-
-      .message-wrapper {
-        display: flex;
-        height: 45px;
-        color: #ffffff;
-        font-size: 16px;
-        padding-left: 10px;
-        box-sizing: border-box;
-        background-color: #26374C;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08235294117647057);
-
-        div {
-          padding-left: 10px;
-          box-sizing: border-box;
-        }
-      }
-    }
-
-    .airs:nth-of-type(1) {
-      margin-top: 0px;
     }
   }
 }
@@ -1449,18 +1605,6 @@ export default {
   }
 }
 
-.pie-text {
-  position: absolute;
-  font-size: 16px;
-  font-weight: bold;
-  color: #B1FDF5;
-  width: 100%;
-  top: 40%;
-  height: 100%;
-  align-content: center;
-  text-align: center;
-}
-
 .black-btn {
   width: 60px;
   height: 30px;
@@ -1523,4 +1667,5 @@ export default {
   width: 100%;
 }
 </style>
+
 

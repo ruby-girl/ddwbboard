@@ -69,6 +69,8 @@ service.interceptors.request.use(config=>{
     const token = Vue.ls.get(ACCESS_TOKEN);
     if(token){
       config.headers['X-Access-Token'] = token
+      config.headers['Cache-Control'] = 'no-cache'
+     
     }
     return config
   },(error) =>{

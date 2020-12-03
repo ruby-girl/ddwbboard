@@ -167,8 +167,26 @@ const capture = (params)=>getAction("/api/billboardIndexs/capture",params);
 
 // 条件查询工单处理数量（按基地分组）
 const doneCount = (params)=>getAction("/api/billboardWorkOrder/doneCount",params);
+
+
+// 查询工单分类占比（核心公司）
+const typePercentForOrg = (params)=>getAction("/api/billboardWorkOrder/typePercentForOrg",params);
+
+// 查询工单分类数量和占比（按基地分组）
+const typeCountAndPercent = (params)=>getAction("/api/billboardWorkOrder/typeCountAndPercent",params);
+// 基地农户数量
+
+const baseFarmerCount = (params)=>getAction("/api/billboardWorkOrder/baseFarmerCount",params);
+const baseWorkOrderCount = (params)=>getAction("/api/billboardWorkOrder/baseWorkOrderCount",params);
+// 查询核心公司实时工单（最近100条）
+const currentWorkOrder = (params)=>getAction("/api/billboardWorkOrder/currentWorkOrder",params);
 export {
     doneCount,
+    typePercentForOrg,
+    baseFarmerCount,
+    baseWorkOrderCount,
+    typeCountAndPercent,
+    currentWorkOrder,
     getSubjectInfo,
     getAnnualFertilizer,
     getLast24HMonitorRecords,
