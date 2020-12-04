@@ -10,11 +10,22 @@
           </div>
           <div class="company">
             <div class="display-flex">
-              <Button type="success" shape="circle" size="small" ghost class="time-margin">最近一周</Button>
-              <Button size="small" shape="circle" type="success" ghost class="time-margin">最近一个月</Button>
-              <Button size="small" shape="circle" type="success" ghost class="time-margin">最近三个月</Button>
-              <Button size="small" shape="circle" type="success" ghost class="time-margin">最近半年</Button>
-              <Button type="success" shape="circle" icon="ios-search"></Button>
+              <div
+                :class="{'button-box':true,'button-box-active':btn==1}"
+                @click="changeBtn(1)"
+              >最近一周</div>
+              <div
+                :class="{'button-box':true,'button-box-active':btn==2}"
+                @click="changeBtn(2)"
+              >最近一个月</div>
+              <div
+                :class="{'button-box':true,'button-box-active':btn==3}"
+                @click="changeBtn(3)"
+              >最近三个月</div>
+              <div
+                :class="{'button-box':true,'button-box-active':btn==4}"
+                @click="changeBtn(4)"
+              >最近半年</div>
             </div>
           </div>
           <div ref="bar" class="bar-height"></div>
@@ -103,23 +114,23 @@
               style="position:relative;list-style:none;background:rgba(255,255,255,0.2);font-size:13px;padding:5px"
             >
               <li class="base-item display-flex justify-content-flex-center">
-                <span style="text-align: left;display:inline-block; width: 26%;color: #fff;">操作时间</span>
+                <span style="text-align: left;display:inline-block; width: 30% !important;color: #fff;">操作时间</span>
                 <span style="color: #fff;display:inline-block; width:20%;text-align: center;">操作人</span>
-                <span style="text-align: center;display:inline-block; width: 20%;color: #fff;">农事操作</span>
-                <span style="color: #fff;display:inline-block; width: 34%;text-align: center;">所属基地</span>
+                <span style="text-align: center;display:inline-block; width: 16%;color: #fff;">农事操作</span>
+                <span style="color: #fff;display:inline-block; width: 30%;text-align: center;">所属基地</span>
               </li>
             </ul>
             <div class="base-info" id="base-info3" style="overflow:hidden">
               <ul id="base-ul3" style="position:relative; top:0px;list-style:none;">
                 <li class="base-item" v-for="(item,m) in orderList" :key="m+'c'">
                   <span
-                    style="text-align: left;display:inline-block; width: 26% !important;color: #fff;padding-left:5px"
+                    style="text-align: left;display:inline-block; width: 30% !important;color: #fff;padding-left:5px"
                   >{{item.executionTime}}</span>
                   <span
                     style="text-align: center;display:inline-block; width: 20%;color: #fff"
                   >{{item.executionUserName}}</span>
                   <span
-                    style="color: #0AFBE2;display:inline-block; width: 20%;text-align: center;"
+                    style="color: #0AFBE2;display:inline-block; width: 16%;text-align: center;"
                   >{{item.farmWordItemName}}</span>
                   <span
                     style="color: #fff;display:inline-block; width: 34%;text-align: center;white-space:nowrap;
@@ -148,7 +159,10 @@ import {
   typeCountAndPercent,
   baseWorkOrderCount,
   baseFarmerCount,
-  currentWorkOrder
+  currentWorkOrder,
+  newestNotice,
+  currentMapAddr,
+  newestMapAddr
 } from "../api/apiYZX";
 const dataAxis = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
@@ -160,6 +174,7 @@ export default {
   },
   data() {
     return {
+      btn: 1,
       pieTop: 0,
       pieLeft: 0,
       pieTop2: 0,
@@ -184,7 +199,6 @@ export default {
       mapIcon: require("../assets/new/icon_positioning.png"),
       pieTxtLeft: 0,
       pieTxtTop: 0,
-
       bx_forests: 0, //原形进度条面积
       bx_count: 0, //原形进图条人数
       dataRight: [],
@@ -200,7 +214,18 @@ export default {
       lastRecord: {},
       soliLineShow: true,
       airLineShow: true,
-      imgUrl: ""
+      imgUrl: "",
+      time1: this.getDay(7),
+      time2: this.getDay(30),
+      time3: this.getDay(90),
+      time4: this.getDay(180),
+      faultByHourTime: null,
+      faultByHourTime2: null,
+      markersAnim: [],
+      overlayGroups: null,
+      timer:null,
+      timer2:null,
+      timerInit:null
     };
   },
   created() {
@@ -239,31 +264,125 @@ export default {
     this.typeCountAndPercent();
     this.baseFarmerCount();
     this.baseWorkOrderCount();
-    // this.currentWorkOrder()
+    this.currentWorkOrder();
+    this.timerInit=setInterval(function() {
+      that.currentMapAddr();
+      that.newestNotice();
+    }, 20000);
   },
   methods: {
-    addCluster() {
-      if (this.cluster) {
-        this.cluster.setMap(null);
-      }
-      let _this = this;
-      this.cluster = new AMap.MarkerClusterer(_this.map, _this.markers, {
-        // styles: sts,
-        gridSize: 50,
-        renderClusterMarker: _this._renderClusterMarker
+    newestNotice() {
+      //每10分钟请求最新数据
+      newestNotice({ orgId: 99 }).then(res => {
+        res.data.feedBackOrderList.map(item => {
+          this.$notification.open({
+            message: "消息提醒",
+            description: (
+              <div>
+                <div>
+                  <span class="color-lv">{item.initiatorName}</span>给
+                  <span class="color-lv">{item.baseName}</span>创建了新的
+                  <span>巡查工单</span>
+                </div>
+                <div>
+                  <span class="color-lv">基地名称</span>:{item.baseName}
+                </div>
+                <div>
+                  <span class="color-lv">创建时间</span>:{item.creatTime}
+                </div>
+              </div>
+            ),
+            icon: <a-icon type="sound" style="color:#FA7F05" />
+          });
+        });
+        res.data.farmWorkRecordList.map(item => {
+          this.$notification.open({
+            message: "消息提醒",
+            description: (
+              <div>
+                <div>
+                  <span class="color-lv">{item.baseName}</span>的
+                  <span class="color-lv">{item.executionUserName}</span>
+                  农户进行了
+                  {item.farmWorkItemName}处理
+                </div>
+                <div>
+                  <span class="color-lv">创建时间</span>:{item.executionTime}
+                </div>
+                <div>
+                  <span class="color-lv">种植地块</span>:{item.landParcelName}
+                </div>
+              </div>
+            ),
+            icon: <a-icon type="sound" style="color:#FA7F05" />
+          });
+        });
+        if (res.data.farmWorkRecordList.length > 0) {
+          this.newestMapAddr(); //获取闪烁点
+          // init其他数据
+          if(this.btn==1){
+            this.getOrder(this.time1);
+          }else if(this.btn==2){
+            this.getOrder(this.time2);
+          }else if(this.btn==3){
+            this.getOrder(this.time3);
+          }else{
+            this.getOrder(this.time4);
+          }
+          
+          this.typePercentForOrg(); //坐下饼图
+          this.typeCountAndPercent();
+          this.baseFarmerCount();
+          this.baseWorkOrderCount();
+          this.currentWorkOrder();
+        }
       });
-      this.cluster.setMinClusterSize(5); // 代表低于五个点就不聚合 这样能有效防止
     },
-    currentWorkOrder() {
-      currentWorkOrder({ breedsId: 1, orgId: 99 }).then(res => {
-        this.orderList = res.data;
-        this.baseScroll3 = new roll.Roll(
-          "base-info3",
-          "base-ul3",
-          "",
-          -this.orderList.length * 18
-        );
-
+    // 新的marker
+    newestMapAddr() {
+      if (this.overlayGroups) {
+        this.removeOverlayGroups();
+      }
+      newestMapAddr({ orgId: 99 }).then(res => {
+        this.overlayGroups = null;
+        let arr = res.data;
+        let that = this;
+        for (let i = 0; i < arr.length; i++) {
+          let remark = arr[i].mapAddr;
+          let remarkJson2 = eval("(" + remark + ")");
+          if (remarkJson2.path) {
+            let lng = remarkJson2.path[0].lng;
+            let lat = remarkJson2.path[0].lat;
+            const icon1 = new AMap.Icon({
+              size: new AMap.Size(20, 50), // 图标尺寸
+              image:
+                "//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png", // Icon的图像
+              imageOffset: new AMap.Pixel(0, 0), // 图像相对展示区域的偏移量，适于雪碧图等
+              imageSize: new AMap.Size(20, 30) // 根据所设置的大小拉伸或压缩图片
+            });
+            const marker = new AMap.Marker({
+              map: that.map,
+              position: new AMap.LngLat(lng, lat),
+              icon: icon1,
+              anchor: "center",
+              offset: new AMap.Pixel(0, 0)
+            });
+            that.markersAnim.push(marker);
+            that.map.add(marker);
+            marker.setAnimation("AMAP_ANIMATION_BOUNCE");
+            that.addCluster();
+            marker.on("click", function(e) {
+              that.infowindow(e, i);
+            });
+          }
+        }
+        that.overlayGroups = new AMap.OverlayGroup(that.markersAnim);
+        // 添加覆盖物群组
+        that.map.add(that.overlayGroups);
+      });
+    },
+    currentMapAddr() {
+      currentMapAddr({ breedsId: 1, orgId: 99 }).then(res => {
         //  处理地图数据*****
         this.removepoint();
         this.btnActive = 2;
@@ -280,7 +399,7 @@ export default {
               position: new AMap.LngLat(lng, lat),
               offset: new AMap.Pixel(-10, -10),
               content:
-                '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>'
+                '<div style="background-color:hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>'
             });
             that.markers.push(marker);
             that.map.add(marker);
@@ -292,8 +411,45 @@ export default {
               //   query: { baseId: Number(that.mapRemarks[i].id) }
               // });
             });
+            // 创建覆盖物群组，并将 marker 传给 OverlayGroup
           }
         }
+      });
+    },
+    changeBtn(n) {
+      this.btn = n;
+      if (n == 1) {
+        this.getOrder(this.time1);
+      } else if (n == 2) {
+        this.getOrder(this.time2);
+      } else if (n == 3) {
+        this.getOrder(this.time3);
+      } else if (n == 4) {
+        this.getOrder(this.time4);
+      }
+    },
+    addCluster() {
+      if (this.cluster) {
+        this.cluster.setMap(null);
+      }
+      let _this = this;
+      this.cluster = new AMap.MarkerClusterer(_this.map, _this.markers, {
+        // styles: sts,
+        gridSize: 50,
+        renderClusterMarker: _this._renderClusterMarker
+      });
+      this.cluster.setMinClusterSize(5); // 代表低于五个点就不聚合 这样能有效防止
+    },
+    currentWorkOrder() {
+      currentWorkOrder({ breedsId: 1, orgId: 99 }).then(res => {
+        this.orderList = res.data;
+        
+        this.baseScroll3 = new roll.Roll(
+          "base-info3",
+          "base-ul3",
+          "",
+          -this.orderList.length * 18
+        );
       });
     },
     getDay(day) {
@@ -322,7 +478,8 @@ export default {
         orgId: 99
       };
       doneCount(obj).then(res => {
-        let datas = res.data.slice(0, 7);
+        // this.saveBarList = [...res.data];
+        let datas = res.data;
         let xData = datas.map(item => {
           return item.baseName;
         });
@@ -333,6 +490,8 @@ export default {
       });
     },
     _dramBar(xData, yData) {
+      clearInterval(this.faultByHourTime);
+      clearInterval(this.timer)
       let _this = this;
       let rainChart = this.$echarts.init(this.$refs.bar, null, {
         devicePixelRatio: 2.5
@@ -340,8 +499,17 @@ export default {
       var option = {
         tooltip: {
           trigger: "axis",
-          formatter:'{b}<br/>{a0}:{c0}条'
+          formatter: "{b}{a0}:{c0}条"
         },
+        dataZoom: [
+          {
+            type: "slider", //slider表示有滑动块的，
+            show: false,
+            yAxisIndex: [0], //表示x轴折叠
+            start: 1, //数据窗口范围的起始百分比,表示1%
+            end: 20 //数据窗口范围的结束百分比,表示35%坐标
+          }
+        ],
         grid: {
           top: "20px",
           left: "3%",
@@ -382,12 +550,12 @@ export default {
               margin: 10,
               textStyle: {
                 fontSize: 12,
-                color: "#fff"
+                color: "#aaa"
               }
             },
             axisLine: {
               lineStyle: {
-                color: "#0afbe2"
+                color: "#05474E"
               }
             },
             splitLine: {
@@ -395,12 +563,12 @@ export default {
             }
           }
         ],
-        // backgroundColor: '#192469',
         series: [
           {
             name: "",
             type: "bar",
             barWidth: 21,
+            barCategoryGap: "10%",
             data: xData,
             label: {
               normal: {
@@ -422,7 +590,7 @@ export default {
                   [
                     {
                       offset: 0,
-                      color: "#182D3B" // 0% 处的颜色
+                      color: "rgba(24, 45, 59, 0.3)"
                     },
                     {
                       offset: 1,
@@ -441,8 +609,31 @@ export default {
         ]
       };
       rainChart.setOption(option);
+      var faultByHourIndex = 0; //播放所在下标
+      this.faultByHourTime = setInterval(function() {
+        //使得tootip每隔三秒自动显示
+        rainChart.dispatchAction({
+          type: "showTip", // 根据 tooltip 的配置项显示提示框。
+          seriesIndex: 0,
+          dataIndex: faultByHourIndex
+        });
+      }, 2100);
+
+      this.timer=setInterval(function() {
+        var datax = option.series[0].data;
+        // var data1 = option.series[1].data;
+        datax.push(datax[0]);
+        datax.shift();
+        var datay = option.yAxis[0].data;
+        datay.push(datay[0]);
+        datay.shift();
+        rainChart.setOption(option);
+      }, 3000);
     },
+
+    autoTooltip() {},
     toBlack() {
+      clearInterval(this.timerInit)
       this.$router.back(-1);
     },
     typeCountAndPercent() {
@@ -498,6 +689,9 @@ export default {
       farmWorkRecordPercent,
       feedBackPercent
     ) {
+      clearInterval(this.faultByHourTime2);
+       clearInterval(this.timer2);
+      
       let rainChart = this.$echarts.init(this.$refs.bottomLine1, null, {
         devicePixelRatio: 2.5
       });
@@ -512,11 +706,11 @@ export default {
             let list = [];
             let listItem = "";
             for (var i = 0; i < a.length; i++) {
-              let unit=''
-              if(a[i].seriesName.indexOf("占比") !== -1){
-                unit='%'
-              }else{
-                unit='条'
+              let unit = "";
+              if (a[i].seriesName.indexOf("占比") !== -1) {
+                unit = "%";
+              } else {
+                unit = "条";
               }
               list.push(
                 '<i style="display: inline-block;width: 10px;height: 10px;background: ' +
@@ -524,13 +718,29 @@ export default {
                   ';margin-right: 5px;border-radius: 50%;}"></i><span style="width:70px; display:inline-block;">' +
                   a[i].seriesName +
                   "</span>&nbsp&nbsp：" +
-                  a[i].value +unit
+                  a[i].value +
+                  unit
               );
             }
             listItem = list.join("<br>");
-            return '<div class="showBox">' + listItem + "</div>";
+            return (
+              '<div class="showBox"><div>' +
+              a[0].name +
+              "</div>" +
+              listItem +
+              "</div>"
+            );
           }
         },
+        dataZoom: [
+          {
+            type: "slider", //slider表示有滑动块的，
+            show: false,
+            xAxisIndex: [0], //表示x轴折叠
+            start: 1, //数据窗口范围的起始百分比,表示1%
+            end: 80 //数据窗口范围的结束百分比,表示35%坐标
+          }
+        ],
         legend: {
           data: [
             "批次工单数量",
@@ -738,6 +948,40 @@ export default {
         ]
       };
       rainChart.setOption(option);
+      var faultByHourIndex = 0; //播放所在下标
+      this.faultByHourTime2 = setInterval(function() {
+        //使得tootip每隔三秒自动显示
+        rainChart.dispatchAction({
+          type: "showTip", // 根据 tooltip 的配置项显示提示框。
+          seriesIndex: 0,
+          dataIndex: faultByHourIndex
+        });
+      }, 2100);
+
+      this.timer2=setInterval(function() {
+        var datax = option.xAxis[0].data;
+        datax.push(datax[0]);
+        datax.shift();
+        var data1 = option.series[0].data;
+        data1.push(data1[0]);
+        data1.shift();
+        var data2 = option.series[1].data;
+        data2.push(data2[0]);
+        data2.shift();
+        var data3 = option.series[2].data;
+        data3.push(data3[0]);
+        data3.shift();
+        var data4 = option.series[3].data;
+        data4.push(data4[0]);
+        data4.shift();
+        var data5 = option.series[4].data;
+        data5.push(data5[0]);
+        data5.shift();
+        var data6 = option.series[5].data;
+        data6.push(data6[0]);
+        data6.shift();
+        rainChart.setOption(option);
+      }, 3000);
     },
     // 自定义提示框
     formatterTip(params) {
@@ -877,6 +1121,9 @@ export default {
     },
     removepoint() {
       this.map.remove(this.markers);
+    },
+    removeOverlayGroups() {
+      this.map.remove(this.overlayGroups);
     },
     baseWorkOrderCount() {
       baseWorkOrderCount({ orgId: 99, breedsId: 1 }).then(res => {
@@ -1072,7 +1319,7 @@ export default {
             // that.map.setLimitBounds(bounds);
             that.map.on("complete", function() {
               var myEvent = new CustomEvent("done1", {});
-              that.currentWorkOrder();
+              that.currentMapAddr();
               if (window.dispatchEvent) {
                 window.dispatchEvent(myEvent);
               } else {
@@ -1089,7 +1336,7 @@ export default {
         content: `<div style="color:#fff;width:250px;overflow:hidden;text-align:left">
         <div>基地名称：${this.mapRemarks[b].baseName}</div>
         <div>农户姓名：${this.mapRemarks[b].executionUserName}</div>
-        <div>农事操作：${this.mapRemarks[b].farmWordItemName}</div>
+        <div>农事操作：${this.mapRemarks[b].farmWorkItemName}</div>
         <div>操作时间：${this.mapRemarks[b].executionTime}</div>
         </div>`
       });
@@ -1127,6 +1374,23 @@ export default {
   .special {
     width: 93px !important;
   }
+}
+
+.button-box {
+  margin-top: 8px;
+  cursor: pointer;
+  border: 1px solid #5DC1FA;
+  color: #5DC1FA;
+  width: 68px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  margin-right: 5px;
+  border-radius: 15px;
+}
+
+.button-box-active {
+  background: rgba(72, 108, 113, 0.6);
 }
 
 @media screen and (max-width: 1550px) {
@@ -1665,6 +1929,30 @@ export default {
 .bar-height {
   height: calc(100% - 100px);
   width: 100%;
+}
+
+.color-lv {
+  color: #7C89EB;
+}
+
+.animtMarker {
+  width: 25px;
+  height: 25px;
+  bacground: red;
+}
+
+@keyframes pulsate {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 </style>
 

@@ -180,10 +180,22 @@ const baseFarmerCount = (params)=>getAction("/api/billboardWorkOrder/baseFarmerC
 const baseWorkOrderCount = (params)=>getAction("/api/billboardWorkOrder/baseWorkOrderCount",params);
 // 查询核心公司实时工单（最近100条）
 const currentWorkOrder = (params)=>getAction("/api/billboardWorkOrder/currentWorkOrder",params);
+
+// 实时已执行工单地图地址
+const currentMapAddr = (params)=>getAction("/api/billboardWorkOrder/currentMapAddr",params);
+// 看板消息中心（查询最近10分钟新增的消息）
+const newestNotice = (params)=>getAction("/api/billboardWorkOrder/newestNotice",params);
+
+// 配合看板消息的地图地址
+
+const newestMapAddr = (params)=>getAction("/api/billboardWorkOrder/newestMapAddr",params);
 export {
     doneCount,
     typePercentForOrg,
+    newestMapAddr,
     baseFarmerCount,
+    currentMapAddr,
+    newestNotice,
     baseWorkOrderCount,
     typeCountAndPercent,
     currentWorkOrder,
