@@ -169,6 +169,7 @@ import {
   currentMapAddr,
   newestMapAddr
 } from "../api/apiYZX";
+import { gcj02Towgs84 } from '@/utils/loadMap'
 const dataAxis = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 export default {
@@ -408,10 +409,9 @@ export default {
           let remark = that.mapRemarks[i].mapAddr;
           let remarkJson2 = eval("(" + remark + ")");
           if (remarkJson2.path) {
-            let lng = remarkJson2.path[0].lng;
-            let lat = remarkJson2.path[0].lat;
+            const lngLat = gcj02Towgs84(remarkJson2.path[0].lng, remarkJson2.path[0].lat)
             let marker = new AMap.Marker({
-              position: new AMap.LngLat(lng, lat),
+              position: new AMap.LngLat(lngLat[0], lngLat[1]),
               offset: new AMap.Pixel(-10, -10),
               content:
                 '<div style="background-color:hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>'
@@ -1325,8 +1325,8 @@ export default {
       if(!remark){return}
       let remarkJson2 = eval("(" + remark + ")");
       if (remarkJson2.path) {
-        var lng = remarkJson2.path[0].lng;
-        var lat = remarkJson2.path[0].lat;
+       
+         var lngLat = gcj02Towgs84(remarkJson2.path[0].lng, remarkJson2.path[0].lat)
       }
       this.infoWindowdata = new AMap.InfoWindow({
         content: `<div style="color:#fff;width:250px;overflow:hidden;text-align:left">
@@ -1336,9 +1336,9 @@ export default {
         <div>操作时间：${this.mapRemarks[0].executionTime}</div>
         </div>`
       });
-      this.infoWindowdata.open(this.map, [lng, lat]);
+      this.infoWindowdata.open(this.map,lngLat);
       // this.map.setFitView();
-      this.map.setZoomAndCenter(14, [lng, lat]);
+      this.map.setZoomAndCenter(14,lngLat);
     }
   }
 };

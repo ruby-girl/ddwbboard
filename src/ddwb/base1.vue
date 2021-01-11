@@ -346,6 +346,7 @@ import Footer from "@/components/layouts/Footer";
 import chartsType from "../assets/js/chartsType.js";
 import roll from "../assets/js/roll.js";
 import axios from "axios";
+import { gcj02Towgs84 } from '@/utils/loadMap'
 import {
   getBaseInfo,
   getLastRecord,
@@ -790,13 +791,15 @@ export default {
         if (remark != undefined && remark != null && remark.trim() != "") {
           let remarkJson2 = eval("(" + remark + ")");
           let newPath = [];
+            const lngLat = gcj02Towgs84(remarkJson2.path[0].lng, remarkJson2.path[0].lat)
           this.listAddMarker(
-            [remarkJson2.path[0].lng, remarkJson2.path[0].lat],
+            lngLat,
             i
           );
           for (let i = 0; i < remarkJson2.path.length; i++) {
             let point = remarkJson2.path[i];
-            newPath.push(new AMap.LngLat(point.lng, point.lat));
+           const lngLat = gcj02Towgs84(point.lng, point.lat)
+            newPath.push(new AMap.LngLat(lngLat[0], lngLat[1]))
           }
           remarkJson2.path = newPath;
           let polygon2 = new AMap.Polygon(remarkJson2);

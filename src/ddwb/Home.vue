@@ -369,6 +369,7 @@ import Footer from "@/components/layouts/Footer";
 import chartsType from "../assets/js/chartsType.js";
 import roll from "../assets/js/roll.js";
 import axios from "axios";
+import { gcj02Towgs84 } from '@/utils/loadMap'
 import {
   getSubjectInfo,
   getAnnualFertilizer,
@@ -835,10 +836,9 @@ export default {
           let remarkJson2 = eval("(" + remark + ")");
 
           if (remarkJson2.path) {
-            let lng = remarkJson2.path[0].lng;
-            let lat = remarkJson2.path[0].lat;
+            const lngLat = gcj02Towgs84(remarkJson2.path[0].lng, remarkJson2.path[0].lat)
             let marker = new AMap.Marker({
-              position: new AMap.LngLat(lng, lat),
+              position: new AMap.LngLat(lngLat[0], lngLat[1]),
               offset: new AMap.Pixel(-10, -10),
               content:
                 '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>'
@@ -870,10 +870,10 @@ export default {
             let remark = that.mapRemarks[i].mapAddr;
             let remarkJson2 = eval("(" + remark + ")");
 
-            let lng = remarkJson2.path[0].lng;
-            let lat = remarkJson2.path[0].lat;
+          
+             const lngLat = gcj02Towgs84(remarkJson2.path[0].lng, remarkJson2.path[0].lat)
             let marker = new AMap.Marker({
-              position: new AMap.LngLat(lng, lat),
+              position: new AMap.LngLat(lngLat[0], lngLat[1]),
               offset: new AMap.Pixel(-10, -10),
               content:
                 '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>'
