@@ -440,14 +440,19 @@ export default {
     window.addEventListener("done1", function() {
       let googleLayer = new AMap.TileLayer({
         getTileUrl:
-          "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
+          "http://t{0,1,2,3,4,5,6,7}.tianditu.gov.cn/DataServer?T=img_w&tk=abeec20c364d3bf2a7357ae764e683eb&x=[x]&y=[y]&l=[z]"
       }); //定义谷歌卫星切片图层
 
       let roadNetLayer = new AMap.TileLayer.RoadNet({
         opacity: 0
       }); //定义一个路网图层
-      // var layer = new AMap.TileLayer();
+      //  const sate = new AMap.TileLayer.Satellite()
+      var layer = new AMap.TileLayer();
       that.map.setLayers([googleLayer, roadNetLayer]);
+      axios.get("json/blockinfo.json").then(res => {
+        that.blockinfo = res.data.result;
+        // that.addBlockOnMap();
+      });
     });
 
     this.getLast24HMonitorRecordsAir(1, "airHumidity"); //底部折线图
@@ -758,7 +763,7 @@ export default {
       var markerContent =
         "" +
         '<div class="custom-content-marker" style="postion:relative;text-align:center">' +
-        '   <img src="https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png">' +
+        '   <img src="http://bysk.scbysk.com/vx_imgs/location.png">' +
         "</div>";
       let that = this;
       // let markers = [];
@@ -819,30 +824,6 @@ export default {
         name: "company",
         query: { userOrganId: Number(obj[0].userId) }
       });
-    },
-    changemap() {
-      if (this.weixin) {
-        this.map.remove(this.map.getLayers());
-        let googleLayer = new AMap.TileLayer({
-          getTileUrl:
-            "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
-        }); //定义谷歌卫星切片图层
-
-        let roadNetLayer = new AMap.TileLayer.RoadNet({
-          opacity: 0
-        }); //定义一个路网图层
-        var layer = new AMap.TileLayer();
-        this.map.setLayers([googleLayer, roadNetLayer, layer]);
-        this.weixin = false;
-      } else {
-        this.map.remove(this.map.getLayers());
-        let roadNetLayer = new AMap.TileLayer.RoadNet({
-          opacity: 0
-        }); //定义一个路网图层
-        let layer = new AMap.TileLayer();
-        this.map.setLayers([roadNetLayer, layer]);
-        this.weixin = true;
-      }
     },
     _dramLoansChart(datas) {
       //右侧饼图
@@ -974,17 +955,20 @@ export default {
       let that = this;
       that.spinning = true;
       MapLoader().then(AMap => {
-        let googleLayer = new AMap.TileLayer({
+         let googleLayer = new AMap.TileLayer({
           getTileUrl:
-            "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
+            "http://t{0,1,2,3,4,5,6,7}.tianditu.gov.cn/DataServer?T=img_w&tk=abeec20c364d3bf2a7357ae764e683eb&x=[x]&y=[y]&l=[z]"
         });
         let roadNetLayer = new AMap.TileLayer.RoadNet({
           opacity: 0
         });
+        //  const sate = new AMap.TileLayer.Satellite()
         that.map = new AMap.Map("mapChart", {
           zoom: 15,
           layers: [googleLayer, roadNetLayer]
         });
+       
+    
         that.map.on("complete", function() {
           that.mapok = true;
           that.spinning = false;

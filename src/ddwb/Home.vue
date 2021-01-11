@@ -66,6 +66,7 @@
               <span class="btn-margin"></span>
               <div :class="{'active':btnActive==2}" @click="changeMapData1">基地</div>
             </div>
+            <!-- @click="toOrder()" -->
             <div class="map-order-box" style="overflow:hidden" @click="toOrder()">
               <ul
                 style="position:relative;list-style:none;background:rgba(3,18,39,0.5);font-size:13px;padding:5px"
@@ -483,12 +484,13 @@ export default {
     window.addEventListener("done1", function() {
       let googleLayer = new AMap.TileLayer({
         getTileUrl:
-          "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
+          "http://t{0,1,2,3,4,5,6,7}.tianditu.gov.cn/DataServer?T=img_w&tk=abeec20c364d3bf2a7357ae764e683eb&x=[x]&y=[y]&l=[z]"
       }); //定义谷歌卫星切片图层
 
       let roadNetLayer = new AMap.TileLayer.RoadNet({
         opacity: 0
       }); //定义一个路网图层
+      // const sate = new AMap.TileLayer.Satellite()
       // var layer = new AMap.TileLayer();
       that.map.setLayers([googleLayer, roadNetLayer]);
       that.baseinfo = [];
@@ -982,12 +984,13 @@ export default {
         this.map.remove(this.map.getLayers());
         let googleLayer = new AMap.TileLayer({
           getTileUrl:
-            "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
+            "http://t{0,1,2,3,4,5,6,7}.tianditu.gov.cn/DataServer?T=img_w&tk=abeec20c364d3bf2a7357ae764e683eb&x=[x]&y=[y]&l=[z]"
         }); //定义谷歌卫星切片图层
 
         let roadNetLayer = new AMap.TileLayer.RoadNet({
           opacity: 0
         }); //定义一个路网图层
+        // const sate = new AMap.TileLayer.Satellite()
         var layer = new AMap.TileLayer();
         this.map.setLayers([googleLayer, roadNetLayer, layer]);
         this.weixin = false;

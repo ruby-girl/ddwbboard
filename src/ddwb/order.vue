@@ -28,7 +28,10 @@
               >最近半年</div>
             </div>
           </div>
-          <div ref="bar" class="bar-height"></div>
+          <div ref="bar" v-if="barLength>0" class="bar-height"></div>
+          <div v-else style="position:relative">
+            <div class="no-data">暂无数据</div>
+          </div>
         </div>
 
         <div class="left-bottom-box">
@@ -114,7 +117,9 @@
               style="position:relative;list-style:none;background:rgba(255,255,255,0.2);font-size:13px;padding:5px"
             >
               <li class="base-item display-flex justify-content-flex-center">
-                <span style="text-align: left;display:inline-block; width: 30% !important;color: #fff;">操作时间</span>
+                <span
+                  style="text-align: left;display:inline-block; width: 30% !important;color: #fff;"
+                >操作时间</span>
                 <span style="color: #fff;display:inline-block; width:20%;text-align: center;">操作人</span>
                 <span style="text-align: center;display:inline-block; width: 16%;color: #fff;">农事操作</span>
                 <span style="color: #fff;display:inline-block; width: 30%;text-align: center;">所属基地</span>
@@ -174,6 +179,7 @@ export default {
   },
   data() {
     return {
+      barLength: 0,
       btn: 1,
       pieTop: 0,
       pieLeft: 0,
@@ -221,11 +227,12 @@ export default {
       time4: this.getDay(180),
       faultByHourTime: null,
       faultByHourTime2: null,
-      markersAnim: [],
-      overlayGroups: null,
-      timer:null,
-      timer2:null,
-      timerInit:null
+      timer: null,
+      timer2: null,
+      timerInit: null,
+      hasNewOrder: false,
+      allTime:null,
+      baseScroll5:null
     };
   },
   created() {
@@ -237,17 +244,22 @@ export default {
   mounted() {
     this._drawCityMap();
     let that = this;
-    window.addEventListener("done1", function() {
+       window.addEventListener("done1", function() {
       let googleLayer = new AMap.TileLayer({
         getTileUrl:
-          "http://mt{1,2,3,0}.google.cn/vt/lyrs=s&hl=zh-CN&gl=cn&x=[x]&y=[y]&z=[z]&s=Galile"
+          "http://t{0,1,2,3,4,5,6,7}.tianditu.gov.cn/DataServer?T=img_w&tk=abeec20c364d3bf2a7357ae764e683eb&x=[x]&y=[y]&l=[z]"
       }); //定义谷歌卫星切片图层
 
       let roadNetLayer = new AMap.TileLayer.RoadNet({
         opacity: 0
       }); //定义一个路网图层
-      // var layer = new AMap.TileLayer();
+      //  const sate = new AMap.TileLayer.Satellite()
+      var layer = new AMap.TileLayer();
       that.map.setLayers([googleLayer, roadNetLayer]);
+      axios.get("json/blockinfo.json").then(res => {
+        that.blockinfo = res.data.result;
+        // that.addBlockOnMap();
+      });
     });
     let pieBox = this.$refs.pieBox.offsetHeight;
     let pieBoxW = this.$refs.pieBox.offsetWidth;
@@ -265,10 +277,13 @@ export default {
     this.baseFarmerCount();
     this.baseWorkOrderCount();
     this.currentWorkOrder();
-    this.timerInit=setInterval(function() {
-      that.currentMapAddr();
+    this.timerInits = setInterval(function() {
+      // that.currentMapAddr();
+      if (that.hasNewOrder) {
+        that.currentMapAddr();
+      }
       that.newestNotice();
-    }, 20000);
+    }, 600000);
   },
   methods: {
     newestNotice() {
@@ -318,73 +333,73 @@ export default {
           });
         });
         if (res.data.farmWorkRecordList.length > 0) {
+          this.hasNewOrder = true;
           this.newestMapAddr(); //获取闪烁点
           // init其他数据
-          if(this.btn==1){
+          if (this.btn == 1) {
             this.getOrder(this.time1);
-          }else if(this.btn==2){
+          } else if (this.btn == 2) {
             this.getOrder(this.time2);
-          }else if(this.btn==3){
+          } else if (this.btn == 3) {
             this.getOrder(this.time3);
-          }else{
+          } else {
             this.getOrder(this.time4);
           }
-          
-          this.typePercentForOrg(); //坐下饼图
-          this.typeCountAndPercent();
-          this.baseFarmerCount();
-          this.baseWorkOrderCount();
-          this.currentWorkOrder();
+
+          // this.typePercentForOrg(); //坐下饼图
+          // this.typeCountAndPercent();
+          // this.baseFarmerCount();
+          // this.baseWorkOrderCount();
+          // this.currentWorkOrder();
+        } else {
+          this.hasNewOrder = false;
         }
       });
     },
     // 新的marker
     newestMapAddr() {
-      if (this.overlayGroups) {
-        this.removeOverlayGroups();
-      }
       newestMapAddr({ orgId: 99 }).then(res => {
-        this.overlayGroups = null;
         let arr = res.data;
         let that = this;
+        this.mapRemarks.push(arr);
         for (let i = 0; i < arr.length; i++) {
           let remark = arr[i].mapAddr;
           let remarkJson2 = eval("(" + remark + ")");
           if (remarkJson2.path) {
             let lng = remarkJson2.path[0].lng;
             let lat = remarkJson2.path[0].lat;
-            const icon1 = new AMap.Icon({
-              size: new AMap.Size(20, 50), // 图标尺寸
-              image:
-                "//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png", // Icon的图像
-              imageOffset: new AMap.Pixel(0, 0), // 图像相对展示区域的偏移量，适于雪碧图等
-              imageSize: new AMap.Size(20, 30) // 根据所设置的大小拉伸或压缩图片
-            });
-            const marker = new AMap.Marker({
-              map: that.map,
+            let marker = new AMap.Marker({
               position: new AMap.LngLat(lng, lat),
-              icon: icon1,
-              anchor: "center",
-              offset: new AMap.Pixel(0, 0)
+              offset: new AMap.Pixel(-10, -10),
+              content:
+                '<div style="background-color:hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>'
             });
-            that.markersAnim.push(marker);
+            that.markers.push(marker);
             that.map.add(marker);
-            marker.setAnimation("AMAP_ANIMATION_BOUNCE");
-            that.addCluster();
-            marker.on("click", function(e) {
-              that.infowindow(e, i);
-            });
+            // marker.setAnimation("AMAP_ANIMATION_BOUNCE");
+            // that.addCluster();
+            if(this.allTime){
+              clearInterval(this.allTime)
+            }
+            
+            // marker.on("click", function(e) {
+            that.allOrderShow();
+            // });
           }
         }
-        that.overlayGroups = new AMap.OverlayGroup(that.markersAnim);
-        // 添加覆盖物群组
-        that.map.add(that.overlayGroups);
       });
+    },
+    allOrderShow() {
+      this.mapRemarks2 = [...this.mapRemarks];
+      this.infowindow();
+      this.allTime=setInterval(() => {
+        this.mapRemarks.shift();
+        this.infowindow();
+      }, 5000);
     },
     currentMapAddr() {
       currentMapAddr({ breedsId: 1, orgId: 99 }).then(res => {
         //  处理地图数据*****
-        this.removepoint();
         this.btnActive = 2;
         this.markers = [];
         this.mapRemarks = res.data;
@@ -403,17 +418,12 @@ export default {
             });
             that.markers.push(marker);
             that.map.add(marker);
-            that.addCluster();
-            marker.on("click", function(e) {
-              that.infowindow(e, i);
-              // that.$router.push({
-              //   name: "base",
-              //   query: { baseId: Number(that.mapRemarks[i].id) }
-              // });
-            });
-            // 创建覆盖物群组，并将 marker 传给 OverlayGroup
           }
         }
+        if(this.allTime){
+              clearInterval(this.allTime)
+            }
+        this.allOrderShow();
       });
     },
     changeBtn(n) {
@@ -443,8 +453,8 @@ export default {
     currentWorkOrder() {
       currentWorkOrder({ breedsId: 1, orgId: 99 }).then(res => {
         this.orderList = res.data;
-        
-        this.baseScroll3 = new roll.Roll(
+
+        this.baseScroll5 = new roll.Roll(
           "base-info3",
           "base-ul3",
           "",
@@ -480,18 +490,25 @@ export default {
       doneCount(obj).then(res => {
         // this.saveBarList = [...res.data];
         let datas = res.data;
+        this.barLength = res.data.length;
+       
         let xData = datas.map(item => {
           return item.baseName;
         });
         let yData = datas.map(item => {
           return item.workOrderDoneCount + 10;
         });
-        this._dramBar(yData, xData);
+        if (this.barLength> 0) {
+          let _this=this
+          setTimeout(() => {
+            _this._dramBar(yData, xData);
+          }, 400);
+        }
       });
     },
     _dramBar(xData, yData) {
       clearInterval(this.faultByHourTime);
-      clearInterval(this.timer)
+      clearInterval(this.timer);
       let _this = this;
       let rainChart = this.$echarts.init(this.$refs.bar, null, {
         devicePixelRatio: 2.5
@@ -619,7 +636,7 @@ export default {
         });
       }, 2100);
 
-      this.timer=setInterval(function() {
+      this.timer = setInterval(function() {
         var datax = option.series[0].data;
         // var data1 = option.series[1].data;
         datax.push(datax[0]);
@@ -633,7 +650,7 @@ export default {
 
     autoTooltip() {},
     toBlack() {
-      clearInterval(this.timerInit)
+      clearInterval(this.timerInit);
       this.$router.back(-1);
     },
     typeCountAndPercent() {
@@ -690,8 +707,8 @@ export default {
       feedBackPercent
     ) {
       clearInterval(this.faultByHourTime2);
-       clearInterval(this.timer2);
-      
+      clearInterval(this.timer2);
+
       let rainChart = this.$echarts.init(this.$refs.bottomLine1, null, {
         devicePixelRatio: 2.5
       });
@@ -958,7 +975,7 @@ export default {
         });
       }, 2100);
 
-      this.timer2=setInterval(function() {
+      this.timer2 = setInterval(function() {
         var datax = option.xAxis[0].data;
         datax.push(datax[0]);
         datax.shift();
@@ -1119,12 +1136,9 @@ export default {
         this._dramLoansChart23("loansChart3", name, arr);
       });
     },
-    removepoint() {
-      this.map.remove(this.markers);
-    },
-    removeOverlayGroups() {
-      this.map.remove(this.overlayGroups);
-    },
+    // removepoint() {
+    //   this.map.remove(this.markers);
+    // },
     baseWorkOrderCount() {
       baseWorkOrderCount({ orgId: 99, breedsId: 1 }).then(res => {
         let arr = [];
@@ -1149,28 +1163,6 @@ export default {
       getBaseInsuranceTj({ baseId: this.baseId }).then(res => {
         this.bx_forests = 80;
         this.bx_count = 91;
-      });
-    },
-    listAddMarker(position, i) {
-      var markerContent =
-        "" +
-        '<div class="custom-content-marker" style="postion:relative;text-align:center">' +
-        '   <img src="https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png">' +
-        "</div>";
-      let that = this;
-      // let markers = [];
-      var marker = new AMap.Marker({
-        map: that.map,
-        position: position,
-        content: markerContent,
-        offset: new AMap.Pixel(-13, -30)
-      });
-      that.map.setZoomAndCenter(15, position);
-      // markers.push(marker);
-      that.saveListMarker.push(marker);
-      marker.setMap(that.map);
-      AMap.event.addListener(marker, "click", function(e) {
-        that.map.setZoomAndCenter(15, [e.lnglat.lng, e.lnglat.lat]);
       });
     },
     _dramLoansChart(datas) {
@@ -1314,9 +1306,6 @@ export default {
                 renderClusterMarker: that._renderClusterMarker
               });
             }
-
-            // var bounds = that.map.getBounds();
-            // that.map.setLimitBounds(bounds);
             that.map.on("complete", function() {
               var myEvent = new CustomEvent("done1", {});
               that.currentMapAddr();
@@ -1331,16 +1320,25 @@ export default {
       });
     },
 
-    infowindow(e, b) {
+    infowindow() {
+      let remark = this.mapRemarks[0].mapAddr;
+      if(!remark){return}
+      let remarkJson2 = eval("(" + remark + ")");
+      if (remarkJson2.path) {
+        var lng = remarkJson2.path[0].lng;
+        var lat = remarkJson2.path[0].lat;
+      }
       this.infoWindowdata = new AMap.InfoWindow({
         content: `<div style="color:#fff;width:250px;overflow:hidden;text-align:left">
-        <div>基地名称：${this.mapRemarks[b].baseName}</div>
-        <div>农户姓名：${this.mapRemarks[b].executionUserName}</div>
-        <div>农事操作：${this.mapRemarks[b].farmWorkItemName}</div>
-        <div>操作时间：${this.mapRemarks[b].executionTime}</div>
+        <div>基地名称：${this.mapRemarks[0].baseName}</div>
+        <div>农户姓名：${this.mapRemarks[0].executionUserName}</div>
+        <div>农事操作：${this.mapRemarks[0].farmWorkItemName}</div>
+        <div>操作时间：${this.mapRemarks[0].executionTime}</div>
         </div>`
       });
-      this.infoWindowdata.open(this.map, [e.lnglat.lng, e.lnglat.lat]);
+      this.infoWindowdata.open(this.map, [lng, lat]);
+      // this.map.setFitView();
+      this.map.setZoomAndCenter(14, [lng, lat]);
     }
   }
 };
@@ -1359,6 +1357,14 @@ export default {
 }
 </style>
 <style lang="stylus" scoped>
+.no-data {
+  color: #fff;
+  position: absolute;
+  top: 30px;
+  left: 40%;
+  font-size: 13px;
+}
+
 @media screen and (min-width: 1550px) {
   .base-item {
     span:nth-of-type(1) {
