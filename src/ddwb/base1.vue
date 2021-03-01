@@ -190,7 +190,7 @@
                       :class="{'base-tab-small':true,'base-tab-action-small':soliTab==3?true:false}"
                     >电导率</div>
                     <div
-                      @click="getLast24HMonitorRecords(4,'soilPH')"
+                      @click="getLast24HMonitorRecords(4,'soilPh')"
                       :class="{'base-tab-small':true,'base-tab-action-small':soliTab==4?true:false}"
                     >PH值</div>
                   </div>
@@ -792,10 +792,12 @@ export default {
           let remarkJson2 = eval("(" + remark + ")");
           let newPath = [];
             const lngLat = gcj02Towgs84(remarkJson2.path[0].lng, remarkJson2.path[0].lat)
-          this.listAddMarker(
+         if(remarks.length<50){//如果数据太多，不显示marker
+            this.listAddMarker(
             lngLat,
             i
           );
+         }
           for (let i = 0; i < remarkJson2.path.length; i++) {
             let point = remarkJson2.path[i];
            const lngLat = gcj02Towgs84(point.lng, point.lat)

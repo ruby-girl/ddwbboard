@@ -164,7 +164,7 @@
                       :class="{'base-tab-small':true,'base-tab-action-small':soliTab==3?true:false}"
                     >电导率</div>
                     <div
-                      @click="getLast24HMonitorRecords(4,'soilPH')"
+                      @click="getLast24HMonitorRecords(4,'soilPh')"
                       :class="{'base-tab-small':true,'base-tab-action-small':soliTab==4?true:false}"
                     >PH值</div>
                   </div>

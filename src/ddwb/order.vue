@@ -28,8 +28,8 @@
               >最近半年</div>
             </div>
           </div>
-          <div ref="bar" v-if="barLength>0" class="bar-height"></div>
-          <div v-else style="position:relative">
+          <div ref="bar" class="bar-height" id="bar-box"></div>
+          <div v-if="barLength<1" style="position:relative;top:-475px;">
             <div class="no-data">暂无数据</div>
           </div>
         </div>
@@ -38,7 +38,7 @@
           <div class="base display-flex justify-content-flex-justify">
             <div class="bg-item-box left-height" style="padding-bottom:10px">
               <div class="desc">
-                <div class="title">基地订单合同</div>
+                <div class="title">工单类型</div>
               </div>
               <div style="padding-top:40px">
                 <div style="position:relative" ref="pieBox">
@@ -65,7 +65,7 @@
           <div class="base display-flex justify-content-flex-justify" ref="baseMessage">
             <div class="item-bg-y" style="position:relative;">
               <div class="last-title display-flex justify-content-flex-justify">
-                <div>土壤环境</div>
+                <div>工单数量类型</div>
                 <div></div>
               </div>
               <div class="rain-map" ref="bottomLine1" style="height:100%"></div>
@@ -79,7 +79,7 @@
       <div class="company-info" style="margin-left:30px">
         <div class="bg-item-box left-height" style="padding-bottom:10px">
           <div class="desc">
-            <div class="title">基地订单合同</div>
+            <div class="title">基地工单数量</div>
           </div>
           <div style="padding-top:40px">
             <div style="position:relative;" ref="pieBox2">
@@ -94,7 +94,7 @@
           </div>
         </div>
         <div class="item-bg-y bg-item-box left-height" style="padding:15px 0;margin-top:20px;">
-          <div class="last-title">基地保险概况</div>
+          <div class="last-title">基地农户数量</div>
           <div style="padding-top:40px">
             <div style="position:relative" ref="pieBox2">
               <img
@@ -110,7 +110,7 @@
         <!-- 左侧下柱形图 -->
         <div class="item-bg-y bg-item-box left-height" style="padding:15px 0;margin-top:20px;">
           <div class="last-title display-flex justify-content-flex-justify">
-            <div>基地贷款概况</div>
+            <div>实时工单</div>
           </div>
           <div class="map-order-box" style="overflow:hidden;height:92%" @click="toOrder()">
             <ul
@@ -169,7 +169,7 @@ import {
   currentMapAddr,
   newestMapAddr
 } from "../api/apiYZX";
-import { gcj02Towgs84 } from '@/utils/loadMap'
+import { gcj02Towgs84 } from "@/utils/loadMap";
 const dataAxis = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 export default {
@@ -232,8 +232,9 @@ export default {
       timer2: null,
       timerInit: null,
       hasNewOrder: false,
-      allTime:null,
-      baseScroll5:null
+      allTime: null,
+      baseScroll5: null,
+      shiftObj: null
     };
   },
   created() {
@@ -245,7 +246,7 @@ export default {
   mounted() {
     this._drawCityMap();
     let that = this;
-       window.addEventListener("done1", function() {
+    window.addEventListener("done1", function() {
       let googleLayer = new AMap.TileLayer({
         getTileUrl:
           "http://t{0,1,2,3,4,5,6,7}.tianditu.gov.cn/DataServer?T=img_w&tk=abeec20c364d3bf2a7357ae764e683eb&x=[x]&y=[y]&l=[z]"
@@ -379,10 +380,10 @@ export default {
             that.map.add(marker);
             // marker.setAnimation("AMAP_ANIMATION_BOUNCE");
             // that.addCluster();
-            if(this.allTime){
-              clearInterval(this.allTime)
+            if (this.allTime) {
+              clearInterval(this.allTime);
             }
-            
+
             // marker.on("click", function(e) {
             that.allOrderShow();
             // });
@@ -391,10 +392,10 @@ export default {
       });
     },
     allOrderShow() {
-      this.mapRemarks2 = [...this.mapRemarks];
+      // this.mapRemarks2 = [...this.mapRemarks];
       this.infowindow();
-      this.allTime=setInterval(() => {
-        this.mapRemarks.shift();
+      this.allTime = setInterval(() => {
+        this.shiftObj = this.mapRemarks.shift();
         this.infowindow();
       }, 5000);
     },
@@ -409,7 +410,10 @@ export default {
           let remark = that.mapRemarks[i].mapAddr;
           let remarkJson2 = eval("(" + remark + ")");
           if (remarkJson2.path) {
-            const lngLat = gcj02Towgs84(remarkJson2.path[0].lng, remarkJson2.path[0].lat)
+            const lngLat = gcj02Towgs84(
+              remarkJson2.path[0].lng,
+              remarkJson2.path[0].lat
+            );
             let marker = new AMap.Marker({
               position: new AMap.LngLat(lngLat[0], lngLat[1]),
               offset: new AMap.Pixel(-10, -10),
@@ -420,9 +424,9 @@ export default {
             that.map.add(marker);
           }
         }
-        if(this.allTime){
-              clearInterval(this.allTime)
-            }
+        if (this.allTime) {
+          clearInterval(this.allTime);
+        }
         this.allOrderShow();
       });
     },
@@ -489,18 +493,35 @@ export default {
       };
       doneCount(obj).then(res => {
         // this.saveBarList = [...res.data];
+
+        if (this.rainChart) {
+          this.rainChart = null;
+          clearInterval(this.faultByHourTime);
+          clearInterval(this.timer);
+          document.getElementById("bar-box").innerHTML = "";
+          document
+            .getElementById("bar-box")
+            .removeAttribute("_echarts_instance_");
+        }
+
         let datas = res.data;
         this.barLength = res.data.length;
-       
+        //   this.$nextTick(() => {//结合$nextTick使用
+        //     this.$echarts.init(this.$refs.bar).clear()
+        //  })
         let xData = datas.map(item => {
           return item.baseName;
         });
         let yData = datas.map(item => {
           return item.workOrderDoneCount + 10;
         });
-        if (this.barLength> 0) {
-          let _this=this
+
+        let _this = this;
+
+        if (this.barLength > 0) {
+          let _this = this;
           setTimeout(() => {
+            console.info("大于");
             _this._dramBar(yData, xData);
           }, 400);
         }
@@ -510,7 +531,7 @@ export default {
       clearInterval(this.faultByHourTime);
       clearInterval(this.timer);
       let _this = this;
-      let rainChart = this.$echarts.init(this.$refs.bar, null, {
+      this.rainChart = this.$echarts.init(this.$refs.bar, null, {
         devicePixelRatio: 2.5
       });
       var option = {
@@ -625,11 +646,11 @@ export default {
           }
         ]
       };
-      rainChart.setOption(option);
+      this.rainChart.setOption(option);
       var faultByHourIndex = 0; //播放所在下标
       this.faultByHourTime = setInterval(function() {
         //使得tootip每隔三秒自动显示
-        rainChart.dispatchAction({
+        _this.rainChart.dispatchAction({
           type: "showTip", // 根据 tooltip 的配置项显示提示框。
           seriesIndex: 0,
           dataIndex: faultByHourIndex
@@ -644,7 +665,7 @@ export default {
         var datay = option.yAxis[0].data;
         datay.push(datay[0]);
         datay.shift();
-        rainChart.setOption(option);
+        _this.rainChart.setOption(option);
       }, 3000);
     },
 
@@ -1322,11 +1343,15 @@ export default {
 
     infowindow() {
       let remark = this.mapRemarks[0].mapAddr;
-      if(!remark){return}
+      if (!remark) {
+        return;
+      }
       let remarkJson2 = eval("(" + remark + ")");
       if (remarkJson2.path) {
-       
-         var lngLat = gcj02Towgs84(remarkJson2.path[0].lng, remarkJson2.path[0].lat)
+        var lngLat = gcj02Towgs84(
+          remarkJson2.path[0].lng,
+          remarkJson2.path[0].lat
+        );
       }
       this.infoWindowdata = new AMap.InfoWindow({
         content: `<div style="color:#fff;width:250px;overflow:hidden;text-align:left">
@@ -1336,9 +1361,13 @@ export default {
         <div>操作时间：${this.mapRemarks[0].executionTime}</div>
         </div>`
       });
-      this.infoWindowdata.open(this.map,lngLat);
+      this.infoWindowdata.open(this.map, lngLat);
+      if (this.shiftObj) {
+        this.mapRemarks.push(this.shiftObj);
+      }
+
       // this.map.setFitView();
-      this.map.setZoomAndCenter(14,lngLat);
+      this.map.setZoomAndCenter(14, lngLat);
     }
   }
 };
