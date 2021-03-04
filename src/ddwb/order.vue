@@ -181,7 +181,7 @@ export default {
   data() {
     return {
       barLength: 0,
-      btn: 1,
+      btn: 4,
       pieTop: 0,
       pieLeft: 0,
       pieTop2: 0,
@@ -272,7 +272,7 @@ export default {
     this.pieLeft = (pieBoxW - 156) / 2 + "px";
     this.pieTop2 = (pieBox2 - 156) / 2 + "px";
     this.pieLeft2 = (pieBoxW2 - 156) / 2 + "px";
-    let sTime = this.getDay(7);
+    let sTime = this.getDay(180);
     this.getOrder(sTime);
     this.typePercentForOrg(); //坐下饼图
     this.typeCountAndPercent();
@@ -1112,6 +1112,7 @@ export default {
           },
           show: false
         },
+
         series: [
           {
             name: "访问来源",
@@ -1120,18 +1121,32 @@ export default {
             avoidLabelOverlap: false,
             label: {
               show: true,
-              position: "left"
+              position: "left",
+              formatter: function(v) {
+                let text = v.name;
+                if (v.name.length > 8) {
+                  return `${text.slice(0, 8)}...:${Math.round(v.percent) +
+                    "%"}`;
+                } else {
+                  return `${text}:${Math.round(v.percent) + "%"}`;
+                }
+              }
             },
             tooltip: {
               trigger: "item",
               show: false,
               formatter: "{a} <br/>{b} : {c} ({d}%)"
             },
+            avoidLabelOverlap: true,
             emphasis: {
               label: {
-                show: false,
-                fontSize: "30",
-                fontWeight: "bold"
+                show: true,
+                fontSize: "14",
+                fontWeight: "bold",
+                position:'center',
+                formatter: function(v) {
+                  return `${v.name}:${Math.round(v.percent) + "%"}`;
+                }
               }
             },
             data: datas
@@ -1173,6 +1188,7 @@ export default {
           arr.push(obj);
           return item.baseName;
         });
+
         this._dramLoansChart23("loansChart2", name, arr);
       });
     },
@@ -1187,7 +1203,7 @@ export default {
       });
     },
     _dramLoansChart(datas) {
-      //右侧饼图
+      //左侧饼图
       let rainChart = this.$echarts.init(this.$refs.loansChart, null, {
         devicePixelRatio: 2.5
       });
@@ -1213,7 +1229,7 @@ export default {
             avoidLabelOverlap: false,
             label: {
               show: true,
-              position: "left"
+              position: "right"
             },
             tooltip: {
               trigger: "item",
@@ -1222,8 +1238,8 @@ export default {
             },
             emphasis: {
               label: {
-                show: false,
-                fontSize: "30",
+                show: true,
+                fontSize: "15",
                 fontWeight: "bold"
               }
             },

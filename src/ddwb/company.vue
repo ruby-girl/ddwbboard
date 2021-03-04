@@ -219,7 +219,7 @@
       </div>
       <!-- 右侧 -->
       <div class="company-info" style="margin-left:30px">
-        <div
+        <!-- <div
           class="bg-item-box left-height scroll-box"
           style="padding-bottom:10px"
           ref="rightTopHeight"
@@ -277,7 +277,7 @@
               </li>
             </ul>
           </div>
-        </div>
+        </div> -->
         <div
           class="item-bg-y bg-item-box left-height left-height-bottom"
           :style="{'height':lastBoxHeight}"
@@ -293,7 +293,7 @@
               <span style="color: #fff;display:inline-block; width: 100px;text-align: center;">操作照片</span>
             </li>
           </ul>
-          <div class="base-info" id="base-info" style="height:85%">
+          <div class="base-info" id="base-info" style="height:90%">
             <ul id="base-ul2" style="position:relative; top:0px" v-if="orderList.length>0">
               <li class="base-item" v-for="(item,index) in orderList" :key="index">
                 <span style="text-align: left;display:inline-block; width: 80px;color: #0AFBE2">张三</span>
@@ -420,10 +420,10 @@ export default {
     this.getOrganuserMapInfo();
     let height = document.body.clientHeight;
     let heightThree = height * 0.75;
-    this.$refs.rightTopHeight.style.height = height - heightThree + "px";
-    let rightTopHeight = this.$refs.rightTopHeight.offsetHeight;
+    // this.$refs.rightTopHeight.style.height = height - heightThree + "px";
+    // let rightTopHeight = this.$refs.rightTopHeight.offsetHeight;
     let ms = height * 0.15;
-    this.lastBoxHeight = height - parseFloat(rightTopHeight) - ms + "px";
+    this.lastBoxHeight = height  - ms + "px";
 
     // 地图下折线图高度
     this.$refs.mapChart.style.height = height - 400 + "px";
@@ -512,7 +512,7 @@ export default {
       var option = chartsType.charts(
         ["2016", "2017", "2018", "2019", "2020"],
         [12000, 13000, 14500, 14800, 16000],
-        "元",
+        "元/亩",
         "line",
         "",
         "#0AFBE2",
@@ -1418,7 +1418,6 @@ export default {
 
 .left-height-bottom {
   padding: 15px 0;
-  margin-top: 20px;
   background: url('../assets/new/bg1.png') repeat;
 }
 

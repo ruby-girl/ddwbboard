@@ -310,7 +310,7 @@ var chartsType = {
 						name: '访问来源',
 						type: 'pie',
 						radius: arr,
-						avoidLabelOverlap: false,
+						avoidLabelOverlap: true,
 						label: {
 							show: true,
 							position: 'left'
@@ -323,8 +323,8 @@ var chartsType = {
 						},
 						emphasis: {
 							label: {
-								show: false,
-								fontSize: '30',
+								show: true,
+								fontSize: '14',
 								fontWeight: 'bold'
 							}
 						},

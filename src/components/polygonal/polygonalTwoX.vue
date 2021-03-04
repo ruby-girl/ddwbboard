@@ -21,12 +21,12 @@ export default {
         color: colors,
         tooltip: {
           trigger: "axis",
-          axisPointer: {
-            type: "cross",
-            crossStyle: {
-              color: "#fff"
-            }
-          }
+          // axisPointer: {
+          //   type: "cross",
+          //   crossStyle: {
+          //     color: "#fff"
+          //   }
+          // }
         },
         legend: {
           data: ["贷款金额", "贷款人数"],
@@ -39,9 +39,9 @@ export default {
           {
             type: "category",
             data: ["订单贷", "劳务贷", "农资贷",'保险贷'],
-            axisPointer: {
-              type: "shadow"
-            },
+            // axisPointer: {
+            //   type: "shadow"
+            // },
             axisLine: {
               show: true,
 

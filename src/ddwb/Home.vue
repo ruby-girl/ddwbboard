@@ -369,7 +369,7 @@ import Footer from "@/components/layouts/Footer";
 import chartsType from "../assets/js/chartsType.js";
 import roll from "../assets/js/roll.js";
 import axios from "axios";
-import { gcj02Towgs84 } from '@/utils/loadMap'
+import { gcj02Towgs84 } from "@/utils/loadMap";
 import {
   getSubjectInfo,
   getAnnualFertilizer,
@@ -614,7 +614,7 @@ export default {
         },
         tooltip: {
           trigger: "item",
-          formatter: "{a} <br/>{b} : {c} ({d}%)"
+          show:false
         },
         legend: {
           orient: "vertical",
@@ -634,14 +634,14 @@ export default {
             ],
             emphasis: {
               itemStyle: {
-                shadowBlur: 10,
+                shadowBlur: 5,
                 shadowOffsetX: 0,
                 shadowColor: "rgba(93,181,249,1)"
               }
             },
             itemStyle: {
               emphasis: {
-                shadowBlur: 10,
+                shadowBlur: 5,
                 shadowOffsetX: 0,
                 shadowColor: "rgba(0, 0, 0, 0.5)"
               },
@@ -671,7 +671,7 @@ export default {
         },
         tooltip: {
           trigger: "item",
-          formatter: "{a} <br/>{b} : {c} ({d}%)"
+          show:false
         },
         legend: {
           orient: "vertical",
@@ -688,14 +688,14 @@ export default {
             data: [{ value: 100, name: "100%" }],
             emphasis: {
               itemStyle: {
-                shadowBlur: 10,
+                shadowBlur: 5,
                 shadowOffsetX: 0,
                 shadowColor: "rgba(93,181,249,1)"
               }
             },
             itemStyle: {
               emphasis: {
-                shadowBlur: 10,
+                shadowBlur: 5,
                 shadowOffsetX: 0,
                 shadowColor: "rgba(0, 0, 0, 0.5)"
               },
@@ -836,7 +836,10 @@ export default {
           let remarkJson2 = eval("(" + remark + ")");
 
           if (remarkJson2.path) {
-            const lngLat = gcj02Towgs84(remarkJson2.path[0].lng, remarkJson2.path[0].lat)
+            const lngLat = gcj02Towgs84(
+              remarkJson2.path[0].lng,
+              remarkJson2.path[0].lat
+            );
             let marker = new AMap.Marker({
               position: new AMap.LngLat(lngLat[0], lngLat[1]),
               offset: new AMap.Pixel(-10, -10),
@@ -870,8 +873,10 @@ export default {
             let remark = that.mapRemarks[i].mapAddr;
             let remarkJson2 = eval("(" + remark + ")");
 
-          
-             const lngLat = gcj02Towgs84(remarkJson2.path[0].lng, remarkJson2.path[0].lat)
+            const lngLat = gcj02Towgs84(
+              remarkJson2.path[0].lng,
+              remarkJson2.path[0].lat
+            );
             let marker = new AMap.Marker({
               position: new AMap.LngLat(lngLat[0], lngLat[1]),
               offset: new AMap.Pixel(-10, -10),
@@ -1072,8 +1077,8 @@ export default {
             },
             emphasis: {
               label: {
-                show: false,
-                fontSize: "30",
+                show: true,
+                fontSize: "14",
                 fontWeight: "bold"
               }
             },

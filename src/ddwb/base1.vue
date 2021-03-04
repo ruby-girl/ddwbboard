@@ -825,6 +825,10 @@ export default {
       let obj = this.landList.filter((item, n) => {
         return n == i;
       });
+      if(!obj[0].userId){
+         this.$message.warning('当前地块未分配！');
+        return
+      }
       this.$router.push({
         name: "company",
         query: { userOrganId: Number(obj[0].userId) }
@@ -866,8 +870,8 @@ export default {
             },
             emphasis: {
               label: {
-                show: false,
-                fontSize: "30",
+                show: true,
+                fontSize: "14",
                 fontWeight: "bold"
               }
             },
